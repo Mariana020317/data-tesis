@@ -1,0 +1,1582 @@
+=== ANÁLISIS DE CHI-CUADRADO CON INTERPRETACIONES DETALLADAS DE ODDS RATIOS ===
+
+
+================================================================================
+DOMINIO: Comunicacion
+================================================================================
+
+### Variable: area_residencia vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+area_residencia                                                         
+Rural                                              232                25
+Urbano                                            1396                72
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 8.70, p = 0.003).
+
+**Análisis detallado:**
+- Rural presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Rural 9.7% vs Urbano 4.9% (diferencia de 4.8%)
+
+**Odds Ratio e Interpretación:**
+OR = 0.48 (IC 95%: 0.30 - 0.77)
+
+**Interpretación clínica:**
+- Los Urbano tienen 2.09 veces mayor probabilidad de presentar trastornos del neurodesarrollo en comunicacion comparado con Rural
+- Esto significa que por cada 100 niños con desarrollo adecuado en Rural, hay 105 niños con desarrollo adecuado en Urbano
+- El riesgo es SIN CLASIFICACIÓN según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 4.8%
+- Número necesario para tratar (NNT): 21 pacientes
+- Relevancia para salud pública: MODERADA
+
+**Conclusión clínica:**
+La población rural requiere atención especial en el desarrollo de comunicacion, con riesgo moderadamente elevado comparado con urbano.
+
+### Variable: sexo_nino vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+sexo_nino                                                               
+Femenino                                           765                38
+Masculino                                          863                59
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.94, p = 0.163).
+
+### Variable: grupo_etnico vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+grupo_etnico                                                            
+Indígena                                           691                50
+No indígena                                        937                47
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.73, p = 0.098).
+
+### Variable: nivel_educativo_madre vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_madre                                                   
+Básico                                             485                21
+Diversificado                                      660                40
+Ninguna                                             54                 9
+No especificado                                     12                 2
+Primaria                                           293                21
+Universitario                                      124                 4
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 15.14, p = 0.010).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 21/506 = 4.2%
+- Diversificado: 40/700 = 5.7%
+- Ninguna: 9/63 = 14.3%
+- No especificado: 2/14 = 14.3%
+- Primaria: 21/314 = 6.7%
+- Universitario: 4/128 = 3.1%
+
+**Categorías extremas:**
+- Mayor riesgo: Ninguna (14.3%)
+- Menor riesgo: Universitario (3.1%)
+
+**OR entre categorías extremas:**
+OR = 0.19 (IC 95%: 0.06 - 0.66)
+Magnitud: Sin clasificación
+
+### Variable: nivel_educativo_padre vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_padre                                                   
+Básico                                             366                14
+Diversificado                                      767                44
+Ninguna                                             46                 4
+No especificado                                     44                 8
+Primaria                                           243                17
+Universitario                                      162                10
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 13.04, p = 0.023).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 14/380 = 3.7%
+- Diversificado: 44/811 = 5.4%
+- Ninguna: 4/50 = 8.0%
+- No especificado: 8/52 = 15.4%
+- Primaria: 17/260 = 6.5%
+- Universitario: 10/172 = 5.8%
+
+**Categorías extremas:**
+- Mayor riesgo: No especificado (15.4%)
+- Menor riesgo: Básico (3.7%)
+
+**OR entre categorías extremas:**
+OR = 0.21 (IC 95%: 0.08 - 0.53)
+Magnitud: Sin clasificación
+
+### Variable: nacimiento_prematuro vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+nacimiento_prematuro                                                    
+No                                                1239                71
+Sí                                                 389                26
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.28, p = 0.597).
+
+### Variable: retardo_crecimiento vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+retardo_crecimiento                                                     
+No                                                1450                83
+Sí                                                 178                14
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.81, p = 0.369).
+
+### Variable: desnutricion_aguda vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+desnutricion_aguda                                                      
+No                                                1535                88
+Sí                                                  93                 9
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.50, p = 0.221).
+
+### Variable: vacunacion_completa vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+vacunacion_completa                                                     
+No                                                  81                 7
+Sí                                                1547                90
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.54, p = 0.461).
+
+### Variable: seguro_social vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+seguro_social                                                           
+No                                                1234                77
+Sí                                                 394                20
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.46, p = 0.496).
+
+### Variable: situacion_laboral_madre vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+situacion_laboral_madre                                                 
+No especificado                                      6                 1
+No trabaja                                         825                43
+Trabaja                                            797                53
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.32, p = 0.313).
+
+### Variable: tipo_empleo_madre vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+tipo_empleo_madre                                                       
+Formal                                             479                25
+Informal                                           318                28
+No especificado                                    831                44
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.98, p = 0.083).
+
+### Variable: estado_civil_cuidador vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+estado_civil_cuidador                                                   
+Casado                                             912                63
+Soltero                                            288                25
+Unido                                              428                 9
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 15.05, p = 0.001).
+
+**Nota:** Tabla no es 2x2 ((3, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Casado: 63/975 = 6.5%
+- Soltero: 25/313 = 8.0%
+- Unido: 9/437 = 2.1%
+
+**Categorías extremas:**
+- Mayor riesgo: Soltero (8.0%)
+- Menor riesgo: Unido (2.1%)
+
+**OR entre categorías extremas:**
+OR = 0.24 (IC 95%: 0.11 - 0.53)
+Magnitud: Sin clasificación
+
+### Variable: propiedad_vivienda vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+propiedad_vivienda                                                      
+Alquilada                                          438                33
+Propia                                            1190                64
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.99, p = 0.158).
+
+### Variable: fuente_agua_consumo vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+fuente_agua_consumo                                                     
+Chorro público                                     136                 6
+Pozo público o privado                              15                 3
+Red de tubería                                    1474                88
+Río, lago, tonel, camión y otro                      3                 0
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.84, p = 0.184).
+
+### Variable: tipo_sanitario vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+tipo_sanitario                                                          
+Excusado lavable                                     1                 0
+Inodoro                                           1523                92
+Letrina/Pozo ciego                                 104                 5
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.30, p = 0.862).
+
+### Variable: manejo_basura vs Dominio: zscore_desarrollo_comunicacion
+
+**Tabla de contingencia:**
+categoria_desarrollo_comunicacion  Desarrollo adecuado  Riesgo combinado
+manejo_basura                                                           
+La entierra                                          6                 2
+La quema                                           203                20
+La tira en cualquier lugar                           9                 0
+Otra                                                 3                 0
+Servicio municipal o privado                      1407                75
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 11.96, p = 0.018).
+
+**Nota:** Tabla no es 2x2 ((5, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- La entierra: 2/8 = 25.0%
+- La quema: 20/223 = 9.0%
+- La tira en cualquier lugar: 0/9 = 0.0%
+- Otra: 0/3 = 0.0%
+- Servicio municipal o privado: 75/1482 = 5.1%
+
+**Categorías extremas:**
+- Mayor riesgo: La entierra (25.0%)
+- Menor riesgo: La tira en cualquier lugar (0.0%)
+
+**OR entre categorías extremas:**
+OR = 0.00 (IC 95%: 0.00 - nan)
+Magnitud: Sin clasificación
+
+================================================================================
+DOMINIO: Motricidad Gruesa
+================================================================================
+
+### Variable: area_residencia vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+area_residencia                                                              
+Rural                                                   194                63
+Urbano                                                 1243               225
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 12.62, p = 0.000).
+
+**Análisis detallado:**
+- Rural presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Rural 24.5% vs Urbano 15.3% (diferencia de 9.2%)
+
+**Odds Ratio e Interpretación:**
+OR = 0.56 (IC 95%: 0.41 - 0.77)
+
+**Interpretación clínica:**
+- Los Urbano tienen 1.79 veces mayor probabilidad de presentar trastornos del neurodesarrollo en motricidad gruesa comparado con Rural
+- Esto significa que por cada 100 niños con desarrollo adecuado en Rural, hay 112 niños con desarrollo adecuado en Urbano
+- El riesgo es SIN CLASIFICACIÓN según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 9.2%
+- Número necesario para tratar (NNT): 11 pacientes
+- Relevancia para salud pública: BAJA
+
+**Conclusión clínica:**
+Aunque estadísticamente significativa, la asociación entre area_residencia y motricidad gruesa es clínicamente débil.
+
+### Variable: sexo_nino vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+sexo_nino                                                                    
+Femenino                                                669               134
+Masculino                                               768               154
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.00, p = 1.000).
+
+### Variable: grupo_etnico vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+grupo_etnico                                                                 
+Indígena                                                612               129
+No indígena                                             825               159
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.39, p = 0.533).
+
+### Variable: nivel_educativo_madre vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_madre                                                        
+Básico                                                  417                89
+Diversificado                                           583               117
+Ninguna                                                  46                17
+No especificado                                          11                 3
+Primaria                                                262                52
+Universitario                                           118                10
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 12.58, p = 0.028).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 89/506 = 17.6%
+- Diversificado: 117/700 = 16.7%
+- Ninguna: 17/63 = 27.0%
+- No especificado: 3/14 = 21.4%
+- Primaria: 52/314 = 16.6%
+- Universitario: 10/128 = 7.8%
+
+**Categorías extremas:**
+- Mayor riesgo: Ninguna (27.0%)
+- Menor riesgo: Universitario (7.8%)
+
+**OR entre categorías extremas:**
+OR = 0.23 (IC 95%: 0.10 - 0.54)
+Magnitud: Sin clasificación
+
+### Variable: nivel_educativo_padre vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_padre                                                        
+Básico                                                  320                60
+Diversificado                                           675               136
+Ninguna                                                  34                16
+No especificado                                          41                11
+Primaria                                                223                37
+Universitario                                           144                28
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 10.55, p = 0.061).
+
+### Variable: nacimiento_prematuro vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+nacimiento_prematuro                                                         
+No                                                     1087               223
+Sí                                                      350                65
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.33, p = 0.567).
+
+### Variable: retardo_crecimiento vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+retardo_crecimiento                                                          
+No                                                     1288               245
+Sí                                                      149                43
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.60, p = 0.032).
+
+**Análisis detallado:**
+- Sí presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Sí 22.4% vs No 16.0% (diferencia de 6.4%)
+
+**Odds Ratio e Interpretación:**
+OR = 1.52 (IC 95%: 1.05 - 2.19)
+
+**Interpretación clínica:**
+- Los Sí tienen 1.52 veces mayor probabilidad de presentar trastornos del neurodesarrollo en motricidad gruesa comparado con No
+- Esto significa que por cada 100 niños con desarrollo adecuado en Sí, hay 108 niños con desarrollo adecuado en No
+- El riesgo es ASOCIACIÓN MODERADA según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 6.4%
+- Número necesario para tratar (NNT): 16 pacientes
+- Relevancia para salud pública: MODERADA
+
+**Conclusión clínica:**
+La población sí requiere atención especial en el desarrollo de motricidad gruesa, con riesgo moderadamente elevado comparado con no.
+
+### Variable: desnutricion_aguda vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+desnutricion_aguda                                                           
+No                                                     1356               267
+Sí                                                       81                21
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.90, p = 0.342).
+
+### Variable: vacunacion_completa vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+vacunacion_completa                                                          
+No                                                       72                16
+Sí                                                     1365               272
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.06, p = 0.813).
+
+### Variable: seguro_social vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+seguro_social                                                                
+No                                                     1090               221
+Sí                                                      347                67
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.06, p = 0.807).
+
+### Variable: situacion_laboral_madre vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+situacion_laboral_madre                                                      
+No especificado                                           7                 0
+No trabaja                                              730               138
+Trabaja                                                 700               150
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.35, p = 0.308).
+
+### Variable: tipo_empleo_madre vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+tipo_empleo_madre                                                            
+Formal                                                  407                97
+Informal                                                293                53
+No especificado                                         737               138
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.37, p = 0.186).
+
+### Variable: estado_civil_cuidador vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+estado_civil_cuidador                                                        
+Casado                                                  806               169
+Soltero                                                 254                59
+Unido                                                   377                60
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.09, p = 0.129).
+
+### Variable: propiedad_vivienda vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+propiedad_vivienda                                                           
+Alquilada                                               403                68
+Propia                                                 1034               220
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.16, p = 0.142).
+
+### Variable: fuente_agua_consumo vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+fuente_agua_consumo                                                          
+Chorro público                                          119                23
+Pozo público o privado                                   12                 6
+Red de tubería                                         1303               259
+Río, lago, tonel, camión y otro                           3                 0
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.22, p = 0.238).
+
+### Variable: tipo_sanitario vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+tipo_sanitario                                                               
+Excusado lavable                                          1                 0
+Inodoro                                                1345               270
+Letrina/Pozo ciego                                       91                18
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.20, p = 0.903).
+
+### Variable: manejo_basura vs Dominio: zscore_desarrollo_motricidad_gruesa
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_gruesa  Desarrollo adecuado  Riesgo combinado
+manejo_basura                                                                
+La entierra                                               7                 1
+La quema                                                187                36
+La tira en cualquier lugar                                6                 3
+Otra                                                      3                 0
+Servicio municipal o privado                           1234               248
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.54, p = 0.637).
+
+================================================================================
+DOMINIO: Motricidad Fina
+================================================================================
+
+### Variable: area_residencia vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+area_residencia                                                            
+Rural                                                 229                28
+Urbano                                               1348               120
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.73, p = 0.188).
+
+### Variable: sexo_nino vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+sexo_nino                                                                  
+Femenino                                              741                62
+Masculino                                             836                86
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.21, p = 0.270).
+
+### Variable: grupo_etnico vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+grupo_etnico                                                               
+Indígena                                              669                72
+No indígena                                           908                76
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.89, p = 0.169).
+
+### Variable: nivel_educativo_madre vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_madre                                                      
+Básico                                                459                47
+Diversificado                                         655                45
+Ninguna                                                51                12
+No especificado                                        12                 2
+Primaria                                              279                35
+Universitario                                         121                 7
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 18.05, p = 0.003).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 47/506 = 9.3%
+- Diversificado: 45/700 = 6.4%
+- Ninguna: 12/63 = 19.0%
+- No especificado: 2/14 = 14.3%
+- Primaria: 35/314 = 11.1%
+- Universitario: 7/128 = 5.5%
+
+**Categorías extremas:**
+- Mayor riesgo: Ninguna (19.0%)
+- Menor riesgo: Universitario (5.5%)
+
+**OR entre categorías extremas:**
+OR = 0.25 (IC 95%: 0.09 - 0.66)
+Magnitud: Sin clasificación
+
+### Variable: nivel_educativo_padre vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_padre                                                      
+Básico                                                350                30
+Diversificado                                         754                57
+Ninguna                                                45                 5
+No especificado                                        41                11
+Primaria                                              229                31
+Universitario                                         158                14
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 17.07, p = 0.004).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 30/380 = 7.9%
+- Diversificado: 57/811 = 7.0%
+- Ninguna: 5/50 = 10.0%
+- No especificado: 11/52 = 21.2%
+- Primaria: 31/260 = 11.9%
+- Universitario: 14/172 = 8.1%
+
+**Categorías extremas:**
+- Mayor riesgo: No especificado (21.2%)
+- Menor riesgo: Diversificado (7.0%)
+
+**OR entre categorías extremas:**
+OR = 0.28 (IC 95%: 0.14 - 0.58)
+Magnitud: Sin clasificación
+
+### Variable: nacimiento_prematuro vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+nacimiento_prematuro                                                       
+No                                                   1206               104
+Sí                                                    371                44
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.52, p = 0.112).
+
+### Variable: retardo_crecimiento vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+retardo_crecimiento                                                        
+No                                                   1409               124
+Sí                                                    168                24
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.69, p = 0.055).
+
+### Variable: desnutricion_aguda vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+desnutricion_aguda                                                         
+No                                                   1487               136
+Sí                                                     90                12
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.00, p = 0.316).
+
+### Variable: vacunacion_completa vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+vacunacion_completa                                                        
+No                                                     75                13
+Sí                                                   1502               135
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.74, p = 0.053).
+
+### Variable: seguro_social vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+seguro_social                                                              
+No                                                   1191               120
+Sí                                                    386                28
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.00, p = 0.158).
+
+### Variable: situacion_laboral_madre vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+situacion_laboral_madre                                                    
+No especificado                                         6                 1
+No trabaja                                            799                69
+Trabaja                                               772                78
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.12, p = 0.572).
+
+### Variable: tipo_empleo_madre vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+tipo_empleo_madre                                                          
+Formal                                                457                47
+Informal                                              315                31
+No especificado                                       805                70
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.80, p = 0.672).
+
+### Variable: estado_civil_cuidador vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+estado_civil_cuidador                                                      
+Casado                                                894                81
+Soltero                                               283                30
+Unido                                                 400                37
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.50, p = 0.778).
+
+### Variable: propiedad_vivienda vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+propiedad_vivienda                                                         
+Alquilada                                             426                45
+Propia                                               1151               103
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.62, p = 0.430).
+
+### Variable: fuente_agua_consumo vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+fuente_agua_consumo                                                        
+Chorro público                                        126                16
+Pozo público o privado                                 13                 5
+Red de tubería                                       1435               127
+Río, lago, tonel, camión y otro                         3                 0
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 10.45, p = 0.015).
+
+**Nota:** Tabla no es 2x2 ((4, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Chorro público: 16/142 = 11.3%
+- Pozo público o privado: 5/18 = 27.8%
+- Red de tubería: 127/1562 = 8.1%
+- Río, lago, tonel, camión y otro: 0/3 = 0.0%
+
+**Categorías extremas:**
+- Mayor riesgo: Pozo público o privado (27.8%)
+- Menor riesgo: Río, lago, tonel, camión y otro (0.0%)
+
+**OR entre categorías extremas:**
+OR = 0.00 (IC 95%: 0.00 - nan)
+Magnitud: Sin clasificación
+
+### Variable: tipo_sanitario vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+tipo_sanitario                                                             
+Excusado lavable                                        1                 0
+Inodoro                                              1476               139
+Letrina/Pozo ciego                                    100                 9
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.11, p = 0.947).
+
+### Variable: manejo_basura vs Dominio: zscore_desarrollo_motricidad_fina
+
+**Tabla de contingencia:**
+categoria_desarrollo_motricidad_fina  Desarrollo adecuado  Riesgo combinado
+manejo_basura                                                              
+La entierra                                             6                 2
+La quema                                              203                20
+La tira en cualquier lugar                              8                 1
+Otra                                                    3                 0
+Servicio municipal o privado                         1357               125
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.19, p = 0.527).
+
+================================================================================
+DOMINIO: Resolucion Problemas
+================================================================================
+
+### Variable: area_residencia vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+area_residencia                                                                 
+Rural                                                      218                39
+Urbano                                                    1379                89
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 25.13, p = 0.000).
+
+**Análisis detallado:**
+- Rural presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Rural 15.2% vs Urbano 6.1% (diferencia de 9.1%)
+
+**Odds Ratio e Interpretación:**
+OR = 0.36 (IC 95%: 0.24 - 0.54)
+
+**Interpretación clínica:**
+- Los Urbano tienen 2.77 veces mayor probabilidad de presentar trastornos del neurodesarrollo en resolucion problemas comparado con Rural
+- Esto significa que por cada 100 niños con desarrollo adecuado en Rural, hay 111 niños con desarrollo adecuado en Urbano
+- El riesgo es SIN CLASIFICACIÓN según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 9.1%
+- Número necesario para tratar (NNT): 11 pacientes
+- Relevancia para salud pública: MODERADA
+
+**Conclusión clínica:**
+La población rural requiere atención especial en el desarrollo de resolucion problemas, con riesgo moderadamente elevado comparado con urbano.
+
+### Variable: sexo_nino vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+sexo_nino                                                                       
+Femenino                                                   751                52
+Masculino                                                  846                76
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.70, p = 0.192).
+
+### Variable: grupo_etnico vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+grupo_etnico                                                                    
+Indígena                                                   674                67
+No indígena                                                923                61
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.57, p = 0.033).
+
+**Análisis detallado:**
+- Indígena presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Indígena 9.0% vs No indígena 6.2% (diferencia de 2.8%)
+
+**Odds Ratio e Interpretación:**
+OR = 0.66 (IC 95%: 0.46 - 0.95)
+
+**Interpretación clínica:**
+- Los No indígena tienen 1.50 veces mayor probabilidad de presentar trastornos del neurodesarrollo en resolucion problemas comparado con Indígena
+- Esto significa que por cada 100 niños con desarrollo adecuado en Indígena, hay 103 niños con desarrollo adecuado en No indígena
+- El riesgo es SIN CLASIFICACIÓN según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 2.8%
+- Número necesario para tratar (NNT): 35 pacientes
+- Relevancia para salud pública: BAJA
+
+**Conclusión clínica:**
+Aunque estadísticamente significativa, la asociación entre grupo_etnico y resolucion problemas es clínicamente débil.
+
+### Variable: nivel_educativo_madre vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_madre                                                           
+Básico                                                     478                28
+Diversificado                                              640                60
+Ninguna                                                     55                 8
+No especificado                                             10                 4
+Primaria                                                   290                24
+Universitario                                              124                 4
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 19.10, p = 0.002).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 28/506 = 5.5%
+- Diversificado: 60/700 = 8.6%
+- Ninguna: 8/63 = 12.7%
+- No especificado: 4/14 = 28.6%
+- Primaria: 24/314 = 7.6%
+- Universitario: 4/128 = 3.1%
+
+**Categorías extremas:**
+- Mayor riesgo: No especificado (28.6%)
+- Menor riesgo: Universitario (3.1%)
+
+**OR entre categorías extremas:**
+OR = 0.08 (IC 95%: 0.02 - 0.37)
+Magnitud: Sin clasificación
+
+### Variable: nivel_educativo_padre vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_padre                                                           
+Básico                                                     359                21
+Diversificado                                              754                57
+Ninguna                                                     44                 6
+No especificado                                             37                15
+Primaria                                                   242                18
+Universitario                                              161                11
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 38.80, p = 0.000).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 21/380 = 5.5%
+- Diversificado: 57/811 = 7.0%
+- Ninguna: 6/50 = 12.0%
+- No especificado: 15/52 = 28.8%
+- Primaria: 18/260 = 6.9%
+- Universitario: 11/172 = 6.4%
+
+**Categorías extremas:**
+- Mayor riesgo: No especificado (28.8%)
+- Menor riesgo: Básico (5.5%)
+
+**OR entre categorías extremas:**
+OR = 0.14 (IC 95%: 0.07 - 0.30)
+Magnitud: Sin clasificación
+
+### Variable: nacimiento_prematuro vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+nacimiento_prematuro                                                            
+No                                                        1224                86
+Sí                                                         373                42
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 5.29, p = 0.021).
+
+**Análisis detallado:**
+- Sí presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Sí 10.1% vs No 6.6% (diferencia de 3.6%)
+
+**Odds Ratio e Interpretación:**
+OR = 1.60 (IC 95%: 1.09 - 2.36)
+
+**Interpretación clínica:**
+- Los Sí tienen 1.60 veces mayor probabilidad de presentar trastornos del neurodesarrollo en resolucion problemas comparado con No
+- Esto significa que por cada 100 niños con desarrollo adecuado en Sí, hay 104 niños con desarrollo adecuado en No
+- El riesgo es ASOCIACIÓN MODERADA según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 3.6%
+- Número necesario para tratar (NNT): 28 pacientes
+- Relevancia para salud pública: MODERADA
+
+**Conclusión clínica:**
+La población sí requiere atención especial en el desarrollo de resolucion problemas, con riesgo moderadamente elevado comparado con no.
+
+### Variable: retardo_crecimiento vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+retardo_crecimiento                                                             
+No                                                        1422               111
+Sí                                                         175                17
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.43, p = 0.510).
+
+### Variable: desnutricion_aguda vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+desnutricion_aguda                                                              
+No                                                        1506               117
+Sí                                                          91                11
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.30, p = 0.254).
+
+### Variable: vacunacion_completa vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+vacunacion_completa                                                             
+No                                                          77                11
+Sí                                                        1520               117
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.75, p = 0.097).
+
+### Variable: seguro_social vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+seguro_social                                                                   
+No                                                        1213                98
+Sí                                                         384                30
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.00, p = 0.962).
+
+### Variable: situacion_laboral_madre vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+situacion_laboral_madre                                                         
+No especificado                                              5                 2
+No trabaja                                                 807                61
+Trabaja                                                    785                65
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.82, p = 0.090).
+
+### Variable: tipo_empleo_madre vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+tipo_empleo_madre                                                               
+Formal                                                     464                40
+Informal                                                   321                25
+No especificado                                            812                63
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.28, p = 0.871).
+
+### Variable: estado_civil_cuidador vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+estado_civil_cuidador                                                           
+Casado                                                     903                72
+Soltero                                                    278                35
+Unido                                                      416                21
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 10.80, p = 0.005).
+
+**Nota:** Tabla no es 2x2 ((3, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Casado: 72/975 = 7.4%
+- Soltero: 35/313 = 11.2%
+- Unido: 21/437 = 4.8%
+
+**Categorías extremas:**
+- Mayor riesgo: Soltero (11.2%)
+- Menor riesgo: Unido (4.8%)
+
+**OR entre categorías extremas:**
+OR = 0.40 (IC 95%: 0.23 - 0.70)
+Magnitud: Sin clasificación
+
+### Variable: propiedad_vivienda vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+propiedad_vivienda                                                              
+Alquilada                                                  437                34
+Propia                                                    1160                94
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.01, p = 0.926).
+
+### Variable: fuente_agua_consumo vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+fuente_agua_consumo                                                             
+Chorro público                                             126                16
+Pozo público o privado                                      15                 3
+Red de tubería                                            1453               109
+Río, lago, tonel, camión y otro                              3                 0
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 5.98, p = 0.112).
+
+### Variable: tipo_sanitario vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+tipo_sanitario                                                                  
+Excusado lavable                                             1                 0
+Inodoro                                                   1500               115
+Letrina/Pozo ciego                                          96                13
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.51, p = 0.173).
+
+### Variable: manejo_basura vs Dominio: zscore_desarrollo_resolucion_problemas
+
+**Tabla de contingencia:**
+categoria_desarrollo_resolucion_problemas  Desarrollo adecuado  Riesgo combinado
+manejo_basura                                                                   
+La entierra                                                  7                 1
+La quema                                                   195                28
+La tira en cualquier lugar                                   9                 0
+Otra                                                         3                 0
+Servicio municipal o privado                              1383                99
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 11.01, p = 0.026).
+
+**Nota:** Tabla no es 2x2 ((5, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- La entierra: 1/8 = 12.5%
+- La quema: 28/223 = 12.6%
+- La tira en cualquier lugar: 0/9 = 0.0%
+- Otra: 0/3 = 0.0%
+- Servicio municipal o privado: 99/1482 = 6.7%
+
+**Categorías extremas:**
+- Mayor riesgo: La quema (12.6%)
+- Menor riesgo: La tira en cualquier lugar (0.0%)
+
+**OR entre categorías extremas:**
+OR = 0.00 (IC 95%: 0.00 - nan)
+Magnitud: Sin clasificación
+
+================================================================================
+DOMINIO: Socio Individual
+================================================================================
+
+### Variable: area_residencia vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+area_residencia                                                             
+Rural                                                  223                34
+Urbano                                                1377                91
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 15.06, p = 0.000).
+
+**Análisis detallado:**
+- Rural presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Rural 13.2% vs Urbano 6.2% (diferencia de 7.0%)
+
+**Odds Ratio e Interpretación:**
+OR = 0.43 (IC 95%: 0.29 - 0.66)
+
+**Interpretación clínica:**
+- Los Urbano tienen 2.31 veces mayor probabilidad de presentar trastornos del neurodesarrollo en socio individual comparado con Rural
+- Esto significa que por cada 100 niños con desarrollo adecuado en Rural, hay 108 niños con desarrollo adecuado en Urbano
+- El riesgo es SIN CLASIFICACIÓN según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 7.0%
+- Número necesario para tratar (NNT): 14 pacientes
+- Relevancia para salud pública: MODERADA
+
+**Conclusión clínica:**
+La población rural requiere atención especial en el desarrollo de socio individual, con riesgo moderadamente elevado comparado con urbano.
+
+### Variable: sexo_nino vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+sexo_nino                                                                   
+Femenino                                               745                58
+Masculino                                              855                67
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.00, p = 1.000).
+
+### Variable: grupo_etnico vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+grupo_etnico                                                                
+Indígena                                               675                66
+No indígena                                            925                59
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.90, p = 0.027).
+
+**Análisis detallado:**
+- Indígena presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Indígena 8.9% vs No indígena 6.0% (diferencia de 2.9%)
+
+**Odds Ratio e Interpretación:**
+OR = 0.65 (IC 95%: 0.45 - 0.94)
+
+**Interpretación clínica:**
+- Los No indígena tienen 1.53 veces mayor probabilidad de presentar trastornos del neurodesarrollo en socio individual comparado con Indígena
+- Esto significa que por cada 100 niños con desarrollo adecuado en Indígena, hay 103 niños con desarrollo adecuado en No indígena
+- El riesgo es SIN CLASIFICACIÓN según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 2.9%
+- Número necesario para tratar (NNT): 34 pacientes
+- Relevancia para salud pública: BAJA
+
+**Conclusión clínica:**
+Aunque estadísticamente significativa, la asociación entre grupo_etnico y socio individual es clínicamente débil.
+
+### Variable: nivel_educativo_madre vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_madre                                                       
+Básico                                                 481                25
+Diversificado                                          649                51
+Ninguna                                                 52                11
+No especificado                                         12                 2
+Primaria                                               285                29
+Universitario                                          121                 7
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 17.26, p = 0.004).
+
+**Nota:** Tabla no es 2x2 ((6, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Básico: 25/506 = 4.9%
+- Diversificado: 51/700 = 7.3%
+- Ninguna: 11/63 = 17.5%
+- No especificado: 2/14 = 14.3%
+- Primaria: 29/314 = 9.2%
+- Universitario: 7/128 = 5.5%
+
+**Categorías extremas:**
+- Mayor riesgo: Ninguna (17.5%)
+- Menor riesgo: Básico (4.9%)
+
+**OR entre categorías extremas:**
+OR = 0.25 (IC 95%: 0.11 - 0.53)
+Magnitud: Sin clasificación
+
+### Variable: nivel_educativo_padre vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+nivel_educativo_padre                                                       
+Básico                                                 358                22
+Diversificado                                          757                54
+Ninguna                                                 44                 6
+No especificado                                         48                 4
+Primaria                                               235                25
+Universitario                                          158                14
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 5.69, p = 0.338).
+
+### Variable: nacimiento_prematuro vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+nacimiento_prematuro                                                        
+No                                                    1217                93
+Sí                                                     383                32
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.10, p = 0.756).
+
+### Variable: retardo_crecimiento vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+retardo_crecimiento                                                         
+No                                                    1432               101
+Sí                                                     168                24
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 8.01, p = 0.005).
+
+**Análisis detallado:**
+- Sí presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Sí 12.5% vs No 6.6% (diferencia de 5.9%)
+
+**Odds Ratio e Interpretación:**
+OR = 2.03 (IC 95%: 1.26 - 3.25)
+
+**Interpretación clínica:**
+- Los Sí tienen 2.03 veces mayor probabilidad de presentar trastornos del neurodesarrollo en socio individual comparado con No
+- Esto significa que por cada 100 niños con desarrollo adecuado en Sí, hay 107 niños con desarrollo adecuado en No
+- El riesgo es ASOCIACIÓN MODERADA según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 5.9%
+- Número necesario para tratar (NNT): 17 pacientes
+- Relevancia para salud pública: ALTA
+
+**Conclusión clínica:**
+La población sí requiere intervención prioritaria en el desarrollo de socio individual, con un riesgo más del doble comparado con no.
+
+### Variable: desnutricion_aguda vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+desnutricion_aguda                                                          
+No                                                    1511               112
+Sí                                                      89                13
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 4.05, p = 0.044).
+
+**Análisis detallado:**
+- Sí presenta mayor riesgo de trastornos del neurodesarrollo
+- Riesgo combinado: Sí 12.7% vs No 6.9% (diferencia de 5.8%)
+
+**Odds Ratio e Interpretación:**
+OR = 1.97 (IC 95%: 1.07 - 3.64)
+
+**Interpretación clínica:**
+- Los Sí tienen 1.97 veces mayor probabilidad de presentar trastornos del neurodesarrollo en socio individual comparado con No
+- Esto significa que por cada 100 niños con desarrollo adecuado en Sí, hay 107 niños con desarrollo adecuado en No
+- El riesgo es ASOCIACIÓN MODERADA según la magnitud del OR
+
+**Significancia clínica:**
+- Diferencia de riesgo absoluto: 5.8%
+- Número necesario para tratar (NNT): 17 pacientes
+- Relevancia para salud pública: MODERADA
+
+**Conclusión clínica:**
+La población sí requiere atención especial en el desarrollo de socio individual, con riesgo moderadamente elevado comparado con no.
+
+### Variable: vacunacion_completa vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+vacunacion_completa                                                         
+No                                                      80                 8
+Sí                                                    1520               117
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.22, p = 0.635).
+
+### Variable: seguro_social vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+seguro_social                                                               
+No                                                    1216                95
+Sí                                                     384                30
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.00, p = 1.000).
+
+### Variable: situacion_laboral_madre vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+situacion_laboral_madre                                                     
+No especificado                                          6                 1
+No trabaja                                             811                57
+Trabaja                                                783                67
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 1.62, p = 0.444).
+
+### Variable: tipo_empleo_madre vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+tipo_empleo_madre                                                           
+Formal                                                 459                45
+Informal                                               324                22
+No especificado                                        817                58
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.02, p = 0.220).
+
+### Variable: estado_civil_cuidador vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+estado_civil_cuidador                                                       
+Casado                                                 902                73
+Soltero                                                286                27
+Unido                                                  412                25
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 2.48, p = 0.289).
+
+### Variable: propiedad_vivienda vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+propiedad_vivienda                                                          
+Alquilada                                              437                34
+Propia                                                1163                91
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 0.00, p = 1.000).
+
+### Variable: fuente_agua_consumo vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+fuente_agua_consumo                                                         
+Chorro público                                         133                 9
+Pozo público o privado                                  16                 2
+Red de tubería                                        1449               113
+Río, lago, tonel, camión y otro                          2                 1
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 3.61, p = 0.307).
+
+### Variable: tipo_sanitario vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+tipo_sanitario                                                              
+Excusado lavable                                         0                 1
+Inodoro                                               1500               115
+Letrina/Pozo ciego                                     100                 9
+
+**Interpretación:**
+La asociación ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 13.00, p = 0.002).
+
+**Nota:** Tabla no es 2x2 ((3, 2)). OR no calculado.
+La asociación es significativa pero requiere análisis más detallado.
+
+**Análisis detallado para variable multicategórica:**
+Proporciones de riesgo por categoría:
+- Excusado lavable: 1/1 = 100.0%
+- Inodoro: 115/1615 = 7.1%
+- Letrina/Pozo ciego: 9/109 = 8.3%
+
+**Categorías extremas:**
+- Mayor riesgo: Excusado lavable (100.0%)
+- Menor riesgo: Inodoro (7.1%)
+
+**OR entre categorías extremas:**
+OR = 0.00 (IC 95%: 0.00 - nan)
+Magnitud: Sin clasificación
+
+### Variable: manejo_basura vs Dominio: zscore_desarrollo_socio_individual
+
+**Tabla de contingencia:**
+categoria_desarrollo_socio_individual  Desarrollo adecuado  Riesgo combinado
+manejo_basura                                                               
+La entierra                                              7                 1
+La quema                                               198                25
+La tira en cualquier lugar                               9                 0
+Otra                                                     3                 0
+Servicio municipal o privado                          1383                99
+
+**Interpretación:**
+La asociación NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (χ² = 7.19, p = 0.126).
+
+
+================================================================================
+RESUMEN DE HALLAZGOS PRINCIPALES
+================================================================================
+
+**RESULTADOS ESTADÍSTICAMENTE SIGNIFICATIVOS (p < 0.05):**
+Total de asociaciones significativas: 20
+
+**TOP 10 ASOCIACIONES MÁS FUERTES:**
+1. retardo_crecimiento → Socio Individual: OR = 2.03 (IC: 1.26-3.25) - Asociación moderada
+2. retardo_crecimiento → Socio Individual: OR = 2.03 (IC: 1.26-3.25) - Asociación moderada
+3. desnutricion_aguda → Socio Individual: OR = 1.97 (IC: 1.07-3.64) - Asociación moderada
+4. desnutricion_aguda → Socio Individual: OR = 1.97 (IC: 1.07-3.64) - Asociación moderada
+5. nacimiento_prematuro → Resolucion Problemas: OR = 1.60 (IC: 1.09-2.36) - Asociación moderada
+6. nacimiento_prematuro → Resolucion Problemas: OR = 1.60 (IC: 1.09-2.36) - Asociación moderada
+7. retardo_crecimiento → Motricidad Gruesa: OR = 1.52 (IC: 1.05-2.19) - Asociación moderada
+8. retardo_crecimiento → Motricidad Gruesa: OR = 1.52 (IC: 1.05-2.19) - Asociación moderada
+9. grupo_etnico → Resolucion Problemas: OR = 0.66 (IC: 0.46-0.95) - Sin clasificación
+10. grupo_etnico → Resolucion Problemas: OR = 0.66 (IC: 0.46-0.95) - Sin clasificación
+
+**ANÁLISIS POR DOMINIO:**
+
+Socio Individual: 8 asociaciones significativas
+  - retardo_crecimiento: OR = 2.03
+  - retardo_crecimiento: OR = 2.03
+  - desnutricion_aguda: OR = 1.97
+
+Resolucion Problemas: 6 asociaciones significativas
+  - nacimiento_prematuro: OR = 1.60
+  - nacimiento_prematuro: OR = 1.60
+  - grupo_etnico: OR = 0.66
+
+Motricidad Gruesa: 4 asociaciones significativas
+  - retardo_crecimiento: OR = 1.52
+  - retardo_crecimiento: OR = 1.52
+  - area_residencia: OR = 0.56
+
+Comunicacion: 2 asociaciones significativas
+  - area_residencia: OR = 0.48
+  - area_residencia: OR = 0.48
+
+**RESULTADOS NO SIGNIFICATIVOS:**
+Total de asociaciones no significativas: 122
+Estas asociaciones no se interpretan debido a falta de significancia estadística.
+
+
+================================================================================
+TABLA RESUMEN DE RESULTADOS SIGNIFICATIVOS
+================================================================================
+            Variable              Dominio  Chi² p-valor   OR    IC 95%            Magnitud
+ retardo_crecimiento     Socio Individual  8.01   0.005 2.03 1.26-3.25 Asociación moderada
+ retardo_crecimiento     Socio Individual  8.01   0.005 2.03 1.26-3.25 Asociación moderada
+  desnutricion_aguda     Socio Individual  4.05   0.044 1.97 1.07-3.64 Asociación moderada
+  desnutricion_aguda     Socio Individual  4.05   0.044 1.97 1.07-3.64 Asociación moderada
+nacimiento_prematuro Resolucion Problemas  5.29   0.021 1.60 1.09-2.36 Asociación moderada
+nacimiento_prematuro Resolucion Problemas  5.29   0.021 1.60 1.09-2.36 Asociación moderada
+ retardo_crecimiento    Motricidad Gruesa  4.60   0.032 1.52 1.05-2.19 Asociación moderada
+ retardo_crecimiento    Motricidad Gruesa  4.60   0.032 1.52 1.05-2.19 Asociación moderada
+        grupo_etnico Resolucion Problemas  4.57   0.033 0.66 0.46-0.95   Sin clasificación
+        grupo_etnico Resolucion Problemas  4.57   0.033 0.66 0.46-0.95   Sin clasificación
+        grupo_etnico     Socio Individual  4.90   0.027 0.65 0.45-0.94   Sin clasificación
+        grupo_etnico     Socio Individual  4.90   0.027 0.65 0.45-0.94   Sin clasificación
+     area_residencia    Motricidad Gruesa 12.62   0.000 0.56 0.41-0.77   Sin clasificación
+     area_residencia    Motricidad Gruesa 12.62   0.000 0.56 0.41-0.77   Sin clasificación
+     area_residencia         Comunicacion  8.70   0.003 0.48 0.30-0.77   Sin clasificación
+     area_residencia         Comunicacion  8.70   0.003 0.48 0.30-0.77   Sin clasificación
+     area_residencia     Socio Individual 15.06   0.000 0.43 0.29-0.66   Sin clasificación
+     area_residencia     Socio Individual 15.06   0.000 0.43 0.29-0.66   Sin clasificación
+     area_residencia Resolucion Problemas 25.13   0.000 0.36 0.24-0.54   Sin clasificación
+     area_residencia Resolucion Problemas 25.13   0.000 0.36 0.24-0.54   Sin clasificación
+
+Tabla resumen guardada como 'resumen_resultados_significativos.csv'
