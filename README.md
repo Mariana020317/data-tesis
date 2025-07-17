@@ -53,8 +53,7 @@ El análisis incluye variables sociodemográficas, ambientales y clínicas:
 
 4. **Clasificación de desarrollo**:
    - **Desarrollo adecuado**: Z > -1
-   - **Riesgo de trastornos**: -2 ≤ Z ≤ -1
-   - **Riesgo alto**: Z < -2
+   - **Riesgo de trastornos en el neurodesarrollo**: Z ≤ -1
 
 ## Resultados Principales
 

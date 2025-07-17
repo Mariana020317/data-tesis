@@ -162,11 +162,30 @@ check_homogeneity <- function(data, group_var, outcome_var) {
   }
 }
 
+# Function to identify the most affected group in post-hoc analysis
+identify_affected_group <- function(posthoc_results, descriptives) {
+  if(is.null(posthoc_results) || is.null(posthoc_results$p.value)) {
+    return("")
+  }
+  
+  # Find the group with the lowest mean (most affected)
+  min_mean_idx <- which.min(descriptives$mean)
+  affected_group <- descriptives$Group[min_mean_idx]
+  
+  # Get the mean z-score for context
+  mean_zscore <- round(descriptives$mean[min_mean_idx], 2)
+  
+  # Create explanation
+  explanation <- paste0("Grupo más afectado: ", affected_group, 
+                       " (media Z = ", mean_zscore, ")")
+  
+  return(explanation)
+}
+
 # Function to classify z-scores
 classify_zscore <- function(zscore) {
   ifelse(zscore > -1, "Desarrollo adecuado",
-         ifelse(zscore >= -2, "Riesgo de trastornos en el neurodesarrollo",
-                "Riesgo alto de trastornos en el neurodesarrollo"))
+         "Riesgo de trastornos en el neurodesarrollo")
 }
 
 # Function to calculate descriptive statistics
@@ -183,15 +202,13 @@ calculate_descriptives <- function(data, group_var, outcome_var) {
     mean = sapply(groups, mean, na.rm = TRUE),
     sd = sapply(groups, sd, na.rm = TRUE),
     desarrollo_adecuado = sapply(groups, function(x) sum(x > -1, na.rm = TRUE)),
-    riesgo_trastornos = sapply(groups, function(x) sum(x >= -2 & x <= -1, na.rm = TRUE)),
-    riesgo_alto = sapply(groups, function(x) sum(x < -2, na.rm = TRUE)),
+    riesgo_trastornos = sapply(groups, function(x) sum(x <= -1, na.rm = TRUE)),
     stringsAsFactors = FALSE
   )
   
   # Calculate percentages
   descriptives$pct_desarrollo_adecuado <- round(descriptives$desarrollo_adecuado / descriptives$n * 100, 1)
   descriptives$pct_riesgo_trastornos <- round(descriptives$riesgo_trastornos / descriptives$n * 100, 1)
-  descriptives$pct_riesgo_alto <- round(descriptives$riesgo_alto / descriptives$n * 100, 1)
   
   return(descriptives)
 }
@@ -326,6 +343,18 @@ generate_latex_table <- function(var_name, var_results, output_file) {
   sig_row <- paste0("Significativo & ", 
                    paste(results_summary$significant, collapse = " & "), " \\\\\n")
   
+  # Generate post-hoc analysis notes for significant results
+  posthoc_notes <- ""
+  for(i in 1:length(var_results)) {
+    if(var_results[[i]]$valid && var_results[[i]]$significant) {
+      domain_name <- domain_names_spanish[i]
+      affected_group_info <- identify_affected_group(var_results[[i]]$posthoc, var_results[[i]]$descriptives)
+      if(affected_group_info != "") {
+        posthoc_notes <- paste0(posthoc_notes, "\\item ", domain_name, ": ", affected_group_info, "\n")
+      }
+    }
+  }
+  
   # Create table footer
   latex_footer <- paste0(
     "\\hline\n",
@@ -334,6 +363,7 @@ generate_latex_table <- function(var_name, var_results, output_file) {
     "\\small\n",
     "\\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.\n",
     "\\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.\n",
+    if(posthoc_notes != "") paste0("\\item Grupos afectados en análisis significativos:\n", posthoc_notes) else "",
     "\\end{tablenotes}\n",
     "\\end{table}\n\n"
   )
@@ -370,7 +400,7 @@ generate_descriptive_table <- function(var_name, var_results, output_file) {
     "\\label{tab:desc", gsub("_", "", var_name), "}\n",
     "\\begin{tabular}{|l|c|c|c|c|c|}\n",
     "\\hline\n",
-    "\\textbf{Grupo} & \\textbf{n} & \\textbf{Media} & \\textbf{DE} & \\textbf{Desarrollo adecuado (\\%)} & \\textbf{Riesgo alto (\\%)} \\\\\n",
+    "\\textbf{Grupo} & \\textbf{n} & \\textbf{Media} & \\textbf{DE} & \\textbf{Desarrollo adecuado (\\%)} & \\textbf{Riesgo trastornos (\\%)} \\\\\n",
     "\\hline\n"
   )
   
@@ -386,7 +416,7 @@ generate_descriptive_table <- function(var_name, var_results, output_file) {
                        round(group_data$mean, 2), " & ",
                        round(group_data$sd, 2), " & ",
                        group_data$pct_desarrollo_adecuado, " & ",
-                       group_data$pct_riesgo_alto, " \\\\\n")
+                       group_data$pct_riesgo_trastornos, " \\\\\n")
   }
   
   desc_footer <- paste0(
@@ -394,7 +424,7 @@ generate_descriptive_table <- function(var_name, var_results, output_file) {
     "\\end{tabular}\n",
     "\\begin{tablenotes}\n",
     "\\small\n",
-    "\\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo alto: Z < -2.\n",
+    "\\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.\n",
     "\\end{tablenotes}\n",
     "\\end{table}\n\n"
   )

@@ -59,8 +59,7 @@ Successfully implemented comprehensive ANOVA analysis for developmental z-scores
 
 ### Developmental Classifications
 - **Adequate Development** (Z > -1): 90-100% of children depending on domain
-- **Risk of Disorders** (-2 ≤ Z ≤ -1): Small percentage across domains
-- **High Risk** (Z < -2): <3% in most categories
+- **Risk of Developmental Disorders** (Z ≤ -1): Small percentage across domains
 
 ### Statistical Methods
 - **Standard ANOVA**: Used when assumptions met
