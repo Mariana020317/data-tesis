@@ -24,6 +24,15 @@ El análisis sigue la estructura especificada en los requerimientos:
 
 ## Uso del Análisis
 
+### Antes de Empezar
+
+**¿Tienes problemas? Ejecuta el diagnóstico:**
+```bash
+R --vanilla < diagnostico.R
+```
+
+Este script identificará cualquier problema de configuración y te dará recomendaciones específicas.
+
 ### Ejecución del Script de Demostración
 
 ```bash
@@ -35,6 +44,17 @@ R --vanilla < analisis_demo.R > resultados_demo.txt
 ```bash
 R --vanilla < analisis_reorganizado.R > resultados_completos.txt
 ```
+
+### Validación Básica
+
+```bash
+R --vanilla < test_analisis.R > test_results.txt
+```
+
+### Requisitos
+- **R instalado**: Ver [SETUP_GUIDE.md](SETUP_GUIDE.md) para instrucciones detalladas
+- **Archivo de datos**: `datos_optimizados.csv` en el mismo directorio
+- **Permisos**: Acceso de lectura a archivos CSV y R
 
 ## Ejemplo de Salida
 
