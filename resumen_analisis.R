@@ -51,9 +51,9 @@ todas_variables <- c(
   "servicio_asistencia_parto", "tipo_parto", "razon_cesarea_emergencia",
   # Variables nutricionales
   "lactancia_primeros_6_meses", "lactancia_6-12_meses", "lactancia_12-24_meses",
-  "vitamina_a_6-12_meses", "vitamina_a_12-18_meses", "vitamina_a_18-24_meses",
-  "vitaminas_minerales_6-12_meses", "vitaminas_minerales_12-18_meses", 
-  "vitaminas_minerales_18-24_meses",
+  "vitamina_a_6.12_meses", "vitamina_a_12.18_meses", "vitamina_a_18.24_meses",
+  "vitaminas_minerales_6.12_meses", "vitaminas_minerales_12.18_meses", 
+  "vitaminas_minerales_18.24_meses",
   # Variables de salud
   "retardo_crecimiento", "desnutricion_aguda", "hospitalizado_neonatal", 
   "razon_hospitalizado_neonatal", "hospitalizado_infancia", 
