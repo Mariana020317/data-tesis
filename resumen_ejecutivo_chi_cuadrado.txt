@@ -1,0 +1,15 @@
+# RESUMEN EJECUTIVO - ANÁLISIS CHI-CUADRADO
+# Análisis de asociaciones entre variables categóricas y neurodesarrollo
+
+## METODOLOGÍA
+- Análisis chi-cuadrado para todas las combinaciones de variables categóricas
+- Test exacto de Fisher para conteos pequeños
+- Cálculo de odds ratios para resultados significativos
+- Categorización de z-scores en tres niveles de riesgo
+
+## INTERPRETACIÓN DE RESULTADOS
+- Desarrollo adecuado: Z ≥ -1
+- Riesgo moderado: -2 ≤ Z < -1
+- Alto riesgo: Z < -2
+
+Para análisis detallado, consultar: analisis_chi_cuadrado_completo.txt
