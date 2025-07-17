@@ -109,14 +109,22 @@ calcular_odds_ratio <- function(variable, dominio_riesgo, datos) {
   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
   
   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
-    # Asegurar que las columnas estén en el orden correcto: "Desarrollo adecuado", "Riesgo"
-    # Calcular OR: (Riesgo en grupo 1 / Desarrollo adecuado en grupo 1) / (Riesgo en grupo 2 / Desarrollo adecuado en grupo 2)
-    # Esto es equivalente a: (a*d) / (b*c) donde:
-    # a = Riesgo en grupo 1, b = Desarrollo adecuado en grupo 1
-    # c = Riesgo en grupo 2, d = Desarrollo adecuado en grupo 2
+    # Calcular proporciones de riesgo para cada grupo
+    prop_riesgo_grupo1 <- tabla[1, "Riesgo"] / (tabla[1, "Riesgo"] + tabla[1, "Desarrollo adecuado"])
+    prop_riesgo_grupo2 <- tabla[2, "Riesgo"] / (tabla[2, "Riesgo"] + tabla[2, "Desarrollo adecuado"])
     
-    # tabla[1,"Riesgo"] * tabla[2,"Desarrollo adecuado"] / (tabla[1,"Desarrollo adecuado"] * tabla[2,"Riesgo"])
-    or <- (tabla[1,"Riesgo"] * tabla[2,"Desarrollo adecuado"]) / (tabla[1,"Desarrollo adecuado"] * tabla[2,"Riesgo"])
+    # Siempre calcular OR con el grupo de mayor riesgo en el numerador
+    if(prop_riesgo_grupo1 >= prop_riesgo_grupo2) {
+      # Grupo 1 tiene mayor riesgo
+      or <- (tabla[1,"Riesgo"] * tabla[2,"Desarrollo adecuado"]) / (tabla[1,"Desarrollo adecuado"] * tabla[2,"Riesgo"])
+      grupo_mayor_riesgo <- rownames(tabla)[1]
+      grupo_menor_riesgo <- rownames(tabla)[2]
+    } else {
+      # Grupo 2 tiene mayor riesgo
+      or <- (tabla[2,"Riesgo"] * tabla[1,"Desarrollo adecuado"]) / (tabla[2,"Desarrollo adecuado"] * tabla[1,"Riesgo"])
+      grupo_mayor_riesgo <- rownames(tabla)[2]
+      grupo_menor_riesgo <- rownames(tabla)[1]
+    }
     
     # Calcular intervalo de confianza
     log_or <- log(or)
@@ -127,10 +135,12 @@ calcular_odds_ratio <- function(variable, dominio_riesgo, datos) {
     return(list(
       or = or,
       ic_inf = ic_inf,
-      ic_sup = ic_sup
+      ic_sup = ic_sup,
+      grupo_mayor_riesgo = grupo_mayor_riesgo,
+      grupo_menor_riesgo = grupo_menor_riesgo
     ))
   } else {
-    return(list(or = NA, ic_inf = NA, ic_sup = NA))
+    return(list(or = NA, ic_inf = NA, ic_sup = NA, grupo_mayor_riesgo = NA, grupo_menor_riesgo = NA))
   }
 }
 
@@ -229,13 +239,12 @@ analizar_variable <- function(variable, datos) {
         cat("**Interpretación:**", interpretar_or(resultado_or$or), "\n")
         
         # Interpretación clínica detallada
-        if(resultado_or$or > 1) {
-          cat("- El riesgo de retraso en", nombres_dominios[dominio], 
-              "es", sprintf("%.2f", resultado_or$or), "veces mayor\n")
-        } else {
-          cat("- El riesgo de retraso en", nombres_dominios[dominio], 
-              "es", sprintf("%.2f", 1/resultado_or$or), "veces menor\n")
-        }
+        cat("- El riesgo de retraso en", nombres_dominios[dominio], 
+            "es", sprintf("%.2f", resultado_or$or), "veces mayor en", 
+            resultado_or$grupo_mayor_riesgo, "comparado con", resultado_or$grupo_menor_riesgo, "\n")
+        cat("- Magnitud del efecto:", 
+            ifelse(resultado_or$or < 1.5, "pequeña", 
+                   ifelse(resultado_or$or < 2.5, "moderada", "grande")), "\n")
       } else {
         cat("No se pudo calcular OR (tabla no 2x2)\n")
       }
@@ -252,19 +261,17 @@ analizar_variable <- function(variable, datos) {
     cat("\n")
     
     # Guardar resultados
+    resultado_or_temp <- ifelse(resultado_chi$p_valor < 0.05, 
+                                list(calcular_odds_ratio(variable, dominio_riesgo, datos_var)), 
+                                list(list(or = NA, ic_inf = NA, ic_sup = NA)))[[1]]
+    
     resultados_variable[[dominio]] <- list(
       chi_cuadrado = resultado_chi$estadistico,
       p_valor = resultado_chi$p_valor,
       significativo = resultado_chi$p_valor < 0.05,
-      or = ifelse(resultado_chi$p_valor < 0.05, 
-                 calcular_odds_ratio(variable, dominio_riesgo, datos_var)$or, 
-                 NA),
-      ic_inf = ifelse(resultado_chi$p_valor < 0.05, 
-                     calcular_odds_ratio(variable, dominio_riesgo, datos_var)$ic_inf, 
-                     NA),
-      ic_sup = ifelse(resultado_chi$p_valor < 0.05, 
-                     calcular_odds_ratio(variable, dominio_riesgo, datos_var)$ic_sup, 
-                     NA)
+      or = resultado_or_temp$or,
+      ic_inf = resultado_or_temp$ic_inf,
+      ic_sup = resultado_or_temp$ic_sup
     )
   }
   
