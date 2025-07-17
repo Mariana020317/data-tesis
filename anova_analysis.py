@@ -337,33 +337,104 @@ def perform_post_hoc_analysis(groups, group_names):
     
     return f"Grupo más afectado: {most_affected}"
 
+def calculate_group_risk_priority(df, independent_var, dependent_var):
+    """Calculate risk priority for each group in a variable"""
+    
+    # Remove missing values
+    analysis_df = df[[independent_var, dependent_var]].dropna()
+    
+    if len(analysis_df) < 10:
+        return {}
+    
+    group_risks = {}
+    for name, group in analysis_df.groupby(independent_var):
+        if len(group) >= 3:
+            z_scores = group[dependent_var]
+            risk_info = calculate_risk_classification(z_scores)
+            group_risks[name] = {
+                'risk_percentage': risk_info['pct_riesgo'],
+                'n': len(group),
+                'mean_zscore': z_scores.mean()
+            }
+    
+    return group_risks
+
 def run_complete_analysis(df):
-    """Run complete ANOVA analysis for all variable combinations"""
+    """Run complete ANOVA analysis prioritizing high-risk groups"""
     
     results = []
     total_tests = len(independent_vars) * len(zscore_domains)
     current_test = 0
     
-    print(f"Starting ANOVA analysis for {total_tests} combinations...")
+    print(f"Starting RISK-PRIORITIZED ANOVA analysis for {total_tests} combinations...")
+    print("Prioritizing analysis based on developmental risk (Z ≤ -1)")
     
+    # First, calculate risk priorities for all combinations
+    print("\nCalculating risk priorities for all variable-domain combinations...")
+    
+    risk_priorities = []
     for independent_var in independent_vars:
         if independent_var not in df.columns:
             print(f"Warning: Variable {independent_var} not found in dataset")
             continue
             
         for dependent_var in zscore_domains:
-            current_test += 1
-            print(f"Progress: {current_test}/{total_tests} - Testing {independent_var} vs {dependent_var}")
-            
-            result = perform_anova_analysis(df, independent_var, dependent_var)
-            if result:
-                results.append(result)
+            group_risks = calculate_group_risk_priority(df, independent_var, dependent_var)
+            if group_risks:
+                # Calculate overall risk priority for this combination
+                max_risk = max([info['risk_percentage'] for info in group_risks.values()])
+                avg_risk = sum([info['risk_percentage'] for info in group_risks.values()]) / len(group_risks)
+                risk_variance = max_risk - min([info['risk_percentage'] for info in group_risks.values()])
+                
+                risk_priorities.append({
+                    'independent_var': independent_var,
+                    'dependent_var': dependent_var,
+                    'max_risk': max_risk,
+                    'avg_risk': avg_risk,
+                    'risk_variance': risk_variance,
+                    'priority_score': max_risk + (risk_variance * 0.5)  # Prioritize high max risk and high variance
+                })
+    
+    # Sort by priority score (highest risk first)
+    risk_priorities.sort(key=lambda x: x['priority_score'], reverse=True)
+    
+    print(f"Risk analysis complete. Top 10 priority combinations:")
+    for i, combo in enumerate(risk_priorities[:10]):
+        domain_idx = zscore_domains.index(combo['dependent_var'])
+        domain_spanish = domain_names_spanish[domain_idx]
+        print(f"{i+1}. {combo['independent_var']} vs {domain_spanish}: Max risk={combo['max_risk']:.1f}%, Priority={combo['priority_score']:.1f}")
+    
+    print(f"\nRunning ANOVA analysis in risk-prioritized order...")
+    
+    # Run analysis in prioritized order
+    for combo in risk_priorities:
+        current_test += 1
+        independent_var = combo['independent_var']
+        dependent_var = combo['dependent_var']
+        
+        domain_idx = zscore_domains.index(dependent_var)
+        domain_spanish = domain_names_spanish[domain_idx]
+        
+        print(f"Progress: {current_test}/{total_tests} - PRIORITY ANALYSIS: {independent_var} vs {domain_spanish} (Risk priority: {combo['priority_score']:.1f})")
+        
+        result = perform_anova_analysis(df, independent_var, dependent_var)
+        if result:
+            # Add priority information to result
+            result['risk_priority'] = combo['priority_score']
+            result['max_group_risk'] = combo['max_risk']
+            result['avg_group_risk'] = combo['avg_risk']
+            result['risk_variance'] = combo['risk_variance']
+            results.append(result)
     
     print(f"Analysis complete. {len(results)} successful tests out of {total_tests}")
+    
+    # Sort results by risk priority for output
+    results.sort(key=lambda x: x.get('risk_priority', 0), reverse=True)
+    
     return results
 
 def generate_latex_tables(results):
-    """Generate comprehensive LaTeX tables with explanatory content"""
+    """Generate comprehensive LaTeX tables with explanatory content and risk prioritization"""
     
     latex_content = r"""\\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
@@ -375,7 +446,8 @@ def generate_latex_tables(results):
 \usepackage{geometry}
 \geometry{margin=2cm}
 
-\title{Análisis ANOVA de Factores de Desarrollo en la Primera Infancia}
+\title{Análisis ANOVA de Factores de Desarrollo en la Primera Infancia\\
+\large{Análisis Priorizado por Riesgo de Trastornos del Desarrollo}}
 \author{Análisis Estadístico Integral}
 \date{\today}
 
@@ -385,7 +457,16 @@ def generate_latex_tables(results):
 
 \section{Introducción}
 
-Este documento presenta los resultados del análisis estadístico integral mediante ANOVA de una vía para evaluar las asociaciones entre variables sociodemográficas, ambientales y clínicas con cinco dominios del desarrollo infantil. El análisis se realizó sobre una muestra de """ + str(len(results)) + r""" observaciones válidas.
+Este documento presenta los resultados del análisis estadístico integral mediante ANOVA de una vía para evaluar las asociaciones entre variables sociodemográficas, ambientales y clínicas con cinco dominios del desarrollo infantil. El análisis se realizó sobre una muestra de """ + str(len(results)) + r""" observaciones válidas, \textbf{priorizando las combinaciones con mayor riesgo de trastornos del desarrollo}.
+
+\subsection{Enfoque de Priorización por Riesgo}
+
+El análisis priorizó las combinaciones de variables basándose en:
+\begin{itemize}
+\item \textbf{Riesgo máximo}: Porcentaje más alto de niños con Z ≤ -1 en cualquier grupo
+\item \textbf{Variabilidad del riesgo}: Diferencias entre grupos en términos de riesgo
+\item \textbf{Puntuación de prioridad}: Combinación de riesgo máximo y variabilidad
+\end{itemize}
 
 \subsection{Dominios del Desarrollo Evaluados}
 
@@ -413,6 +494,7 @@ La clasificación de riesgo de desarrollo se basa en los puntajes Z:
 Para cada variable independiente se realizó:
 
 \begin{enumerate}
+\item \textbf{Análisis de priorización}: Cálculo de riesgo por grupo y priorización
 \item Verificación de supuestos (normalidad y homocedasticidad)
 \item ANOVA de una vía o ANOVA de Welch según corresponda
 \item Análisis post-hoc para identificar grupos afectados cuando p < 0.05
@@ -421,9 +503,11 @@ Para cada variable independiente se realizó:
 
 \section{Resultados}
 
+Los resultados se presentan ordenados por prioridad de riesgo, mostrando primero las combinaciones con mayor riesgo de trastornos del desarrollo.
+
 """
     
-    # Group results by independent variable
+    # Group results by independent variable, maintaining risk priority order
     var_results = {}
     for result in results:
         var_name = result['independent_var']
@@ -431,14 +515,24 @@ Para cada variable independiente se realizó:
             var_results[var_name] = []
         var_results[var_name].append(result)
     
-    # Generate tables for each independent variable
+    # Sort variables by their highest risk priority score
+    sorted_vars = []
     for var_name, var_results_list in var_results.items():
+        max_priority = max([r.get('risk_priority', 0) for r in var_results_list])
+        sorted_vars.append((var_name, var_results_list, max_priority))
+    
+    sorted_vars.sort(key=lambda x: x[2], reverse=True)
+    
+    # Generate tables for each independent variable in priority order
+    for var_name, var_results_list, max_priority in sorted_vars:
         latex_content += generate_variable_table(var_name, var_results_list)
     
     latex_content += r"""
 \section{Conclusiones}
 
-Este análisis proporciona evidencia estadística sobre los factores asociados con el desarrollo infantil en múltiples dominios. Los resultados pueden informar políticas de salud pública y prácticas clínicas para la promoción del desarrollo integral en la primera infancia.
+Este análisis priorizado por riesgo proporciona evidencia estadística sobre los factores más críticos asociados con el desarrollo infantil en múltiples dominios. Las combinaciones con mayor riesgo de trastornos del desarrollo han sido identificadas y analizadas prioritariamente, lo que permite una intervención más dirigida y efectiva.
+
+Los resultados pueden informar políticas de salud pública y prácticas clínicas para la promoción del desarrollo integral en la primera infancia, con especial atención a los grupos de mayor riesgo identificados.
 
 \end{document}
 """
@@ -507,16 +601,16 @@ def generate_variable_table(var_name, var_results):
 
 """
     
-    # Create table header
+    # Create table header with risk priority information
     latex_content += r"""
-\begin{longtable}{|l|c|c|c|c|c|}
+\begin{longtable}{|l|c|c|c|c|c|c|}
 \hline
-\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} & \textbf{Riesgo Máx \%} \\
 \hline
 \endfirsthead
 
 \hline
-\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} & \textbf{Riesgo Máx \%} \\
 \hline
 \endhead
 
@@ -528,9 +622,12 @@ def generate_variable_table(var_name, var_results):
 
 """
     
+    # Sort results by risk priority for this variable
+    var_results_sorted = sorted(var_results, key=lambda x: x.get('risk_priority', 0), reverse=True)
+    
     # Add results for each domain
     significant_results = []
-    for result in var_results:
+    for result in var_results_sorted:
         domain_idx = zscore_domains.index(result['dependent_var'])
         domain_name = domain_names_spanish[domain_idx]
         
@@ -539,14 +636,31 @@ def generate_variable_table(var_name, var_results):
         significant = "Sí" if result['significant'] else "No"
         method = result['test_type']
         n = result['sample_size']
+        max_risk = f"{result.get('max_group_risk', 0):.1f}"
         
-        latex_content += f"{domain_name} & {f_stat} & {p_val} & {significant} & {method} & {n} \\\\\n"
+        latex_content += f"{domain_name} & {f_stat} & {p_val} & {significant} & {method} & {n} & {max_risk} \\\\\n"
         
         if result['significant']:
             significant_results.append(result)
     
     latex_content += r"""
 \end{longtable}
+
+"""
+    
+    # Add risk priority information for this variable
+    if var_results_sorted:
+        max_priority = max([r.get('risk_priority', 0) for r in var_results_sorted])
+        avg_priority = sum([r.get('risk_priority', 0) for r in var_results_sorted]) / len(var_results_sorted)
+        
+        latex_content += f"""
+\\textbf{{Información de Prioridad de Riesgo:}}
+\\begin{{itemize}}
+\\item Puntuación de prioridad máxima: {max_priority:.1f}
+\\item Puntuación de prioridad promedio: {avg_priority:.1f}
+\\item Dominios analizados: {len(var_results_sorted)}
+\\item Resultados significativos: {len(significant_results)}
+\\end{{itemize}}
 
 """
     
@@ -591,10 +705,12 @@ def generate_variable_table(var_name, var_results):
 
 """
             
-            # Add interpretation
+            # Add interpretation with risk priority information
             if result['post_hoc_info']:
                 latex_content += f"""
 \\textbf{{Interpretación:}} {result['post_hoc_info']}. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio {domain_name.lower()}.
+
+\\textbf{{Prioridad de Riesgo:}} {result.get('risk_priority', 0):.1f} (Riesgo máximo: {result.get('max_group_risk', 0):.1f}\\%, Riesgo promedio: {result.get('avg_group_risk', 0):.1f}\\%)
 
 """
             
@@ -606,20 +722,40 @@ def generate_variable_table(var_name, var_results):
     return latex_content
 
 def generate_summary_report(results):
-    """Generate executive summary report"""
+    """Generate executive summary report with risk prioritization"""
     
     total_tests = len(results)
     significant_results = [r for r in results if r['significant']]
     significant_count = len(significant_results)
     
     summary = f"""
-RESUMEN EJECUTIVO - ANÁLISIS ANOVA DE DESARROLLO INFANTIL
-=========================================================
+RESUMEN EJECUTIVO - ANÁLISIS ANOVA DE DESARROLLO INFANTIL (PRIORIZADO POR RIESGO)
+================================================================================
 
 ESTADÍSTICAS GENERALES:
 - Total de pruebas ANOVA realizadas: {total_tests}
 - Resultados significativos (p < 0.05): {significant_count}
 - Porcentaje de significancia: {(significant_count/total_tests)*100:.1f}%
+
+ANÁLISIS PRIORIZADO POR RIESGO:
+Este análisis prioriza las combinaciones de variables con mayor riesgo de trastornos del desarrollo (Z ≤ -1).
+
+COMBINACIONES CON MAYOR RIESGO DE DESARROLLO:
+"""
+    
+    # Show top 15 highest risk combinations
+    top_risk_results = sorted(results, key=lambda x: x.get('max_group_risk', 0), reverse=True)[:15]
+    
+    for i, result in enumerate(top_risk_results):
+        domain_idx = zscore_domains.index(result['dependent_var'])
+        domain_spanish = domain_names_spanish[domain_idx]
+        significance_mark = "***" if result['significant'] else ""
+        
+        summary += f"{i+1}. {result['independent_var']} vs {domain_spanish}: "
+        summary += f"Riesgo máximo={result.get('max_group_risk', 0):.1f}% "
+        summary += f"(p={result['p_value']:.3f}){significance_mark}\n"
+    
+    summary += f"""
 
 VARIABLES CON MAYOR NÚMERO DE ASOCIACIONES SIGNIFICATIVAS:
 """
@@ -657,17 +793,23 @@ DOMINIOS DEL DESARROLLO MÁS AFECTADOS:
     
     summary += f"""
 
-DETALLES DE RESULTADOS SIGNIFICATIVOS:
-=====================================
+RESULTADOS SIGNIFICATIVOS PRIORIZADOS POR RIESGO:
+===============================================
 """
     
-    for result in significant_results:
+    # Show significant results ordered by risk priority
+    significant_by_risk = sorted(significant_results, key=lambda x: x.get('risk_priority', 0), reverse=True)
+    
+    for result in significant_by_risk:
         domain_idx = zscore_domains.index(result['dependent_var'])
         domain_spanish = domain_names_spanish[domain_idx]
         
         summary += f"""
 Variable: {result['independent_var']}
 Dominio: {domain_spanish}
+Prioridad de riesgo: {result.get('risk_priority', 0):.1f}
+Riesgo máximo por grupo: {result.get('max_group_risk', 0):.1f}%
+Riesgo promedio: {result.get('avg_group_risk', 0):.1f}%
 Estadístico F/W: {result['f_statistic']:.3f}
 P-valor: {result['p_value']:.3f}
 Método: {result['test_type']}
@@ -705,15 +847,15 @@ def save_results(results, df):
 # =============================================================================
 
 def main():
-    """Main execution function"""
+    """Main execution function with risk-prioritized analysis"""
     
-    print("=== ANÁLISIS ANOVA DE DESARROLLO INFANTIL ===")
-    print("Iniciando análisis estadístico integral...")
+    print("=== ANÁLISIS ANOVA DE DESARROLLO INFANTIL (PRIORIZADO POR RIESGO) ===")
+    print("Iniciando análisis estadístico integral con priorización por riesgo...")
     
     # Load and prepare data
     df = load_and_prepare_data()
     
-    # Run complete analysis
+    # Run risk-prioritized analysis
     results = run_complete_analysis(df)
     
     # Save results
@@ -724,6 +866,19 @@ def main():
     significant_count = len([r for r in results if r['significant']])
     print(f"Resultados significativos: {significant_count}")
     print(f"Porcentaje de significancia: {(significant_count/len(results))*100:.1f}%")
+    
+    # Show top risk combinations
+    print("\n=== TOP 5 COMBINACIONES DE MAYOR RIESGO ===")
+    top_risk = sorted(results, key=lambda x: x.get('max_group_risk', 0), reverse=True)[:5]
+    for i, result in enumerate(top_risk):
+        domain_idx = zscore_domains.index(result['dependent_var'])
+        domain_spanish = domain_names_spanish[domain_idx]
+        significance = "***" if result['significant'] else ""
+        print(f"{i+1}. {result['independent_var']} vs {domain_spanish}: {result.get('max_group_risk', 0):.1f}% riesgo máximo {significance}")
+    
+    print("\n=== ANÁLISIS PRIORIZADO POR RIESGO COMPLETADO ===")
+    print("Los resultados se han organizado según prioridad de riesgo de trastornos del desarrollo.")
+    print("Consulte resultados_anova.tex para el análisis detallado.")
 
 if __name__ == "__main__":
     main()
