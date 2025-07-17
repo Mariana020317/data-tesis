@@ -1,0 +1,1736 @@
+ANOVA Analysis Summary Report
+=============================
+
+Variable: edad_meses_nino 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 16.236 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 21 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Welch's ANOVA 
+    F-statistic: 13.19 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 21 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 12.944 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 21 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 4.653 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 21 
+
+   zscore_desarrollo_socio_individual :
+    Test: Welch's ANOVA 
+    F-statistic: 13.49 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 21 
+
+
+Variable: edad_anos_madre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: edad_anos_padre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.381 
+    P-value: 0.537 
+    Significant: No 
+    Sample size: 1674 
+    Groups: 39 
+
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: grupo_etnico 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 3.18 
+    P-value: 0.0747 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.382 
+    P-value: 0.5366 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 3.472 
+    P-value: 0.0626 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.472 
+    P-value: 0.4924 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.498 
+    P-value: 0.4806 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: area_residencia 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 11.983 
+    P-value: 5e-04 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 6.409 
+    P-value: 0.0114 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 3.317 
+    P-value: 0.0687 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 16.003 
+    P-value: 1e-04 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 10.126 
+    P-value: 0.0015 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: nivel_educativo_madre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 6.735 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1711 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 6.294 
+    P-value: 1e-04 
+    Significant: Yes 
+    Sample size: 1711 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 8.682 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1711 
+    Groups: 5 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 9.507 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1711 
+    Groups: 5 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 6.442 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1711 
+    Groups: 5 
+
+
+Variable: nivel_educativo_padre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 6.816 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1673 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 2.012 
+    P-value: 0.0904 
+    Significant: No 
+    Sample size: 1673 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 1.092 
+    P-value: 0.3589 
+    Significant: No 
+    Sample size: 1673 
+    Groups: 5 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 1.357 
+    P-value: 0.2465 
+    Significant: No 
+    Sample size: 1673 
+    Groups: 5 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 2.568 
+    P-value: 0.0365 
+    Significant: Yes 
+    Sample size: 1673 
+    Groups: 5 
+
+
+Variable: fuente_agua_consumo 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Welch's ANOVA 
+    F-statistic: 3.447 
+    P-value: 0.0654 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Welch's ANOVA 
+    F-statistic: 1.391 
+    P-value: 0.308 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Welch's ANOVA 
+    F-statistic: 15.995 
+    P-value: 5e-04 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.219 
+    P-value: 0.883 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.498 
+    P-value: 0.6839 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+
+Variable: tipo_sanitario 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.076 
+    P-value: 0.9265 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.857 
+    P-value: 0.4244 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.164 
+    P-value: 0.8485 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 2.925 
+    P-value: 0.054 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.661 
+    P-value: 0.1902 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+
+Variable: manejo_basura 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 1.047 
+    P-value: 0.3813 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Welch's ANOVA 
+    F-statistic: 0.618 
+    P-value: 0.6591 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Welch's ANOVA 
+    F-statistic: 0.64 
+    P-value: 0.6454 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Welch's ANOVA 
+    F-statistic: 2.128 
+    P-value: 0.1489 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.494 
+    P-value: 0.7405 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+
+Variable: tipo_energia_luz 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - Less than 2 groups 
+   zscore_desarrollo_motricidad_gruesa : FAILED - Less than 2 groups 
+   zscore_desarrollo_motricidad_fina : FAILED - Less than 2 groups 
+   zscore_desarrollo_resolucion_problemas : FAILED - Less than 2 groups 
+   zscore_desarrollo_socio_individual : FAILED - Less than 2 groups 
+
+Variable: tipo_energia_cocina 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Welch's ANOVA 
+    F-statistic: 1.787 
+    P-value: 0.2944 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Welch's ANOVA 
+    F-statistic: 2.342 
+    P-value: 0.2209 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Welch's ANOVA 
+    F-statistic: 2.011 
+    P-value: 0.2618 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Welch's ANOVA 
+    F-statistic: 1.037 
+    P-value: 0.4707 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 4 
+
+   zscore_desarrollo_socio_individual :
+    Test: Welch's ANOVA 
+    F-statistic: 7.16 
+    P-value: 0.0471 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 4 
+
+
+Variable: propiedad_vivienda 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.332 
+    P-value: 0.5648 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 3.414 
+    P-value: 0.0648 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.741 
+    P-value: 0.3894 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.365 
+    P-value: 0.5459 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.994 
+    P-value: 0.1581 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: sexo_jefe_hogar 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 1.541 
+    P-value: 0.2146 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 2.542 
+    P-value: 0.111 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 7.994 
+    P-value: 0.0047 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 8.121 
+    P-value: 0.0044 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.457 
+    P-value: 0.2276 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: situacion_laboral_madre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 6.957 
+    P-value: 0.0084 
+    Significant: Yes 
+    Sample size: 1718 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 9.111 
+    P-value: 0.0026 
+    Significant: Yes 
+    Sample size: 1718 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 5.554 
+    P-value: 0.0186 
+    Significant: Yes 
+    Sample size: 1718 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 9.285 
+    P-value: 0.0023 
+    Significant: Yes 
+    Sample size: 1718 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 12.377 
+    P-value: 4e-04 
+    Significant: Yes 
+    Sample size: 1718 
+    Groups: 2 
+
+
+Variable: situacion_laboral_padre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.693 
+    P-value: 0.101 
+    Significant: No 
+    Sample size: 1676 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 6.873 
+    P-value: 0.0088 
+    Significant: Yes 
+    Sample size: 1676 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.011 
+    P-value: 0.9164 
+    Significant: No 
+    Sample size: 1676 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 5.657 
+    P-value: 0.0175 
+    Significant: Yes 
+    Sample size: 1676 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 8.925 
+    P-value: 0.0029 
+    Significant: Yes 
+    Sample size: 1676 
+    Groups: 2 
+
+
+Variable: tipo_empleo_madre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.821 
+    P-value: 0.3652 
+    Significant: No 
+    Sample size: 850 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.526 
+    P-value: 0.217 
+    Significant: No 
+    Sample size: 850 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.604 
+    P-value: 0.4372 
+    Significant: No 
+    Sample size: 850 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.245 
+    P-value: 0.6208 
+    Significant: No 
+    Sample size: 850 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 3.244 
+    P-value: 0.0721 
+    Significant: No 
+    Sample size: 850 
+    Groups: 2 
+
+
+Variable: tipo_empleo_padre 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.555 
+    P-value: 0.4563 
+    Significant: No 
+    Sample size: 1520 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.208 
+    P-value: 0.6484 
+    Significant: No 
+    Sample size: 1520 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.4 
+    P-value: 0.5271 
+    Significant: No 
+    Sample size: 1520 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.363 
+    P-value: 0.5469 
+    Significant: No 
+    Sample size: 1520 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.402 
+    P-value: 0.5263 
+    Significant: No 
+    Sample size: 1520 
+    Groups: 2 
+
+
+Variable: seguro_social 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 3.58 
+    P-value: 0.0586 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 2.17 
+    P-value: 0.1409 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 2.743 
+    P-value: 0.0978 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.122 
+    P-value: 0.7272 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.489 
+    P-value: 0.4844 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: total_personas_hogar 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: total_hermanos 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 10.335 
+    P-value: 0.0013 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 9 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.816 
+    P-value: 0.178 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 9 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.175 
+    P-value: 0.6759 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 9 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 1.645 
+    P-value: 0.1998 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 9 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 6.423 
+    P-value: 0.0114 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 9 
+
+
+Variable: posicion_nino_hermanos 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: estado_civil_cuidador 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 9.225 
+    P-value: 1e-04 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 5.032 
+    P-value: 0.0066 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 1.599 
+    P-value: 0.2023 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 5.745 
+    P-value: 0.0033 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 3.884 
+    P-value: 0.0207 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 3 
+
+
+Variable: horas_pantalla 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.866 
+    P-value: 0.3522 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 12 
+
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 7.725 
+    P-value: 0.0055 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 12 
+
+
+Variable: horas_juego_cuidador 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.218 
+    P-value: 0.6406 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 11 
+
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.16 
+    P-value: 0.6895 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 11 
+
+
+Variable: numero_controles_prenatales 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 9.081 
+    P-value: 0.0026 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 14 
+
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: ultrasonido_embarazo 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 4.188 
+    P-value: 0.0409 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 5.985 
+    P-value: 0.0145 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.086 
+    P-value: 0.7692 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.93 
+    P-value: 0.3349 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 5.759 
+    P-value: 0.0165 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: prenatales_primeros_3_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.31 
+    P-value: 0.1287 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.716 
+    P-value: 0.1904 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.002 
+    P-value: 0.9617 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 1.537 
+    P-value: 0.2153 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 2.517 
+    P-value: 0.1128 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: prenatales_resto_embarazo 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.825 
+    P-value: 0.3638 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 5.701 
+    P-value: 0.0171 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 1.241 
+    P-value: 0.2654 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 3.558 
+    P-value: 0.0594 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.923 
+    P-value: 0.3369 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: servicio_asistencia_parto 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 1.651 
+    P-value: 0.1588 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.316 
+    P-value: 0.2619 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.691 
+    P-value: 0.5981 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.731 
+    P-value: 0.5705 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.77 
+    P-value: 0.1322 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 5 
+
+
+Variable: tipo_parto 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.438 
+    P-value: 0.0876 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.055 
+    P-value: 0.9466 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.772 
+    P-value: 0.4621 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.199 
+    P-value: 0.8192 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.84 
+    P-value: 0.432 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+
+Variable: razon_cesarea_emergencia 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: lactancia_primeros_6_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 1.31 
+    P-value: 0.2701 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.15 
+    P-value: 0.861 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.34 
+    P-value: 0.7118 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.352 
+    P-value: 0.7032 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.829 
+    P-value: 0.4368 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 3 
+
+
+Variable: lactancia_6.12_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.259 
+    P-value: 0.7719 
+    Significant: No 
+    Sample size: 1560 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.078 
+    P-value: 0.3406 
+    Significant: No 
+    Sample size: 1560 
+    Groups: 3 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 3.506 
+    P-value: 0.0302 
+    Significant: Yes 
+    Sample size: 1560 
+    Groups: 3 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 1.504 
+    P-value: 0.2227 
+    Significant: No 
+    Sample size: 1560 
+    Groups: 3 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.656 
+    P-value: 0.1913 
+    Significant: No 
+    Sample size: 1560 
+    Groups: 3 
+
+
+Variable: lactancia_12.24_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.159 
+    P-value: 0.0911 
+    Significant: No 
+    Sample size: 1265 
+    Groups: 4 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 2.292 
+    P-value: 0.0765 
+    Significant: No 
+    Sample size: 1265 
+    Groups: 4 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 4.837 
+    P-value: 0.0024 
+    Significant: Yes 
+    Sample size: 1265 
+    Groups: 4 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 2.519 
+    P-value: 0.0566 
+    Significant: No 
+    Sample size: 1265 
+    Groups: 4 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.617 
+    P-value: 0.604 
+    Significant: No 
+    Sample size: 1265 
+    Groups: 4 
+
+
+Variable: vitamina_a_6.12_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.316 
+    P-value: 0.1283 
+    Significant: No 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.414 
+    P-value: 0.5199 
+    Significant: No 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 2.345 
+    P-value: 0.1259 
+    Significant: No 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.904 
+    P-value: 0.3417 
+    Significant: No 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.753 
+    P-value: 0.1857 
+    Significant: No 
+    Sample size: 1561 
+    Groups: 2 
+
+
+Variable: vitamina_a_12.18_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 17.709 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.872 
+    P-value: 0.3505 
+    Significant: No 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.33 
+    P-value: 0.5655 
+    Significant: No 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.092 
+    P-value: 0.7614 
+    Significant: No 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 22.025 
+    P-value: 0 
+    Significant: Yes 
+    Sample size: 1267 
+    Groups: 2 
+
+
+Variable: vitamina_a_18.24_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.461 
+    P-value: 0.4973 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.577 
+    P-value: 0.2095 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 2.147 
+    P-value: 0.1432 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.173 
+    P-value: 0.6772 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 2.308 
+    P-value: 0.129 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+
+Variable: vitaminas_minerales_6.12_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 7.893 
+    P-value: 0.005 
+    Significant: Yes 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.055 
+    P-value: 0.3045 
+    Significant: No 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 8.533 
+    P-value: 0.0035 
+    Significant: Yes 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 5.867 
+    P-value: 0.0155 
+    Significant: Yes 
+    Sample size: 1561 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 4.717 
+    P-value: 0.03 
+    Significant: Yes 
+    Sample size: 1561 
+    Groups: 2 
+
+
+Variable: vitaminas_minerales_12.18_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 7.284 
+    P-value: 0.0071 
+    Significant: Yes 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 4.344 
+    P-value: 0.0373 
+    Significant: Yes 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 2.816 
+    P-value: 0.0936 
+    Significant: No 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 1.031 
+    P-value: 0.3101 
+    Significant: No 
+    Sample size: 1267 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 3.349 
+    P-value: 0.0675 
+    Significant: No 
+    Sample size: 1267 
+    Groups: 2 
+
+
+Variable: vitaminas_minerales_18.24_meses 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.182 
+    P-value: 0.6698 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 7.324 
+    P-value: 0.0069 
+    Significant: Yes 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 4.152 
+    P-value: 0.0419 
+    Significant: Yes 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.21 
+    P-value: 0.6468 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.258 
+    P-value: 0.2624 
+    Significant: No 
+    Sample size: 1027 
+    Groups: 2 
+
+
+Variable: retardo_crecimiento 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.934 
+    P-value: 0.0869 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.976 
+    P-value: 0.3233 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 3.989 
+    P-value: 0.046 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.581 
+    P-value: 0.4458 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 7.857 
+    P-value: 0.0051 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: desnutricion_aguda 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 2.407 
+    P-value: 0.121 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 2.69 
+    P-value: 0.1011 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.932 
+    P-value: 0.3345 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 3.851 
+    P-value: 0.0499 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 6.967 
+    P-value: 0.0084 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: hospitalizado_neonatal 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.002 
+    P-value: 0.961 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 7.452 
+    P-value: 0.0064 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 4.205 
+    P-value: 0.0405 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 5.307 
+    P-value: 0.0214 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 6.427 
+    P-value: 0.0113 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: razon_hospitalizado_neonatal 
+-------------------------------------------
+   zscore_desarrollo_comunicacion : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: hospitalizado_infancia 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.025 
+    P-value: 0.8735 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 0.039 
+    P-value: 0.8432 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 0.086 
+    P-value: 0.7691 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 0.057 
+    P-value: 0.8117 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 1.539 
+    P-value: 0.2149 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+Variable: razon_hospitalizado_infancia 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 1.507 
+    P-value: 0.1228 
+    Significant: No 
+    Sample size: 237 
+    Groups: 13 
+
+   zscore_desarrollo_motricidad_gruesa : FAILED - ANOVA failed 
+   zscore_desarrollo_motricidad_fina : FAILED - ANOVA failed 
+   zscore_desarrollo_resolucion_problemas : FAILED - ANOVA failed 
+   zscore_desarrollo_socio_individual : FAILED - ANOVA failed 
+
+Variable: vacunacion_completa 
+-------------------------------------------
+   zscore_desarrollo_comunicacion :
+    Test: Standard ANOVA 
+    F-statistic: 0.334 
+    P-value: 0.5632 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_gruesa :
+    Test: Standard ANOVA 
+    F-statistic: 1.777 
+    P-value: 0.1827 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_motricidad_fina :
+    Test: Standard ANOVA 
+    F-statistic: 9.532 
+    P-value: 0.0021 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_resolucion_problemas :
+    Test: Standard ANOVA 
+    F-statistic: 4.499 
+    P-value: 0.0341 
+    Significant: Yes 
+    Sample size: 1725 
+    Groups: 2 
+
+   zscore_desarrollo_socio_individual :
+    Test: Standard ANOVA 
+    F-statistic: 0.889 
+    P-value: 0.3459 
+    Significant: No 
+    Sample size: 1725 
+    Groups: 2 
+
+
+OVERALL SUMMARY
+===============
+Total tests performed: 192 
+Significant results: 62 
+Percentage significant: 32.3 %
