@@ -74,8 +74,8 @@ def load_and_prepare_data():
     
     print(f"Data loaded: {df.shape[0]} observations, {df.shape[1]} variables")
     
-    # Create age intervals for continuous age variables
-    df = create_age_intervals(df)
+    # Create categorical groups for continuous and ordinal variables
+    df = create_categorical_groups(df)
     
     # Check for required columns
     missing_domains = [col for col in zscore_domains if col not in df.columns]
@@ -85,8 +85,8 @@ def load_and_prepare_data():
     print("Data preparation complete.")
     return df
 
-def create_age_intervals(df):
-    """Create age intervals for continuous age variables"""
+def create_categorical_groups(df):
+    """Create categorical groups for continuous and ordinal variables"""
     df = df.copy()
     
     # Convert edad_meses_nino to numeric (extract number from string)
@@ -112,6 +112,48 @@ def create_age_intervals(df):
                                   bins=[0, 25, 30, 35, 40, 100], 
                                   labels=['≤25 años', '26-30 años', '31-35 años', 
                                          '36-40 años', '>40 años'])
+    
+    # Group prenatal care visits - standard medical cutoff
+    df['numero_controles_prenatales_original'] = df['numero_controles_prenatales']
+    df['numero_controles_prenatales'] = df['numero_controles_prenatales'].apply(
+        lambda x: '< 4 controles' if pd.notna(x) and x < 4 else '≥ 4 controles' if pd.notna(x) else np.nan
+    )
+    
+    # Group number of siblings
+    df['total_hermanos_original'] = df['total_hermanos']
+    df['total_hermanos'] = df['total_hermanos'].apply(
+        lambda x: '0 hermanos' if pd.notna(x) and x == 0 else 
+                  '1 hermano' if pd.notna(x) and x == 1 else 
+                  '2 hermanos' if pd.notna(x) and x == 2 else 
+                  '3+ hermanos' if pd.notna(x) and x >= 3 else np.nan
+    )
+    
+    # Group household size
+    df['total_personas_hogar_original'] = df['total_personas_hogar']
+    df['total_personas_hogar'] = df['total_personas_hogar'].apply(
+        lambda x: '3-4 personas' if pd.notna(x) and x <= 4 else 
+                  '5-6 personas' if pd.notna(x) and x <= 6 else 
+                  '7-8 personas' if pd.notna(x) and x <= 8 else 
+                  '9+ personas' if pd.notna(x) and x >= 9 else np.nan
+    )
+    
+    # Group hours of play with caregiver
+    df['horas_juego_cuidador_original'] = df['horas_juego_cuidador']
+    df['horas_juego_cuidador'] = df['horas_juego_cuidador'].apply(
+        lambda x: '0-1 horas' if pd.notna(x) and x <= 1 else 
+                  '2-3 horas' if pd.notna(x) and x <= 3 else 
+                  '4-5 horas' if pd.notna(x) and x <= 5 else 
+                  '6+ horas' if pd.notna(x) and x >= 6 else np.nan
+    )
+    
+    # Group hours of screen time
+    df['horas_pantalla_original'] = df['horas_pantalla']
+    df['horas_pantalla'] = df['horas_pantalla'].apply(
+        lambda x: '0-1 horas' if pd.notna(x) and x <= 1 else 
+                  '2-3 horas' if pd.notna(x) and x <= 3 else 
+                  '4-5 horas' if pd.notna(x) and x <= 5 else 
+                  '6+ horas' if pd.notna(x) and x >= 6 else np.nan
+    )
     
     return df
 
@@ -424,9 +466,37 @@ def generate_variable_table(var_name, var_results):
         'sexo_jefe_hogar': 'Sexo del jefe de hogar',
         'situacion_laboral_madre': 'Situación laboral de la madre',
         'situacion_laboral_padre': 'Situación laboral del padre',
+        'tipo_empleo_madre': 'Tipo de empleo de la madre',
+        'tipo_empleo_padre': 'Tipo de empleo del padre',
         'seguro_social': 'Seguro social',
+        'total_personas_hogar': 'Total de personas en el hogar',
+        'total_hermanos': 'Total de hermanos',
+        'posicion_nino_hermanos': 'Posición del niño entre hermanos',
+        'estado_civil_cuidador': 'Estado civil del cuidador',
+        'horas_pantalla': 'Horas de exposición a pantallas',
+        'horas_juego_cuidador': 'Horas de juego con cuidador',
+        'numero_controles_prenatales': 'Número de controles prenatales',
+        'ultrasonido_embarazo': 'Ultrasonido durante el embarazo',
+        'prenatales_primeros_3_meses': 'Controles prenatales primeros 3 meses',
+        'prenatales_resto_embarazo': 'Controles prenatales resto del embarazo',
+        'servicio_asistencia_parto': 'Servicio de asistencia al parto',
+        'tipo_parto': 'Tipo de parto',
+        'razon_cesarea_emergencia': 'Razón de cesárea de emergencia',
+        'lactancia_primeros_6_meses': 'Lactancia primeros 6 meses',
+        'lactancia_6-12_meses': 'Lactancia 6-12 meses',
+        'lactancia_12-24_meses': 'Lactancia 12-24 meses',
+        'vitamina_a_6-12_meses': 'Vitamina A 6-12 meses',
+        'vitamina_a_12-18_meses': 'Vitamina A 12-18 meses',
+        'vitamina_a_18-24_meses': 'Vitamina A 18-24 meses',
+        'vitaminas_minerales_6-12_meses': 'Vitaminas y minerales 6-12 meses',
+        'vitaminas_minerales_12-18_meses': 'Vitaminas y minerales 12-18 meses',
+        'vitaminas_minerales_18-24_meses': 'Vitaminas y minerales 18-24 meses',
         'retardo_crecimiento': 'Retardo del crecimiento',
         'desnutricion_aguda': 'Desnutrición aguda',
+        'hospitalizado_neonatal': 'Hospitalizado neonatal',
+        'razon_hospitalizado_neonatal': 'Razón hospitalización neonatal',
+        'hospitalizado_infancia': 'Hospitalizado en infancia',
+        'razon_hospitalizado_infancia': 'Razón hospitalización en infancia',
         'vacunacion_completa': 'Vacunación completa'
     }
     

@@ -4,27 +4,27 @@ RESUMEN EJECUTIVO - ANÁLISIS ANOVA DE DESARROLLO INFANTIL
 
 ESTADÍSTICAS GENERALES:
 - Total de pruebas ANOVA realizadas: 235
-- Resultados significativos (p < 0.05): 74
-- Porcentaje de significancia: 31.5%
+- Resultados significativos (p < 0.05): 71
+- Porcentaje de significancia: 30.2%
 
 VARIABLES CON MAYOR NÚMERO DE ASOCIACIONES SIGNIFICATIVAS:
 - edad_meses_nino: 5 dominios significativos
 - nivel_educativo_madre: 5 dominios significativos
 - situacion_laboral_madre: 5 dominios significativos
+- horas_pantalla: 5 dominios significativos
 - area_residencia: 4 dominios significativos
 - estado_civil_cuidador: 4 dominios significativos
-- horas_pantalla: 4 dominios significativos
-- numero_controles_prenatales: 4 dominios significativos
 - vitaminas_minerales_6-12_meses: 4 dominios significativos
 - hospitalizado_neonatal: 4 dominios significativos
 - situacion_laboral_padre: 3 dominios significativos
+- total_hermanos: 3 dominios significativos
 
 
 DOMINIOS DEL DESARROLLO MÁS AFECTADOS:
-- Comunicación: 17 variables significativas
-- Motricidad fina: 15 variables significativas
-- Resolución de problemas: 15 variables significativas
-- Socio-individual: 14 variables significativas
+- Comunicación: 15 variables significativas
+- Socio-individual: 15 variables significativas
+- Motricidad fina: 14 variables significativas
+- Resolución de problemas: 14 variables significativas
 - Motricidad gruesa: 13 variables significativas
 
 
@@ -274,31 +274,31 @@ Tamaño de muestra: 1676
 Grupos afectados: Grupo más afectado: No trabaja
 ---
 
-Variable: total_personas_hogar
+Variable: total_hermanos
 Dominio: Comunicación
-Estadístico F/W: 7.561
-P-valor: 0.000
-Método: Welch's ANOVA
+Estadístico F/W: 5.707
+P-valor: 0.001
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 3+ hermanos
+---
+
+Variable: total_hermanos
+Dominio: Motricidad fina
+Estadístico F/W: 3.697
+P-valor: 0.011
+Método: ANOVA
 Tamaño de muestra: 1725
 Grupos afectados: 
 ---
 
 Variable: total_hermanos
-Dominio: Comunicación
-Estadístico F/W: 3.233
-P-valor: 0.004
+Dominio: Socio-individual
+Estadístico F/W: 2.905
+P-valor: 0.034
 Método: ANOVA
 Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 4
----
-
-Variable: total_hermanos
-Dominio: Motricidad fina
-Estadístico F/W: 3.219
-P-valor: 0.004
-Método: ANOVA
-Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 5
+Grupos afectados: 
 ---
 
 Variable: posicion_nino_hermanos
@@ -357,17 +357,17 @@ Grupos afectados: Grupo más afectado: Soltero
 
 Variable: horas_pantalla
 Dominio: Comunicación
-Estadístico F/W: 2.539
-P-valor: 0.019
-Método: Welch's ANOVA
+Estadístico F/W: 3.794
+P-valor: 0.010
+Método: ANOVA
 Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 4.0
+Grupos afectados: 
 ---
 
 Variable: horas_pantalla
 Dominio: Motricidad gruesa
-Estadístico F/W: 2.030
-P-valor: 0.040
+Estadístico F/W: 2.621
+P-valor: 0.049
 Método: ANOVA
 Tamaño de muestra: 1725
 Grupos afectados: 
@@ -375,74 +375,47 @@ Grupos afectados:
 
 Variable: horas_pantalla
 Dominio: Motricidad fina
-Estadístico F/W: 2.596
-P-valor: 0.008
+Estadístico F/W: 2.990
+P-valor: 0.030
 Método: ANOVA
 Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 6.0
+Grupos afectados: Grupo más afectado: 6+ horas
 ---
 
 Variable: horas_pantalla
 Dominio: Resolución de problemas
-Estadístico F/W: 2.371
-P-valor: 0.015
+Estadístico F/W: 3.751
+P-valor: 0.011
 Método: ANOVA
 Tamaño de muestra: 1725
 Grupos afectados: 
 ---
 
-Variable: horas_juego_cuidador
-Dominio: Motricidad gruesa
-Estadístico F/W: 2.186
-P-valor: 0.021
-Método: ANOVA
-Tamaño de muestra: 1725
-Grupos afectados: 
----
-
-Variable: horas_juego_cuidador
-Dominio: Resolución de problemas
-Estadístico F/W: 3.300
-P-valor: 0.001
-Método: ANOVA
-Tamaño de muestra: 1725
-Grupos afectados: 
----
-
-Variable: numero_controles_prenatales
-Dominio: Comunicación
-Estadístico F/W: 2.390
+Variable: horas_pantalla
+Dominio: Socio-individual
+Estadístico F/W: 4.330
 P-valor: 0.005
 Método: ANOVA
 Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 11
+Grupos afectados: Grupo más afectado: 4-5 horas
 ---
 
-Variable: numero_controles_prenatales
-Dominio: Motricidad fina
-Estadístico F/W: 3.251
-P-valor: 0.000
+Variable: horas_juego_cuidador
+Dominio: Motricidad gruesa
+Estadístico F/W: 3.053
+P-valor: 0.028
 Método: ANOVA
 Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 2
+Grupos afectados: 
 ---
 
-Variable: numero_controles_prenatales
+Variable: horas_juego_cuidador
 Dominio: Resolución de problemas
-Estadístico F/W: 2.901
-P-valor: 0.001
-Método: ANOVA
-Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 12
----
-
-Variable: numero_controles_prenatales
-Dominio: Socio-individual
-Estadístico F/W: 3.525
+Estadístico F/W: 6.487
 P-valor: 0.000
 Método: ANOVA
 Tamaño de muestra: 1725
-Grupos afectados: Grupo más afectado: 12
+Grupos afectados: Grupo más afectado: 0-1 horas
 ---
 
 Variable: ultrasonido_embarazo
