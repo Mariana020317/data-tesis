@@ -1,117 +1,144 @@
-# Análisis ANOVA de Dominios de Desarrollo
+# Análisis ANOVA de Desarrollo Infantil
 
-Este repositorio contiene el análisis estadístico de cinco dominios del desarrollo neurológico en relación con variables sociodemográficas, ambientales y clínicas.
+Este proyecto implementa un análisis estadístico integral mediante ANOVA de una vía para evaluar las asociaciones entre variables sociodemográficas, ambientales y clínicas con cinco dominios del desarrollo infantil.
 
-## Estructura del Proyecto
+## 📊 Descripción del Análisis
 
-- `datos_optimizados.csv`: Dataset principal con 1,725 observaciones
-- `anova_analysis_base.R`: Script principal de análisis ANOVA
-- `resultados_anova.tex`: Tablas LaTeX con resultados del análisis
-- `anova_summary.txt`: Resumen ejecutivo de los resultados
-- `anova_results.RData`: Datos completos del análisis en formato R
+El análisis evalúa **240 combinaciones** de variables independientes con cinco dominios del desarrollo infantil usando puntajes Z:
 
-## Dominios de Desarrollo Analizados
+- **Comunicación** (zscore_desarrollo_comunicacion)
+- **Motricidad gruesa** (zscore_desarrollo_motricidad_gruesa)  
+- **Motricidad fina** (zscore_desarrollo_motricidad_fina)
+- **Resolución de problemas** (zscore_desarrollo_resolucion_problemas)
+- **Socio-individual** (zscore_desarrollo_socio_individual)
 
-El análisis evalúa cinco dominios del desarrollo neurológico:
+## 🔬 Metodología Estadística
 
-1. **Comunicación** (`zscore_desarrollo_comunicacion`)
-2. **Motricidad gruesa** (`zscore_desarrollo_motricidad_gruesa`)
-3. **Motricidad fina** (`zscore_desarrollo_motricidad_fina`)
-4. **Resolución de problemas** (`zscore_desarrollo_resolucion_problemas`)
-5. **Socio-individual** (`zscore_desarrollo_socio_individual`)
+### Clasificación de Riesgo
+- **Desarrollo normal**: Z > -1
+- **Riesgo de trastornos del desarrollo**: Z ≤ -1
 
-## Variables Independientes
+### Preparación de Variables
+- **Variables de edad**: Convertidas a intervalos categóricos apropiados
+  - Edad del niño: 0-6, 7-12, 13-18, 19-24, 25-36, 37-48, 49-60 meses
+  - Edad de la madre: ≤20, 21-25, 26-30, 31-35, >35 años
+  - Edad del padre: ≤25, 26-30, 31-35, 36-40, >40 años
 
-El análisis incluye variables sociodemográficas, ambientales y clínicas:
+### Proceso de Análisis
+1. **Verificación de supuestos**: Normalidad (Shapiro-Wilk) y homocedasticidad (Levene)
+2. **Selección de prueba**: ANOVA estándar o ANOVA de Welch según corresponda
+3. **Análisis post-hoc**: Identificación de grupos afectados para resultados significativos
+4. **Estadísticas descriptivas**: Media, desviación estándar, clasificación de riesgo por grupo
 
-- **Demográficas**: edad del niño, edad de padres, grupo étnico, área de residencia
-- **Educativas**: nivel educativo de madre y padre
-- **Ambientales**: fuente de agua, tipo de sanitario, manejo de basura, energía
-- **Socioeconómicas**: propiedad de vivienda, situación laboral, seguro social
-- **Familiares**: composición del hogar, estado civil, horas de pantalla
-- **Prenatales**: controles prenatales, ultrasonidos, tipo de parto
-- **Nutricionales**: lactancia, vitaminas, estado nutricional
-- **Clínicas**: hospitalizaciones, vacunación, condiciones de salud
+## 📁 Archivos del Proyecto
 
-## Metodología
+### `anova_analysis.py` - Script Principal (Python)
+- **Dependencias**: pandas, numpy, scipy, pingouin
+- **Entrada**: `datos_optimizados.csv` (1,725 observaciones, 57 variables)
+- **Salida**: Tablas LaTeX, resumen ejecutivo, resultados en CSV
 
-### Análisis Estadístico
+### `resultados_anova.tex` - Tablas LaTeX
+- **Formato**: Documento LaTeX profesional con explicaciones detalladas
+- **Contenido**: Tablas comprensivas para todas las combinaciones variable-dominio
+- **Idioma**: Español, listo para publicación
+- **Características**: Estadísticos F/W, p-valores, indicadores de significancia, estadísticas descriptivas
 
-1. **Preparación de datos**: 
-   - Limpieza y transformación de variables
-   - Conversión de variables continuas a categóricas
-   - Manejo de valores perdidos
+### `anova_summary.txt` - Resumen Ejecutivo
+- **Contenido**: Resumen estadístico completo de todos los análisis
+- **Formato**: Texto legible con detalles de cada prueba significativa
 
-2. **Verificación de supuestos**:
-   - Normalidad (prueba de Shapiro-Wilk)
-   - Homogeneidad de varianzas (análisis de ratios de varianza)
+### `anova_results.csv` - Resultados Completos
+- **Formato**: CSV con todos los resultados para análisis posterior
+- **Contenido**: Estadísticos, p-valores, clasificaciones de riesgo, metadatos
 
-3. **Análisis ANOVA**:
-   - ANOVA estándar cuando se cumplen los supuestos
-   - ANOVA de Welch cuando hay heterogeneidad de varianzas
-   - Pruebas post-hoc para diferencias específicas entre grupos
+## 🚀 Uso
 
-4. **Clasificación de desarrollo**:
-   - **Desarrollo adecuado**: Z > -1
-   - **Riesgo de trastornos en el neurodesarrollo**: Z ≤ -1
-
-## Resultados Principales
-
-Del análisis de 152 pruebas ANOVA realizadas:
-
-- **50 resultados significativos** (32.9% del total)
-- **Edad del niño**: Significativo para todos los dominios
-- **Área de residencia**: Significativo para 4 de 5 dominios
-- **Nivel educativo materno**: Significativo para todos los dominios
-- **Variables nutricionales y clínicas**: Múltiples asociaciones significativas
-
-## Uso del Código
-
-### Requisitos
-
-- R versión 4.0 o superior
-- Paquetes base de R (no requiere instalaciones adicionales)
-
-### Ejecución
-
+### Ejecución del Análisis
 ```bash
-# Ejecutar el análisis completo
-Rscript anova_analysis_base.R
+# Instalar dependencias
+pip install pandas numpy scipy pingouin
+
+# Ejecutar análisis completo
+python3 anova_analysis.py
 ```
 
-### Archivos de Salida
+### Archivos Generados
+- `resultados_anova.tex`: Tablas LaTeX listas para publicación
+- `anova_summary.txt`: Resumen ejecutivo del análisis
+- `anova_results.csv`: Resultados completos en formato CSV
 
-1. **`resultados_anova.tex`**: Tablas LaTeX listas para publicación
-2. **`anova_summary.txt`**: Resumen ejecutivo con estadísticas clave
-3. **`anova_results.RData`**: Datos completos para análisis adicionales
+## 📈 Resultados Principales
 
-## Interpretación de Resultados
+### Estadísticas Generales
+- **Total de pruebas ANOVA**: 235
+- **Resultados significativos**: 74 (31.5%)
+- **Muestra analizada**: 1,725 niños
+- **Variables independientes**: 48 variables
 
-### Tablas LaTeX
+### Variables con Mayor Impacto
+Las variables con mayor número de asociaciones significativas incluyen:
+- Edad del niño (todos los dominios)
+- Nivel educativo de la madre
+- Área de residencia
+- Factores nutricionales y clínicos
 
-Las tablas incluyen:
-- F-estadístico o W-estadístico (Welch)
-- Valor p
-- Significancia estadística
-- Estadísticas descriptivas por grupo
+### Interpretación de Resultados
+Cada resultado significativo incluye:
+- **Identificación del grupo afectado**: Grupo con mayor riesgo de desarrollo
+- **Estadísticas descriptivas**: Medias, desviaciones estándar, porcentajes de riesgo
+- **Interpretación clínica**: Explicación del impacto en el desarrollo infantil
 
-### Significancia Clínica
+## 🔍 Características Técnicas
 
-Los resultados sugieren que:
-- La edad del niño es el factor más determinante del desarrollo
-- Las variables socioeconómicas (educación, residencia) tienen impacto significativo
-- Los factores prenatales y nutricionales muestran asociaciones importantes
+### Gestión de Supuestos ANOVA
+- **Normalidad**: Prueba de Shapiro-Wilk por grupo
+- **Homocedasticidad**: Prueba de Levene
+- **Selección automática**: ANOVA estándar vs. ANOVA de Welch
 
-## Limitaciones
+### Análisis Post-hoc
+- **Comparaciones múltiples**: Pruebas t con corrección de Bonferroni
+- **Identificación de grupos**: Automática para resultados significativos
+- **Interpretación**: Explicaciones detalladas en español
 
-- Variables continuas fueron categorizadas para el análisis
-- Algunos análisis fallaron por datos insuficientes
-- No se ajustó por comparaciones múltiples entre dominios
+### Robustez del Análisis
+- **Manejo de valores faltantes**: Eliminación por lista para cada análisis
+- **Tamaño mínimo de muestra**: 10 observaciones por análisis
+- **Validación de grupos**: Mínimo 3 observaciones por grupo
 
-## Autor
+## 📚 Aplicaciones
 
-Análisis generado para el proyecto data-tesis
+### Investigación Clínica
+- Identificación de factores de riesgo para alteraciones del desarrollo
+- Evaluación de intervenciones preventivas
+- Diseño de estrategias de tamizaje
 
-## Fecha
+### Salud Pública
+- Formulación de políticas basadas en evidencia
+- Priorización de recursos para grupos vulnerables
+- Monitoreo de indicadores de desarrollo infantil
 
-Julio 2024
+### Práctica Clínica
+- Identificación temprana de riesgos
+- Orientación para derivaciones especializadas
+- Seguimiento de casos en riesgo
+
+## ✅ Validación
+
+El análisis implementa:
+- ✅ Verificación rigurosa de supuestos estadísticos
+- ✅ Selección automática de pruebas apropiadas
+- ✅ Análisis post-hoc para resultados significativos
+- ✅ Clasificación de riesgo según criterios clínicos
+- ✅ Documentación completa en español
+- ✅ Tablas LaTeX listas para publicación
+
+## 📞 Soporte Técnico
+
+Para dudas sobre implementación o interpretación de resultados, consulte:
+- Documentación técnica en `ANALYSIS_SUMMARY.md`
+- Código fuente comentado en `anova_analysis.py`
+- Resultados detallados en `anova_summary.txt`
+
+---
+
+**Nota**: Este análisis proporciona evidencia estadística sobre factores asociados con el desarrollo infantil. Los resultados deben interpretarse en el contexto clínico apropiado y considerando las limitaciones del diseño de estudio.

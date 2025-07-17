@@ -1,886 +1,1350 @@
-\documentclass{article}
+\\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage{float}
-\usepackage{threeparttable}
+\usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
 \usepackage{geometry}
-\geometry{margin=1in}
-\title{Resultados Análisis ANOVA - Dominios de Desarrollo}
-\author{Análisis Estadístico}
+\geometry{margin=2cm}
+
+\title{Análisis ANOVA de Factores de Desarrollo en la Primera Infancia}
+\author{Análisis Estadístico Integral}
 \date{\today}
+
 \begin{document}
+
 \maketitle
 
 \section{Introducción}
-Este documento presenta los resultados del análisis ANOVA para evaluar las diferencias en los cinco dominios del desarrollo (comunicación, motricidad gruesa, motricidad fina, resolución de problemas y socio-individual) según diversas variables sociodemográficas, ambientales y clínicas.
 
-\section{ edad_meses_nino }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para edad_meses_nino}
-\label{tab:edadmesesnino}
+Este documento presenta los resultados del análisis estadístico integral mediante ANOVA de una vía para evaluar las asociaciones entre variables sociodemográficas, ambientales y clínicas con cinco dominios del desarrollo infantil. El análisis se realizó sobre una muestra de 235 observaciones válidas.
+
+\subsection{Dominios del Desarrollo Evaluados}
+
+Los cinco dominios del desarrollo evaluados mediante puntajes Z son:
+
+\begin{itemize}
+\item \textbf{Comunicación}: Desarrollo del lenguaje receptivo y expresivo
+\item \textbf{Motricidad gruesa}: Desarrollo de habilidades motoras de músculos grandes
+\item \textbf{Motricidad fina}: Desarrollo de habilidades motoras precisas
+\item \textbf{Resolución de problemas}: Desarrollo cognitivo y de razonamiento
+\item \textbf{Socio-individual}: Desarrollo de habilidades sociales y emocionales
+\end{itemize}
+
+\subsection{Clasificación de Riesgo}
+
+La clasificación de riesgo de desarrollo se basa en los puntajes Z:
+
+\begin{itemize}
+\item \textbf{Desarrollo normal}: Z > -1
+\item \textbf{Riesgo de trastornos del desarrollo}: Z ≤ -1
+\end{itemize}
+
+\subsection{Metodología Estadística}
+
+Para cada variable independiente se realizó:
+
+\begin{enumerate}
+\item Verificación de supuestos (normalidad y homocedasticidad)
+\item ANOVA de una vía o ANOVA de Welch según corresponda
+\item Análisis post-hoc para identificar grupos afectados cuando p < 0.05
+\item Cálculo de estadísticas descriptivas y clasificación de riesgo por grupo
+\end{enumerate}
+
+\section{Resultados}
+
+
+\subsection{Edad del niño (meses)}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 36.58 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 8.23 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Motricidad fina & 24.98 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Resolución de problemas & 4.81 & < 0.001 & Sí & ANOVA & 1725 \\
+Socio-individual & 16.28 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Edad del niño (meses):}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 16.236 & 13.19 & 12.944 & 4.653 & 13.49 \\
-Valor p & < 0.001 & < 0.001 & < 0.001 & < 0.001 & < 0.001 \\
-Significativo & Sí & Sí & Sí & Sí & Sí \\
+0-6 meses & 263 & 0.15 & 0.81 & 93.2 & 6.8 \\
+7-12 meses & 340 & 0.43 & 0.62 & 99.1 & 0.9 \\
+13-18 meses & 222 & 0.33 & 0.55 & 98.6 & 1.4 \\
+19-24 meses & 239 & -0.01 & 0.57 & 94.1 & 5.9 \\
+25-36 meses & 345 & -0.10 & 0.61 & 91.9 & 8.1 \\
+37-48 meses & 178 & 0.02 & 0.75 & 91.6 & 8.4 \\
+49-60 meses & 138 & -0.24 & 0.69 & 88.4 & 11.6 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Comunicación: Grupo más afectado: 54 meses (media Z = -0.29)
-\item Motricidad gruesa: Grupo más afectado: 2 meses (media Z = -0.74)
-\item Motricidad fina: Grupo más afectado: 8 meses (media Z = -0.75)
-\item Resolución de problemas: Grupo más afectado: 4 meses (media Z = -0.39)
-\item Socio-individual: Grupo más afectado: 60 meses (media Z = -0.53)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para edad_meses_nino}
-\label{tab:descedadmesesnino}
+
+\textbf{Interpretación:} Grupo más afectado: 49-60 meses. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-10 meses & 65 & 0.21 & 0.55 & 98.5 & 1.5 \\
-12 meses & 145 & 0.54 & 0.49 & 100 & 0 \\
-14 meses & 74 & 0.3 & 0.56 & 98.6 & 1.4 \\
-16 meses & 62 & 0.4 & 0.5 & 98.4 & 1.6 \\
-18 meses & 86 & 0.31 & 0.57 & 98.8 & 1.2 \\
-2 meses & 82 & 0.31 & 0.84 & 93.9 & 6.1 \\
-20 meses & 67 & -0.05 & 0.57 & 92.5 & 7.5 \\
-22 meses & 83 & 0.11 & 0.59 & 95.2 & 4.8 \\
-24 meses & 89 & -0.09 & 0.55 & 94.4 & 5.6 \\
-27 meses & 89 & -0.07 & 0.52 & 94.4 & 5.6 \\
-30 meses & 73 & -0.28 & 0.62 & 90.4 & 9.6 \\
-33 meses & 81 & 0.02 & 0.58 & 92.6 & 7.4 \\
-36 meses & 102 & -0.1 & 0.68 & 90.2 & 9.8 \\
-4 meses & 82 & -0.11 & 0.82 & 85.4 & 14.6 \\
-42 meses & 89 & -0.03 & 0.68 & 98.9 & 1.1 \\
-48 meses & 89 & 0.07 & 0.81 & 84.3 & 15.7 \\
-54 meses & 79 & -0.29 & 0.66 & 87.3 & 12.7 \\
-6 meses & 99 & 0.22 & 0.73 & 99 & 1 \\
-60 meses & 59 & -0.18 & 0.73 & 89.8 & 10.2 \\
-8 meses & 69 & -0.01 & 0.63 & 97.1 & 2.9 \\
-9 meses & 61 & 0.9 & 0.51 & 100 & 0 \\
+0-6 meses & 263 & -0.30 & 1.20 & 80.2 & 19.8 \\
+7-12 meses & 340 & -0.10 & 0.64 & 90.3 & 9.7 \\
+13-18 meses & 222 & -0.47 & 0.80 & 76.1 & 23.9 \\
+19-24 meses & 239 & -0.43 & 0.86 & 77.4 & 22.6 \\
+25-36 meses & 345 & -0.25 & 0.71 & 86.1 & 13.9 \\
+37-48 meses & 178 & -0.22 & 0.77 & 79.2 & 20.8 \\
+49-60 meses & 138 & -0.15 & 0.67 & 92.0 & 8.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ edad_anos_madre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para edad_anos_madre}
-\label{tab:edadanosmadre}
+
+\textbf{Interpretación:} Grupo más afectado: 13-18 meses. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & N/A & N/A & N/A & N/A \\
-Valor p & N/A & N/A & N/A & N/A & N/A \\
-Significativo & N/A & N/A & N/A & N/A & N/A \\
+0-6 meses & 263 & 0.04 & 0.73 & 93.9 & 6.1 \\
+7-12 meses & 340 & -0.33 & 0.75 & 84.4 & 15.6 \\
+13-18 meses & 222 & -0.23 & 0.82 & 85.1 & 14.9 \\
+19-24 meses & 239 & -0.28 & 0.83 & 89.1 & 10.9 \\
+25-36 meses & 345 & 0.17 & 0.56 & 96.8 & 3.2 \\
+37-48 meses & 178 & 0.11 & 0.56 & 96.1 & 3.9 \\
+49-60 meses & 138 & 0.08 & 0.56 & 98.6 & 1.4 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ edad_anos_padre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para edad_anos_padre}
-\label{tab:edadanospadre}
+
+\textbf{Interpretación:} Grupo más afectado: 7-12 meses. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & N/A & N/A & 0.381 & N/A \\
-Valor p & N/A & N/A & N/A & 0.537 & N/A \\
-Significativo & N/A & N/A & N/A & No & N/A \\
+0-6 meses & 263 & -0.06 & 0.75 & 92.8 & 7.2 \\
+7-12 meses & 340 & -0.05 & 0.67 & 90.6 & 9.4 \\
+13-18 meses & 222 & 0.11 & 0.69 & 93.7 & 6.3 \\
+19-24 meses & 239 & -0.03 & 0.71 & 95.8 & 4.2 \\
+25-36 meses & 345 & -0.12 & 0.59 & 94.2 & 5.8 \\
+37-48 meses & 178 & -0.20 & 0.66 & 89.9 & 10.1 \\
+49-60 meses & 138 & -0.19 & 0.69 & 89.1 & 10.9 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para edad_anos_padre}
-\label{tab:descedadanospadre}
+
+\textbf{Interpretación:} Grupo más afectado: 37-48 meses. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-17 & 2 & 0.28 & 0.58 & 100 & 0 \\
-18 & 18 & 0.15 & 0.68 & 94.4 & 5.6 \\
-19 & 20 & -0.25 & 0.64 & 90 & 10 \\
-20 & 44 & 0.11 & 0.62 & 100 & 0 \\
-21 & 47 & -0.16 & 0.56 & 95.7 & 4.3 \\
-22 & 53 & -0.29 & 0.66 & 88.7 & 11.3 \\
-23 & 68 & -0.01 & 0.66 & 92.6 & 7.4 \\
-24 & 92 & -0.09 & 0.7 & 90.2 & 9.8 \\
-25 & 78 & -0.14 & 0.66 & 89.7 & 10.3 \\
-26 & 94 & -0.09 & 0.74 & 92.6 & 7.4 \\
-27 & 105 & -0.01 & 0.61 & 93.3 & 6.7 \\
-28 & 94 & 0.04 & 0.57 & 98.9 & 1.1 \\
-29 & 86 & -0.08 & 0.67 & 93 & 7 \\
-30 & 94 & -0.13 & 0.81 & 89.4 & 10.6 \\
-31 & 78 & 0 & 0.55 & 94.9 & 5.1 \\
-32 & 83 & -0.12 & 0.66 & 95.2 & 4.8 \\
-33 & 92 & -0.03 & 0.62 & 93.5 & 6.5 \\
-34 & 83 & -0.22 & 0.87 & 86.7 & 13.3 \\
-35 & 81 & 0.03 & 0.61 & 96.3 & 3.7 \\
-36 & 50 & 0.03 & 0.68 & 98 & 2 \\
-37 & 68 & 0.13 & 0.62 & 97.1 & 2.9 \\
-38 & 50 & -0.13 & 0.84 & 94 & 6 \\
-39 & 43 & -0.07 & 0.64 & 95.3 & 4.7 \\
-40 & 40 & 0.02 & 0.6 & 92.5 & 7.5 \\
-41 & 19 & -0.03 & 0.64 & 89.5 & 10.5 \\
-42 & 18 & 0.07 & 0.6 & 94.4 & 5.6 \\
-43 & 18 & -0.02 & 0.67 & 88.9 & 11.1 \\
-44 & 11 & -0.71 & 0.74 & 63.6 & 36.4 \\
-45 & 14 & 0.14 & 0.52 & 92.9 & 7.1 \\
-46 & 8 & -0.43 & 0.73 & 87.5 & 12.5 \\
-47 & 6 & 0.16 & 1.01 & 83.3 & 16.7 \\
-48 & 5 & -0.27 & 0.65 & 100 & 0 \\
-49 & 3 & -0.35 & 0.58 & 100 & 0 \\
-50 & 4 & -0.02 & 0.92 & 75 & 25 \\
-53 & 1 & -0.37 & NA & 100 & 0 \\
-54 & 1 & -0.67 & NA & 100 & 0 \\
-55 & 1 & 0 & NA & 100 & 0 \\
-59 & 1 & 1.05 & NA & 100 & 0 \\
-66 & 1 & 0.21 & NA & 100 & 0 \\
+0-6 meses & 263 & 0.06 & 0.83 & 91.3 & 8.7 \\
+7-12 meses & 340 & 0.20 & 0.70 & 96.2 & 3.8 \\
+13-18 meses & 222 & 0.26 & 0.59 & 97.7 & 2.3 \\
+19-24 meses & 239 & -0.08 & 0.70 & 87.9 & 12.1 \\
+25-36 meses & 345 & -0.07 & 0.72 & 93.3 & 6.7 \\
+37-48 meses & 178 & 0.02 & 0.56 & 96.6 & 3.4 \\
+49-60 meses & 138 & -0.33 & 0.75 & 81.2 & 18.8 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ grupo_etnico }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para grupo_etnico}
-\label{tab:grupoetnico}
+
+\textbf{Interpretación:} Grupo más afectado: 49-60 meses. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Edad de la madre (años)}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.67 & 0.616 & No & ANOVA & 1714 \\
+Motricidad gruesa & 0.77 & 0.547 & No & ANOVA & 1714 \\
+Motricidad fina & 1.06 & 0.374 & No & ANOVA & 1714 \\
+Resolución de problemas & 1.87 & 0.113 & No & ANOVA & 1714 \\
+Socio-individual & 1.77 & 0.132 & No & ANOVA & 1714 \\
+
+\end{longtable}
+
+
+\subsection{Edad del padre (años)}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.37 & 0.829 & No & ANOVA & 1674 \\
+Motricidad gruesa & 1.22 & 0.298 & No & ANOVA & 1674 \\
+Motricidad fina & 1.74 & 0.138 & No & ANOVA & 1674 \\
+Resolución de problemas & 1.03 & 0.388 & No & ANOVA & 1674 \\
+Socio-individual & 0.10 & 0.984 & No & ANOVA & 1674 \\
+
+\end{longtable}
+
+
+\subsection{Grupo étnico}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 3.18 & 0.075 & No & ANOVA & 1725 \\
+Motricidad gruesa & 0.38 & 0.537 & No & ANOVA & 1725 \\
+Motricidad fina & 3.47 & 0.063 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.45 & 0.502 & No & Welch's ANOVA & 1725 \\
+Socio-individual & 0.50 & 0.481 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Área de residencia}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 10.50 & 0.001 & Sí & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 4.47 & 0.035 & Sí & Welch's ANOVA & 1725 \\
+Motricidad fina & 2.76 & 0.097 & No & Welch's ANOVA & 1725 \\
+Resolución de problemas & 12.17 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Socio-individual & 8.23 & 0.004 & Sí & Welch's ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Área de residencia:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 3.18 & 0.382 & 3.472 & 0.472 & 0.498 \\
-Valor p & 0.075 & 0.537 & 0.063 & 0.492 & 0.481 \\
-Significativo & No & No & No & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para grupo_etnico}
-\label{tab:descgrupoetnico}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Indígena & 741 & 0.08 & 0.69 & 93.3 & 6.7 \\
-No indígena & 984 & 0.14 & 0.69 & 95.2 & 4.8 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ area_residencia }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para area_residencia}
-\label{tab:arearesidencia}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 11.983 & 6.409 & 3.317 & 16.003 & 10.126 \\
-Valor p & < 0.001 & 0.011 & 0.069 & < 0.001 & 0.001 \\
-Significativo & Sí & Sí & No & Sí & Sí \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para area_residencia}
-\label{tab:descarearesidencia}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
 Rural & 257 & -0.03 & 0.75 & 90.3 & 9.7 \\
 Urbano & 1468 & 0.14 & 0.68 & 95.1 & 4.9 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ nivel_educativo_madre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para nivel_educativo_madre}
-\label{tab:niveleducativomadre}
+
+\textbf{Interpretación:} Grupo más afectado: Rural. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 6.735 & 6.294 & 8.682 & 9.507 & 6.442 \\
-Valor p & < 0.001 & < 0.001 & < 0.001 & < 0.001 & < 0.001 \\
-Significativo & Sí & Sí & Sí & Sí & Sí \\
+Rural & 257 & -0.39 & 1.03 & 75.5 & 24.5 \\
+Urbano & 1468 & -0.25 & 0.79 & 84.7 & 15.3 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Comunicación: Grupo más afectado: Ninguna (media Z = -0.15)
-\item Motricidad gruesa: Grupo más afectado: Ninguna (media Z = -0.53)
-\item Motricidad fina: Grupo más afectado: Ninguna (media Z = -0.37)
-\item Resolución de problemas: Grupo más afectado: Ninguna (media Z = -0.32)
-\item Socio-individual: Grupo más afectado: Ninguna (media Z = -0.21)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para nivel_educativo_madre}
-\label{tab:descniveleducativomadre}
+
+\textbf{Interpretación:} Grupo más afectado: Rural. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Rural & 257 & -0.22 & 0.80 & 84.8 & 15.2 \\
+Urbano & 1468 & -0.04 & 0.66 & 93.9 & 6.1 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Rural. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Rural & 257 & -0.10 & 0.81 & 86.8 & 13.2 \\
+Urbano & 1468 & 0.06 & 0.70 & 93.8 & 6.2 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Rural. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Nivel educativo de la madre}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 5.96 & < 0.001 & Sí & Welch's ANOVA & 1711 \\
+Motricidad gruesa & 6.29 & < 0.001 & Sí & ANOVA & 1711 \\
+Motricidad fina & 8.68 & < 0.001 & Sí & ANOVA & 1711 \\
+Resolución de problemas & 9.51 & < 0.001 & Sí & ANOVA & 1711 \\
+Socio-individual & 6.44 & < 0.001 & Sí & ANOVA & 1711 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Nivel educativo de la madre:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
 Básico & 506 & 0.14 & 0.66 & 95.8 & 4.2 \\
 Diversificado & 700 & 0.07 & 0.67 & 94.3 & 5.7 \\
-Ninguna & 63 & -0.15 & 0.8 & 85.7 & 14.3 \\
-Primaria & 314 & 0.1 & 0.73 & 93.3 & 6.7 \\
-Universitario & 128 & 0.35 & 0.7 & 96.9 & 3.1 \\
+Ninguna & 63 & -0.15 & 0.80 & 85.7 & 14.3 \\
+Primaria & 314 & 0.10 & 0.73 & 93.3 & 6.7 \\
+Universitario & 128 & 0.35 & 0.70 & 96.9 & 3.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ nivel_educativo_padre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para nivel_educativo_padre}
-\label{tab:niveleducativopadre}
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 6.816 & 2.012 & 1.092 & 1.357 & 2.568 \\
-Valor p & < 0.001 & 0.09 & 0.359 & 0.247 & 0.036 \\
-Significativo & Sí & No & No & No & Sí \\
+Básico & 506 & -0.30 & 0.83 & 82.4 & 17.6 \\
+Diversificado & 700 & -0.28 & 0.79 & 83.3 & 16.7 \\
+Ninguna & 63 & -0.53 & 0.94 & 73.0 & 27.0 \\
+Primaria & 314 & -0.27 & 0.84 & 83.4 & 16.6 \\
+Universitario & 128 & 0.04 & 0.93 & 92.2 & 7.8 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Comunicación: Grupo más afectado: Ninguna (media Z = -0.07)
-\item Socio-individual: Grupo más afectado: Ninguna (media Z = -0.23)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para nivel_educativo_padre}
-\label{tab:descniveleducativopadre}
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Básico & 506 & -0.06 & 0.74 & 90.7 & 9.3 \\
+Diversificado & 700 & -0.07 & 0.66 & 93.6 & 6.4 \\
+Ninguna & 63 & -0.37 & 0.87 & 81.0 & 19.0 \\
+Primaria & 314 & -0.17 & 0.75 & 88.9 & 11.1 \\
+Universitario & 128 & 0.20 & 0.74 & 94.5 & 5.5 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Básico & 506 & -0.04 & 0.68 & 94.5 & 5.5 \\
+Diversificado & 700 & -0.10 & 0.66 & 91.4 & 8.6 \\
+Ninguna & 63 & -0.32 & 0.82 & 87.3 & 12.7 \\
+Primaria & 314 & -0.09 & 0.65 & 92.4 & 7.6 \\
+Universitario & 128 & 0.24 & 0.67 & 96.9 & 3.1 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Básico & 506 & 0.05 & 0.67 & 95.1 & 4.9 \\
+Diversificado & 700 & 0.01 & 0.70 & 92.7 & 7.3 \\
+Ninguna & 63 & -0.21 & 0.83 & 82.5 & 17.5 \\
+Primaria & 314 & 0.00 & 0.73 & 90.8 & 9.2 \\
+Universitario & 128 & 0.29 & 0.84 & 94.5 & 5.5 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Nivel educativo del padre}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 6.82 & < 0.001 & Sí & ANOVA & 1673 \\
+Motricidad gruesa & 1.88 & 0.114 & No & Welch's ANOVA & 1673 \\
+Motricidad fina & 1.09 & 0.359 & No & ANOVA & 1673 \\
+Resolución de problemas & 1.36 & 0.247 & No & ANOVA & 1673 \\
+Socio-individual & 2.57 & 0.036 & Sí & ANOVA & 1673 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Nivel educativo del padre:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
 Básico & 380 & 0.23 & 0.64 & 96.3 & 3.7 \\
 Diversificado & 811 & 0.07 & 0.67 & 94.6 & 5.4 \\
-Ninguna & 50 & -0.07 & 0.76 & 92 & 8 \\
+Ninguna & 50 & -0.07 & 0.76 & 92.0 & 8.0 \\
 Primaria & 260 & 0.01 & 0.69 & 93.5 & 6.5 \\
 Universitario & 172 & 0.21 & 0.77 & 94.2 & 5.8 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ fuente_agua_consumo }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para fuente_agua_consumo}
-\label{tab:fuenteaguaconsumo}
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 3.447 & 1.391 & 15.995 & 0.219 & 0.498 \\
-Valor p & 0.065 & 0.308 & < 0.001 & 0.883 & 0.684 \\
-Significativo & No & No & Sí & No & No \\
+Básico & 380 & 0.10 & 0.69 & 94.2 & 5.8 \\
+Diversificado & 811 & 0.02 & 0.69 & 93.3 & 6.7 \\
+Ninguna & 50 & -0.23 & 0.76 & 88.0 & 12.0 \\
+Primaria & 260 & 0.02 & 0.76 & 90.4 & 9.6 \\
+Universitario & 172 & 0.03 & 0.81 & 91.9 & 8.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Motricidad fina: Grupo más afectado: Pozo público o privado (media Z = -0.59)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para fuente_agua_consumo}
-\label{tab:descfuenteaguaconsumo}
+
+\textbf{Interpretación:} Grupo más afectado: Ninguna. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Fuente de agua para consumo}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.56 & 0.198 & No & ANOVA & 1725 \\
+Motricidad gruesa & 1.39 & 0.308 & No & Welch's ANOVA & 1725 \\
+Motricidad fina & 15.99 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Resolución de problemas & 0.22 & 0.883 & No & ANOVA & 1725 \\
+Socio-individual & 0.50 & 0.684 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Fuente de agua para consumo:}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-Chorro público & 142 & 0.07 & 0.65 & 95.8 & 4.2 \\
-Pozo público o privado & 18 & 0.1 & 0.94 & 83.3 & 16.7 \\
-Red de tubería & 1562 & 0.11 & 0.69 & 94.4 & 5.6 \\
-Río, lago, tonel, camión y otro & 3 & 0.91 & 0.41 & 100 & 0 \\
+Chorro público & 142 & -0.18 & 0.81 & 88.7 & 11.3 \\
+Pozo público o privado & 18 & -0.59 & 0.96 & 72.2 & 27.8 \\
+Red de tubería & 1562 & -0.06 & 0.72 & 91.9 & 8.1 \\
+Río, lago, tonel, camión y otro & 3 & 0.61 & 0.17 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ tipo_sanitario }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para tipo_sanitario}
-\label{tab:tiposanitario}
+
+\textbf{Interpretación:} Grupo más afectado: Pozo público o privado. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Tipo de sanitario}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.06 & 0.800 & No & ANOVA & 1725 \\
+Motricidad gruesa & 0.54 & 0.462 & No & ANOVA & 1725 \\
+Motricidad fina & 0.30 & 0.585 & No & ANOVA & 1725 \\
+Resolución de problemas & 3.00 & 0.083 & No & ANOVA & 1725 \\
+Socio-individual & 0.67 & 0.412 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Manejo de basura}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.05 & 0.381 & No & ANOVA & 1725 \\
+Motricidad gruesa & 0.74 & 0.562 & No & ANOVA & 1725 \\
+Motricidad fina & 0.64 & 0.645 & No & Welch's ANOVA & 1725 \\
+Resolución de problemas & 2.13 & 0.149 & No & Welch's ANOVA & 1725 \\
+Socio-individual & 0.49 & 0.740 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Tipo de energía para cocina}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.53 & 0.590 & No & ANOVA & 1725 \\
+Motricidad gruesa & 0.43 & 0.649 & No & ANOVA & 1725 \\
+Motricidad fina & 1.92 & 0.147 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.55 & 0.578 & No & ANOVA & 1725 \\
+Socio-individual & 0.01 & 0.986 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Propiedad de vivienda}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.31 & 0.579 & No & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 3.41 & 0.065 & No & ANOVA & 1725 \\
+Motricidad fina & 0.74 & 0.389 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.36 & 0.546 & No & ANOVA & 1725 \\
+Socio-individual & 1.99 & 0.158 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Sexo del jefe de hogar}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.54 & 0.215 & No & ANOVA & 1725 \\
+Motricidad gruesa & 2.54 & 0.111 & No & ANOVA & 1725 \\
+Motricidad fina & 7.99 & 0.005 & Sí & ANOVA & 1725 \\
+Resolución de problemas & 8.12 & 0.004 & Sí & ANOVA & 1725 \\
+Socio-individual & 1.46 & 0.228 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Sexo del jefe de hogar:}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.076 & 0.857 & 0.164 & 2.925 & 1.661 \\
-Valor p & 0.927 & 0.424 & 0.849 & 0.054 & 0.19 \\
-Significativo & No & No & No & No & No \\
+Hombre & 1331 & -0.05 & 0.73 & 92.0 & 8.0 \\
+Mujer & 394 & -0.17 & 0.73 & 89.6 & 10.4 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para tipo_sanitario}
-\label{tab:desctiposanitario}
+
+\textbf{Interpretación:} Grupo más afectado: Mujer. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-Excusado lavable & 1 & -0.09 & NA & 100 & 0 \\
-Inodoro & 1615 & 0.11 & 0.7 & 94.3 & 5.7 \\
-Letrina/Pozo ciego & 109 & 0.13 & 0.61 & 95.4 & 4.6 \\
+Hombre & 1331 & -0.04 & 0.69 & 92.7 & 7.3 \\
+Mujer & 394 & -0.15 & 0.65 & 92.1 & 7.9 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ manejo_basura }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para manejo_basura}
-\label{tab:manejobasura}
+
+\textbf{Interpretación:} Grupo más afectado: Mujer. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Situación laboral de la madre}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 6.96 & 0.008 & Sí & ANOVA & 1718 \\
+Motricidad gruesa & 9.11 & 0.003 & Sí & ANOVA & 1718 \\
+Motricidad fina & 5.55 & 0.019 & Sí & ANOVA & 1718 \\
+Resolución de problemas & 9.29 & 0.002 & Sí & ANOVA & 1718 \\
+Socio-individual & 12.38 & < 0.001 & Sí & ANOVA & 1718 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Situación laboral de la madre:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 1.047 & 0.618 & 0.64 & 2.128 & 0.494 \\
-Valor p & 0.381 & 0.659 & 0.645 & 0.149 & 0.74 \\
-Significativo & No & No & No & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para manejo_basura}
-\label{tab:descmanejobasura}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-La entierra & 8 & -0.07 & 1.24 & 75 & 25 \\
-La quema & 223 & 0.09 & 0.73 & 91 & 9 \\
-La tira en cualquier lugar & 9 & 0.5 & 0.82 & 100 & 0 \\
-Otra & 3 & -0.15 & 0.71 & 100 & 0 \\
-Servicio municipal o privado & 1482 & 0.11 & 0.68 & 94.9 & 5.1 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ tipo_energia_luz }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para tipo_energia_luz}
-\label{tab:tipoenergialuz}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & N/A & N/A & N/A & N/A & N/A \\
-Valor p & N/A & N/A & N/A & N/A & N/A \\
-Significativo & N/A & N/A & N/A & N/A & N/A \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ tipo_energia_cocina }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para tipo_energia_cocina}
-\label{tab:tipoenergiacocina}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 1.787 & 2.342 & 2.011 & 1.037 & 7.16 \\
-Valor p & 0.294 & 0.221 & 0.262 & 0.471 & 0.047 \\
-Significativo & No & No & No & No & Sí \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Socio-individual: Grupo más afectado: Gas corriente, carbón y otros (media Z = 0.01)
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para tipo_energia_cocina}
-\label{tab:desctipoenergiacocina}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Electricidad & 2 & 0.39 & 0.29 & 100 & 0 \\
-Gas corriente, carbón y otros & 4 & -0.21 & 0.28 & 100 & 0 \\
-Gas propano & 1503 & 0.11 & 0.69 & 94.6 & 5.4 \\
-Leña & 216 & 0.09 & 0.72 & 92.6 & 7.4 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ propiedad_vivienda }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para propiedad_vivienda}
-\label{tab:propiedadvivienda}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 0.332 & 3.414 & 0.741 & 0.365 & 1.994 \\
-Valor p & 0.565 & 0.065 & 0.389 & 0.546 & 0.158 \\
-Significativo & No & No & No & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para propiedad_vivienda}
-\label{tab:descpropiedadvivienda}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Alquilada & 471 & 0.13 & 0.73 & 93 & 7 \\
-Propia & 1254 & 0.11 & 0.67 & 94.9 & 5.1 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ sexo_jefe_hogar }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para sexo_jefe_hogar}
-\label{tab:sexojefehogar}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 1.541 & 2.542 & 7.994 & 8.121 & 1.457 \\
-Valor p & 0.215 & 0.111 & 0.005 & 0.004 & 0.228 \\
-Significativo & No & No & Sí & Sí & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para sexo_jefe_hogar}
-\label{tab:descsexojefehogar}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Hombre & 1331 & 0.12 & 0.7 & 94.1 & 5.9 \\
-Mujer & 394 & 0.07 & 0.67 & 95.4 & 4.6 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ situacion_laboral_madre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para situacion_laboral_madre}
-\label{tab:situacionlaboralmadre}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 6.957 & 9.111 & 5.554 & 9.285 & 12.377 \\
-Valor p & 0.008 & 0.003 & 0.019 & 0.002 & < 0.001 \\
-Significativo & Sí & Sí & Sí & Sí & Sí \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para situacion_laboral_madre}
-\label{tab:descsituacionlaboralmadre}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-No trabaja & 868 & 0.15 & 0.7 & 95 & 5 \\
+No trabaja & 868 & 0.15 & 0.70 & 95.0 & 5.0 \\
 Trabaja & 850 & 0.07 & 0.68 & 93.8 & 6.2 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ situacion_laboral_padre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para situacion_laboral_padre}
-\label{tab:situacionlaboralpadre}
+
+\textbf{Interpretación:} Grupo más afectado: Trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 2.693 & 6.873 & 0.011 & 5.657 & 8.925 \\
-Valor p & 0.101 & 0.009 & 0.916 & 0.018 & 0.003 \\
-Significativo & No & Sí & No & Sí & Sí \\
+No trabaja & 868 & -0.21 & 0.83 & 84.1 & 15.9 \\
+Trabaja & 850 & -0.33 & 0.83 & 82.4 & 17.6 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para situacion_laboral_padre}
-\label{tab:descsituacionlaboralpadre}
+
+\textbf{Interpretación:} Grupo más afectado: Trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No trabaja & 156 & 0.02 & 0.65 & 92.9 & 7.1 \\
-Trabaja & 1520 & 0.12 & 0.69 & 94.7 & 5.3 \\
+No trabaja & 868 & -0.04 & 0.74 & 92.1 & 7.9 \\
+Trabaja & 850 & -0.12 & 0.71 & 90.8 & 9.2 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ tipo_empleo_madre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para tipo_empleo_madre}
-\label{tab:tipoempleomadre}
+
+\textbf{Interpretación:} Grupo más afectado: Trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.821 & 1.526 & 0.604 & 0.245 & 3.244 \\
-Valor p & 0.365 & 0.217 & 0.437 & 0.621 & 0.072 \\
-Significativo & No & No & No & No & No \\
+No trabaja & 868 & -0.02 & 0.71 & 93.0 & 7.0 \\
+Trabaja & 850 & -0.12 & 0.65 & 92.4 & 7.6 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para tipo_empleo_madre}
-\label{tab:desctipoempleomadre}
+
+\textbf{Interpretación:} Grupo más afectado: Trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-Formal & 504 & 0.08 & 0.66 & 95 & 5 \\
-Informal & 346 & 0.04 & 0.7 & 91.9 & 8.1 \\
+No trabaja & 868 & 0.09 & 0.73 & 93.4 & 6.6 \\
+Trabaja & 850 & -0.03 & 0.70 & 92.1 & 7.9 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ tipo_empleo_padre }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para tipo_empleo_padre}
-\label{tab:tipoempleopadre}
+
+\textbf{Interpretación:} Grupo más afectado: Trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Situación laboral del padre}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.69 & 0.101 & No & ANOVA & 1676 \\
+Motricidad gruesa & 6.87 & 0.009 & Sí & ANOVA & 1676 \\
+Motricidad fina & 0.01 & 0.916 & No & ANOVA & 1676 \\
+Resolución de problemas & 5.66 & 0.018 & Sí & ANOVA & 1676 \\
+Socio-individual & 8.92 & 0.003 & Sí & ANOVA & 1676 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Situación laboral del padre:}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.555 & 0.208 & 0.4 & 0.363 & 0.402 \\
-Valor p & 0.456 & 0.648 & 0.527 & 0.547 & 0.526 \\
-Significativo & No & No & No & No & No \\
+No trabaja & 156 & -0.44 & 0.80 & 75.0 & 25.0 \\
+Trabaja & 1520 & -0.26 & 0.83 & 84.2 & 15.8 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para tipo_empleo_padre}
-\label{tab:desctipoempleopadre}
+
+\textbf{Interpretación:} Grupo más afectado: No trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-Formal & 1056 & 0.11 & 0.69 & 94.5 & 5.5 \\
-Informal & 464 & 0.14 & 0.68 & 95.3 & 4.7 \\
+No trabaja & 156 & -0.18 & 0.58 & 92.3 & 7.7 \\
+Trabaja & 1520 & -0.05 & 0.68 & 93.3 & 6.7 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ seguro_social }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para seguro_social}
-\label{tab:segurosocial}
+
+\textbf{Interpretación:} Grupo más afectado: No trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 3.58 & 2.17 & 2.743 & 0.122 & 0.489 \\
-Valor p & 0.059 & 0.141 & 0.098 & 0.727 & 0.484 \\
-Significativo & No & No & No & No & No \\
+No trabaja & 156 & -0.13 & 0.69 & 89.7 & 10.3 \\
+Trabaja & 1520 & 0.05 & 0.72 & 93.0 & 7.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para seguro_social}
-\label{tab:descsegurosocial}
+
+\textbf{Interpretación:} Grupo más afectado: No trabaja. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Tipo Empleo Madre}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.82 & 0.365 & No & ANOVA & 850 \\
+Motricidad gruesa & 1.53 & 0.217 & No & ANOVA & 850 \\
+Motricidad fina & 0.60 & 0.437 & No & ANOVA & 850 \\
+Resolución de problemas & 0.24 & 0.621 & No & ANOVA & 850 \\
+Socio-individual & 3.24 & 0.072 & No & ANOVA & 850 \\
+
+\end{longtable}
+
+
+\subsection{Tipo Empleo Padre}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.56 & 0.456 & No & ANOVA & 1520 \\
+Motricidad gruesa & 0.21 & 0.648 & No & ANOVA & 1520 \\
+Motricidad fina & 0.40 & 0.527 & No & ANOVA & 1520 \\
+Resolución de problemas & 0.36 & 0.547 & No & ANOVA & 1520 \\
+Socio-individual & 0.40 & 0.526 & No & ANOVA & 1520 \\
+
+\end{longtable}
+
+
+\subsection{Seguro social}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 3.58 & 0.059 & No & ANOVA & 1725 \\
+Motricidad gruesa & 2.17 & 0.141 & No & ANOVA & 1725 \\
+Motricidad fina & 2.74 & 0.098 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.12 & 0.727 & No & ANOVA & 1725 \\
+Socio-individual & 0.49 & 0.484 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Total Personas Hogar}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 7.56 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 0.84 & 0.615 & No & Welch's ANOVA & 1725 \\
+Motricidad fina & 0.65 & 0.802 & No & Welch's ANOVA & 1725 \\
+Resolución de problemas & 1.60 & 0.116 & No & Welch's ANOVA & 1725 \\
+Socio-individual & 1.35 & 0.179 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Total Personas Hogar:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 1311 & 0.09 & 0.69 & 94.1 & 5.9 \\
-Sí & 414 & 0.17 & 0.69 & 95.2 & 4.8 \\
+3 & 390 & 0.09 & 0.66 & 95.4 & 4.6 \\
+4 & 361 & 0.14 & 0.74 & 94.5 & 5.5 \\
+5 & 327 & 0.09 & 0.71 & 91.7 & 8.3 \\
+6 & 246 & 0.10 & 0.67 & 95.1 & 4.9 \\
+7 & 168 & 0.14 & 0.66 & 96.4 & 3.6 \\
+8 & 101 & 0.04 & 0.67 & 90.1 & 9.9 \\
+9 & 46 & 0.18 & 0.61 & 97.8 & 2.2 \\
+10 & 22 & 0.27 & 0.67 & 100.0 & 0.0 \\
+11 & 31 & 0.17 & 0.55 & 100.0 & 0.0 \\
+12 & 7 & 0.42 & 0.44 & 100.0 & 0.0 \\
+13 & 11 & -0.20 & 1.23 & 81.8 & 18.2 \\
+15 & 5 & 0.48 & 0.42 & 100.0 & 0.0 \\
+16 & 4 & 0.07 & 1.29 & 75.0 & 25.0 \\
+20 & 4 & 0.54 & 0.08 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ total_personas_hogar }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para total_personas_hogar}
-\label{tab:totalpersonashogar}
+
+\vspace{0.5cm}
+
+
+\subsection{Total Hermanos}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 3.23 & 0.004 & Sí & ANOVA & 1725 \\
+Motricidad gruesa & 1.48 & 0.181 & No & ANOVA & 1725 \\
+Motricidad fina & 3.22 & 0.004 & Sí & ANOVA & 1725 \\
+Resolución de problemas & 1.23 & 0.290 & No & ANOVA & 1725 \\
+Socio-individual & 1.75 & 0.106 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Total Hermanos:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & N/A & N/A & N/A & N/A & N/A \\
-Valor p & N/A & N/A & N/A & N/A & N/A \\
-Significativo & N/A & N/A & N/A & N/A & N/A \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ total_hermanos }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para total_hermanos}
-\label{tab:totalhermanos}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 10.335 & 1.816 & 0.175 & 1.645 & 6.423 \\
-Valor p & 0.001 & 0.178 & 0.676 & 0.2 & 0.011 \\
-Significativo & Sí & No & No & No & Sí \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Comunicación: Grupo más afectado: 4 (media Z = -0.09)
-\item Socio-individual: Grupo más afectado: 8 (media Z = -0.29)
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para total_hermanos}
-\label{tab:desctotalhermanos}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
 0 & 540 & 0.14 & 0.69 & 95.7 & 4.3 \\
 1 & 591 & 0.17 & 0.69 & 94.8 & 5.2 \\
@@ -888,1106 +1352,1955 @@ Significativo & Sí & No & No & No & Sí \\
 3 & 144 & 0.03 & 0.64 & 95.8 & 4.2 \\
 4 & 47 & -0.09 & 0.72 & 87.2 & 12.8 \\
 5 & 17 & -0.03 & 0.62 & 94.1 & 5.9 \\
-6 & 3 & 0.37 & 0.63 & 100 & 0 \\
-7 & 1 & -0.03 & NA & 100 & 0 \\
-8 & 1 & 0.63 & NA & 100 & 0 \\
+6 & 3 & 0.37 & 0.63 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ posicion_nino_hermanos }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para posicion_nino_hermanos}
-\label{tab:posicionninohermanos}
+
+\textbf{Interpretación:} Grupo más afectado: 4. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & N/A & N/A & N/A & N/A \\
-Valor p & N/A & N/A & N/A & N/A & N/A \\
-Significativo & N/A & N/A & N/A & N/A & N/A \\
+0 & 540 & -0.14 & 0.71 & 89.4 & 10.6 \\
+1 & 591 & -0.03 & 0.77 & 91.5 & 8.5 \\
+2 & 381 & -0.02 & 0.73 & 93.4 & 6.6 \\
+3 & 144 & -0.20 & 0.66 & 92.4 & 7.6 \\
+4 & 47 & 0.06 & 0.57 & 97.9 & 2.1 \\
+5 & 17 & -0.46 & 0.60 & 76.5 & 23.5 \\
+6 & 3 & 0.13 & 0.63 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ estado_civil_cuidador }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para estado_civil_cuidador}
-\label{tab:estadocivilcuidador}
+
+\textbf{Interpretación:} Grupo más afectado: 5. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Posicion Nino Hermanos}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 3.27 & 0.011 & Sí & ANOVA & 1725 \\
+Motricidad gruesa & 1.25 & 0.290 & No & ANOVA & 1725 \\
+Motricidad fina & 2.80 & 0.025 & Sí & ANOVA & 1725 \\
+Resolución de problemas & 0.76 & 0.554 & No & ANOVA & 1725 \\
+Socio-individual & 0.73 & 0.571 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Posicion Nino Hermanos:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 9.225 & 5.032 & 1.599 & 5.745 & 3.884 \\
-Valor p & < 0.001 & 0.007 & 0.202 & 0.003 & 0.021 \\
-Significativo & Sí & Sí & No & Sí & Sí \\
+1 & 694 & 0.10 & 0.70 & 94.4 & 5.6 \\
+2 & 616 & 0.16 & 0.66 & 95.5 & 4.5 \\
+3 & 372 & 0.07 & 0.69 & 93.5 & 6.5 \\
+4 & 37 & -0.11 & 0.87 & 83.8 & 16.2 \\
+5 & 3 & 1.00 & 0.22 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Comunicación: Grupo más afectado: Soltero (media Z = -0.01)
-\item Motricidad gruesa: Grupo más afectado: Casado (media Z = -0.31)
-\item Resolución de problemas: Grupo más afectado: Soltero (media Z = -0.18)
-\item Socio-individual: Grupo más afectado: Soltero (media Z = -0.05)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para estado_civil_cuidador}
-\label{tab:descestadocivilcuidador}
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-Casado & 975 & 0.1 & 0.72 & 93.5 & 6.5 \\
-Soltero & 313 & -0.01 & 0.7 & 92 & 8 \\
+1 & 694 & -0.12 & 0.75 & 88.9 & 11.1 \\
+2 & 616 & -0.05 & 0.71 & 92.7 & 7.3 \\
+3 & 372 & -0.02 & 0.71 & 93.5 & 6.5 \\
+4 & 37 & -0.30 & 0.77 & 94.6 & 5.4 \\
+5 & 3 & 0.48 & 0.43 & 100.0 & 0.0 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+
+\subsection{Estado Civil Cuidador}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 10.18 & < 0.001 & Sí & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 5.03 & 0.007 & Sí & ANOVA & 1725 \\
+Motricidad fina & 1.60 & 0.202 & No & ANOVA & 1725 \\
+Resolución de problemas & 6.12 & 0.002 & Sí & Welch's ANOVA & 1725 \\
+Socio-individual & 3.88 & 0.021 & Sí & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Estado Civil Cuidador:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Casado & 975 & 0.10 & 0.72 & 93.5 & 6.5 \\
+Soltero & 313 & -0.01 & 0.70 & 92.0 & 8.0 \\
 Unido & 437 & 0.21 & 0.61 & 97.9 & 2.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ horas_pantalla }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para horas_pantalla}
-\label{tab:horaspantalla}
+
+\textbf{Interpretación:} Grupo más afectado: Soltero. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & 0.866 & N/A & N/A & 7.725 \\
-Valor p & N/A & 0.352 & N/A & N/A & 0.006 \\
-Significativo & N/A & No & N/A & N/A & Sí \\
+Casado & 975 & -0.31 & 0.87 & 82.7 & 17.3 \\
+Soltero & 313 & -0.30 & 0.74 & 81.2 & 18.8 \\
+Unido & 437 & -0.16 & 0.79 & 86.3 & 13.7 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Socio-individual: Grupo más afectado: 5 (media Z = -0.24)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para horas_pantalla}
-\label{tab:deschoraspantalla}
+
+\textbf{Interpretación:} Grupo más afectado: Casado. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-0 & 661 & -0.31 & 0.85 & 82 & 18 \\
+Casado & 975 & -0.05 & 0.72 & 92.6 & 7.4 \\
+Soltero & 313 & -0.18 & 0.67 & 88.8 & 11.2 \\
+Unido & 437 & -0.03 & 0.59 & 95.2 & 4.8 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Soltero. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+Casado & 975 & 0.03 & 0.74 & 92.5 & 7.5 \\
+Soltero & 313 & -0.05 & 0.68 & 91.4 & 8.6 \\
+Unido & 437 & 0.10 & 0.70 & 94.3 & 5.7 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: Soltero. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Horas Pantalla}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.54 & 0.019 & Sí & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 2.03 & 0.040 & Sí & ANOVA & 1725 \\
+Motricidad fina & 2.60 & 0.008 & Sí & ANOVA & 1725 \\
+Resolución de problemas & 2.37 & 0.015 & Sí & ANOVA & 1725 \\
+Socio-individual & 1.93 & 0.052 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Horas Pantalla:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+0.0 & 661 & 0.17 & 0.70 & 95.2 & 4.8 \\
+0.5 & 26 & 0.04 & 0.88 & 84.6 & 15.4 \\
+1.0 & 578 & 0.11 & 0.71 & 93.6 & 6.4 \\
+2.0 & 266 & 0.08 & 0.61 & 94.7 & 5.3 \\
+3.0 & 106 & 0.00 & 0.67 & 94.3 & 5.7 \\
+4.0 & 45 & -0.22 & 0.68 & 93.3 & 6.7 \\
+5.0 & 24 & 0.16 & 0.50 & 100.0 & 0.0 \\
+6.0 & 9 & -0.18 & 0.54 & 88.9 & 11.1 \\
+7.0 & 6 & -0.02 & 0.68 & 100.0 & 0.0 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: 4.0. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+0.0 & 661 & -0.31 & 0.85 & 82.0 & 18.0 \\
 0.5 & 26 & 0.14 & 0.72 & 92.3 & 7.7 \\
-1 & 578 & -0.24 & 0.86 & 84.3 & 15.7 \\
-2 & 266 & -0.21 & 0.75 & 86.1 & 13.9 \\
-3 & 106 & -0.24 & 0.73 & 84.9 & 15.1 \\
-4 & 45 & -0.45 & 0.74 & 68.9 & 31.1 \\
-5 & 24 & -0.45 & 0.96 & 87.5 & 12.5 \\
-6 & 9 & -0.72 & 0.96 & 44.4 & 55.6 \\
-7 & 6 & -0.21 & 0.74 & 100 & 0 \\
-8 & 1 & -0.41 & NA & 100 & 0 \\
-9 & 2 & -1.49 & 1.11 & 50 & 50 \\
-12 & 1 & -0.73 & NA & 100 & 0 \\
+1.0 & 578 & -0.24 & 0.86 & 84.3 & 15.7 \\
+2.0 & 266 & -0.21 & 0.75 & 86.1 & 13.9 \\
+3.0 & 106 & -0.24 & 0.73 & 84.9 & 15.1 \\
+4.0 & 45 & -0.45 & 0.74 & 68.9 & 31.1 \\
+5.0 & 24 & -0.45 & 0.96 & 87.5 & 12.5 \\
+6.0 & 9 & -0.72 & 0.96 & 44.4 & 55.6 \\
+7.0 & 6 & -0.21 & 0.74 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ horas_juego_cuidador }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para horas_juego_cuidador}
-\label{tab:horasjuegocuidador}
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & 0.218 & N/A & N/A & 0.16 \\
-Valor p & N/A & 0.641 & N/A & N/A & 0.69 \\
-Significativo & N/A & No & N/A & N/A & No \\
+0.0 & 661 & -0.09 & 0.71 & 90.8 & 9.2 \\
+0.5 & 26 & 0.30 & 0.90 & 88.5 & 11.5 \\
+1.0 & 578 & -0.05 & 0.75 & 92.0 & 8.0 \\
+2.0 & 266 & -0.08 & 0.75 & 91.7 & 8.3 \\
+3.0 & 106 & -0.12 & 0.66 & 92.5 & 7.5 \\
+4.0 & 45 & -0.04 & 0.58 & 91.1 & 8.9 \\
+5.0 & 24 & -0.12 & 0.57 & 100.0 & 0.0 \\
+6.0 & 9 & -0.88 & 0.97 & 66.7 & 33.3 \\
+7.0 & 6 & -0.39 & 0.94 & 83.3 & 16.7 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para horas_juego_cuidador}
-\label{tab:deschorasjuegocuidador}
+
+\textbf{Interpretación:} Grupo más afectado: 6.0. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-0 & 38 & -0.41 & 0.75 & 84.2 & 15.8 \\
-0.5 & 4 & 0.03 & 0.63 & 100 & 0 \\
-1 & 322 & -0.18 & 0.87 & 85.4 & 14.6 \\
-2 & 487 & -0.29 & 0.81 & 82.3 & 17.7 \\
-3 & 466 & -0.36 & 0.8 & 82.4 & 17.6 \\
-4 & 286 & -0.26 & 0.88 & 81.8 & 18.2 \\
-5 & 88 & -0.08 & 0.82 & 86.4 & 13.6 \\
-6 & 22 & -0.12 & 0.68 & 90.9 & 9.1 \\
-7 & 4 & -0.46 & 0.84 & 75 & 25 \\
-8 & 7 & 0.32 & 0.5 & 100 & 0 \\
-10 & 1 & -0.7 & NA & 100 & 0 \\
+0.0 & 661 & -0.07 & 0.68 & 92.6 & 7.4 \\
+0.5 & 26 & 0.10 & 0.80 & 92.3 & 7.7 \\
+1.0 & 578 & -0.01 & 0.70 & 93.3 & 6.7 \\
+2.0 & 266 & -0.13 & 0.65 & 92.5 & 7.5 \\
+3.0 & 106 & -0.18 & 0.69 & 87.7 & 12.3 \\
+4.0 & 45 & -0.32 & 0.61 & 91.1 & 8.9 \\
+5.0 & 24 & -0.02 & 0.58 & 100.0 & 0.0 \\
+6.0 & 9 & -0.31 & 0.41 & 100.0 & 0.0 \\
+7.0 & 6 & -0.27 & 0.88 & 83.3 & 16.7 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ numero_controles_prenatales }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para numero_controles_prenatales}
-\label{tab:numerocontrolesprenatales}
+
+\vspace{0.5cm}
+
+
+\subsection{Horas Juego Cuidador}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.38 & 0.190 & No & ANOVA & 1725 \\
+Motricidad gruesa & 2.19 & 0.021 & Sí & ANOVA & 1725 \\
+Motricidad fina & 1.27 & 0.288 & No & Welch's ANOVA & 1725 \\
+Resolución de problemas & 3.30 & < 0.001 & Sí & ANOVA & 1725 \\
+Socio-individual & 1.59 & 0.113 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Horas Juego Cuidador:}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & N/A & 9.081 & N/A & N/A \\
-Valor p & N/A & N/A & 0.003 & N/A & N/A \\
-Significativo & N/A & N/A & Sí & N/A & N/A \\
+0.0 & 38 & -0.41 & 0.75 & 84.2 & 15.8 \\
+0.5 & 4 & 0.03 & 0.63 & 100.0 & 0.0 \\
+1.0 & 322 & -0.18 & 0.87 & 85.4 & 14.6 \\
+2.0 & 487 & -0.29 & 0.81 & 82.3 & 17.7 \\
+3.0 & 466 & -0.36 & 0.80 & 82.4 & 17.6 \\
+4.0 & 286 & -0.26 & 0.88 & 81.8 & 18.2 \\
+5.0 & 88 & -0.08 & 0.82 & 86.4 & 13.6 \\
+6.0 & 22 & -0.12 & 0.68 & 90.9 & 9.1 \\
+7.0 & 4 & -0.46 & 0.84 & 75.0 & 25.0 \\
+8.0 & 7 & 0.32 & 0.50 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Motricidad fina: Grupo más afectado: 2 (media Z = -0.58)
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para numero_controles_prenatales}
-\label{tab:descnumerocontrolesprenatales}
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-0 & 8 & 0.05 & 0.62 & 100 & 0 \\
-1 & 8 & 0.18 & 0.59 & 100 & 0 \\
-2 & 18 & -0.58 & 1.1 & 72.2 & 27.8 \\
-3 & 59 & 0.01 & 0.7 & 91.5 & 8.5 \\
-4 & 140 & -0.19 & 0.8 & 90.7 & 9.3 \\
-5 & 248 & -0.13 & 0.7 & 92.3 & 7.7 \\
+0.0 & 38 & -0.04 & 0.57 & 89.5 & 10.5 \\
+0.5 & 4 & -0.97 & 1.27 & 50.0 & 50.0 \\
+1.0 & 322 & -0.16 & 0.74 & 90.4 & 9.6 \\
+2.0 & 487 & -0.03 & 0.64 & 94.5 & 5.5 \\
+3.0 & 466 & 0.00 & 0.63 & 94.4 & 5.6 \\
+4.0 & 286 & -0.16 & 0.73 & 88.8 & 11.2 \\
+5.0 & 88 & -0.08 & 0.68 & 94.3 & 5.7 \\
+6.0 & 22 & 0.07 & 0.62 & 95.5 & 4.5 \\
+7.0 & 4 & -0.05 & 0.59 & 100.0 & 0.0 \\
+8.0 & 7 & 0.44 & 0.69 & 100.0 & 0.0 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\vspace{0.5cm}
+
+
+\subsection{Numero Controles Prenatales}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.39 & 0.005 & Sí & ANOVA & 1725 \\
+Motricidad gruesa & 1.28 & 0.221 & No & ANOVA & 1725 \\
+Motricidad fina & 3.25 & < 0.001 & Sí & ANOVA & 1725 \\
+Resolución de problemas & 2.90 & < 0.001 & Sí & ANOVA & 1725 \\
+Socio-individual & 3.52 & < 0.001 & Sí & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Numero Controles Prenatales:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+0 & 8 & -0.04 & 1.05 & 75.0 & 25.0 \\
+1 & 8 & 0.89 & 0.43 & 100.0 & 0.0 \\
+2 & 18 & 0.09 & 0.72 & 94.4 & 5.6 \\
+3 & 59 & -0.04 & 0.73 & 91.5 & 8.5 \\
+4 & 140 & -0.06 & 0.61 & 95.7 & 4.3 \\
+5 & 248 & 0.16 & 0.67 & 95.2 & 4.8 \\
+6 & 315 & 0.13 & 0.70 & 93.7 & 6.3 \\
+7 & 288 & 0.11 & 0.67 & 95.8 & 4.2 \\
+8 & 225 & 0.10 & 0.70 & 92.9 & 7.1 \\
+9 & 351 & 0.16 & 0.71 & 95.2 & 4.8 \\
+10 & 53 & 0.09 & 0.72 & 92.5 & 7.5 \\
+11 & 8 & -0.26 & 0.59 & 87.5 & 12.5 \\
+12 & 3 & -0.25 & 0.98 & 66.7 & 33.3 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: 11. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+0 & 8 & 0.05 & 0.62 & 100.0 & 0.0 \\
+1 & 8 & 0.18 & 0.59 & 100.0 & 0.0 \\
+2 & 18 & -0.58 & 1.10 & 72.2 & 27.8 \\
+3 & 59 & 0.01 & 0.70 & 91.5 & 8.5 \\
+4 & 140 & -0.19 & 0.80 & 90.7 & 9.3 \\
+5 & 248 & -0.13 & 0.70 & 92.3 & 7.7 \\
 6 & 315 & -0.09 & 0.71 & 89.8 & 10.2 \\
-7 & 288 & -0.13 & 0.7 & 90.3 & 9.7 \\
+7 & 288 & -0.13 & 0.70 & 90.3 & 9.7 \\
 8 & 225 & -0.11 & 0.76 & 89.3 & 10.7 \\
-9 & 351 & 0.08 & 0.7 & 94.9 & 5.1 \\
+9 & 351 & 0.08 & 0.70 & 94.9 & 5.1 \\
 10 & 53 & -0.02 & 0.68 & 94.3 & 5.7 \\
-11 & 8 & -0.57 & 1 & 87.5 & 12.5 \\
-12 & 3 & 0.1 & 0.96 & 100 & 0 \\
-14 & 1 & -0.23 & NA & 100 & 0 \\
+11 & 8 & -0.57 & 1.00 & 87.5 & 12.5 \\
+12 & 3 & 0.10 & 0.96 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ ultrasonido_embarazo }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para ultrasonido_embarazo}
-\label{tab:ultrasonidoembarazo}
+
+\textbf{Interpretación:} Grupo más afectado: 2. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 4.188 & 5.985 & 0.086 & 0.93 & 5.759 \\
-Valor p & 0.041 & 0.015 & 0.769 & 0.335 & 0.017 \\
-Significativo & Sí & Sí & No & No & Sí \\
+0 & 8 & 0.19 & 0.92 & 87.5 & 12.5 \\
+1 & 8 & 0.17 & 0.55 & 100.0 & 0.0 \\
+2 & 18 & -0.03 & 0.62 & 94.4 & 5.6 \\
+3 & 59 & -0.23 & 0.71 & 86.4 & 13.6 \\
+4 & 140 & -0.10 & 0.66 & 95.0 & 5.0 \\
+5 & 248 & -0.12 & 0.67 & 92.3 & 7.7 \\
+6 & 315 & -0.12 & 0.68 & 92.4 & 7.6 \\
+7 & 288 & -0.11 & 0.67 & 92.0 & 8.0 \\
+8 & 225 & -0.05 & 0.70 & 92.4 & 7.6 \\
+9 & 351 & 0.10 & 0.69 & 94.0 & 6.0 \\
+10 & 53 & -0.20 & 0.57 & 88.7 & 11.3 \\
+11 & 8 & -0.10 & 0.26 & 100.0 & 0.0 \\
+12 & 3 & -0.48 & 0.63 & 66.7 & 33.3 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para ultrasonido_embarazo}
-\label{tab:descultrasonidoembarazo}
+
+\textbf{Interpretación:} Grupo más afectado: 12. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
+\hline
+0 & 8 & 0.23 & 0.61 & 100.0 & 0.0 \\
+1 & 8 & 0.40 & 0.39 & 100.0 & 0.0 \\
+2 & 18 & -0.07 & 0.77 & 88.9 & 11.1 \\
+3 & 59 & -0.08 & 0.80 & 91.5 & 8.5 \\
+4 & 140 & -0.16 & 0.68 & 87.9 & 12.1 \\
+5 & 248 & -0.01 & 0.68 & 91.9 & 8.1 \\
+6 & 315 & 0.02 & 0.68 & 93.7 & 6.3 \\
+7 & 288 & -0.01 & 0.71 & 93.8 & 6.2 \\
+8 & 225 & 0.12 & 0.78 & 92.4 & 7.6 \\
+9 & 351 & 0.18 & 0.73 & 94.3 & 5.7 \\
+10 & 53 & -0.11 & 0.70 & 90.6 & 9.4 \\
+11 & 8 & -0.04 & 0.79 & 100.0 & 0.0 \\
+12 & 3 & -0.94 & 0.28 & 66.7 & 33.3 \\
+
+\hline
+\end{tabular}
+\end{center}
+
+
+\textbf{Interpretación:} Grupo más afectado: 12. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Ultrasonido Embarazo}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 4.19 & 0.041 & Sí & ANOVA & 1725 \\
+Motricidad gruesa & 5.99 & 0.015 & Sí & ANOVA & 1725 \\
+Motricidad fina & 0.13 & 0.720 & No & Welch's ANOVA & 1725 \\
+Resolución de problemas & 0.93 & 0.335 & No & ANOVA & 1725 \\
+Socio-individual & 5.76 & 0.017 & Sí & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Ultrasonido Embarazo:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
 No & 94 & -0.03 & 0.73 & 92.6 & 7.4 \\
 Sí & 1631 & 0.12 & 0.69 & 94.5 & 5.5 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ prenatales_primeros_3_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para prenatales_primeros_3_meses}
-\label{tab:prenatalesprimeros3meses}
+
+\textbf{Interpretación:} Grupo más afectado: No. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 2.31 & 1.716 & 0.002 & 1.537 & 2.517 \\
-Valor p & 0.129 & 0.19 & 0.962 & 0.215 & 0.113 \\
-Significativo & No & No & No & No & No \\
+No & 94 & -0.47 & 0.78 & 78.7 & 21.3 \\
+Sí & 1631 & -0.26 & 0.83 & 83.6 & 16.4 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para prenatales_primeros_3_meses}
-\label{tab:descprenatalesprimeros3meses}
+
+\textbf{Interpretación:} Grupo más afectado: No. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 204 & 0.04 & 0.71 & 93.1 & 6.9 \\
-Sí & 1521 & 0.12 & 0.69 & 94.5 & 5.5 \\
+No & 94 & -0.14 & 0.69 & 89.4 & 10.6 \\
+Sí & 1631 & 0.04 & 0.72 & 92.9 & 7.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ prenatales_resto_embarazo }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para prenatales_resto_embarazo}
-\label{tab:prenatalesrestoembarazo}
+
+\textbf{Interpretación:} Grupo más afectado: No. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Prenatales Primeros 3 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.31 & 0.129 & No & ANOVA & 1725 \\
+Motricidad gruesa & 1.72 & 0.190 & No & ANOVA & 1725 \\
+Motricidad fina & 0.00 & 0.962 & No & ANOVA & 1725 \\
+Resolución de problemas & 1.22 & 0.270 & No & Welch's ANOVA & 1725 \\
+Socio-individual & 2.52 & 0.113 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Prenatales Resto Embarazo}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.83 & 0.364 & No & ANOVA & 1725 \\
+Motricidad gruesa & 7.20 & 0.008 & Sí & Welch's ANOVA & 1725 \\
+Motricidad fina & 1.24 & 0.265 & No & ANOVA & 1725 \\
+Resolución de problemas & 3.56 & 0.059 & No & ANOVA & 1725 \\
+Socio-individual & 0.92 & 0.337 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Prenatales Resto Embarazo:}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.825 & 5.701 & 1.241 & 3.558 & 0.923 \\
-Valor p & 0.364 & 0.017 & 0.265 & 0.059 & 0.337 \\
-Significativo & No & Sí & No & No & No \\
+No & 122 & -0.44 & 0.73 & 80.3 & 19.7 \\
+Sí & 1603 & -0.26 & 0.84 & 83.5 & 16.5 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para prenatales_resto_embarazo}
-\label{tab:descprenatalesrestoembarazo}
+
+\textbf{Interpretación:} Grupo más afectado: No. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Servicio Asistencia Parto}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.65 & 0.159 & No & ANOVA & 1725 \\
+Motricidad gruesa & 1.32 & 0.262 & No & ANOVA & 1725 \\
+Motricidad fina & 0.69 & 0.598 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.73 & 0.570 & No & ANOVA & 1725 \\
+Socio-individual & 2.41 & 0.072 & No & Welch's ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Tipo Parto}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.26 & 0.106 & No & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 0.04 & 0.956 & No & Welch's ANOVA & 1725 \\
+Motricidad fina & 0.77 & 0.462 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.19 & 0.828 & No & Welch's ANOVA & 1725 \\
+Socio-individual & 0.82 & 0.439 & No & Welch's ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Razon Cesarea Emergencia}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.82 & 0.041 & Sí & ANOVA & 316 \\
+Motricidad gruesa & 0.95 & 0.499 & No & ANOVA & 316 \\
+Motricidad fina & 0.59 & 0.863 & No & ANOVA & 316 \\
+Resolución de problemas & 1.58 & 0.092 & No & ANOVA & 316 \\
+Socio-individual & 0.67 & 0.788 & No & ANOVA & 316 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Razon Cesarea Emergencia:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 122 & 0.06 & 0.66 & 95.1 & 4.9 \\
-Sí & 1603 & 0.12 & 0.69 & 94.3 & 5.7 \\
+Anhidramnios & 80 & 0.21 & 0.66 & 95.0 & 5.0 \\
+Anhidramnios  & 10 & 0.06 & 1.28 & 80.0 & 20.0 \\
+Anidramnios & 37 & 0.03 & 0.70 & 89.2 & 10.8 \\
+Distocia del parto & 4 & 0.70 & 0.81 & 100.0 & 0.0 \\
+No tp & 3 & -0.77 & 1.48 & 66.7 & 33.3 \\
+Oligohidramnios & 6 & 0.01 & 0.58 & 100.0 & 0.0 \\
+Preclampsia  & 7 & -0.54 & 0.95 & 85.7 & 14.3 \\
+Preeclampsia & 23 & 0.27 & 0.69 & 91.3 & 8.7 \\
+Preeclampsia  & 4 & 0.56 & 0.54 & 100.0 & 0.0 \\
+Presentacion podalica & 6 & 0.26 & 0.71 & 100.0 & 0.0 \\
+Sufrimiento fetal & 52 & -0.01 & 0.52 & 98.1 & 1.9 \\
+Sufrimiento fetal  & 12 & 0.23 & 0.96 & 91.7 & 8.3 \\
+Sufrimiento fetal agudo & 6 & 0.48 & 0.92 & 100.0 & 0.0 \\
+Taquicardia fetal & 3 & 0.72 & 0.37 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ servicio_asistencia_parto }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para servicio_asistencia_parto}
-\label{tab:servicioasistenciaparto}
+
+\vspace{0.5cm}
+
+
+\subsection{Lactancia Primeros 6 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.17 & 0.313 & No & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 0.15 & 0.861 & No & ANOVA & 1725 \\
+Motricidad fina & 0.34 & 0.712 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.35 & 0.703 & No & ANOVA & 1725 \\
+Socio-individual & 0.83 & 0.437 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Lactancia 6-12 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.26 & 0.772 & No & ANOVA & 1560 \\
+Motricidad gruesa & 1.08 & 0.341 & No & ANOVA & 1560 \\
+Motricidad fina & 3.51 & 0.030 & Sí & ANOVA & 1560 \\
+Resolución de problemas & 1.45 & 0.236 & No & Welch's ANOVA & 1560 \\
+Socio-individual & 1.66 & 0.191 & No & ANOVA & 1560 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Lactancia 6-12 Meses:}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 1.651 & 1.316 & 0.691 & 0.731 & 1.77 \\
-Valor p & 0.159 & 0.262 & 0.598 & 0.57 & 0.132 \\
-Significativo & No & No & No & No & No \\
+Fórmula infantil & 125 & -0.14 & 0.85 & 86.4 & 13.6 \\
+Lactancia materna exclusiva & 867 & -0.11 & 0.70 & 91.6 & 8.4 \\
+Mixta & 568 & -0.01 & 0.72 & 92.3 & 7.7 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para servicio_asistencia_parto}
-\label{tab:descservicioasistenciaparto}
+
+\textbf{Interpretación:} Grupo más afectado: Fórmula infantil. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Lactancia 12-24 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 5.48 & 0.004 & Sí & Welch's ANOVA & 1265 \\
+Motricidad gruesa & 2.29 & 0.077 & No & ANOVA & 1265 \\
+Motricidad fina & 4.84 & 0.002 & Sí & ANOVA & 1265 \\
+Resolución de problemas & 2.71 & 0.061 & No & Welch's ANOVA & 1265 \\
+Socio-individual & 0.62 & 0.604 & No & ANOVA & 1265 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Lactancia 12-24 Meses:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-CAIMI & 5 & 0.31 & 0.51 & 100 & 0 \\
-Comadrona & 37 & 0.3 & 0.65 & 94.6 & 5.4 \\
-Hospital privado & 408 & 0.15 & 0.7 & 94.6 & 5.4 \\
-Hospital público & 1116 & 0.08 & 0.69 & 93.9 & 6.1 \\
-Seguro social & 159 & 0.15 & 0.69 & 96.9 & 3.1 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ tipo_parto }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para tipo_parto}
-\label{tab:tipoparto}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 2.438 & 0.055 & 0.772 & 0.199 & 0.84 \\
-Valor p & 0.088 & 0.947 & 0.462 & 0.819 & 0.432 \\
-Significativo & No & No & No & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para tipo_parto}
-\label{tab:desctipoparto}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Cesárea de emergencia & 316 & 0.18 & 0.75 & 93.4 & 6.6 \\
-Cesárea electiva & 392 & 0.13 & 0.72 & 93.4 & 6.6 \\
-Parto eutócico & 1017 & 0.08 & 0.66 & 95.1 & 4.9 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ razon_cesarea_emergencia }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para razon_cesarea_emergencia}
-\label{tab:razoncesareaemergencia}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & N/A & N/A & N/A & N/A & N/A \\
-Valor p & N/A & N/A & N/A & N/A & N/A \\
-Significativo & N/A & N/A & N/A & N/A & N/A \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ lactancia_primeros_6_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para lactancia_primeros_6_meses}
-\label{tab:lactanciaprimeros6meses}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 1.31 & 0.15 & 0.34 & 0.352 & 0.829 \\
-Valor p & 0.27 & 0.861 & 0.712 & 0.703 & 0.437 \\
-Significativo & No & No & No & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para lactancia_primeros_6_meses}
-\label{tab:desclactanciaprimeros6meses}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Fórmula infantil & 135 & 0.11 & 0.74 & 91.9 & 8.1 \\
-Lactancia materna exclusiva & 1254 & 0.13 & 0.67 & 94.9 & 5.1 \\
-Mixta & 336 & 0.06 & 0.75 & 93.5 & 6.5 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ lactancia_6.12_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para lactancia_6.12_meses}
-\label{tab:lactancia6.12meses}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 0.259 & 1.078 & 3.506 & 1.504 & 1.656 \\
-Valor p & 0.772 & 0.341 & 0.03 & 0.223 & 0.191 \\
-Significativo & No & No & Sí & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Motricidad fina: Grupo más afectado: Fórmula infantil (media Z = -0.14)
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para lactancia_6.12_meses}
-\label{tab:desclactancia6.12meses}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Fórmula infantil & 125 & 0.11 & 0.69 & 93.6 & 6.4 \\
-Lactancia materna exclusiva & 867 & 0.12 & 0.64 & 96.2 & 3.8 \\
-Mixta & 568 & 0.1 & 0.72 & 93.1 & 6.9 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
-
-\newpage
-\section{ lactancia_12.24_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para lactancia_12.24_meses}
-\label{tab:lactancia12.24meses}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 2.159 & 2.292 & 4.837 & 2.519 & 0.617 \\
-Valor p & 0.091 & 0.077 & 0.002 & 0.057 & 0.604 \\
-Significativo & No & No & Sí & No & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\item Grupos afectados en análisis significativos:
-\item Motricidad fina: Grupo más afectado: Otro tipo de lactancia (media Z = -0.49)
-\end{tablenotes}
-\end{table}
-
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para lactancia_12.24_meses}
-\label{tab:desclactancia12.24meses}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
 Fórmula infantil & 101 & 0.08 & 0.68 & 92.1 & 7.9 \\
 Lactancia materna exclusiva & 609 & 0.07 & 0.59 & 96.4 & 3.6 \\
 Mixta & 547 & 0.06 & 0.72 & 91.6 & 8.4 \\
-Otro tipo de lactancia & 8 & 0.65 & 0.4 & 100 & 0 \\
+Otro tipo de lactancia & 8 & 0.65 & 0.40 & 100.0 & 0.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ vitamina_a_6.12_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vitamina_a_6.12_meses}
-\label{tab:vitaminaa6.12meses}
+
+\textbf{Interpretación:} Grupo más afectado: Mixta. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 2.316 & 0.414 & 2.345 & 0.904 & 1.753 \\
-Valor p & 0.128 & 0.52 & 0.126 & 0.342 & 0.186 \\
-Significativo & No & No & No & No & No \\
+Fórmula infantil & 101 & -0.18 & 0.83 & 90.1 & 9.9 \\
+Lactancia materna exclusiva & 609 & -0.07 & 0.69 & 92.3 & 7.7 \\
+Mixta & 547 & 0.03 & 0.69 & 94.9 & 5.1 \\
+Otro tipo de lactancia & 8 & -0.49 & 0.81 & 75.0 & 25.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vitamina_a_6.12_meses}
-\label{tab:descvitaminaa6.12meses}
+
+\textbf{Interpretación:} Grupo más afectado: Otro tipo de lactancia. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Vitamina A 6-12 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.32 & 0.128 & No & ANOVA & 1561 \\
+Motricidad gruesa & 0.41 & 0.520 & No & ANOVA & 1561 \\
+Motricidad fina & 2.35 & 0.126 & No & ANOVA & 1561 \\
+Resolución de problemas & 0.84 & 0.359 & No & Welch's ANOVA & 1561 \\
+Socio-individual & 1.75 & 0.186 & No & ANOVA & 1561 \\
+
+\end{longtable}
+
+
+\subsection{Vitamina A 12-18 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 17.71 & < 0.001 & Sí & ANOVA & 1267 \\
+Motricidad gruesa & 0.87 & 0.351 & No & ANOVA & 1267 \\
+Motricidad fina & 0.33 & 0.566 & No & ANOVA & 1267 \\
+Resolución de problemas & 0.09 & 0.766 & No & Welch's ANOVA & 1267 \\
+Socio-individual & 22.02 & < 0.001 & Sí & ANOVA & 1267 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Vitamina A 12-18 Meses:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 473 & 0.15 & 0.66 & 96 & 4 \\
-Sí & 1088 & 0.1 & 0.67 & 94.4 & 5.6 \\
+FALSO & 536 & 0.16 & 0.69 & 94.8 & 5.2 \\
+VERDADERO & 731 & 0.00 & 0.62 & 93.4 & 6.6 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ vitamina_a_12.18_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vitamina_a_12.18_meses}
-\label{tab:vitaminaa12.18meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 17.709 & 0.872 & 0.33 & 0.092 & 22.025 \\
-Valor p & < 0.001 & 0.351 & 0.566 & 0.761 & < 0.001 \\
-Significativo & Sí & No & No & No & Sí \\
+FALSO & 536 & 0.12 & 0.71 & 94.2 & 5.8 \\
+VERDADERO & 731 & -0.06 & 0.66 & 91.9 & 8.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vitamina_a_12.18_meses}
-\label{tab:descvitaminaa12.18meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Vitamina A 18-24 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.46 & 0.497 & No & ANOVA & 1027 \\
+Motricidad gruesa & 1.58 & 0.209 & No & ANOVA & 1027 \\
+Motricidad fina & 2.08 & 0.150 & No & Welch's ANOVA & 1027 \\
+Resolución de problemas & 0.17 & 0.682 & No & Welch's ANOVA & 1027 \\
+Socio-individual & 2.31 & 0.129 & No & ANOVA & 1027 \\
+
+\end{longtable}
+
+
+\subsection{Vitaminas Minerales 6-12 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 7.89 & 0.005 & Sí & ANOVA & 1561 \\
+Motricidad gruesa & 1.12 & 0.290 & No & Welch's ANOVA & 1561 \\
+Motricidad fina & 8.53 & 0.004 & Sí & ANOVA & 1561 \\
+Resolución de problemas & 5.53 & 0.019 & Sí & Welch's ANOVA & 1561 \\
+Socio-individual & 4.72 & 0.030 & Sí & ANOVA & 1561 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Vitaminas Minerales 6-12 Meses:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 536 & 0.16 & 0.69 & 94.8 & 5.2 \\
-Sí & 731 & 0 & 0.62 & 93.4 & 6.6 \\
+FALSO & 483 & 0.18 & 0.66 & 95.4 & 4.6 \\
+VERDADERO & 1078 & 0.08 & 0.68 & 94.6 & 5.4 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ vitamina_a_18.24_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vitamina_a_18.24_meses}
-\label{tab:vitaminaa18.24meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.461 & 1.577 & 2.147 & 0.173 & 2.308 \\
-Valor p & 0.497 & 0.209 & 0.143 & 0.677 & 0.129 \\
-Significativo & No & No & No & No & No \\
+FALSO & 483 & 0.00 & 0.71 & 93.0 & 7.0 \\
+VERDADERO & 1078 & -0.11 & 0.72 & 90.7 & 9.3 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vitamina_a_18.24_meses}
-\label{tab:descvitaminaa18.24meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 473 & -0.01 & 0.69 & 93.2 & 6.8 \\
-Sí & 554 & -0.04 & 0.62 & 92.4 & 7.6 \\
+FALSO & 483 & 0.01 & 0.70 & 90.9 & 9.1 \\
+VERDADERO & 1078 & -0.08 & 0.65 & 93.8 & 6.2 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ vitaminas_minerales_6.12_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vitaminas_minerales_6.12_meses}
-\label{tab:vitaminasminerales6.12meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 7.893 & 1.055 & 8.533 & 5.867 & 4.717 \\
-Valor p & 0.005 & 0.305 & 0.004 & 0.016 & 0.03 \\
-Significativo & Sí & No & Sí & Sí & Sí \\
+FALSO & 483 & 0.09 & 0.74 & 93.0 & 7.0 \\
+VERDADERO & 1078 & 0.01 & 0.68 & 93.1 & 6.9 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vitaminas_minerales_6.12_meses}
-\label{tab:descvitaminasminerales6.12meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Vitaminas Minerales 12-18 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 7.28 & 0.007 & Sí & ANOVA & 1267 \\
+Motricidad gruesa & 4.34 & 0.037 & Sí & ANOVA & 1267 \\
+Motricidad fina & 2.82 & 0.094 & No & ANOVA & 1267 \\
+Resolución de problemas & 0.98 & 0.322 & No & Welch's ANOVA & 1267 \\
+Socio-individual & 3.35 & 0.067 & No & ANOVA & 1267 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Vitaminas Minerales 12-18 Meses:}
+
+
+\textbf{Dominio: Comunicación}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 483 & 0.18 & 0.66 & 95.4 & 4.6 \\
-Sí & 1078 & 0.08 & 0.68 & 94.6 & 5.4 \\
+FALSO & 498 & 0.13 & 0.68 & 95.4 & 4.6 \\
+VERDADERO & 769 & 0.03 & 0.64 & 93.1 & 6.9 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ vitaminas_minerales_12.18_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vitaminas_minerales_12.18_meses}
-\label{tab:vitaminasminerales12.18meses}
+
+\textbf{Interpretación:} Grupo más afectado: VERDADERO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio comunicación.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 7.284 & 4.344 & 2.816 & 1.031 & 3.349 \\
-Valor p & 0.007 & 0.037 & 0.094 & 0.31 & 0.067 \\
-Significativo & Sí & Sí & No & No & No \\
+FALSO & 498 & -0.34 & 0.79 & 79.1 & 20.9 \\
+VERDADERO & 769 & -0.25 & 0.74 & 85.4 & 14.6 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vitaminas_minerales_12.18_meses}
-\label{tab:descvitaminasminerales12.18meses}
+
+\textbf{Interpretación:} Grupo más afectado: FALSO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Vitaminas Minerales 18-24 Meses}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.18 & 0.670 & No & ANOVA & 1027 \\
+Motricidad gruesa & 7.32 & 0.007 & Sí & ANOVA & 1027 \\
+Motricidad fina & 4.06 & 0.044 & Sí & Welch's ANOVA & 1027 \\
+Resolución de problemas & 0.21 & 0.647 & No & ANOVA & 1027 \\
+Socio-individual & 1.26 & 0.262 & No & ANOVA & 1027 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Vitaminas Minerales 18-24 Meses:}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 498 & 0.13 & 0.68 & 95.4 & 4.6 \\
-Sí & 769 & 0.03 & 0.64 & 93.1 & 6.9 \\
+FALSO & 474 & -0.37 & 0.81 & 80.6 & 19.4 \\
+VERDADERO & 553 & -0.24 & 0.73 & 84.4 & 15.6 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ vitaminas_minerales_18.24_meses }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vitaminas_minerales_18.24_meses}
-\label{tab:vitaminasminerales18.24meses}
+
+\textbf{Interpretación:} Grupo más afectado: FALSO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.182 & 7.324 & 4.152 & 0.21 & 1.258 \\
-Valor p & 0.67 & 0.007 & 0.042 & 0.647 & 0.262 \\
-Significativo & No & Sí & Sí & No & No \\
+FALSO & 474 & -0.08 & 0.76 & 91.6 & 8.4 \\
+VERDADERO & 553 & 0.01 & 0.65 & 94.9 & 5.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vitaminas_minerales_18.24_meses}
-\label{tab:descvitaminasminerales18.24meses}
+
+\textbf{Interpretación:} Grupo más afectado: FALSO. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Retardo del crecimiento}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.93 & 0.087 & No & ANOVA & 1725 \\
+Motricidad gruesa & 0.98 & 0.323 & No & ANOVA & 1725 \\
+Motricidad fina & 3.22 & 0.074 & No & Welch's ANOVA & 1725 \\
+Resolución de problemas & 0.42 & 0.516 & No & Welch's ANOVA & 1725 \\
+Socio-individual & 7.86 & 0.005 & Sí & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Retardo del crecimiento:}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 474 & -0.01 & 0.66 & 93.2 & 6.8 \\
-Sí & 553 & -0.03 & 0.65 & 92.4 & 7.6 \\
+No & 1533 & 0.05 & 0.71 & 93.4 & 6.6 \\
+Sí & 192 & -0.10 & 0.79 & 87.5 & 12.5 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ retardo_crecimiento }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para retardo_crecimiento}
-\label{tab:retardocrecimiento}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Desnutrición aguda}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 2.41 & 0.121 & No & ANOVA & 1725 \\
+Motricidad gruesa & 2.69 & 0.101 & No & ANOVA & 1725 \\
+Motricidad fina & 0.93 & 0.335 & No & ANOVA & 1725 \\
+Resolución de problemas & 3.85 & 0.050 & Sí & ANOVA & 1725 \\
+Socio-individual & 6.97 & 0.008 & Sí & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Desnutrición aguda:}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 2.934 & 0.976 & 3.989 & 0.581 & 7.857 \\
-Valor p & 0.087 & 0.323 & 0.046 & 0.446 & 0.005 \\
-Significativo & No & No & Sí & No & Sí \\
+No & 1623 & -0.06 & 0.67 & 92.8 & 7.2 \\
+Sí & 102 & -0.20 & 0.85 & 89.2 & 10.8 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para retardo_crecimiento}
-\label{tab:descretardocrecimiento}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 1533 & 0.12 & 0.69 & 94.6 & 5.4 \\
-Sí & 192 & 0.03 & 0.73 & 92.7 & 7.3 \\
+No & 1623 & 0.04 & 0.71 & 93.1 & 6.9 \\
+Sí & 102 & -0.15 & 0.83 & 87.3 & 12.7 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ desnutricion_aguda }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para desnutricion_aguda}
-\label{tab:desnutricionaguda}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Hospitalizado Neonatal}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.00 & 0.961 & No & ANOVA & 1725 \\
+Motricidad gruesa & 7.45 & 0.006 & Sí & ANOVA & 1725 \\
+Motricidad fina & 4.20 & 0.040 & Sí & ANOVA & 1725 \\
+Resolución de problemas & 5.31 & 0.021 & Sí & ANOVA & 1725 \\
+Socio-individual & 6.43 & 0.011 & Sí & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Hospitalizado Neonatal:}
+
+
+\textbf{Dominio: Motricidad gruesa}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 2.407 & 2.69 & 0.932 & 3.851 & 6.967 \\
-Valor p & 0.121 & 0.101 & 0.335 & 0.05 & 0.008 \\
-Significativo & No & No & No & Sí & Sí \\
+No & 1518 & -0.25 & 0.82 & 83.7 & 16.3 \\
+Sí & 207 & -0.42 & 0.89 & 80.2 & 19.8 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para desnutricion_aguda}
-\label{tab:descdesnutricionaguda}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad gruesa.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 1623 & 0.12 & 0.69 & 94.6 & 5.4 \\
-Sí & 102 & 0.01 & 0.74 & 91.2 & 8.8 \\
+No & 1518 & -0.06 & 0.72 & 91.9 & 8.1 \\
+Sí & 207 & -0.17 & 0.80 & 87.9 & 12.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ hospitalizado_neonatal }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para hospitalizado_neonatal}
-\label{tab:hospitalizadoneonatal}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.002 & 7.452 & 4.205 & 5.307 & 6.427 \\
-Valor p & 0.961 & 0.006 & 0.04 & 0.021 & 0.011 \\
-Significativo & No & Sí & Sí & Sí & Sí \\
+No & 1518 & -0.05 & 0.68 & 92.8 & 7.2 \\
+Sí & 207 & -0.17 & 0.71 & 90.8 & 9.2 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para hospitalizado_neonatal}
-\label{tab:deschospitalizadoneonatal}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Socio-individual}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 1518 & 0.11 & 0.69 & 94.4 & 5.6 \\
-Sí & 207 & 0.11 & 0.69 & 94.2 & 5.8 \\
+No & 1518 & 0.05 & 0.71 & 93.1 & 6.9 \\
+Sí & 207 & -0.09 & 0.77 & 89.9 & 10.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ razon_hospitalizado_neonatal }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para razon_hospitalizado_neonatal}
-\label{tab:razonhospitalizadoneonatal}
+
+\textbf{Interpretación:} Grupo más afectado: Sí. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio socio-individual.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Razon Hospitalizado Neonatal}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 1.09 & 0.367 & No & ANOVA & 207 \\
+Motricidad gruesa & 0.82 & 0.575 & No & Welch's ANOVA & 207 \\
+Motricidad fina & 0.47 & 0.818 & No & Welch's ANOVA & 207 \\
+Resolución de problemas & 4.83 & 0.009 & Sí & Welch's ANOVA & 207 \\
+Socio-individual & 0.33 & 0.921 & No & ANOVA & 207 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Razon Hospitalizado Neonatal:}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & N/A & N/A & N/A & N/A & N/A \\
-Valor p & N/A & N/A & N/A & N/A & N/A \\
-Significativo & N/A & N/A & N/A & N/A & N/A \\
+Anomalías congénitas & 3 & -1.44 & 2.74 & 66.7 & 33.3 \\
+Ictericia neonatal & 70 & -0.20 & 0.68 & 88.6 & 11.4 \\
+Neumonía & 9 & -0.89 & 0.42 & 77.8 & 22.2 \\
+Prematuridad & 61 & -0.19 & 0.65 & 90.2 & 9.8 \\
+Sepsis & 3 & -0.01 & 0.22 & 100.0 & 0.0 \\
+Síndrome de aspiración meconial & 5 & 0.24 & 0.56 & 100.0 & 0.0 \\
+Taquipnea transitoria del recién nacido & 50 & 0.01 & 0.58 & 96.0 & 4.0 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ hospitalizado_infancia }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para hospitalizado_infancia}
-\label{tab:hospitalizadoinfancia}
+
+\textbf{Interpretación:} Grupo más afectado: Anomalías congénitas. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
+
+
+\vspace{0.5cm}
+
+
+\subsection{Hospitalizado Infancia}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.02 & 0.881 & No & Welch's ANOVA & 1725 \\
+Motricidad gruesa & 0.04 & 0.843 & No & ANOVA & 1725 \\
+Motricidad fina & 0.09 & 0.769 & No & ANOVA & 1725 \\
+Resolución de problemas & 0.06 & 0.812 & No & ANOVA & 1725 \\
+Socio-individual & 1.54 & 0.215 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\subsection{Razon Hospitalizado Infancia}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.28 & 0.842 & No & ANOVA & 237 \\
+Motricidad gruesa & 0.22 & 0.884 & No & ANOVA & 237 \\
+Motricidad fina & 1.91 & 0.129 & No & ANOVA & 237 \\
+Resolución de problemas & 0.47 & 0.707 & No & Welch's ANOVA & 237 \\
+Socio-individual & 0.52 & 0.670 & No & ANOVA & 237 \\
+
+\end{longtable}
+
+
+\subsection{Vacunación completa}
+
+
+\begin{longtable}{|l|c|c|c|c|c|}
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Dominio} & \textbf{F/W} & \textbf{p-valor} & \textbf{Significativo} & \textbf{Método} & \textbf{N} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Comunicación & 0.33 & 0.563 & No & ANOVA & 1725 \\
+Motricidad gruesa & 1.78 & 0.183 & No & ANOVA & 1725 \\
+Motricidad fina & 5.16 & 0.026 & Sí & Welch's ANOVA & 1725 \\
+Resolución de problemas & 4.50 & 0.034 & Sí & ANOVA & 1725 \\
+Socio-individual & 0.89 & 0.346 & No & ANOVA & 1725 \\
+
+\end{longtable}
+
+
+\textbf{Análisis detallado de resultados significativos para Vacunación completa:}
+
+
+\textbf{Dominio: Motricidad fina}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-F-estadístico & 0.025 & 0.039 & 0.086 & 0.057 & 1.539 \\
-Valor p & 0.873 & 0.843 & 0.769 & 0.812 & 0.215 \\
-Significativo & No & No & No & No & No \\
+No & 88 & -0.31 & 1.00 & 85.2 & 14.8 \\
+Sí & 1637 & -0.06 & 0.71 & 91.8 & 8.2 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para hospitalizado_infancia}
-\label{tab:deschospitalizadoinfancia}
+
+\textbf{Interpretación:} Grupo más afectado: No. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio motricidad fina.
+
+
+\vspace{0.5cm}
+
+
+\textbf{Dominio: Resolución de problemas}
+
+
+\begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
+\textbf{Grupo} & \textbf{N} & \textbf{Media} & \textbf{DE} & \textbf{Normal \%} & \textbf{Riesgo \%} \\
 \hline
-No & 1488 & 0.11 & 0.68 & 94.6 & 5.4 \\
-Sí & 237 & 0.1 & 0.74 & 93.2 & 6.8 \\
+No & 88 & -0.22 & 0.88 & 87.5 & 12.5 \\
+Sí & 1637 & -0.06 & 0.67 & 92.9 & 7.1 \\
+
 \hline
 \end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\end{center}
 
-\newpage
-\section{ razon_hospitalizado_infancia }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para razon_hospitalizado_infancia}
-\label{tab:razonhospitalizadoinfancia}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 1.507 & N/A & N/A & N/A & N/A \\
-Valor p & 0.123 & N/A & N/A & N/A & N/A \\
-Significativo & No & N/A & N/A & N/A & N/A \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para razon_hospitalizado_infancia}
-\label{tab:descrazonhospitalizadoinfancia}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-Anemia & 1 & 1.22 & NA & 100 & 0 \\
-Apendicitis aguda & 2 & 0.21 & 0.82 & 100 & 0 \\
-Bronquiolitis & 48 & 0.13 & 0.61 & 97.9 & 2.1 \\
-Enfermedad renal no especificada & 1 & -0.23 & NA & 100 & 0 \\
-Fiebre de origen desconocido & 4 & 0.38 & 0.53 & 100 & 0 \\
-Hernioplastia & 2 & 0.13 & 0.67 & 100 & 0 \\
-Infeccion urinaria & 1 & 0.99 & NA & 100 & 0 \\
-Intolerancia a la lactosa & 2 & 0.27 & 0.74 & 100 & 0 \\
-Neumonía & 119 & 0.08 & 0.79 & 90.8 & 9.2 \\
-Otitis media aguda & 1 & 0.94 & NA & 100 & 0 \\
-Sepsis & 2 & -1.67 & 0.76 & 0 & 100 \\
-Síndrome convulsivo & 1 & 0.29 & NA & 100 & 0 \\
-Síndrome diarreico agudo & 53 & 0.13 & 0.71 & 96.2 & 3.8 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\textbf{Interpretación:} Grupo más afectado: No. Este grupo presenta puntuaciones Z significativamente menores, indicando mayor riesgo de alteraciones en el desarrollo del dominio resolución de problemas.
 
-\newpage
-\section{ vacunacion_completa }
-\begin{table}[H]
-\centering
-\caption{Análisis ANOVA para vacunacion_completa}
-\label{tab:vacunacioncompleta}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-& \textbf{Comunicación} & \textbf{Motricidad gruesa} & \textbf{Motricidad fina} & \textbf{Resolución problemas} & \textbf{Socio-individual} \\
-\hline
-F-estadístico & 0.334 & 1.777 & 9.532 & 4.499 & 0.889 \\
-Valor p & 0.563 & 0.183 & 0.002 & 0.034 & 0.346 \\
-Significativo & No & No & Sí & Sí & No \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: Se aplicó ANOVA estándar o Welch's ANOVA según homogeneidad de varianzas.
-\item Significancia: p < 0.05. N/A: No aplicable por datos insuficientes.
-\end{tablenotes}
-\end{table}
 
-\begin{table}[H]
-\centering
-\caption{Estadísticas descriptivas para vacunacion_completa}
-\label{tab:descvacunacioncompleta}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Grupo} & \textbf{n} & \textbf{Media} & \textbf{DE} & \textbf{Desarrollo adecuado (\%)} & \textbf{Riesgo trastornos (\%)} \\
-\hline
-No & 88 & 0.07 & 0.78 & 92 & 8 \\
-Sí & 1637 & 0.11 & 0.69 & 94.5 & 5.5 \\
-\hline
-\end{tabular}
-\begin{tablenotes}
-\small
-\item Nota: DE = Desviación estándar. Desarrollo adecuado: Z > -1. Riesgo de trastornos: Z ≤ -1.
-\end{tablenotes}
-\end{table}
+\vspace{0.5cm}
 
-\newpage
+
+\section{Conclusiones}
+
+Este análisis proporciona evidencia estadística sobre los factores asociados con el desarrollo infantil en múltiples dominios. Los resultados pueden informar políticas de salud pública y prácticas clínicas para la promoción del desarrollo integral en la primera infancia.
+
 \end{document}
