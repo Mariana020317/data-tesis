@@ -87,8 +87,14 @@ calcular_odds_ratio <- function(variable, dominio_riesgo, datos) {
   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
   
   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
-    # Calcular OR manualmente
-    or <- (tabla[1,1] * tabla[2,2]) / (tabla[1,2] * tabla[2,1])
+    # Asegurar que las columnas estén en el orden correcto: "Desarrollo adecuado", "Riesgo"
+    # Calcular OR: (Riesgo en grupo 1 / Desarrollo adecuado en grupo 1) / (Riesgo en grupo 2 / Desarrollo adecuado en grupo 2)
+    # Esto es equivalente a: (a*d) / (b*c) donde:
+    # a = Riesgo en grupo 1, b = Desarrollo adecuado en grupo 1
+    # c = Riesgo en grupo 2, d = Desarrollo adecuado en grupo 2
+    
+    # tabla[1,"Riesgo"] * tabla[2,"Desarrollo adecuado"] / (tabla[1,"Desarrollo adecuado"] * tabla[2,"Riesgo"])
+    or <- (tabla[1,"Riesgo"] * tabla[2,"Desarrollo adecuado"]) / (tabla[1,"Desarrollo adecuado"] * tabla[2,"Riesgo"])
     
     # Calcular intervalo de confianza
     log_or <- log(or)
@@ -189,8 +195,8 @@ analizar_variable <- function(variable, datos) {
       cat("**Proporciones:**\n")
       for(i in 1:nrow(props)) {
         cat("-", rownames(props)[i], ":", 
-            sprintf("%.1f%% riesgo vs %.1f%% desarrollo adecuado", 
-                   props[i,"Riesgo"], props[i,"Desarrollo adecuado"]), "\n")
+            sprintf("%.1f%% desarrollo adecuado vs %.1f%% riesgo", 
+                   props[i,"Desarrollo adecuado"], props[i,"Riesgo"]), "\n")
       }
       
       # Calcular diferencia de riesgo

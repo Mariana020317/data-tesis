@@ -56,7 +56,8 @@ if(variable_test %in% names(datos) && dominio_test %in% names(datos)) {
   
   # Odds Ratio (si es tabla 2x2)
   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
-    or <- (tabla[1,1] * tabla[2,2]) / (tabla[1,2] * tabla[2,1])
+    # Calcular OR correctamente: (Riesgo grupo 1 * Desarrollo adecuado grupo 2) / (Desarrollo adecuado grupo 1 * Riesgo grupo 2)
+    or <- (tabla[1,"Riesgo"] * tabla[2,"Desarrollo adecuado"]) / (tabla[1,"Desarrollo adecuado"] * tabla[2,"Riesgo"])
     log_or <- log(or)
     se_log_or <- sqrt(sum(1/tabla))
     ic_inf <- exp(log_or - 1.96 * se_log_or)
