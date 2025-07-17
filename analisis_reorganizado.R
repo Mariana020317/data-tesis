@@ -77,7 +77,12 @@ realizar_chi_cuadrado <- function(variable, dominio_riesgo, datos) {
   # Verificar si hay suficientes observaciones
   if(any(tabla < 5) && min(dim(tabla)) > 1) {
     # Usar test exacto de Fisher para tablas pequeñas
-    test_result <- fisher.test(tabla)
+    test_result <- tryCatch({
+      fisher.test(tabla)
+    }, error = function(e) {
+      # Si Fisher falla, usar simulación
+      fisher.test(tabla, simulate.p.value = TRUE)
+    })
     return(list(
       estadistico = NA,
       grados_libertad = NA,
