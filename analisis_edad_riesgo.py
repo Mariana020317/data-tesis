@@ -11,9 +11,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-from scipy.stats import chi2_contingency, f_oneway, levene, bartlett
+from scipy.stats import chi2_contingency, f_oneway, levene, bartlett, fisher_exact
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from statsmodels.stats.contingency_tables import mcnemar
+from statsmodels.stats.proportion import proportions_ztest
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -449,6 +450,211 @@ class AnalisisNeurodesarrollo:
         plt.close()
         
         print("Visualizaciones guardadas en directorio 'graficos/'")
+    
+    def calcular_odds_ratios(self):
+        """Calcular odds ratios para cada grupo de edad vs grupo de referencia"""
+        print("\n=== CÁLCULO DE ODDS RATIOS POR GRUPO DE EDAD ===")
+        
+        # Identificar el grupo de referencia (menor prevalencia de riesgo)
+        prevalencia_por_grupo = self.data.groupby('grupo_edad')['riesgo_global'].mean()
+        grupo_referencia = prevalencia_por_grupo.idxmin()
+        
+        print(f"Grupo de referencia (menor riesgo): {grupo_referencia}")
+        print(f"Prevalencia del grupo de referencia: {prevalencia_por_grupo[grupo_referencia]:.1%}")
+        
+        # Calcular odds ratios para cada dominio
+        resultados_or = {}
+        
+        # Primero para riesgo global
+        print("\n--- ODDS RATIOS PARA RIESGO GLOBAL ---")
+        or_global = self._calcular_or_por_dominio('riesgo_global', grupo_referencia)
+        resultados_or['riesgo_global'] = or_global
+        
+        # Luego para cada dominio específico
+        for dominio in self.dominios:
+            nombre_dominio = self.nombres_dominios[dominio]
+            print(f"\n--- ODDS RATIOS PARA {nombre_dominio.upper()} ---")
+            
+            # Crear variable de riesgo para este dominio
+            riesgo_dominio = f'riesgo_{dominio.split("_")[-1]}'
+            self.data[riesgo_dominio] = (self.data[dominio] <= -1).astype(int)
+            
+            or_dominio = self._calcular_or_por_dominio(riesgo_dominio, grupo_referencia)
+            resultados_or[nombre_dominio] = or_dominio
+        
+        # Guardar resultados
+        self._guardar_resultados_or(resultados_or)
+        
+        return resultados_or
+    
+    def _calcular_or_por_dominio(self, variable_riesgo, grupo_referencia):
+        """Calcular OR para un dominio específico"""
+        resultados = []
+        
+        # Obtener datos del grupo de referencia
+        ref_data = self.data[self.data['grupo_edad'] == grupo_referencia]
+        ref_riesgo = ref_data[variable_riesgo].sum()
+        ref_no_riesgo = len(ref_data) - ref_riesgo
+        
+        grupos_edad = sorted(self.data['grupo_edad'].unique())
+        
+        for grupo in grupos_edad:
+            if grupo == grupo_referencia:
+                # OR = 1 para el grupo de referencia
+                resultados.append({
+                    'grupo_edad': grupo,
+                    'n_total': len(self.data[self.data['grupo_edad'] == grupo]),
+                    'n_riesgo': self.data[self.data['grupo_edad'] == grupo][variable_riesgo].sum(),
+                    'prevalencia': self.data[self.data['grupo_edad'] == grupo][variable_riesgo].mean(),
+                    'odds_ratio': 1.0,
+                    'ci_lower': 1.0,
+                    'ci_upper': 1.0,
+                    'p_value': 1.0,
+                    'significativo': False
+                })
+                continue
+            
+            # Datos del grupo actual
+            grupo_data = self.data[self.data['grupo_edad'] == grupo]
+            grupo_riesgo = grupo_data[variable_riesgo].sum()
+            grupo_no_riesgo = len(grupo_data) - grupo_riesgo
+            
+            # Crear tabla de contingencia 2x2
+            tabla = np.array([[grupo_riesgo, grupo_no_riesgo],
+                             [ref_riesgo, ref_no_riesgo]])
+            
+            # Calcular OR y IC usando test exacto de Fisher
+            try:
+                odds_ratio, p_value = fisher_exact(tabla)
+                
+                # Calcular IC 95% manualmente
+                log_or = np.log(odds_ratio)
+                se_log_or = np.sqrt(1/grupo_riesgo + 1/grupo_no_riesgo + 
+                                   1/ref_riesgo + 1/ref_no_riesgo)
+                ci_lower = np.exp(log_or - 1.96 * se_log_or)
+                ci_upper = np.exp(log_or + 1.96 * se_log_or)
+                
+            except (ValueError, ZeroDivisionError):
+                # Si hay ceros en la tabla, usar corrección
+                tabla_corr = tabla + 0.5
+                grupo_riesgo_corr, grupo_no_riesgo_corr = tabla_corr[0]
+                ref_riesgo_corr, ref_no_riesgo_corr = tabla_corr[1]
+                
+                odds_ratio = (grupo_riesgo_corr * ref_no_riesgo_corr) / (grupo_no_riesgo_corr * ref_riesgo_corr)
+                
+                log_or = np.log(odds_ratio)
+                se_log_or = np.sqrt(1/grupo_riesgo_corr + 1/grupo_no_riesgo_corr + 
+                                   1/ref_riesgo_corr + 1/ref_no_riesgo_corr)
+                ci_lower = np.exp(log_or - 1.96 * se_log_or)
+                ci_upper = np.exp(log_or + 1.96 * se_log_or)
+                
+                # Chi-square test para p-value
+                chi2, p_value, _, _ = chi2_contingency(tabla)
+            
+            resultados.append({
+                'grupo_edad': grupo,
+                'n_total': len(grupo_data),
+                'n_riesgo': grupo_riesgo,
+                'prevalencia': grupo_data[variable_riesgo].mean(),
+                'odds_ratio': odds_ratio,
+                'ci_lower': ci_lower,
+                'ci_upper': ci_upper,
+                'p_value': p_value,
+                'significativo': p_value < 0.05
+            })
+            
+            # Imprimir resultado
+            print(f"{grupo}: OR = {odds_ratio:.2f} (IC95%: {ci_lower:.2f}-{ci_upper:.2f}), p = {p_value:.4f}")
+        
+        return resultados
+    
+    def _guardar_resultados_or(self, resultados_or):
+        """Guardar resultados de odds ratios en archivos CSV"""
+        
+        # Crear resumen de odds ratios
+        resumen_or = []
+        
+        for dominio, resultados in resultados_or.items():
+            for resultado in resultados:
+                fila = {
+                    'dominio': dominio,
+                    'grupo_edad': resultado['grupo_edad'],
+                    'n_total': resultado['n_total'],
+                    'n_riesgo': resultado['n_riesgo'],
+                    'prevalencia_pct': resultado['prevalencia'] * 100,
+                    'odds_ratio': resultado['odds_ratio'],
+                    'ci_lower': resultado['ci_lower'],
+                    'ci_upper': resultado['ci_upper'],
+                    'p_value': resultado['p_value'],
+                    'significativo': resultado['significativo']
+                }
+                resumen_or.append(fila)
+        
+        # Guardar en CSV
+        df_or = pd.DataFrame(resumen_or)
+        df_or.to_csv('odds_ratios_edad_riesgo.csv', index=False)
+        
+        # Crear tabla LaTeX para publicación
+        tabla_latex_or = []
+        for dominio, resultados in resultados_or.items():
+            for resultado in resultados:
+                if resultado['grupo_edad'] != '12-18m':  # Excluir grupo referencia de tabla LaTeX
+                    significancia = "*" if resultado['significativo'] else ""
+                    tabla_latex_or.append({
+                        'Dominio': dominio,
+                        'Grupo de Edad': resultado['grupo_edad'],
+                        'N': resultado['n_total'],
+                        'Riesgo N (%)': f"{resultado['n_riesgo']} ({resultado['prevalencia']*100:.1f}%)",
+                        'OR (IC95%)': f"{resultado['odds_ratio']:.2f} ({resultado['ci_lower']:.2f}-{resultado['ci_upper']:.2f}){significancia}",
+                        'p-valor': f"{resultado['p_value']:.4f}"
+                    })
+        
+        df_latex_or = pd.DataFrame(tabla_latex_or)
+        df_latex_or.to_csv('tabla_latex_odds_ratios.csv', index=False)
+        
+        print(f"\nResultados guardados en:")
+        print("- odds_ratios_edad_riesgo.csv")
+        print("- tabla_latex_odds_ratios.csv")
+    
+    def identificar_grupos_mayor_riesgo(self):
+        """Identificar grupos de edad con mayor asociación a riesgo"""
+        print("\n=== IDENTIFICACIÓN DE GRUPOS DE MAYOR RIESGO ===")
+        
+        # Calcular prevalencia por grupo de edad
+        prevalencia_grupos = self.data.groupby('grupo_edad').agg({
+            'riesgo_global': ['count', 'sum', 'mean']
+        }).round(3)
+        
+        prevalencia_grupos.columns = ['n_total', 'n_riesgo', 'prevalencia']
+        prevalencia_grupos = prevalencia_grupos.sort_values('prevalencia', ascending=False)
+        
+        print("\nPrevalencia de riesgo global por grupo de edad (ordenado de mayor a menor):")
+        print(prevalencia_grupos)
+        
+        # Identificar grupos con mayor riesgo
+        print(f"\nGrupos con mayor riesgo de neurodesarrollo:")
+        for i, (grupo, datos) in enumerate(prevalencia_grupos.head(3).iterrows()):
+            print(f"{i+1}. {grupo}: {datos['prevalencia']:.1%} ({datos['n_riesgo']:.0f}/{datos['n_total']:.0f})")
+        
+        # Análisis por dominio específico
+        print("\n=== ANÁLISIS POR DOMINIO ESPECÍFICO ===")
+        
+        for dominio in self.dominios:
+            nombre_dominio = self.nombres_dominios[dominio]
+            riesgo_dominio = f'riesgo_{dominio.split("_")[-1]}'
+            
+            if riesgo_dominio in self.data.columns:
+                prevalencia_dominio = self.data.groupby('grupo_edad')[riesgo_dominio].agg(['count', 'sum', 'mean'])
+                prevalencia_dominio.columns = ['n_total', 'n_riesgo', 'prevalencia']
+                prevalencia_dominio = prevalencia_dominio.sort_values('prevalencia', ascending=False)
+                
+                print(f"\n{nombre_dominio}:")
+                grupo_mayor_riesgo = prevalencia_dominio.index[0]
+                datos_mayor_riesgo = prevalencia_dominio.iloc[0]
+                print(f"  Grupo de mayor riesgo: {grupo_mayor_riesgo}")
+                print(f"  Prevalencia: {datos_mayor_riesgo['prevalencia']:.1%} ({datos_mayor_riesgo['n_riesgo']:.0f}/{datos_mayor_riesgo['n_total']:.0f})")
+        
+        return prevalencia_grupos
         
     def ejecutar_analisis_completo(self):
         """Ejecutar análisis completo"""
@@ -476,6 +682,12 @@ class AnalisisNeurodesarrollo:
         # 6. Visualizaciones
         self.crear_visualizaciones()
         
+        # 7. Análisis de odds ratios
+        odds_ratios = self.calcular_odds_ratios()
+        
+        # 8. Identificación de grupos de mayor riesgo
+        grupos_riesgo = self.identificar_grupos_mayor_riesgo()
+        
         print("\n=== ANÁLISIS COMPLETADO ===")
         print("Archivos generados:")
         print("- estadisticas_descriptivas.csv")
@@ -483,6 +695,8 @@ class AnalisisNeurodesarrollo:
         print("- pruebas_homogeneidad.csv")
         print("- resultados_anova.csv")
         print("- resultados_chi2.csv")
+        print("- odds_ratios_edad_riesgo.csv")
+        print("- tabla_latex_odds_ratios.csv")
         print("- tukey_*.csv (para comparaciones significativas)")
         print("- graficos/ (directorio con visualizaciones)")
         
@@ -492,7 +706,9 @@ class AnalisisNeurodesarrollo:
             'homogeneidad': homogeneidad,
             'anova': anova_results,
             'chi2': chi2_results,
-            'post_hoc': post_hoc_results
+            'post_hoc': post_hoc_results,
+            'odds_ratios': odds_ratios,
+            'grupos_riesgo': grupos_riesgo
         }
 
 
