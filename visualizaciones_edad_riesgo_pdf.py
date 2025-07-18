@@ -27,20 +27,21 @@ class NordTheme:
     FROST = ['#8FBCBB', '#88C0D0', '#81A1C1', '#5E81AC']
     AURORA = ['#BF616A', '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD']
     
-    # Colores específicos para gráficos
-    BACKGROUND = '#2E3440'
-    PAPER = '#3B4252'
-    TEXT = '#D8DEE9'
-    GRID = '#4C566A'
-    ACCENT = '#88C0D0'
-    WARNING = '#EBCB8B'
-    ERROR = '#BF616A'
-    SUCCESS = '#A3BE8C'
+    # Colores específicos para gráficos (tema papel)
+    BACKGROUND = 'none'  # Fondo transparente
+    PAPER = 'white'      # Fondo blanco para papel
+    TEXT = '#2E3440'     # Texto oscuro para papel
+    GRID = '#E5E9F0'     # Grilla sutil para papel
+    ACCENT = '#5E81AC'   # Azul más oscuro para papel
+    WARNING = '#D08770'  # Naranja más oscuro para papel
+    ERROR = '#BF616A'    # Rojo mantiene buen contraste
+    SUCCESS = '#A3BE8C'  # Verde mantiene buen contraste
     
     @classmethod
     def get_palette(cls, n_colors=6):
-        """Obtener paleta de colores para gráficos"""
-        colors = cls.FROST + cls.AURORA
+        """Obtener paleta de colores para gráficos optimizada para papel"""
+        # Usar colores más oscuros y contrastantes para papel
+        colors = ['#5E81AC', '#BF616A', '#A3BE8C', '#D08770', '#B48EAD', '#88C0D0']
         return colors[:n_colors]
 
 class VisualizacionesEdadRiesgo:
@@ -80,24 +81,25 @@ class VisualizacionesEdadRiesgo:
             self.font_path = None
             
     def setup_matplotlib(self):
-        """Configurar matplotlib con tema Nord"""
-        plt.style.use('dark_background')
+        """Configurar matplotlib con tema Nord optimizado para papel"""
+        # Usar estilo base claro para papel
+        plt.style.use('default')
         
-        # Configurar tema Nord
+        # Configurar tema Nord para papel
         plt.rcParams.update({
-            'figure.facecolor': NordTheme.BACKGROUND,
-            'axes.facecolor': NordTheme.PAPER,
-            'axes.edgecolor': NordTheme.TEXT,
-            'axes.labelcolor': NordTheme.TEXT,
+            'figure.facecolor': NordTheme.BACKGROUND,  # Transparente
+            'axes.facecolor': NordTheme.PAPER,        # Blanco
+            'axes.edgecolor': NordTheme.TEXT,         # Bordes oscuros
+            'axes.labelcolor': NordTheme.TEXT,        # Etiquetas oscuras
             'axes.spines.left': True,
             'axes.spines.bottom': True,
             'axes.spines.top': False,
             'axes.spines.right': False,
-            'xtick.color': NordTheme.TEXT,
-            'ytick.color': NordTheme.TEXT,
-            'text.color': NordTheme.TEXT,
-            'grid.color': NordTheme.GRID,
-            'grid.alpha': 0.3,
+            'xtick.color': NordTheme.TEXT,            # Ticks oscuros
+            'ytick.color': NordTheme.TEXT,            # Ticks oscuros
+            'text.color': NordTheme.TEXT,             # Texto oscuro
+            'grid.color': NordTheme.GRID,             # Grilla sutil
+            'grid.alpha': 0.5,                        # Más visible en papel
             'font.size': 10,
             'axes.titlesize': 14,
             'axes.labelsize': 12,
@@ -107,6 +109,8 @@ class VisualizacionesEdadRiesgo:
             'figure.titlesize': 16,
             'font.family': 'sans-serif',
             'font.sans-serif': ['Arimo', 'DejaVu Sans', 'Liberation Sans', 'Arial'],
+            'savefig.transparent': True,              # Fondo transparente al guardar
+            'savefig.facecolor': 'none',             # Sin color de fondo
         })
         
     def cargar_datos(self):
@@ -289,10 +293,11 @@ class VisualizacionesEdadRiesgo:
         ax.set_facecolor(NordTheme.PAPER)
         
         # Configurar leyenda
-        legend = ax.legend(loc='upper right', frameon=True, fancybox=True, shadow=True)
-        legend.get_frame().set_facecolor(NordTheme.PAPER)
+        legend = ax.legend(loc='upper right', frameon=True, fancybox=True, shadow=False)
+        legend.get_frame().set_facecolor('white')
         legend.get_frame().set_edgecolor(NordTheme.TEXT)
         legend.get_frame().set_alpha(0.9)
+        legend.get_frame().set_linewidth(0.5)
         
         # Configurar límites
         ax.set_xlim(0, 65)
@@ -305,15 +310,15 @@ class VisualizacionesEdadRiesgo:
                    xy=(max_edad, max_global), xytext=(max_edad + 5, max_global + 5),
                    arrowprops=dict(arrowstyle='->', color=NordTheme.WARNING, lw=1.5),
                    fontsize=10, color=NordTheme.WARNING,
-                   bbox=dict(boxstyle="round,pad=0.3", facecolor=NordTheme.PAPER, 
-                            edgecolor=NordTheme.WARNING, alpha=0.8))
+                   bbox=dict(boxstyle="round,pad=0.3", facecolor='white', 
+                            edgecolor=NordTheme.WARNING, alpha=0.9))
         
         # Ajustar layout
         plt.tight_layout()
         
         # Guardar
         plt.savefig(save_path, dpi=300, bbox_inches='tight', 
-                   facecolor=NordTheme.BACKGROUND, edgecolor='none')
+                   facecolor='none', edgecolor='none', transparent=True)
         print(f"Gráfico guardado: {save_path}")
         plt.close()
         
@@ -383,16 +388,17 @@ class VisualizacionesEdadRiesgo:
         ]
         
         legend = ax.legend(handles=legend_elements, loc='lower right', frameon=True)
-        legend.get_frame().set_facecolor(NordTheme.PAPER)
+        legend.get_frame().set_facecolor('white')
         legend.get_frame().set_edgecolor(NordTheme.TEXT)
         legend.get_frame().set_alpha(0.9)
+        legend.get_frame().set_linewidth(0.5)
         
         # Ajustar layout
         plt.tight_layout()
         
         # Guardar
         plt.savefig(save_path, dpi=300, bbox_inches='tight', 
-                   facecolor=NordTheme.BACKGROUND, edgecolor='none')
+                   facecolor='none', edgecolor='none', transparent=True)
         print(f"Gráfico guardado: {save_path}")
         plt.close()
         
@@ -430,8 +436,9 @@ class VisualizacionesEdadRiesgo:
         # Crear figura
         fig, ax = plt.subplots(figsize=(10, 14))
         
-        # Crear heatmap personalizado con colores Nord
-        cmap = plt.cm.RdYlBu_r
+        # Crear heatmap personalizado con colores apropiados para papel
+        # Usar un colormap que funcione bien en papel
+        cmap = plt.cm.RdBu_r  # Rojo-Azul invertido, mejor para papel
         im = ax.imshow(df_matriz.values, cmap=cmap, aspect='auto')
         
         # Configurar ejes
@@ -450,7 +457,8 @@ class VisualizacionesEdadRiesgo:
         for i in range(len(edades)):
             for j in range(len(nombres_dominios)):
                 value = df_matriz.iloc[i, j]
-                color = 'white' if value > 15 else NordTheme.TEXT
+                # Usar color que contraste con el fondo de la celda
+                color = 'white' if value > 20 else NordTheme.TEXT
                 ax.text(j, i, f'{value:.1f}%', ha='center', va='center',
                        color=color, fontsize=8, weight='bold')
         
@@ -468,7 +476,7 @@ class VisualizacionesEdadRiesgo:
         
         # Guardar
         plt.savefig(save_path, dpi=300, bbox_inches='tight', 
-                   facecolor=NordTheme.BACKGROUND, edgecolor='none')
+                   facecolor='none', edgecolor='none', transparent=True)
         print(f"Heatmap guardado: {save_path}")
         plt.close()
         
