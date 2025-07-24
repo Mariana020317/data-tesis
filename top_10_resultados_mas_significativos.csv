@@ -1,0 +1,11 @@
+Descripción,Tipo_Análisis,Dominio,Edad_Meses,Chi²,p-valor,OR,IC_95%,Significancia
+Análisis global - Riesgo Global,Chi² Global 21 Edades,Riesgo Global,Todas las edades,192.50,3.40e-30,N/A,N/A,***
+Análisis global - Motricidad Gruesa,Chi² Global 21 Edades,Motricidad Gruesa,Todas las edades,176.19,5.40e-27,N/A,N/A,***
+Análisis global - Motricidad Fina,Chi² Global 21 Edades,Motricidad Fina,Todas las edades,157.90,1.91e-23,N/A,N/A,***
+Análisis por grupos - Motricidad Gruesa,Chi² Grupos Edad,Motricidad Gruesa,Grupos de edad,87.09,4.90e-16,N/A,N/A,***
+Análisis global - Desarrollo Socio-Individual,Chi² Global 21 Edades,Desarrollo Socio-Individual,Todas las edades,109.92,2.03e-14,N/A,N/A,***
+Análisis por grupos - Desarrollo Socio-Individual,Chi² Grupos Edad,Desarrollo Socio-Individual,Grupos de edad,65.69,1.09e-11,N/A,N/A,***
+8.0 meses - Motricidad Fina,OR Edad-Específico,Motricidad Fina,8.0,N/A,5.08e-11,7.08,(4.19 - 11.96),***
+Análisis por grupos - Comunicación,Chi² Grupos Edad,Comunicación,Grupos de edad,57.77,4.21e-10,N/A,N/A,***
+Análisis global - Resolución de Problemas,Chi² Global 21 Edades,Resolución de Problemas,Todas las edades,83.13,1.15e-09,N/A,N/A,***
+Análisis por grupos - Riesgo Global,Chi² Grupos Edad,Riesgo Global,Grupos de edad,51.12,8.68e-09,N/A,N/A,***

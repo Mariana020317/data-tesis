@@ -1,0 +1,74 @@
+tipo_analisis,descripcion,edad_meses,dominio,chi2,p_value,odds_ratio,ci_lower,ci_upper,ci_95,p_value_formatted,chi2_formatted,or_formatted
+OR Edad-Específico,2.0 meses - Motricidad Gruesa,2.0,Motricidad Gruesa,,0.0152203045262707,1.89812030075188,1.1445613130970522,3.1478092391376364,(1.14 - 3.15),0.015,N/A,1.90
+OR Edad-Específico,2.0 meses - Desarrollo Socio-Individual,2.0,Desarrollo Socio-Individual,,0.0145748659945283,2.321112515802781,1.2220720940833965,4.408547856628055,(1.22 - 4.41),0.015,N/A,2.32
+OR Edad-Específico,4.0 meses - Riesgo Global,4.0,Riesgo Global,,0.000256090310097,2.334841628959276,1.495301241433048,3.6457439352465726,(1.50 - 3.65),2.56e-04,N/A,2.33
+OR Edad-Específico,4.0 meses - Comunicación,4.0,Comunicación,,0.0015538937338808,3.14218487394958,1.640144379137383,6.019790640181512,(1.64 - 6.02),0.002,N/A,3.14
+OR Edad-Específico,4.0 meses - Motricidad Gruesa,4.0,Motricidad Gruesa,,0.0002032812858872,2.599373040752351,1.6097451641576963,4.197397423787639,(1.61 - 4.20),2.03e-04,N/A,2.60
+OR Edad-Específico,6.0 meses - Riesgo Global,6.0,Riesgo Global,,1.4481954654811368e-05,0.3169699534490055,0.1784428002778703,0.5630372939284375,(0.18 - 0.56),1.45e-05,N/A,0.32
+OR Edad-Específico,6.0 meses - Comunicación,6.0,Comunicación,,0.039842017689714,0.1626275510204081,0.0224372716578211,1.1787404794235006,(0.02 - 1.18),0.040,N/A,0.16
+OR Edad-Específico,6.0 meses - Motricidad Gruesa,6.0,Motricidad Gruesa,,2.1818656498548893e-05,0.1470394736842105,0.0462684241037288,0.4672864321650238,(0.05 - 0.47),2.18e-05,N/A,0.15
+OR Edad-Específico,6.0 meses - Motricidad Fina,6.0,Motricidad Fina,,0.0144048007880826,0.2090100268323683,0.0510064685454545,0.8564637498386528,(0.05 - 0.86),0.014,N/A,0.21
+OR Edad-Específico,6.0 meses - Resolución de Problemas,6.0,Resolución de Problemas,,0.029137055989805,0.2454590083456062,0.0598135741731178,1.0072985206272251,(0.06 - 1.01),0.029,N/A,0.25
+OR Edad-Específico,8.0 meses - Riesgo Global,8.0,Riesgo Global,,1.2886056089098945e-07,3.7809885931558935,2.2894512251341377,6.244236428639093,(2.29 - 6.24),1.29e-07,N/A,3.78
+OR Edad-Específico,8.0 meses - Motricidad Fina,8.0,Motricidad Fina,,5.0779118519235e-11,7.081485587583148,4.192739719995262,11.960541668731231,(4.19 - 11.96),5.08e-11,N/A,7.08
+OR Edad-Específico,8.0 meses - Resolución de Problemas,8.0,Resolución de Problemas,,2.174432495313005e-05,4.1617250673854445,2.304476290234274,7.515788125007625,(2.30 - 7.52),2.17e-05,N/A,4.16
+OR Edad-Específico,9.0 meses - Riesgo Global,9.0,Riesgo Global,,0.0013392249704881,0.3402920608802962,0.1664883334736099,0.6955363434910861,(0.17 - 0.70),0.001,N/A,0.34
+OR Edad-Específico,9.0 meses - Comunicación,9.0,Comunicación,,0.0459586873143948,0.0,0.0,,(0.00 - nan),0.046,N/A,0.00
+OR Edad-Específico,9.0 meses - Motricidad Gruesa,9.0,Motricidad Gruesa,,0.0023804012222921,0.1633281972265023,0.0396779086354882,0.6723161811356136,(0.04 - 0.67),0.002,N/A,0.16
+OR Edad-Específico,10.0 meses - Motricidad Gruesa,10.0,Motricidad Gruesa,,0.0169463212798022,0.3177095359039483,0.114604019107942,0.8807662243435855,(0.11 - 0.88),0.017,N/A,0.32
+OR Edad-Específico,10.0 meses - Motricidad Fina,10.0,Motricidad Fina,,6.265212592911013e-05,3.779839208410637,2.091694446673084,6.830435709270365,(2.09 - 6.83),6.27e-05,N/A,3.78
+OR Edad-Específico,12.0 meses - Riesgo Global,12.0,Riesgo Global,,1.224077733633184e-05,0.3956422018348624,0.2539905839455595,0.6162935233311219,(0.25 - 0.62),1.22e-05,N/A,0.40
+OR Edad-Específico,12.0 meses - Comunicación,12.0,Comunicación,,0.0002385759759612,0.0,0.0,,(0.00 - nan),2.39e-04,N/A,0.00
+OR Edad-Específico,12.0 meses - Motricidad Gruesa,12.0,Motricidad Gruesa,,0.0072901256113898,0.4673553719008264,0.2605225564758616,0.8383959016800041,(0.26 - 0.84),0.007,N/A,0.47
+OR Edad-Específico,12.0 meses - Desarrollo Socio-Individual,12.0,Desarrollo Socio-Individual,,0.0003035081971006,0.0815412186379928,0.0113111240731028,0.5878257805322626,(0.01 - 0.59),3.04e-04,N/A,0.08
+OR Edad-Específico,14.0 meses - Riesgo Global,14.0,Riesgo Global,,3.9645000008370384e-05,0.2690250925545043,0.1329942827656715,0.5441925691759203,(0.13 - 0.54),3.96e-05,N/A,0.27
+OR Edad-Específico,14.0 meses - Motricidad Gruesa,14.0,Motricidad Gruesa,,0.0162582733195067,0.3502842218466738,0.140053360564659,0.8760877681195145,(0.14 - 0.88),0.016,N/A,0.35
+OR Edad-Específico,16.0 meses - Riesgo Global,16.0,Riesgo Global,,0.0022839906437612,2.2304832713754648,1.3412920514937323,3.709151648476046,(1.34 - 3.71),0.002,N/A,2.23
+OR Edad-Específico,16.0 meses - Motricidad Gruesa,16.0,Motricidad Gruesa,,0.0003406067596059,2.888533834586466,1.6891616488648065,4.939508139530689,(1.69 - 4.94),3.41e-04,N/A,2.89
+OR Edad-Específico,16.0 meses - Desarrollo Socio-Individual,16.0,Desarrollo Socio-Individual,,0.0203304510217451,0.0,0.0,,(0.00 - nan),0.020,N/A,0.00
+OR Edad-Específico,18.0 meses - Riesgo Global,18.0,Riesgo Global,,0.0020740465652984,2.008522727272727,1.2996211907471005,3.104107238857805,(1.30 - 3.10),0.002,N/A,2.01
+OR Edad-Específico,18.0 meses - Motricidad Gruesa,18.0,Motricidad Gruesa,,0.0015293175376705,2.2774809160305343,1.4109838124214888,3.6761012261236674,(1.41 - 3.68),0.002,N/A,2.28
+OR Edad-Específico,18.0 meses - Motricidad Fina,18.0,Motricidad Fina,,1.755147838946306e-05,3.5771780303030303,2.1016994225621217,6.088502724563336,(2.10 - 6.09),1.76e-05,N/A,3.58
+OR Edad-Específico,18.0 meses - Desarrollo Socio-Individual,18.0,Desarrollo Socio-Individual,,0.0022014664201695,0.0,0.0,,(0.00 - nan),0.002,N/A,0.00
+OR Edad-Específico,20.0 meses - Riesgo Global,20.0,Riesgo Global,,0.0237984979862466,1.7877241805813235,1.0939864469249088,2.9213869649104853,(1.09 - 2.92),0.024,N/A,1.79
+OR Edad-Específico,20.0 meses - Motricidad Gruesa,20.0,Motricidad Gruesa,,0.0022927823934932,2.3783585735222275,1.3963659545945326,4.050936279013769,(1.40 - 4.05),0.002,N/A,2.38
+OR Edad-Específico,22.0 meses - Riesgo Global,22.0,Riesgo Global,,0.001113466273892,0.3963090397247419,0.2211080720226635,0.7103352380163146,(0.22 - 0.71),0.001,N/A,0.40
+OR Edad-Específico,22.0 meses - Motricidad Gruesa,22.0,Motricidad Gruesa,,0.0152487132675916,0.3757944183476098,0.162137419892801,0.8709984712633796,(0.16 - 0.87),0.015,N/A,0.38
+OR Edad-Específico,22.0 meses - Desarrollo Socio-Individual,22.0,Desarrollo Socio-Individual,,0.046369232574997,2.04775828460039,1.0558251799357337,3.971598775854891,(1.06 - 3.97),0.046,N/A,2.05
+OR Edad-Específico,24.0 meses - Riesgo Global,24.0,Riesgo Global,,0.0011016503825862,2.0633713561470217,1.344523367260366,3.1665506580545264,(1.34 - 3.17),0.001,N/A,2.06
+OR Edad-Específico,24.0 meses - Motricidad Gruesa,24.0,Motricidad Gruesa,,0.0010923370572526,2.2942157953281423,1.4325870334108357,3.674070749475855,(1.43 - 3.67),0.001,N/A,2.29
+OR Edad-Específico,24.0 meses - Motricidad Fina,24.0,Motricidad Fina,,0.0192514694417857,2.092338308457712,1.1513267646816072,3.8024648877596063,(1.15 - 3.80),0.019,N/A,2.09
+OR Edad-Específico,27.0 meses - Riesgo Global,27.0,Riesgo Global,,7.560842816053801e-06,0.2717077198293656,0.1433448167618218,0.5150174710365634,(0.14 - 0.52),7.56e-06,N/A,0.27
+OR Edad-Específico,27.0 meses - Motricidad Gruesa,27.0,Motricidad Gruesa,,0.000112906429564,0.1653610771113831,0.0519295934114802,0.5265646046323889,(0.05 - 0.53),1.13e-04,N/A,0.17
+OR Edad-Específico,27.0 meses - Motricidad Fina,27.0,Motricidad Fina,,0.0297505674000547,0.2346087230357424,0.057161619128692,0.9629057707505342,(0.06 - 0.96),0.030,N/A,0.23
+OR Edad-Específico,30.0 meses - Riesgo Global,30.0,Riesgo Global,,0.0417379027876689,0.556336690100703,0.3165626865001056,0.9777226626869124,(0.32 - 0.98),0.042,N/A,0.56
+OR Edad-Específico,30.0 meses - Motricidad Gruesa,30.0,Motricidad Gruesa,,0.0059007831535189,0.2792406613594611,0.101088670597306,0.7713559441996186,(0.10 - 0.77),0.006,N/A,0.28
+OR Edad-Específico,30.0 meses - Resolución de Problemas,30.0,Resolución de Problemas,,0.0388422959227479,0.1667760279965004,0.02298411368034,1.2101507981176172,(0.02 - 1.21),0.039,N/A,0.17
+OR Edad-Específico,36.0 meses - Riesgo Global,36.0,Riesgo Global,,0.0297564382827931,1.5821423888816049,1.0548305935565423,2.373058341298302,(1.05 - 2.37),0.030,N/A,1.58
+OR Edad-Específico,36.0 meses - Motricidad Gruesa,36.0,Motricidad Gruesa,,0.005636912491722,1.983575883575884,1.2589151740832667,3.1253680683998244,(1.26 - 3.13),0.006,N/A,1.98
+OR Edad-Específico,36.0 meses - Motricidad Fina,36.0,Motricidad Fina,,0.0421703003095108,0.3088819226750261,0.0967122173108041,0.9865148872433348,(0.10 - 0.99),0.042,N/A,0.31
+OR Edad-Específico,36.0 meses - Resolución de Problemas,36.0,Resolución de Problemas,,0.0184874460427916,2.1058612440191387,1.1612472793060302,3.818869295187511,(1.16 - 3.82),0.018,N/A,2.11
+OR Edad-Específico,36.0 meses - Desarrollo Socio-Individual,36.0,Desarrollo Socio-Individual,,0.0162264664793461,2.167076167076167,1.1940951359001215,3.932868473138424,(1.19 - 3.93),0.016,N/A,2.17
+OR Edad-Específico,42.0 meses - Motricidad Gruesa,42.0,Motricidad Gruesa,,2.5647525750248e-05,2.867905541392728,1.8178084905746503,4.524614246768671,(1.82 - 4.52),2.56e-05,N/A,2.87
+OR Edad-Específico,42.0 meses - Resolución de Problemas,42.0,Resolución de Problemas,,0.0120505249101662,0.1350214745884037,0.0186533839233347,0.9773453800637656,(0.02 - 0.98),0.012,N/A,0.14
+OR Edad-Específico,48.0 meses - Comunicación,48.0,Comunicación,,0.0002827588054737,3.492690763052209,1.89421968273396,6.44006018811047,(1.89 - 6.44),2.83e-04,N/A,3.49
+OR Edad-Específico,48.0 meses - Motricidad Gruesa,48.0,Motricidad Gruesa,,0.0079962659969081,0.3470904896180466,0.1500739326594611,0.8027497237422495,(0.15 - 0.80),0.008,N/A,0.35
+OR Edad-Específico,48.0 meses - Resolución de Problemas,48.0,Resolución de Problemas,,0.0001679726594616,3.243868868868869,1.8482122729219903,5.693439759373753,(1.85 - 5.69),1.68e-04,N/A,3.24
+OR Edad-Específico,48.0 meses - Desarrollo Socio-Individual,48.0,Desarrollo Socio-Individual,,0.0183945298812088,0.1385630498533724,0.0191391431298153,1.003165013942471,(0.02 - 1.00),0.018,N/A,0.14
+OR Edad-Específico,54.0 meses - Comunicación,54.0,Comunicación,,0.0110823341736307,2.5970348159253707,1.2929242128510383,5.216539197031488,(1.29 - 5.22),0.011,N/A,2.60
+OR Edad-Específico,54.0 meses - Motricidad Gruesa,54.0,Motricidad Gruesa,,0.0291691901395007,0.3975517341882833,0.1712470928231026,0.9229200843682271,(0.17 - 0.92),0.029,N/A,0.40
+OR Edad-Específico,54.0 meses - Motricidad Fina,54.0,Motricidad Fina,,0.0119611229642613,0.1307343450200593,0.0180542782839729,0.9466714038077224,(0.02 - 0.95),0.012,N/A,0.13
+OR Edad-Específico,60.0 meses - Riesgo Global,60.0,Riesgo Global,,0.0003334486214794,2.6684572410829395,1.5798987724142894,4.507038154480416,(1.58 - 4.51),3.33e-04,N/A,2.67
+OR Edad-Específico,60.0 meses - Desarrollo Socio-Individual,60.0,Desarrollo Socio-Individual,,4.7369448899190254e-08,6.396626396170504,3.5537007773401665,11.513864507976445,(3.55 - 11.51),4.74e-08,N/A,6.40
+Chi² Global 21 Edades,Análisis global - Riesgo Global,Todas las edades,Riesgo Global,192.50387466213292,3.3991535236993545e-30,,,,N/A,3.40e-30,192.50,N/A
+Chi² Global 21 Edades,Análisis global - Comunicación,Todas las edades,Comunicación,76.21007611799628,1.7102247372799875e-08,,,,N/A,1.71e-08,76.21,N/A
+Chi² Global 21 Edades,Análisis global - Motricidad Gruesa,Todas las edades,Motricidad Gruesa,176.18519607518618,5.404537567929984e-27,,,,N/A,5.40e-27,176.19,N/A
+Chi² Global 21 Edades,Análisis global - Motricidad Fina,Todas las edades,Motricidad Fina,157.8970676827453,1.9107892903453694e-23,,,,N/A,1.91e-23,157.90,N/A
+Chi² Global 21 Edades,Análisis global - Resolución de Problemas,Todas las edades,Resolución de Problemas,83.1288025519301,1.1484251848507995e-09,,,,N/A,1.15e-09,83.13,N/A
+Chi² Global 21 Edades,Análisis global - Desarrollo Socio-Individual,Todas las edades,Desarrollo Socio-Individual,109.91865535568706,2.03229437831188e-14,,,,N/A,2.03e-14,109.92,N/A
+Chi² Grupos Edad,Análisis por grupos - Comunicación,Grupos de edad,Comunicación,57.767443432060574,4.206204545681263e-10,,,,N/A,4.21e-10,57.77,N/A
+Chi² Grupos Edad,Análisis por grupos - Motricidad Gruesa,Grupos de edad,Motricidad Gruesa,87.08669214643868,4.899584048093043e-16,,,,N/A,4.90e-16,87.09,N/A
+Chi² Grupos Edad,Análisis por grupos - Motricidad Fina,Grupos de edad,Motricidad Fina,47.75485095118764,3.9758886725224384e-08,,,,N/A,3.98e-08,47.75,N/A
+Chi² Grupos Edad,Análisis por grupos - Resolución de Problemas,Grupos de edad,Resolución de Problemas,31.86730939828182,4.2981997010249805e-05,,,,N/A,4.30e-05,31.87,N/A
+Chi² Grupos Edad,Análisis por grupos - Desarrollo Socio-Individual,Grupos de edad,Desarrollo Socio-Individual,65.68855629982708,1.0933655260834864e-11,,,,N/A,1.09e-11,65.69,N/A
+Chi² Grupos Edad,Análisis por grupos - Riesgo Global,Grupos de edad,Riesgo Global,51.12465542360343,8.683163879050629e-09,,,,N/A,8.68e-09,51.12,N/A
