@@ -1,0 +1,11 @@
+Edad_Meses,Dominio,Descripción,OR,CI_Inferior,CI_Superior,IC_95%,p_valor_OR,Chi²,p_valor_Chi²,Interpretación_OR
+8,Motricidad Fina,8 meses - Motricidad Fina,7.081485587583148,4.192739719995262,11.960541668731231,(4.19 - 11.96),5.0779118519235e-11,,,Riesgo muy alto
+60,Desarrollo Socio-Individual,60 meses - Desarrollo Socio-Individual,6.396626396170504,3.5537007773401665,11.513864507976445,(3.55 - 11.51),4.7369448899190254e-08,,,Riesgo muy alto
+8,Riesgo Global,8 meses - Riesgo Global,3.7809885931558935,2.2894512251341377,6.244236428639093,(2.29 - 6.24),1.2886056089098945e-07,,,Riesgo muy alto
+27,Riesgo Global,27 meses - Riesgo Global,0.2717077198293656,0.1433448167618218,0.5150174710365634,(0.14 - 0.52),7.560842816053801e-06,,,Protección muy alta
+12,Riesgo Global,12 meses - Riesgo Global,0.3956422018348624,0.2539905839455595,0.6162935233311219,(0.25 - 0.62),1.224077733633184e-05,,,Protección alta
+6,Riesgo Global,6 meses - Riesgo Global,0.3169699534490055,0.1784428002778703,0.5630372939284375,(0.18 - 0.56),1.4481954654811368e-05,,,Protección muy alta
+18,Motricidad Fina,18 meses - Motricidad Fina,3.5771780303030303,2.1016994225621217,6.088502724563336,(2.10 - 6.09),1.755147838946306e-05,,,Riesgo muy alto
+8,Resolución de Problemas,8 meses - Resolución de Problemas,4.1617250673854445,2.304476290234274,7.515788125007625,(2.30 - 7.52),2.174432495313005e-05,,,Riesgo muy alto
+6,Motricidad Gruesa,6 meses - Motricidad Gruesa,0.1470394736842105,0.0462684241037288,0.4672864321650238,(0.05 - 0.47),2.1818656498548893e-05,,,Protección muy alta
+42,Motricidad Gruesa,42 meses - Motricidad Gruesa,2.867905541392728,1.8178084905746503,4.524614246768671,(1.82 - 4.52),2.5647525750248e-05,,,Riesgo alto

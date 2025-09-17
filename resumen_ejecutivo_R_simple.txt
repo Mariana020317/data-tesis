@@ -1,0 +1,29 @@
+=== RESUMEN EJECUTIVO DEL ANÁLISIS (R) ===
+
+Análisis de Asociación entre Edad y Riesgo en Neurodesarrollo
+Dataset: datos_optimizados.csv 
+Fecha de análisis: 2025-07-18 
+
+Dominios con diferencias significativas por edad (ANOVA):
+  - Comunicación 
+  - Motricidad Gruesa 
+  - Motricidad Fina 
+  - Resolución de Problemas 
+  - Desarrollo Socio-Individual 
+
+Dominios con asociación significativa edad-riesgo (Chi-cuadrado):
+  - Comunicación 
+  - Motricidad Gruesa 
+  - Motricidad Fina 
+  - Resolución de Problemas 
+  - Desarrollo Socio-Individual 
+  - Riesgo Global 
+
+Prevalencia de riesgo global: 33.0% 
+
+Archivos generados:
+  - estadisticas_descriptivas_R_simple.csv
+  - pruebas_normalidad_R_simple.csv
+  - resultados_anova_R_simple.csv
+  - resultados_chi2_R_simple.csv
+  - tukey_*_R_simple.csv (para comparaciones significativas)
