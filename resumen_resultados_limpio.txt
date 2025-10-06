@@ -1,0 +1,771 @@
+ANÁLISIS DE RESUMEN POR VARIABLE
+================================
+
+### RESUMEN: EDAD_MESES_NINO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  < 0.001  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  -  |  < 0.001  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  -  |  < 0.001  |  -  |  -  |  Sí  |
+|  Resolución de problemas  |  -  |  < 0.001  |  -  |  -  |  Sí  |
+|  Socio-individual  |  -  |  < 0.001  |  -  |  -  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 5/5
+- Grupo más afectado: Variable continua - análisis por grupos no aplicable
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: GRUPO_ETNICO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  2.73  |  0.098  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.39  |  0.533  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.89  |  0.169  |  -  |  -  |  No  |
+|  Resolución de problemas  |  4.57  |  0.033  |  1.50  |  1.05-2.16  |  Sí  |
+|  Socio-individual  |  4.90  |  0.027  |  1.53  |  1.06-2.21  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 2/5
+- Grupo más afectado: Indígena
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: AREA_RESIDENCIA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  8.70  |  0.003  |  2.09  |  1.30-3.36  |  Sí  |
+|  Motricidad gruesa  |  12.62  |  < 0.001  |  1.79  |  1.31-2.46  |  Sí  |
+|  Motricidad fina  |  1.73  |  0.188  |  -  |  -  |  No  |
+|  Resolución de problemas  |  25.13  |  < 0.001  |  2.77  |  1.85-4.15  |  Sí  |
+|  Socio-individual  |  15.06  |  < 0.001  |  2.31  |  1.52-3.51  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 4/5
+- Grupo más afectado: Rural
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: SEXO_JEFE_HOGAR 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.83  |  0.363  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  1.07  |  0.301  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.88  |  0.170  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.08  |  0.782  |  -  |  -  |  No  |
+|  Socio-individual  |  0.05  |  0.816  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Mujer
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: NIVEL_EDUCATIVO_MADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.020  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  12.37  |  0.015  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  17.55  |  0.002  |  -  |  -  |  Sí  |
+|  Resolución de problemas  |  -  |  0.033  |  -  |  -  |  Sí  |
+|  Socio-individual  |  16.34  |  0.003  |  -  |  -  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 5/5
+- Grupo más afectado: Ninguna
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: NIVEL_EDUCATIVO_PADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.383  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  9.85  |  0.043  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  6.54  |  0.162  |  -  |  -  |  No  |
+|  Resolución de problemas  |  3.24  |  0.519  |  -  |  -  |  No  |
+|  Socio-individual  |  5.68  |  0.224  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: Ninguna
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: SITUACION_LABORAL_MADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  1.10  |  0.293  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.82  |  0.365  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.68  |  0.411  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.16  |  0.689  |  -  |  -  |  No  |
+|  Socio-individual  |  0.92  |  0.337  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Trabaja
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: SITUACION_LABORAL_PADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.57  |  0.451  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  8.00  |  0.005  |  1.78  |  1.21-2.62  |  Sí  |
+|  Motricidad fina  |  0.51  |  0.473  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.09  |  0.767  |  -  |  -  |  No  |
+|  Socio-individual  |  1.80  |  0.180  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: No trabaja
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TIPO_EMPLEO_MADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  2.93  |  0.087  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  1.92  |  0.166  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.00  |  0.952  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.06  |  0.801  |  -  |  -  |  No  |
+|  Socio-individual  |  1.53  |  0.216  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Formal
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TIPO_EMPLEO_PADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.23  |  0.632  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.04  |  0.850  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.00  |  1.000  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.09  |  0.762  |  -  |  -  |  No  |
+|  Socio-individual  |  0.47  |  0.492  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Informal
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: SEGURO_SOCIAL 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.46  |  0.496  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.06  |  0.807  |  -  |  -  |  No  |
+|  Motricidad fina  |  2.00  |  0.158  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.00  |  0.962  |  -  |  -  |  No  |
+|  Socio-individual  |  0.00  |  1.000  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: No
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: PROPIEDAD_VIVIENDA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  1.99  |  0.158  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  2.16  |  0.142  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.62  |  0.430  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.01  |  0.926  |  -  |  -  |  No  |
+|  Socio-individual  |  0.00  |  1.000  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Propia
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: FUENTE_AGUA_CONSUMO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.194  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.279  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.030  |  -  |  -  |  Sí  |
+|  Resolución de problemas  |  -  |  0.082  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.231  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: Pozo público o privado
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TIPO_SANITARIO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.839  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  1.000  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  1.000  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.153  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.070  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Excusado lavable
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: MANEJO_BASURA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.031  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  -  |  0.673  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.375  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.033  |  -  |  -  |  Sí  |
+|  Socio-individual  |  -  |  0.121  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 2/5
+- Grupo más afectado: La entierra
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TIPO_ENERGIA_LUZ 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  1358.82  |  < 0.001  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  765.33  |  < 0.001  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  1183.79  |  < 0.001  |  -  |  -  |  Sí  |
+|  Resolución de problemas  |  1250.99  |  < 0.001  |  -  |  -  |  Sí  |
+|  Socio-individual  |  1261.23  |  < 0.001  |  -  |  -  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 5/5
+- Grupo más afectado: Eléctrico
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TIPO_ENERGIA_COCINA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.483  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.610  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.330  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.149  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.302  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Leña
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: EDAD_ANOS_MADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.184  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.480  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.272  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.001  |  -  |  -  |  Sí  |
+|  Socio-individual  |  -  |  0.527  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: Variable continua - análisis por grupos no aplicable
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: EDAD_ANOS_PADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.415  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.022  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  -  |  0.534  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.085  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.640  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: Variable continua - análisis por grupos no aplicable
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TOTAL_PERSONAS_HOGAR 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.109  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.573  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.147  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.046  |  -  |  -  |  Sí  |
+|  Socio-individual  |  -  |  0.528  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: 16
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TOTAL_HERMANOS 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.135  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.799  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.090  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.296  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.146  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: 5
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: POSICION_NINO_HERMANOS 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.129  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.994  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.115  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.591  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.877  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: 4
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: ESTADO_CIVIL_CUIDADOR 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  15.05  |  < 0.001  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  4.09  |  0.129  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.50  |  0.778  |  -  |  -  |  No  |
+|  Resolución de problemas  |  10.80  |  0.005  |  -  |  -  |  Sí  |
+|  Socio-individual  |  2.48  |  0.289  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 2/5
+- Grupo más afectado: Soltero
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: HORAS_PANTALLA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.472  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.022  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  -  |  0.380  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.582  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.533  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: 6
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: HORAS_JUEGO_CUIDADOR 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.812  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.846  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.080  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.017  |  -  |  -  |  Sí  |
+|  Socio-individual  |  -  |  0.039  |  -  |  -  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 2/5
+- Grupo más afectado: 0.5
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: NUMERO_CONTROLES_PRENATALES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.188  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.734  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.133  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.504  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.414  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: 12
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: ULTRASONIDO_EMBARAZO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.31  |  0.576  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  1.17  |  0.279  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.057  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.00  |  1.000  |  -  |  -  |  No  |
+|  Socio-individual  |  1.21  |  0.271  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: No
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: PRENATALES_PRIMEROS_3_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.43  |  0.511  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  2.21  |  0.137  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.07  |  0.791  |  -  |  -  |  No  |
+|  Resolución de problemas  |  2.33  |  0.127  |  -  |  -  |  No  |
+|  Socio-individual  |  1.84  |  0.175  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: No
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: PRENATALES_RESTO_EMBARAZO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.02  |  0.883  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.62  |  0.430  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.83  |  0.176  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.27  |  0.604  |  -  |  -  |  No  |
+|  Socio-individual  |  0.00  |  1.000  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: No
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: SERVICIO_ASISTENCIA_PARTO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.649  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.226  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.123  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.369  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.224  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: CAIMI
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: TIPO_PARTO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  2.33  |  0.312  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  4.40  |  0.111  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.04  |  0.595  |  -  |  -  |  No  |
+|  Resolución de problemas  |  1.17  |  0.557  |  -  |  -  |  No  |
+|  Socio-individual  |  1.97  |  0.374  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Cesárea de emergencia
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: RAZON_CESAREA_EMERGENCIA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.367  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.915  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.517  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.194  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.706  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Variable continua - análisis por grupos no aplicable
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: LACTANCIA_PRIMEROS_6_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  2.80  |  0.247  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  1.00  |  0.607  |  -  |  -  |  No  |
+|  Motricidad fina  |  0.62  |  0.733  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.58  |  0.748  |  -  |  -  |  No  |
+|  Socio-individual  |  0.01  |  0.995  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Fórmula infantil
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: LACTANCIA_6-12_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: LACTANCIA_12-24_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: VITAMINA_A_6-12_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: VITAMINA_A_12-18_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: VITAMINA_A_18-24_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: VITAMINAS_MINERALES_6-12_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: VITAMINAS_MINERALES_12-18_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: VITAMINAS_MINERALES_18-24_MESES 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+Variable no encontrada en los datos.
+
+### RESUMEN: RETARDO_CRECIMIENTO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.81  |  0.369  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  4.60  |  0.032  |  1.52  |  1.05-2.19  |  Sí  |
+|  Motricidad fina  |  3.69  |  0.055  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.43  |  0.510  |  -  |  -  |  No  |
+|  Socio-individual  |  8.01  |  0.005  |  2.03  |  1.26-3.25  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 2/5
+- Grupo más afectado: Sí
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: DESNUTRICION_AGUDA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  1.50  |  0.221  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.90  |  0.342  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.00  |  0.316  |  -  |  -  |  No  |
+|  Resolución de problemas  |  1.30  |  0.254  |  -  |  -  |  No  |
+|  Socio-individual  |  4.05  |  0.044  |  1.97  |  1.07-3.64  |  Sí  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 1/5
+- Grupo más afectado: Sí
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: HOSPITALIZADO_NEONATAL 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.00  |  1.000  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  1.39  |  0.238  |  -  |  -  |  No  |
+|  Motricidad fina  |  3.18  |  0.075  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.79  |  0.375  |  -  |  -  |  No  |
+|  Socio-individual  |  2.47  |  0.116  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Sí
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: RAZON_HOSPITALIZADO_NEONATAL 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.027  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  -  |  0.603  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.044  |  -  |  -  |  Sí  |
+|  Resolución de problemas  |  -  |  0.514  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.841  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 2/5
+- Grupo más afectado: Anomalías congénitas
+- Esta variable muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: HOSPITALIZADO_INFANCIA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.44  |  0.509  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  2.81  |  0.094  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.46  |  0.227  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.60  |  0.437  |  -  |  -  |  No  |
+|  Socio-individual  |  1.36  |  0.243  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Sí
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: RAZON_HOSPITALIZADO_INFANCIA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.078  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  -  |  0.906  |  -  |  -  |  No  |
+|  Motricidad fina  |  -  |  0.255  |  -  |  -  |  No  |
+|  Resolución de problemas  |  -  |  0.070  |  -  |  -  |  No  |
+|  Socio-individual  |  -  |  0.459  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: Sepsis
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+### RESUMEN: VACUNACION_COMPLETA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.54  |  0.461  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.06  |  0.813  |  -  |  -  |  No  |
+|  Motricidad fina  |  3.74  |  0.053  |  -  |  -  |  No  |
+|  Resolución de problemas  |  2.75  |  0.097  |  -  |  -  |  No  |
+|  Socio-individual  |  0.22  |  0.635  |  -  |  -  |  No  |
+
+**Interpretación:**
+- Dominios con asociaciones significativas: 0/5
+- Grupo más afectado: No
+- Esta variable no muestra asociaciones significativas con el neurodesarrollo
+
+================================================================================
+
+Warning messages:
+1: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+2: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+3: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+4: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+5: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+ANÁLISIS COMPLETADO
+===================

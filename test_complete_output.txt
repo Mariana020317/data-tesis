@@ -1,0 +1,4512 @@
+
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # Análisis Reorganizado por Variable: Chi-cuadrado → Descripción → Odds Ratio
+> # ========================================================================
+> 
+> # Cargar datos
+> datos <- read.csv("datos_optimizados.csv", stringsAsFactors = FALSE)
+> 
+> # Definir los dominios del neurodesarrollo
+> dominios <- c(
++   "comunicacion" = "zscore_desarrollo_comunicacion",
++   "motricidad_gruesa" = "zscore_desarrollo_motricidad_gruesa", 
++   "motricidad_fina" = "zscore_desarrollo_motricidad_fina",
++   "resolucion_problemas" = "zscore_desarrollo_resolucion_problemas",
++   "socio_individual" = "zscore_desarrollo_socio_individual"
++ )
+> 
+> # Nombres legibles para los dominios
+> nombres_dominios <- c(
++   "comunicacion" = "Comunicación",
++   "motricidad_gruesa" = "Motricidad gruesa",
++   "motricidad_fina" = "Motricidad fina", 
++   "resolucion_problemas" = "Resolución de problemas",
++   "socio_individual" = "Socio-individual"
++ )
+> 
+> # Crear variables dicotómicas de riesgo (z-score < -1)
+> for(dominio in dominios) {
++   nueva_var <- paste0("riesgo_", names(dominios)[dominios == dominio])
++   datos[[nueva_var]] <- ifelse(datos[[dominio]] < -1, "Riesgo", "Desarrollo adecuado")
++ }
+> 
+> # Definir variables en el orden especificado
+> variables_analisis <- list(
++   "Variables sociodemográficas" = c(
++     "edad_meses_nino", "grupo_etnico", "area_residencia", "sexo_jefe_hogar"
++   ),
++   "Variables educativas" = c(
++     "nivel_educativo_madre", "nivel_educativo_padre"
++   ),
++   "Variables socioeconómicas" = c(
++     "situacion_laboral_madre", "situacion_laboral_padre", 
++     "tipo_empleo_madre", "tipo_empleo_padre", "seguro_social", "propiedad_vivienda"
++   ),
++   "Variables de vivienda y servicios" = c(
++     "fuente_agua_consumo", "tipo_sanitario", "manejo_basura", 
++     "tipo_energia_luz", "tipo_energia_cocina"
++   ),
++   "Variables familiares" = c(
++     "edad_anos_madre", "edad_anos_padre", "total_personas_hogar", 
++     "total_hermanos", "posicion_nino_hermanos", "estado_civil_cuidador"
++   ),
++   "Variables de cuidado" = c(
++     "horas_pantalla", "horas_juego_cuidador"
++   ),
++   "Variables prenatales" = c(
++     "numero_controles_prenatales", "ultrasonido_embarazo", 
++     "prenatales_primeros_3_meses", "prenatales_resto_embarazo", 
++     "servicio_asistencia_parto", "tipo_parto", "razon_cesarea_emergencia"
++   ),
++   "Variables nutricionales" = c(
++     "lactancia_primeros_6_meses", "lactancia_6-12_meses", "lactancia_12-24_meses",
++     "vitamina_a_6-12_meses", "vitamina_a_12-18_meses", "vitamina_a_18-24_meses",
++     "vitaminas_minerales_6-12_meses", "vitaminas_minerales_12-18_meses", 
++     "vitaminas_minerales_18-24_meses"
++   ),
++   "Variables de salud" = c(
++     "retardo_crecimiento", "desnutricion_aguda", "hospitalizado_neonatal", 
++     "razon_hospitalizado_neonatal", "hospitalizado_infancia", 
++     "razon_hospitalizado_infancia", "vacunacion_completa"
++   )
++ )
+> 
+> # Función para realizar análisis Chi-cuadrado
+> realizar_chi_cuadrado <- function(variable, dominio_riesgo, datos) {
++   # Crear tabla de contingencia
++   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
++   
++   # Verificar si hay suficientes observaciones
++   if(any(tabla < 5) && min(dim(tabla)) > 1) {
++     # Usar test exacto de Fisher para tablas pequeñas
++     test_result <- tryCatch({
++       fisher.test(tabla)
++     }, error = function(e) {
++       # Si Fisher falla, usar simulación
++       fisher.test(tabla, simulate.p.value = TRUE)
++     })
++     return(list(
++       estadistico = NA,
++       grados_libertad = NA,
++       p_valor = test_result$p.value,
++       tipo_test = "Fisher",
++       tabla = tabla
++     ))
++   } else {
++     # Usar Chi-cuadrado
++     test_result <- chisq.test(tabla)
++     return(list(
++       estadistico = test_result$statistic,
++       grados_libertad = test_result$parameter,
++       p_valor = test_result$p.value,
++       tipo_test = "Chi-cuadrado",
++       tabla = tabla
++     ))
++   }
++ }
+> 
+> # Función para calcular Odds Ratio
+> calcular_odds_ratio <- function(variable, dominio_riesgo, datos) {
++   # Crear tabla 2x2 para OR
++   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
++   
++   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
++     # Calcular OR manualmente
++     or <- (tabla[1,1] * tabla[2,2]) / (tabla[1,2] * tabla[2,1])
++     
++     # Calcular intervalo de confianza
++     log_or <- log(or)
++     se_log_or <- sqrt(sum(1/tabla))
++     ic_inf <- exp(log_or - 1.96 * se_log_or)
++     ic_sup <- exp(log_or + 1.96 * se_log_or)
++     
++     return(list(
++       or = or,
++       ic_inf = ic_inf,
++       ic_sup = ic_sup
++     ))
++   } else {
++     return(list(or = NA, ic_inf = NA, ic_sup = NA))
++   }
++ }
+> 
+> # Función para formatear p-valor
+> formatear_p_valor <- function(p) {
++   if(p < 0.001) return("< 0.001")
++   if(p < 0.01) return(sprintf("%.3f", p))
++   return(sprintf("%.3f", p))
++ }
+> 
+> # Función para interpretar OR
+> interpretar_or <- function(or) {
++   if(is.na(or)) return("No aplicable")
++   if(or < 1.5) return("Asociación débil")
++   if(or < 2.5) return("Asociación moderada")
++   if(or < 5) return("Asociación fuerte")
++   return("Asociación muy fuerte")
++ }
+> 
+> # Función principal de análisis por variable
+> analizar_variable <- function(variable, datos) {
++   cat("\n### VARIABLE:", toupper(variable), "\n\n")
++   
++   # Verificar si la variable existe en los datos
++   if(!variable %in% names(datos)) {
++     cat("**NOTA:** Variable no encontrada en los datos.\n\n")
++     return(NULL)
++   }
++   
++   # Eliminar valores faltantes
++   datos_var <- datos[!is.na(datos[[variable]]), ]
++   
++   if(nrow(datos_var) == 0) {
++     cat("**NOTA:** No hay datos válidos para esta variable.\n\n")
++     return(NULL)
++   }
++   
++   resultados_variable <- list()
++   
++   # Analizar cada dominio
++   for(dominio in names(dominios)) {
++     cat("#### DOMINIO:", nombres_dominios[dominio], "\n")
++     
++     dominio_riesgo <- paste0("riesgo_", dominio)
++     
++     # Chi-cuadrado
++     resultado_chi <- realizar_chi_cuadrado(variable, dominio_riesgo, datos_var)
++     
++     cat("**Chi-cuadrado:**\n")
++     if(resultado_chi$tipo_test == "Chi-cuadrado") {
++       cat("χ² =", sprintf("%.2f", resultado_chi$estadistico), 
++           ", gl =", resultado_chi$grados_libertad, 
++           ", p =", formatear_p_valor(resultado_chi$p_valor), "\n\n")
++     } else {
++       cat("Test exacto de Fisher: p =", formatear_p_valor(resultado_chi$p_valor), "\n\n")
++     }
++     
++     # Descripción de resultados
++     if(resultado_chi$p_valor < 0.05) {
++       cat("**Descripción de resultados:**\n")
++       cat("- La prueba indica una asociación estadísticamente significativa entre", 
++           variable, "y", nombres_dominios[dominio], "\n")
++       cat("- Las diferencias observadas en las proporciones no se deben al azar\n")
++       if(resultado_chi$tipo_test == "Chi-cuadrado") {
++         cat("- El estadístico chi-cuadrado de", sprintf("%.2f", resultado_chi$estadistico), 
++             "con", resultado_chi$grados_libertad, "grados de libertad supera el valor crítico\n")
++       }
++       cat("- La significancia es", 
++           ifelse(resultado_chi$p_valor < 0.001, "alta", "moderada"), 
++           "(p", formatear_p_valor(resultado_chi$p_valor), 
++           "), indicando evidencia sólida de asociación\n\n")
++       
++       # Mostrar tabla de contingencia
++       cat("**Tabla de contingencia:**\n")
++       print(addmargins(resultado_chi$tabla))
++       cat("\n")
++       
++       # Calcular y mostrar proporciones
++       props <- prop.table(resultado_chi$tabla, 1) * 100
++       cat("**Proporciones:**\n")
++       for(i in 1:nrow(props)) {
++         cat("-", rownames(props)[i], ":", 
++             sprintf("%.1f%% riesgo vs %.1f%% desarrollo adecuado", 
++                    props[i,1], props[i,2]), "\n")
++       }
++       cat("\n")
++       
++       # Odds Ratio
++       cat("**Odds Ratio:**\n")
++       resultado_or <- calcular_odds_ratio(variable, dominio_riesgo, datos_var)
++       
++       if(!is.na(resultado_or$or)) {
++         cat("OR =", sprintf("%.2f", resultado_or$or), 
++             "(IC 95%:", sprintf("%.2f", resultado_or$ic_inf), 
++             "-", sprintf("%.2f", resultado_or$ic_sup), ")\n")
++         cat("**Interpretación:**", interpretar_or(resultado_or$or), "\n")
++         
++         # Interpretación clínica detallada
++         if(resultado_or$or > 1) {
++           cat("- El riesgo de retraso en", nombres_dominios[dominio], 
++               "es", sprintf("%.2f", resultado_or$or), "veces mayor\n")
++         } else {
++           cat("- El riesgo de retraso en", nombres_dominios[dominio], 
++               "es", sprintf("%.2f", 1/resultado_or$or), "veces menor\n")
++         }
++       } else {
++         cat("No se pudo calcular OR (tabla no 2x2)\n")
++       }
++       
++     } else {
++       cat("**Resultado:**\n")
++       cat("No se encontró asociación estadísticamente significativa entre", 
++           variable, "y", nombres_dominios[dominio], ".\n\n")
++       
++       cat("**Odds Ratio:**\n")
++       cat("No aplicable (chi-cuadrado no significativo).\n")
++     }
++     
++     cat("\n")
++     
++     # Guardar resultados
++     resultados_variable[[dominio]] <- list(
++       chi_cuadrado = resultado_chi$estadistico,
++       p_valor = resultado_chi$p_valor,
++       significativo = resultado_chi$p_valor < 0.05,
++       or = ifelse(resultado_chi$p_valor < 0.05, 
++                  calcular_odds_ratio(variable, dominio_riesgo, datos_var)$or, 
++                  NA),
++       ic_inf = ifelse(resultado_chi$p_valor < 0.05, 
++                      calcular_odds_ratio(variable, dominio_riesgo, datos_var)$ic_inf, 
++                      NA),
++       ic_sup = ifelse(resultado_chi$p_valor < 0.05, 
++                      calcular_odds_ratio(variable, dominio_riesgo, datos_var)$ic_sup, 
++                      NA)
++     )
++   }
++   
++   # Resumen de variable
++   cat("### RESUMEN:", toupper(variable), "\n\n")
++   
++   # Crear tabla resumen
++   tabla_resumen <- data.frame(
++     Dominio = nombres_dominios,
++     Chi_cuadrado = sapply(resultados_variable, function(x) 
++       ifelse(is.na(x$chi_cuadrado), "-", sprintf("%.2f", x$chi_cuadrado))),
++     p_valor = sapply(resultados_variable, function(x) formatear_p_valor(x$p_valor)),
++     OR = sapply(resultados_variable, function(x) 
++       ifelse(is.na(x$or), "-", sprintf("%.2f", x$or))),
++     IC_95 = sapply(resultados_variable, function(x) 
++       ifelse(is.na(x$ic_inf), "-", paste0(sprintf("%.2f", x$ic_inf), "-", sprintf("%.2f", x$ic_sup)))),
++     Significativo = sapply(resultados_variable, function(x) ifelse(x$significativo, "Sí", "No"))
++   )
++   
++   print(tabla_resumen)
++   
++   # Conclusión clínica
++   dominios_significativos <- sum(sapply(resultados_variable, function(x) x$significativo))
++   cat("\n**Conclusión clínica:**\n")
++   cat(variable, "afecta significativamente", dominios_significativos, "de 5 dominios del neurodesarrollo")
++   
++   if(dominios_significativos > 0) {
++     # Encontrar el OR más alto
++     ors <- sapply(resultados_variable, function(x) ifelse(is.na(x$or), 0, x$or))
++     max_or_idx <- which.max(ors)
++     max_or <- ors[max_or_idx]
++     
++     if(max_or > 0) {
++       cat(", con mayor impacto en", nombres_dominios[names(max_or_idx)], 
++           "(OR =", sprintf("%.2f", max_or), ").")
++     }
++   }
++   cat("\n\n")
++   
++   return(resultados_variable)
++ }
+> 
+> # Función principal para ejecutar todo el análisis
+> ejecutar_analisis_completo <- function() {
++   cat("# ANÁLISIS REORGANIZADO POR VARIABLE\n")
++   cat("# Chi-cuadrado → Descripción → Odds Ratio\n")
++   cat("# =====================================\n\n")
++   
++   todos_resultados <- list()
++   
++   # Procesar cada grupo de variables
++   for(grupo in names(variables_analisis)) {
++     cat("## ", grupo, "\n\n")
++     
++     for(variable in variables_analisis[[grupo]]) {
++       resultado <- analizar_variable(variable, datos)
++       if(!is.null(resultado)) {
++         todos_resultados[[variable]] <- resultado
++       }
++     }
++   }
++   
++   # Crear resumen general
++   cat("## RESUMEN GENERAL DE TODAS LAS VARIABLES\n\n")
++   
++   resumen_general <- data.frame()
++   
++   for(variable in names(todos_resultados)) {
++     resultado_var <- todos_resultados[[variable]]
++     dominios_afectados <- sum(sapply(resultado_var, function(x) x$significativo))
++     
++     if(dominios_afectados > 0) {
++       ors <- sapply(resultado_var, function(x) ifelse(is.na(x$or), 0, x$or))
++       max_or <- max(ors, na.rm = TRUE)
++       max_dominio <- names(which.max(ors))
++       
++       prioridad <- ifelse(dominios_afectados >= 3, "Alta", 
++                          ifelse(dominios_afectados >= 2, "Media", "Baja"))
++       
++       resumen_general <- rbind(resumen_general, data.frame(
++         Variable = variable,
++         Dominios_afectados = paste0(dominios_afectados, "/5"),
++         OR_maximo = sprintf("%.2f", max_or),
++         Dominio_mayor_impacto = nombres_dominios[max_dominio],
++         Prioridad = prioridad,
++         stringsAsFactors = FALSE
++       ))
++     }
++   }
++   
++   # Ordenar por prioridad y OR máximo
++   resumen_general <- resumen_general[order(resumen_general$Prioridad, 
++                                          -as.numeric(resumen_general$OR_maximo)), ]
++   
++   print(resumen_general)
++   
++   cat("\n\n**Conclusiones principales:**\n")
++   cat("- Se analizaron", length(todos_resultados), "variables en total\n")
++   cat("- Variables con alta prioridad:", 
++       sum(resumen_general$Prioridad == "Alta"), "\n")
++   cat("- Variables con prioridad media:", 
++       sum(resumen_general$Prioridad == "Media"), "\n")
++   cat("- Se requiere intervención prioritaria en las variables de alta prioridad\n")
++   
++   return(todos_resultados)
++ }
+> 
+> # Ejecutar análisis completo
+> resultados_completos <- ejecutar_analisis_completo()
+# ANÁLISIS REORGANIZADO POR VARIABLE
+# Chi-cuadrado → Descripción → Odds Ratio
+# =====================================
+
+##  Variables sociodemográficas 
+
+
+### VARIABLE: EDAD_MESES_NINO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_meses_nino y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+  10 meses                  64      1   65
+  12 meses                 145      0  145
+  14 meses                  73      1   74
+  16 meses                  61      1   62
+  18 meses                  85      1   86
+  2 meses                   77      5   82
+  20 meses                  62      5   67
+  22 meses                  79      4   83
+  24 meses                  84      5   89
+  27 meses                  84      5   89
+  30 meses                  66      7   73
+  33 meses                  75      6   81
+  36 meses                  92     10  102
+  4 meses                   70     12   82
+  42 meses                  88      1   89
+  48 meses                  75     14   89
+  54 meses                  69     10   79
+  6 meses                   98      1   99
+  60 meses                  53      6   59
+  8 meses                   67      2   69
+  9 meses                   61      0   61
+  Sum                     1628     97 1725
+
+**Proporciones:**
+- 10 meses : 98.5% riesgo vs 1.5% desarrollo adecuado 
+- 12 meses : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 14 meses : 98.6% riesgo vs 1.4% desarrollo adecuado 
+- 16 meses : 98.4% riesgo vs 1.6% desarrollo adecuado 
+- 18 meses : 98.8% riesgo vs 1.2% desarrollo adecuado 
+- 2 meses : 93.9% riesgo vs 6.1% desarrollo adecuado 
+- 20 meses : 92.5% riesgo vs 7.5% desarrollo adecuado 
+- 22 meses : 95.2% riesgo vs 4.8% desarrollo adecuado 
+- 24 meses : 94.4% riesgo vs 5.6% desarrollo adecuado 
+- 27 meses : 94.4% riesgo vs 5.6% desarrollo adecuado 
+- 30 meses : 90.4% riesgo vs 9.6% desarrollo adecuado 
+- 33 meses : 92.6% riesgo vs 7.4% desarrollo adecuado 
+- 36 meses : 90.2% riesgo vs 9.8% desarrollo adecuado 
+- 4 meses : 85.4% riesgo vs 14.6% desarrollo adecuado 
+- 42 meses : 98.9% riesgo vs 1.1% desarrollo adecuado 
+- 48 meses : 84.3% riesgo vs 15.7% desarrollo adecuado 
+- 54 meses : 87.3% riesgo vs 12.7% desarrollo adecuado 
+- 6 meses : 99.0% riesgo vs 1.0% desarrollo adecuado 
+- 60 meses : 89.8% riesgo vs 10.2% desarrollo adecuado 
+- 8 meses : 97.1% riesgo vs 2.9% desarrollo adecuado 
+- 9 meses : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_meses_nino y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+  10 meses                  61      4   65
+  12 meses                 132     13  145
+  14 meses                  69      5   74
+  16 meses                  40     22   62
+  18 meses                  60     26   86
+  2 meses                   60     22   82
+  20 meses                  46     21   67
+  22 meses                  77      6   83
+  24 meses                  62     27   89
+  27 meses                  86      3   89
+  30 meses                  69      4   73
+  33 meses                  68     13   81
+  36 meses                  74     28  102
+  4 meses                   55     27   82
+  42 meses                  58     31   89
+  48 meses                  83      6   89
+  54 meses                  73      6   79
+  6 meses                   96      3   99
+  60 meses                  54      5   59
+  8 meses                   55     14   69
+  9 meses                   59      2   61
+  Sum                     1437    288 1725
+
+**Proporciones:**
+- 10 meses : 93.8% riesgo vs 6.2% desarrollo adecuado 
+- 12 meses : 91.0% riesgo vs 9.0% desarrollo adecuado 
+- 14 meses : 93.2% riesgo vs 6.8% desarrollo adecuado 
+- 16 meses : 64.5% riesgo vs 35.5% desarrollo adecuado 
+- 18 meses : 69.8% riesgo vs 30.2% desarrollo adecuado 
+- 2 meses : 73.2% riesgo vs 26.8% desarrollo adecuado 
+- 20 meses : 68.7% riesgo vs 31.3% desarrollo adecuado 
+- 22 meses : 92.8% riesgo vs 7.2% desarrollo adecuado 
+- 24 meses : 69.7% riesgo vs 30.3% desarrollo adecuado 
+- 27 meses : 96.6% riesgo vs 3.4% desarrollo adecuado 
+- 30 meses : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- 33 meses : 84.0% riesgo vs 16.0% desarrollo adecuado 
+- 36 meses : 72.5% riesgo vs 27.5% desarrollo adecuado 
+- 4 meses : 67.1% riesgo vs 32.9% desarrollo adecuado 
+- 42 meses : 65.2% riesgo vs 34.8% desarrollo adecuado 
+- 48 meses : 93.3% riesgo vs 6.7% desarrollo adecuado 
+- 54 meses : 92.4% riesgo vs 7.6% desarrollo adecuado 
+- 6 meses : 97.0% riesgo vs 3.0% desarrollo adecuado 
+- 60 meses : 91.5% riesgo vs 8.5% desarrollo adecuado 
+- 8 meses : 79.7% riesgo vs 20.3% desarrollo adecuado 
+- 9 meses : 96.7% riesgo vs 3.3% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_meses_nino y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+  10 meses                  49     16   65
+  12 meses                 137      8  145
+  14 meses                  69      5   74
+  16 meses                  54      8   62
+  18 meses                  66     20   86
+  2 meses                   77      5   82
+  20 meses                  59      8   67
+  22 meses                  79      4   83
+  24 meses                  75     14   89
+  27 meses                  87      2   89
+  30 meses                  70      3   73
+  33 meses                  78      3   81
+  36 meses                  99      3  102
+  4 meses                   73      9   82
+  42 meses                  85      4   89
+  48 meses                  86      3   89
+  54 meses                  78      1   79
+  6 meses                   97      2   99
+  60 meses                  58      1   59
+  8 meses                   44     25   69
+  9 meses                   57      4   61
+  Sum                     1577    148 1725
+
+**Proporciones:**
+- 10 meses : 75.4% riesgo vs 24.6% desarrollo adecuado 
+- 12 meses : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- 14 meses : 93.2% riesgo vs 6.8% desarrollo adecuado 
+- 16 meses : 87.1% riesgo vs 12.9% desarrollo adecuado 
+- 18 meses : 76.7% riesgo vs 23.3% desarrollo adecuado 
+- 2 meses : 93.9% riesgo vs 6.1% desarrollo adecuado 
+- 20 meses : 88.1% riesgo vs 11.9% desarrollo adecuado 
+- 22 meses : 95.2% riesgo vs 4.8% desarrollo adecuado 
+- 24 meses : 84.3% riesgo vs 15.7% desarrollo adecuado 
+- 27 meses : 97.8% riesgo vs 2.2% desarrollo adecuado 
+- 30 meses : 95.9% riesgo vs 4.1% desarrollo adecuado 
+- 33 meses : 96.3% riesgo vs 3.7% desarrollo adecuado 
+- 36 meses : 97.1% riesgo vs 2.9% desarrollo adecuado 
+- 4 meses : 89.0% riesgo vs 11.0% desarrollo adecuado 
+- 42 meses : 95.5% riesgo vs 4.5% desarrollo adecuado 
+- 48 meses : 96.6% riesgo vs 3.4% desarrollo adecuado 
+- 54 meses : 98.7% riesgo vs 1.3% desarrollo adecuado 
+- 6 meses : 98.0% riesgo vs 2.0% desarrollo adecuado 
+- 60 meses : 98.3% riesgo vs 1.7% desarrollo adecuado 
+- 8 meses : 63.8% riesgo vs 36.2% desarrollo adecuado 
+- 9 meses : 93.4% riesgo vs 6.6% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_meses_nino y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+  10 meses                  59      6   65
+  12 meses                 137      8  145
+  14 meses                  72      2   74
+  16 meses                  56      6   62
+  18 meses                  80      6   86
+  2 meses                   73      9   82
+  20 meses                  62      5   67
+  22 meses                  80      3   83
+  24 meses                  87      2   89
+  27 meses                  86      3   89
+  30 meses                  72      1   73
+  33 meses                  79      2   81
+  36 meses                  88     14  102
+  4 meses                   74      8   82
+  42 meses                  88      1   89
+  48 meses                  72     17   89
+  54 meses                  72      7   79
+  6 meses                   97      2   99
+  60 meses                  51      8   59
+  8 meses                   53     16   69
+  9 meses                   59      2   61
+  Sum                     1597    128 1725
+
+**Proporciones:**
+- 10 meses : 90.8% riesgo vs 9.2% desarrollo adecuado 
+- 12 meses : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- 14 meses : 97.3% riesgo vs 2.7% desarrollo adecuado 
+- 16 meses : 90.3% riesgo vs 9.7% desarrollo adecuado 
+- 18 meses : 93.0% riesgo vs 7.0% desarrollo adecuado 
+- 2 meses : 89.0% riesgo vs 11.0% desarrollo adecuado 
+- 20 meses : 92.5% riesgo vs 7.5% desarrollo adecuado 
+- 22 meses : 96.4% riesgo vs 3.6% desarrollo adecuado 
+- 24 meses : 97.8% riesgo vs 2.2% desarrollo adecuado 
+- 27 meses : 96.6% riesgo vs 3.4% desarrollo adecuado 
+- 30 meses : 98.6% riesgo vs 1.4% desarrollo adecuado 
+- 33 meses : 97.5% riesgo vs 2.5% desarrollo adecuado 
+- 36 meses : 86.3% riesgo vs 13.7% desarrollo adecuado 
+- 4 meses : 90.2% riesgo vs 9.8% desarrollo adecuado 
+- 42 meses : 98.9% riesgo vs 1.1% desarrollo adecuado 
+- 48 meses : 80.9% riesgo vs 19.1% desarrollo adecuado 
+- 54 meses : 91.1% riesgo vs 8.9% desarrollo adecuado 
+- 6 meses : 98.0% riesgo vs 2.0% desarrollo adecuado 
+- 60 meses : 86.4% riesgo vs 13.6% desarrollo adecuado 
+- 8 meses : 76.8% riesgo vs 23.2% desarrollo adecuado 
+- 9 meses : 96.7% riesgo vs 3.3% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_meses_nino y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+  10 meses                  64      1   65
+  12 meses                 144      1  145
+  14 meses                  69      5   74
+  16 meses                  62      0   62
+  18 meses                  86      0   86
+  2 meses                   70     12   82
+  20 meses                  59      8   67
+  22 meses                  72     11   83
+  24 meses                  79     10   89
+  27 meses                  86      3   89
+  30 meses                  69      4   73
+  33 meses                  79      2   81
+  36 meses                  88     14  102
+  4 meses                   77      5   82
+  42 meses                  84      5   89
+  48 meses                  88      1   89
+  54 meses                  71      8   79
+  6 meses                   93      6   99
+  60 meses                  41     18   59
+  8 meses                   60      9   69
+  9 meses                   59      2   61
+  Sum                     1600    125 1725
+
+**Proporciones:**
+- 10 meses : 98.5% riesgo vs 1.5% desarrollo adecuado 
+- 12 meses : 99.3% riesgo vs 0.7% desarrollo adecuado 
+- 14 meses : 93.2% riesgo vs 6.8% desarrollo adecuado 
+- 16 meses : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 18 meses : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 2 meses : 85.4% riesgo vs 14.6% desarrollo adecuado 
+- 20 meses : 88.1% riesgo vs 11.9% desarrollo adecuado 
+- 22 meses : 86.7% riesgo vs 13.3% desarrollo adecuado 
+- 24 meses : 88.8% riesgo vs 11.2% desarrollo adecuado 
+- 27 meses : 96.6% riesgo vs 3.4% desarrollo adecuado 
+- 30 meses : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- 33 meses : 97.5% riesgo vs 2.5% desarrollo adecuado 
+- 36 meses : 86.3% riesgo vs 13.7% desarrollo adecuado 
+- 4 meses : 93.9% riesgo vs 6.1% desarrollo adecuado 
+- 42 meses : 94.4% riesgo vs 5.6% desarrollo adecuado 
+- 48 meses : 98.9% riesgo vs 1.1% desarrollo adecuado 
+- 54 meses : 89.9% riesgo vs 10.1% desarrollo adecuado 
+- 6 meses : 93.9% riesgo vs 6.1% desarrollo adecuado 
+- 60 meses : 69.5% riesgo vs 30.5% desarrollo adecuado 
+- 8 meses : 87.0% riesgo vs 13.0% desarrollo adecuado 
+- 9 meses : 96.7% riesgo vs 3.3% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+### RESUMEN: EDAD_MESES_NINO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            - < 0.001  -     -
+motricidad_gruesa          Motricidad gruesa            - < 0.001  -     -
+motricidad_fina              Motricidad fina            - < 0.001  -     -
+resolucion_problemas Resolución de problemas            - < 0.001  -     -
+socio_individual            Socio-individual            - < 0.001  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               Sí
+motricidad_fina                 Sí
+resolucion_problemas            Sí
+socio_individual                Sí
+
+**Conclusión clínica:**
+edad_meses_nino afecta significativamente 5 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: GRUPO_ETNICO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 2.73 , gl = 1 , p = 0.098 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre grupo_etnico y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 0.39 , gl = 1 , p = 0.533 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre grupo_etnico y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.89 , gl = 1 , p = 0.169 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre grupo_etnico y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 4.57 , gl = 1 , p = 0.033 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre grupo_etnico y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.57 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.033 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+             
+              Desarrollo adecuado Riesgo  Sum
+  Indígena                    674     67  741
+  No indígena                 923     61  984
+  Sum                        1597    128 1725
+
+**Proporciones:**
+- Indígena : 91.0% riesgo vs 9.0% desarrollo adecuado 
+- No indígena : 93.8% riesgo vs 6.2% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 0.66 (IC 95%: 0.46 - 0.95 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Resolución de problemas es 1.50 veces menor
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 4.90 , gl = 1 , p = 0.027 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre grupo_etnico y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.90 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.027 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+             
+              Desarrollo adecuado Riesgo  Sum
+  Indígena                    675     66  741
+  No indígena                 925     59  984
+  Sum                        1600    125 1725
+
+**Proporciones:**
+- Indígena : 91.1% riesgo vs 8.9% desarrollo adecuado 
+- No indígena : 94.0% riesgo vs 6.0% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 0.65 (IC 95%: 0.45 - 0.94 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Socio-individual es 1.53 veces menor
+
+### RESUMEN: GRUPO_ETNICO 
+
+                                     Dominio Chi_cuadrado p_valor   OR
+comunicacion                    Comunicación         2.73   0.098    -
+motricidad_gruesa          Motricidad gruesa         0.39   0.533    -
+motricidad_fina              Motricidad fina         1.89   0.169    -
+resolucion_problemas Resolución de problemas         4.57   0.033 0.66
+socio_individual            Socio-individual         4.90   0.027 0.65
+                         IC_95 Significativo
+comunicacion                 -            No
+motricidad_gruesa            -            No
+motricidad_fina              -            No
+resolucion_problemas 0.46-0.95            Sí
+socio_individual     0.45-0.94            Sí
+
+**Conclusión clínica:**
+grupo_etnico afecta significativamente 2 de 5 dominios del neurodesarrollo, con mayor impacto en Resolución de problemas (OR = 0.66 ).
+
+
+### VARIABLE: AREA_RESIDENCIA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 8.70 , gl = 1 , p = 0.003 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 8.70 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.003 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  232     25  257
+  Urbano                1396     72 1468
+  Sum                   1628     97 1725
+
+**Proporciones:**
+- Rural : 90.3% riesgo vs 9.7% desarrollo adecuado 
+- Urbano : 95.1% riesgo vs 4.9% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 0.48 (IC 95%: 0.30 - 0.77 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Comunicación es 2.09 veces menor
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 12.62 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 12.62 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  194     63  257
+  Urbano                1243    225 1468
+  Sum                   1437    288 1725
+
+**Proporciones:**
+- Rural : 75.5% riesgo vs 24.5% desarrollo adecuado 
+- Urbano : 84.7% riesgo vs 15.3% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 0.56 (IC 95%: 0.41 - 0.77 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Motricidad gruesa es 1.79 veces menor
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.73 , gl = 1 , p = 0.188 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre area_residencia y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 25.13 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 25.13 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  218     39  257
+  Urbano                1379     89 1468
+  Sum                   1597    128 1725
+
+**Proporciones:**
+- Rural : 84.8% riesgo vs 15.2% desarrollo adecuado 
+- Urbano : 93.9% riesgo vs 6.1% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 0.36 (IC 95%: 0.24 - 0.54 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Resolución de problemas es 2.77 veces menor
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 15.06 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 15.06 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  223     34  257
+  Urbano                1377     91 1468
+  Sum                   1600    125 1725
+
+**Proporciones:**
+- Rural : 86.8% riesgo vs 13.2% desarrollo adecuado 
+- Urbano : 93.8% riesgo vs 6.2% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 0.43 (IC 95%: 0.29 - 0.66 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Socio-individual es 2.31 veces menor
+
+### RESUMEN: AREA_RESIDENCIA 
+
+                                     Dominio Chi_cuadrado p_valor   OR
+comunicacion                    Comunicación         8.70   0.003 0.48
+motricidad_gruesa          Motricidad gruesa        12.62 < 0.001 0.56
+motricidad_fina              Motricidad fina         1.73   0.188    -
+resolucion_problemas Resolución de problemas        25.13 < 0.001 0.36
+socio_individual            Socio-individual        15.06 < 0.001 0.43
+                         IC_95 Significativo
+comunicacion         0.30-0.77            Sí
+motricidad_gruesa    0.41-0.77            Sí
+motricidad_fina              -            No
+resolucion_problemas 0.24-0.54            Sí
+socio_individual     0.29-0.66            Sí
+
+**Conclusión clínica:**
+area_residencia afecta significativamente 4 de 5 dominios del neurodesarrollo, con mayor impacto en Motricidad gruesa (OR = 0.56 ).
+
+
+### VARIABLE: SEXO_JEFE_HOGAR 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.83 , gl = 1 , p = 0.363 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre sexo_jefe_hogar y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 1.07 , gl = 1 , p = 0.301 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre sexo_jefe_hogar y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.88 , gl = 1 , p = 0.170 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre sexo_jefe_hogar y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.08 , gl = 1 , p = 0.782 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre sexo_jefe_hogar y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 0.05 , gl = 1 , p = 0.816 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre sexo_jefe_hogar y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: SEXO_JEFE_HOGAR 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.83   0.363  -     -
+motricidad_gruesa          Motricidad gruesa         1.07   0.301  -     -
+motricidad_fina              Motricidad fina         1.88   0.170  -     -
+resolucion_problemas Resolución de problemas         0.08   0.782  -     -
+socio_individual            Socio-individual         0.05   0.816  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+sexo_jefe_hogar afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+##  Variables educativas 
+
+
+### VARIABLE: NIVEL_EDUCATIVO_MADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.014 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.014 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 12      2   14
+  Básico                        485     21  506
+  Diversificado                 660     40  700
+  Ninguna                        54      9   63
+  Primaria                      293     21  314
+  Universitario                 124      4  128
+  Sum                          1628     97 1725
+
+**Proporciones:**
+-  : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- Básico : 95.8% riesgo vs 4.2% desarrollo adecuado 
+- Diversificado : 94.3% riesgo vs 5.7% desarrollo adecuado 
+- Ninguna : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- Primaria : 93.3% riesgo vs 6.7% desarrollo adecuado 
+- Universitario : 96.9% riesgo vs 3.1% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.018 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.018 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 11      3   14
+  Básico                        417     89  506
+  Diversificado                 583    117  700
+  Ninguna                        46     17   63
+  Primaria                      262     52  314
+  Universitario                 118     10  128
+  Sum                          1437    288 1725
+
+**Proporciones:**
+-  : 78.6% riesgo vs 21.4% desarrollo adecuado 
+- Básico : 82.4% riesgo vs 17.6% desarrollo adecuado 
+- Diversificado : 83.3% riesgo vs 16.7% desarrollo adecuado 
+- Ninguna : 73.0% riesgo vs 27.0% desarrollo adecuado 
+- Primaria : 83.4% riesgo vs 16.6% desarrollo adecuado 
+- Universitario : 92.2% riesgo vs 7.8% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.005 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.005 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 12      2   14
+  Básico                        459     47  506
+  Diversificado                 655     45  700
+  Ninguna                        51     12   63
+  Primaria                      279     35  314
+  Universitario                 121      7  128
+  Sum                          1577    148 1725
+
+**Proporciones:**
+-  : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- Básico : 90.7% riesgo vs 9.3% desarrollo adecuado 
+- Diversificado : 93.6% riesgo vs 6.4% desarrollo adecuado 
+- Ninguna : 81.0% riesgo vs 19.0% desarrollo adecuado 
+- Primaria : 88.9% riesgo vs 11.1% desarrollo adecuado 
+- Universitario : 94.5% riesgo vs 5.5% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.005 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.005 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 10      4   14
+  Básico                        478     28  506
+  Diversificado                 640     60  700
+  Ninguna                        55      8   63
+  Primaria                      290     24  314
+  Universitario                 124      4  128
+  Sum                          1597    128 1725
+
+**Proporciones:**
+-  : 71.4% riesgo vs 28.6% desarrollo adecuado 
+- Básico : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- Diversificado : 91.4% riesgo vs 8.6% desarrollo adecuado 
+- Ninguna : 87.3% riesgo vs 12.7% desarrollo adecuado 
+- Primaria : 92.4% riesgo vs 7.6% desarrollo adecuado 
+- Universitario : 96.9% riesgo vs 3.1% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.006 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.006 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 12      2   14
+  Básico                        481     25  506
+  Diversificado                 649     51  700
+  Ninguna                        52     11   63
+  Primaria                      285     29  314
+  Universitario                 121      7  128
+  Sum                          1600    125 1725
+
+**Proporciones:**
+-  : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- Básico : 95.1% riesgo vs 4.9% desarrollo adecuado 
+- Diversificado : 92.7% riesgo vs 7.3% desarrollo adecuado 
+- Ninguna : 82.5% riesgo vs 17.5% desarrollo adecuado 
+- Primaria : 90.8% riesgo vs 9.2% desarrollo adecuado 
+- Universitario : 94.5% riesgo vs 5.5% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+### RESUMEN: NIVEL_EDUCATIVO_MADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.014  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.018  -     -
+motricidad_fina              Motricidad fina            -   0.005  -     -
+resolucion_problemas Resolución de problemas            -   0.005  -     -
+socio_individual            Socio-individual            -   0.006  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               Sí
+motricidad_fina                 Sí
+resolucion_problemas            Sí
+socio_individual                Sí
+
+**Conclusión clínica:**
+nivel_educativo_madre afecta significativamente 5 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: NIVEL_EDUCATIVO_PADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.034 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_padre y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.034 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 44      8   52
+  Básico                        366     14  380
+  Diversificado                 767     44  811
+  Ninguna                        46      4   50
+  Primaria                      243     17  260
+  Universitario                 162     10  172
+  Sum                          1628     97 1725
+
+**Proporciones:**
+-  : 84.6% riesgo vs 15.4% desarrollo adecuado 
+- Básico : 96.3% riesgo vs 3.7% desarrollo adecuado 
+- Diversificado : 94.6% riesgo vs 5.4% desarrollo adecuado 
+- Ninguna : 92.0% riesgo vs 8.0% desarrollo adecuado 
+- Primaria : 93.5% riesgo vs 6.5% desarrollo adecuado 
+- Universitario : 94.2% riesgo vs 5.8% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 10.55 , gl = 5 , p = 0.061 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre nivel_educativo_padre y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 17.07 , gl = 5 , p = 0.004 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_padre y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 17.07 con 5 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.004 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 41     11   52
+  Básico                        350     30  380
+  Diversificado                 754     57  811
+  Ninguna                        45      5   50
+  Primaria                      229     31  260
+  Universitario                 158     14  172
+  Sum                          1577    148 1725
+
+**Proporciones:**
+-  : 78.8% riesgo vs 21.2% desarrollo adecuado 
+- Básico : 92.1% riesgo vs 7.9% desarrollo adecuado 
+- Diversificado : 93.0% riesgo vs 7.0% desarrollo adecuado 
+- Ninguna : 90.0% riesgo vs 10.0% desarrollo adecuado 
+- Primaria : 88.1% riesgo vs 11.9% desarrollo adecuado 
+- Universitario : 91.9% riesgo vs 8.1% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 38.80 , gl = 5 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_padre y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 38.80 con 5 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 37     15   52
+  Básico                        359     21  380
+  Diversificado                 754     57  811
+  Ninguna                        44      6   50
+  Primaria                      242     18  260
+  Universitario                 161     11  172
+  Sum                          1597    128 1725
+
+**Proporciones:**
+-  : 71.2% riesgo vs 28.8% desarrollo adecuado 
+- Básico : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- Diversificado : 93.0% riesgo vs 7.0% desarrollo adecuado 
+- Ninguna : 88.0% riesgo vs 12.0% desarrollo adecuado 
+- Primaria : 93.1% riesgo vs 6.9% desarrollo adecuado 
+- Universitario : 93.6% riesgo vs 6.4% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.295 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre nivel_educativo_padre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: NIVEL_EDUCATIVO_PADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.034  -     -
+motricidad_gruesa          Motricidad gruesa        10.55   0.061  -     -
+motricidad_fina              Motricidad fina        17.07   0.004  -     -
+resolucion_problemas Resolución de problemas        38.80 < 0.001  -     -
+socio_individual            Socio-individual            -   0.295  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               No
+motricidad_fina                 Sí
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+nivel_educativo_padre afecta significativamente 3 de 5 dominios del neurodesarrollo
+
+##  Variables socioeconómicas 
+
+
+### VARIABLE: SITUACION_LABORAL_MADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.174 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_madre y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.377 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_madre y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.357 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_madre y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.113 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_madre y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.253 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_madre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: SITUACION_LABORAL_MADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.174  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.377  -     -
+motricidad_fina              Motricidad fina            -   0.357  -     -
+resolucion_problemas Resolución de problemas            -   0.113  -     -
+socio_individual            Socio-individual            -   0.253  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+situacion_laboral_madre afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: SITUACION_LABORAL_PADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 5.02 , gl = 2 , p = 0.081 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_padre y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 8.73 , gl = 2 , p = 0.013 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre situacion_laboral_padre y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 8.73 con 2 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.013 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+            
+             Desarrollo adecuado Riesgo  Sum
+                              40      9   49
+  No trabaja                 117     39  156
+  Trabaja                   1280    240 1520
+  Sum                       1437    288 1725
+
+**Proporciones:**
+-  : 81.6% riesgo vs 18.4% desarrollo adecuado 
+- No trabaja : 75.0% riesgo vs 25.0% desarrollo adecuado 
+- Trabaja : 84.2% riesgo vs 15.8% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 9.73 , gl = 2 , p = 0.008 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre situacion_laboral_padre y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 9.73 con 2 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.008 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+            
+             Desarrollo adecuado Riesgo  Sum
+                              39     10   49
+  No trabaja                 146     10  156
+  Trabaja                   1392    128 1520
+  Sum                       1577    148 1725
+
+**Proporciones:**
+-  : 79.6% riesgo vs 20.4% desarrollo adecuado 
+- No trabaja : 93.6% riesgo vs 6.4% desarrollo adecuado 
+- Trabaja : 91.6% riesgo vs 8.4% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 33.04 , gl = 2 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre situacion_laboral_padre y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 33.04 con 2 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+            
+             Desarrollo adecuado Riesgo  Sum
+                              35     14   49
+  No trabaja                 144     12  156
+  Trabaja                   1418    102 1520
+  Sum                       1597    128 1725
+
+**Proporciones:**
+-  : 71.4% riesgo vs 28.6% desarrollo adecuado 
+- No trabaja : 92.3% riesgo vs 7.7% desarrollo adecuado 
+- Trabaja : 93.3% riesgo vs 6.7% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.303 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre situacion_laboral_padre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: SITUACION_LABORAL_PADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         5.02   0.081  -     -
+motricidad_gruesa          Motricidad gruesa         8.73   0.013  -     -
+motricidad_fina              Motricidad fina         9.73   0.008  -     -
+resolucion_problemas Resolución de problemas        33.04 < 0.001  -     -
+socio_individual            Socio-individual            -   0.303  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               Sí
+motricidad_fina                 Sí
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+situacion_laboral_padre afecta significativamente 3 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TIPO_EMPLEO_MADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 4.98 , gl = 2 , p = 0.083 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_madre y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 3.37 , gl = 2 , p = 0.186 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_madre y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 0.80 , gl = 2 , p = 0.672 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_madre y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.28 , gl = 2 , p = 0.871 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_madre y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 3.02 , gl = 2 , p = 0.220 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_madre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TIPO_EMPLEO_MADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         4.98   0.083  -     -
+motricidad_gruesa          Motricidad gruesa         3.37   0.186  -     -
+motricidad_fina              Motricidad fina         0.80   0.672  -     -
+resolucion_problemas Resolución de problemas         0.28   0.871  -     -
+socio_individual            Socio-individual         3.02   0.220  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+tipo_empleo_madre afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TIPO_EMPLEO_PADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 3.47 , gl = 2 , p = 0.177 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_padre y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 7.62 , gl = 2 , p = 0.022 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_empleo_padre y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 7.62 con 2 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.022 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+                           157     48  205
+  Formal                   891    165 1056
+  Informal                 389     75  464
+  Sum                     1437    288 1725
+
+**Proporciones:**
+-  : 76.6% riesgo vs 23.4% desarrollo adecuado 
+- Formal : 84.4% riesgo vs 15.6% desarrollo adecuado 
+- Informal : 83.8% riesgo vs 16.2% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 0.41 , gl = 2 , p = 0.814 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_padre y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 9.54 , gl = 2 , p = 0.008 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_empleo_padre y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 9.54 con 2 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.008 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+          
+           Desarrollo adecuado Riesgo  Sum
+                           179     26  205
+  Formal                   987     69 1056
+  Informal                 431     33  464
+  Sum                     1597    128 1725
+
+**Proporciones:**
+-  : 87.3% riesgo vs 12.7% desarrollo adecuado 
+- Formal : 93.5% riesgo vs 6.5% desarrollo adecuado 
+- Informal : 92.9% riesgo vs 7.1% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 2.03 , gl = 2 , p = 0.363 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_empleo_padre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TIPO_EMPLEO_PADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         3.47   0.177  -     -
+motricidad_gruesa          Motricidad gruesa         7.62   0.022  -     -
+motricidad_fina              Motricidad fina         0.41   0.814  -     -
+resolucion_problemas Resolución de problemas         9.54   0.008  -     -
+socio_individual            Socio-individual         2.03   0.363  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               Sí
+motricidad_fina                 No
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+tipo_empleo_padre afecta significativamente 2 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: SEGURO_SOCIAL 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.46 , gl = 1 , p = 0.496 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 0.06 , gl = 1 , p = 0.807 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 2.00 , gl = 1 , p = 0.158 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 0.962 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: SEGURO_SOCIAL 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.46   0.496  -     -
+motricidad_gruesa          Motricidad gruesa         0.06   0.807  -     -
+motricidad_fina              Motricidad fina         2.00   0.158  -     -
+resolucion_problemas Resolución de problemas         0.00   0.962  -     -
+socio_individual            Socio-individual         0.00   1.000  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+seguro_social afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: PROPIEDAD_VIVIENDA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 1.99 , gl = 1 , p = 0.158 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre propiedad_vivienda y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 2.16 , gl = 1 , p = 0.142 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre propiedad_vivienda y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 0.62 , gl = 1 , p = 0.430 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre propiedad_vivienda y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.01 , gl = 1 , p = 0.926 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre propiedad_vivienda y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre propiedad_vivienda y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: PROPIEDAD_VIVIENDA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         1.99   0.158  -     -
+motricidad_gruesa          Motricidad gruesa         2.16   0.142  -     -
+motricidad_fina              Motricidad fina         0.62   0.430  -     -
+resolucion_problemas Resolución de problemas         0.01   0.926  -     -
+socio_individual            Socio-individual         0.00   1.000  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+propiedad_vivienda afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+##  Variables de vivienda y servicios 
+
+
+### VARIABLE: FUENTE_AGUA_CONSUMO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.194 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre fuente_agua_consumo y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.279 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre fuente_agua_consumo y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.030 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre fuente_agua_consumo y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.030 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+                                 
+                                  Desarrollo adecuado Riesgo  Sum
+  Chorro público                                  126     16  142
+  Pozo público o privado                           13      5   18
+  Red de tubería                                 1435    127 1562
+  Río, lago, tonel, camión y otro                   3      0    3
+  Sum                                            1577    148 1725
+
+**Proporciones:**
+- Chorro público : 88.7% riesgo vs 11.3% desarrollo adecuado 
+- Pozo público o privado : 72.2% riesgo vs 27.8% desarrollo adecuado 
+- Red de tubería : 91.9% riesgo vs 8.1% desarrollo adecuado 
+- Río, lago, tonel, camión y otro : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.082 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre fuente_agua_consumo y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.231 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre fuente_agua_consumo y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: FUENTE_AGUA_CONSUMO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.194  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.279  -     -
+motricidad_fina              Motricidad fina            -   0.030  -     -
+resolucion_problemas Resolución de problemas            -   0.082  -     -
+socio_individual            Socio-individual            -   0.231  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 Sí
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+fuente_agua_consumo afecta significativamente 1 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TIPO_SANITARIO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.839 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_sanitario y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_sanitario y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_sanitario y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.153 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_sanitario y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.070 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_sanitario y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TIPO_SANITARIO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.839  -     -
+motricidad_gruesa          Motricidad gruesa            -   1.000  -     -
+motricidad_fina              Motricidad fina            -   1.000  -     -
+resolucion_problemas Resolución de problemas            -   0.153  -     -
+socio_individual            Socio-individual            -   0.070  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+tipo_sanitario afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: MANEJO_BASURA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.031 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre manejo_basura y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.031 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+                              
+                               Desarrollo adecuado Riesgo  Sum
+  La entierra                                    6      2    8
+  La quema                                     203     20  223
+  La tira en cualquier lugar                     9      0    9
+  Otra                                           3      0    3
+  Servicio municipal o privado                1407     75 1482
+  Sum                                         1628     97 1725
+
+**Proporciones:**
+- La entierra : 75.0% riesgo vs 25.0% desarrollo adecuado 
+- La quema : 91.0% riesgo vs 9.0% desarrollo adecuado 
+- La tira en cualquier lugar : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Otra : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Servicio municipal o privado : 94.9% riesgo vs 5.1% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.673 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre manejo_basura y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.375 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre manejo_basura y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.033 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre manejo_basura y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.033 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+                              
+                               Desarrollo adecuado Riesgo  Sum
+  La entierra                                    7      1    8
+  La quema                                     195     28  223
+  La tira en cualquier lugar                     9      0    9
+  Otra                                           3      0    3
+  Servicio municipal o privado                1383     99 1482
+  Sum                                         1597    128 1725
+
+**Proporciones:**
+- La entierra : 87.5% riesgo vs 12.5% desarrollo adecuado 
+- La quema : 87.4% riesgo vs 12.6% desarrollo adecuado 
+- La tira en cualquier lugar : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Otra : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Servicio municipal o privado : 93.3% riesgo vs 6.7% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.121 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre manejo_basura y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: MANEJO_BASURA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.031  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.673  -     -
+motricidad_fina              Motricidad fina            -   0.375  -     -
+resolucion_problemas Resolución de problemas            -   0.033  -     -
+socio_individual            Socio-individual            -   0.121  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+manejo_basura afecta significativamente 2 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TIPO_ENERGIA_LUZ 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 1358.82 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_energia_luz y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 1358.82 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+           
+            Desarrollo adecuado Riesgo  Sum
+  Eléctrico                1628     97 1725
+  Sum                      1628     97 1725
+
+**Proporciones:**
+- Eléctrico : 94.4% riesgo vs 5.6% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 765.33 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_energia_luz y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 765.33 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+           
+            Desarrollo adecuado Riesgo  Sum
+  Eléctrico                1437    288 1725
+  Sum                      1437    288 1725
+
+**Proporciones:**
+- Eléctrico : 83.3% riesgo vs 16.7% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1183.79 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_energia_luz y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 1183.79 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+           
+            Desarrollo adecuado Riesgo  Sum
+  Eléctrico                1577    148 1725
+  Sum                      1577    148 1725
+
+**Proporciones:**
+- Eléctrico : 91.4% riesgo vs 8.6% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 1250.99 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_energia_luz y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 1250.99 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+           
+            Desarrollo adecuado Riesgo  Sum
+  Eléctrico                1597    128 1725
+  Sum                      1597    128 1725
+
+**Proporciones:**
+- Eléctrico : 92.6% riesgo vs 7.4% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 1261.23 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre tipo_energia_luz y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 1261.23 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+           
+            Desarrollo adecuado Riesgo  Sum
+  Eléctrico                1600    125 1725
+  Sum                      1600    125 1725
+
+**Proporciones:**
+- Eléctrico : 92.8% riesgo vs 7.2% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+### RESUMEN: TIPO_ENERGIA_LUZ 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación      1358.82 < 0.001  -     -
+motricidad_gruesa          Motricidad gruesa       765.33 < 0.001  -     -
+motricidad_fina              Motricidad fina      1183.79 < 0.001  -     -
+resolucion_problemas Resolución de problemas      1250.99 < 0.001  -     -
+socio_individual            Socio-individual      1261.23 < 0.001  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               Sí
+motricidad_fina                 Sí
+resolucion_problemas            Sí
+socio_individual                Sí
+
+**Conclusión clínica:**
+tipo_energia_luz afecta significativamente 5 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TIPO_ENERGIA_COCINA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.483 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_energia_cocina y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.610 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_energia_cocina y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.330 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_energia_cocina y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.149 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_energia_cocina y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.302 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_energia_cocina y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TIPO_ENERGIA_COCINA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.483  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.610  -     -
+motricidad_fina              Motricidad fina            -   0.330  -     -
+resolucion_problemas Resolución de problemas            -   0.149  -     -
+socio_individual            Socio-individual            -   0.302  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+tipo_energia_cocina afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+##  Variables familiares 
+
+
+### VARIABLE: EDAD_ANOS_MADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.191 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_madre y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.468 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_madre y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.266 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_madre y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.002 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_anos_madre y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.002 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  14                    2      0    2
+  15                    1      1    2
+  16                    1      0    1
+  17                   15      1   16
+  18                   23      2   25
+  19                   54      4   58
+  20                   49      3   52
+  21                   52     10   62
+  22                  104     12  116
+  23                   78      4   82
+  24                   96      4  100
+  25                  104      9  113
+  26                  107      4  111
+  27                   94      2   96
+  28                  115     10  125
+  29                   93     10  103
+  30                  107      9  116
+  31                   95      3   98
+  32                   59     11   70
+  33                   88      0   88
+  34                   55      6   61
+  35                   41      5   46
+  36                   51      5   56
+  37                   24      4   28
+  38                   31      3   34
+  39                   16      0   16
+  40                   15      0   15
+  41                    3      1    4
+  42                    5      1    6
+  43                    1      1    2
+  44                    4      0    4
+  45                    2      1    3
+  47                    2      0    2
+  49                    1      0    1
+  Sum                1588    126 1714
+
+**Proporciones:**
+- 14 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 15 : 50.0% riesgo vs 50.0% desarrollo adecuado 
+- 16 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 17 : 93.8% riesgo vs 6.2% desarrollo adecuado 
+- 18 : 92.0% riesgo vs 8.0% desarrollo adecuado 
+- 19 : 93.1% riesgo vs 6.9% desarrollo adecuado 
+- 20 : 94.2% riesgo vs 5.8% desarrollo adecuado 
+- 21 : 83.9% riesgo vs 16.1% desarrollo adecuado 
+- 22 : 89.7% riesgo vs 10.3% desarrollo adecuado 
+- 23 : 95.1% riesgo vs 4.9% desarrollo adecuado 
+- 24 : 96.0% riesgo vs 4.0% desarrollo adecuado 
+- 25 : 92.0% riesgo vs 8.0% desarrollo adecuado 
+- 26 : 96.4% riesgo vs 3.6% desarrollo adecuado 
+- 27 : 97.9% riesgo vs 2.1% desarrollo adecuado 
+- 28 : 92.0% riesgo vs 8.0% desarrollo adecuado 
+- 29 : 90.3% riesgo vs 9.7% desarrollo adecuado 
+- 30 : 92.2% riesgo vs 7.8% desarrollo adecuado 
+- 31 : 96.9% riesgo vs 3.1% desarrollo adecuado 
+- 32 : 84.3% riesgo vs 15.7% desarrollo adecuado 
+- 33 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 34 : 90.2% riesgo vs 9.8% desarrollo adecuado 
+- 35 : 89.1% riesgo vs 10.9% desarrollo adecuado 
+- 36 : 91.1% riesgo vs 8.9% desarrollo adecuado 
+- 37 : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- 38 : 91.2% riesgo vs 8.8% desarrollo adecuado 
+- 39 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 40 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 41 : 75.0% riesgo vs 25.0% desarrollo adecuado 
+- 42 : 83.3% riesgo vs 16.7% desarrollo adecuado 
+- 43 : 50.0% riesgo vs 50.0% desarrollo adecuado 
+- 44 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 45 : 66.7% riesgo vs 33.3% desarrollo adecuado 
+- 47 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 49 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.554 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_madre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: EDAD_ANOS_MADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.191  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.468  -     -
+motricidad_fina              Motricidad fina            -   0.266  -     -
+resolucion_problemas Resolución de problemas            -   0.002  -     -
+socio_individual            Socio-individual            -   0.554  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+edad_anos_madre afecta significativamente 1 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: EDAD_ANOS_PADRE 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.434 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_padre y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.038 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre edad_anos_padre y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.038 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  17                    1      1    2
+  18                   14      4   18
+  19                   19      1   20
+  20                   34     10   44
+  21                   30     17   47
+  22                   45      8   53
+  23                   55     13   68
+  24                   77     15   92
+  25                   71      7   78
+  26                   85      9   94
+  27                   90     15  105
+  28                   78     16   94
+  29                   74     12   86
+  30                   78     16   94
+  31                   65     13   78
+  32                   70     13   83
+  33                   85      7   92
+  34                   60     23   83
+  35                   63     18   81
+  36                   38     12   50
+  37                   57     11   68
+  38                   42      8   50
+  39                   34      9   43
+  40                   37      3   40
+  41                   15      4   19
+  42                   14      4   18
+  43                   16      2   18
+  44                   10      1   11
+  45                   12      2   14
+  46                    7      1    8
+  47                    6      0    6
+  48                    4      1    5
+  49                    3      0    3
+  50                    3      1    4
+  53                    0      1    1
+  54                    1      0    1
+  55                    1      0    1
+  59                    1      0    1
+  66                    1      0    1
+  Sum                1396    278 1674
+
+**Proporciones:**
+- 17 : 50.0% riesgo vs 50.0% desarrollo adecuado 
+- 18 : 77.8% riesgo vs 22.2% desarrollo adecuado 
+- 19 : 95.0% riesgo vs 5.0% desarrollo adecuado 
+- 20 : 77.3% riesgo vs 22.7% desarrollo adecuado 
+- 21 : 63.8% riesgo vs 36.2% desarrollo adecuado 
+- 22 : 84.9% riesgo vs 15.1% desarrollo adecuado 
+- 23 : 80.9% riesgo vs 19.1% desarrollo adecuado 
+- 24 : 83.7% riesgo vs 16.3% desarrollo adecuado 
+- 25 : 91.0% riesgo vs 9.0% desarrollo adecuado 
+- 26 : 90.4% riesgo vs 9.6% desarrollo adecuado 
+- 27 : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- 28 : 83.0% riesgo vs 17.0% desarrollo adecuado 
+- 29 : 86.0% riesgo vs 14.0% desarrollo adecuado 
+- 30 : 83.0% riesgo vs 17.0% desarrollo adecuado 
+- 31 : 83.3% riesgo vs 16.7% desarrollo adecuado 
+- 32 : 84.3% riesgo vs 15.7% desarrollo adecuado 
+- 33 : 92.4% riesgo vs 7.6% desarrollo adecuado 
+- 34 : 72.3% riesgo vs 27.7% desarrollo adecuado 
+- 35 : 77.8% riesgo vs 22.2% desarrollo adecuado 
+- 36 : 76.0% riesgo vs 24.0% desarrollo adecuado 
+- 37 : 83.8% riesgo vs 16.2% desarrollo adecuado 
+- 38 : 84.0% riesgo vs 16.0% desarrollo adecuado 
+- 39 : 79.1% riesgo vs 20.9% desarrollo adecuado 
+- 40 : 92.5% riesgo vs 7.5% desarrollo adecuado 
+- 41 : 78.9% riesgo vs 21.1% desarrollo adecuado 
+- 42 : 77.8% riesgo vs 22.2% desarrollo adecuado 
+- 43 : 88.9% riesgo vs 11.1% desarrollo adecuado 
+- 44 : 90.9% riesgo vs 9.1% desarrollo adecuado 
+- 45 : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- 46 : 87.5% riesgo vs 12.5% desarrollo adecuado 
+- 47 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 48 : 80.0% riesgo vs 20.0% desarrollo adecuado 
+- 49 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 50 : 75.0% riesgo vs 25.0% desarrollo adecuado 
+- 53 : 0.0% riesgo vs 100.0% desarrollo adecuado 
+- 54 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 55 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 59 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 66 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.532 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_padre y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.072 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_padre y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.679 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre edad_anos_padre y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: EDAD_ANOS_PADRE 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.434  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.038  -     -
+motricidad_fina              Motricidad fina            -   0.532  -     -
+resolucion_problemas Resolución de problemas            -   0.072  -     -
+socio_individual            Socio-individual            -   0.679  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               Sí
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+edad_anos_padre afecta significativamente 1 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TOTAL_PERSONAS_HOGAR 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.134 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_personas_hogar y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.551 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_personas_hogar y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.156 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_personas_hogar y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.042 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre total_personas_hogar y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.042 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  3                   364     26  390
+  4                   339     22  361
+  5                   306     21  327
+  6                   223     23  246
+  7                   150     18  168
+  8                    94      7  101
+  9                    43      3   46
+  10                   21      1   22
+  11                   30      1   31
+  12                    7      0    7
+  13                    7      4   11
+  15                    5      0    5
+  16                    3      1    4
+  17                    1      0    1
+  20                    4      0    4
+  25                    0      1    1
+  Sum                1597    128 1725
+
+**Proporciones:**
+- 3 : 93.3% riesgo vs 6.7% desarrollo adecuado 
+- 4 : 93.9% riesgo vs 6.1% desarrollo adecuado 
+- 5 : 93.6% riesgo vs 6.4% desarrollo adecuado 
+- 6 : 90.7% riesgo vs 9.3% desarrollo adecuado 
+- 7 : 89.3% riesgo vs 10.7% desarrollo adecuado 
+- 8 : 93.1% riesgo vs 6.9% desarrollo adecuado 
+- 9 : 93.5% riesgo vs 6.5% desarrollo adecuado 
+- 10 : 95.5% riesgo vs 4.5% desarrollo adecuado 
+- 11 : 96.8% riesgo vs 3.2% desarrollo adecuado 
+- 12 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 13 : 63.6% riesgo vs 36.4% desarrollo adecuado 
+- 15 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 16 : 75.0% riesgo vs 25.0% desarrollo adecuado 
+- 17 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 20 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 25 : 0.0% riesgo vs 100.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.556 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_personas_hogar y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TOTAL_PERSONAS_HOGAR 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.134  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.551  -     -
+motricidad_fina              Motricidad fina            -   0.156  -     -
+resolucion_problemas Resolución de problemas            -   0.042  -     -
+socio_individual            Socio-individual            -   0.556  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+total_personas_hogar afecta significativamente 1 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TOTAL_HERMANOS 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.135 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_hermanos y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.799 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_hermanos y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.110 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_hermanos y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.296 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_hermanos y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.138 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre total_hermanos y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TOTAL_HERMANOS 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.135  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.799  -     -
+motricidad_fina              Motricidad fina            -   0.110  -     -
+resolucion_problemas Resolución de problemas            -   0.296  -     -
+socio_individual            Socio-individual            -   0.138  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+total_hermanos afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: POSICION_NINO_HERMANOS 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.129 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre posicion_nino_hermanos y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.994 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre posicion_nino_hermanos y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.115 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre posicion_nino_hermanos y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.591 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre posicion_nino_hermanos y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.877 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre posicion_nino_hermanos y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: POSICION_NINO_HERMANOS 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.129  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.994  -     -
+motricidad_fina              Motricidad fina            -   0.115  -     -
+resolucion_problemas Resolución de problemas            -   0.591  -     -
+socio_individual            Socio-individual            -   0.877  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+posicion_nino_hermanos afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: ESTADO_CIVIL_CUIDADOR 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 15.05 , gl = 2 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre estado_civil_cuidador y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 15.05 con 2 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+         
+          Desarrollo adecuado Riesgo  Sum
+  Casado                  912     63  975
+  Soltero                 288     25  313
+  Unido                   428      9  437
+  Sum                    1628     97 1725
+
+**Proporciones:**
+- Casado : 93.5% riesgo vs 6.5% desarrollo adecuado 
+- Soltero : 92.0% riesgo vs 8.0% desarrollo adecuado 
+- Unido : 97.9% riesgo vs 2.1% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 4.09 , gl = 2 , p = 0.129 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre estado_civil_cuidador y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 0.50 , gl = 2 , p = 0.778 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre estado_civil_cuidador y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 10.80 , gl = 2 , p = 0.005 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre estado_civil_cuidador y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 10.80 con 2 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.005 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+         
+          Desarrollo adecuado Riesgo  Sum
+  Casado                  903     72  975
+  Soltero                 278     35  313
+  Unido                   416     21  437
+  Sum                    1597    128 1725
+
+**Proporciones:**
+- Casado : 92.6% riesgo vs 7.4% desarrollo adecuado 
+- Soltero : 88.8% riesgo vs 11.2% desarrollo adecuado 
+- Unido : 95.2% riesgo vs 4.8% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 2.48 , gl = 2 , p = 0.289 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre estado_civil_cuidador y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: ESTADO_CIVIL_CUIDADOR 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación        15.05 < 0.001  -     -
+motricidad_gruesa          Motricidad gruesa         4.09   0.129  -     -
+motricidad_fina              Motricidad fina         0.50   0.778  -     -
+resolucion_problemas Resolución de problemas        10.80   0.005  -     -
+socio_individual            Socio-individual         2.48   0.289  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            Sí
+socio_individual                No
+
+**Conclusión clínica:**
+estado_civil_cuidador afecta significativamente 2 de 5 dominios del neurodesarrollo
+
+##  Variables de cuidado 
+
+
+### VARIABLE: HORAS_PANTALLA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.493 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_pantalla y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.020 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre horas_pantalla y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.020 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  0                   542    119  661
+  0.5                  24      2   26
+  1                   487     91  578
+  2                   229     37  266
+  3                    90     16  106
+  4                    31     14   45
+  5                    21      3   24
+  6                     4      5    9
+  7                     6      0    6
+  8                     1      0    1
+  9                     1      1    2
+  12                    1      0    1
+  Sum                1437    288 1725
+
+**Proporciones:**
+- 0 : 82.0% riesgo vs 18.0% desarrollo adecuado 
+- 0.5 : 92.3% riesgo vs 7.7% desarrollo adecuado 
+- 1 : 84.3% riesgo vs 15.7% desarrollo adecuado 
+- 2 : 86.1% riesgo vs 13.9% desarrollo adecuado 
+- 3 : 84.9% riesgo vs 15.1% desarrollo adecuado 
+- 4 : 68.9% riesgo vs 31.1% desarrollo adecuado 
+- 5 : 87.5% riesgo vs 12.5% desarrollo adecuado 
+- 6 : 44.4% riesgo vs 55.6% desarrollo adecuado 
+- 7 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 8 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 9 : 50.0% riesgo vs 50.0% desarrollo adecuado 
+- 12 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.370 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_pantalla y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.584 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_pantalla y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.521 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_pantalla y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: HORAS_PANTALLA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.493  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.020  -     -
+motricidad_fina              Motricidad fina            -   0.370  -     -
+resolucion_problemas Resolución de problemas            -   0.584  -     -
+socio_individual            Socio-individual            -   0.521  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               Sí
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+horas_pantalla afecta significativamente 1 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: HORAS_JUEGO_CUIDADOR 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.812 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_juego_cuidador y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.855 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_juego_cuidador y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.073 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre horas_juego_cuidador y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.018 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre horas_juego_cuidador y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.018 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  0                    34      4   38
+  0.5                   2      2    4
+  1                   291     31  322
+  2                   460     27  487
+  3                   440     26  466
+  4                   254     32  286
+  5                    83      5   88
+  6                    21      1   22
+  7                     4      0    4
+  8                     7      0    7
+  10                    1      0    1
+  Sum                1597    128 1725
+
+**Proporciones:**
+- 0 : 89.5% riesgo vs 10.5% desarrollo adecuado 
+- 0.5 : 50.0% riesgo vs 50.0% desarrollo adecuado 
+- 1 : 90.4% riesgo vs 9.6% desarrollo adecuado 
+- 2 : 94.5% riesgo vs 5.5% desarrollo adecuado 
+- 3 : 94.4% riesgo vs 5.6% desarrollo adecuado 
+- 4 : 88.8% riesgo vs 11.2% desarrollo adecuado 
+- 5 : 94.3% riesgo vs 5.7% desarrollo adecuado 
+- 6 : 95.5% riesgo vs 4.5% desarrollo adecuado 
+- 7 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 8 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 10 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.041 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre horas_juego_cuidador y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.041 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  0                    37      1   38
+  0.5                   1      3    4
+  1                   294     28  322
+  2                   454     33  487
+  3                   437     29  466
+  4                   262     24  286
+  5                    83      5   88
+  6                    21      1   22
+  7                     4      0    4
+  8                     6      1    7
+  10                    1      0    1
+  Sum                1600    125 1725
+
+**Proporciones:**
+- 0 : 97.4% riesgo vs 2.6% desarrollo adecuado 
+- 0.5 : 25.0% riesgo vs 75.0% desarrollo adecuado 
+- 1 : 91.3% riesgo vs 8.7% desarrollo adecuado 
+- 2 : 93.2% riesgo vs 6.8% desarrollo adecuado 
+- 3 : 93.8% riesgo vs 6.2% desarrollo adecuado 
+- 4 : 91.6% riesgo vs 8.4% desarrollo adecuado 
+- 5 : 94.3% riesgo vs 5.7% desarrollo adecuado 
+- 6 : 95.5% riesgo vs 4.5% desarrollo adecuado 
+- 7 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- 8 : 85.7% riesgo vs 14.3% desarrollo adecuado 
+- 10 : 100.0% riesgo vs 0.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+### RESUMEN: HORAS_JUEGO_CUIDADOR 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.812  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.855  -     -
+motricidad_fina              Motricidad fina            -   0.073  -     -
+resolucion_problemas Resolución de problemas            -   0.018  -     -
+socio_individual            Socio-individual            -   0.041  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            Sí
+socio_individual                Sí
+
+**Conclusión clínica:**
+horas_juego_cuidador afecta significativamente 2 de 5 dominios del neurodesarrollo
+
+##  Variables prenatales 
+
+
+### VARIABLE: NUMERO_CONTROLES_PRENATALES 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.196 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre numero_controles_prenatales y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.735 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre numero_controles_prenatales y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.137 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre numero_controles_prenatales y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.492 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre numero_controles_prenatales y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.416 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre numero_controles_prenatales y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: NUMERO_CONTROLES_PRENATALES 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.196  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.735  -     -
+motricidad_fina              Motricidad fina            -   0.137  -     -
+resolucion_problemas Resolución de problemas            -   0.492  -     -
+socio_individual            Socio-individual            -   0.416  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+numero_controles_prenatales afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: ULTRASONIDO_EMBARAZO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.31 , gl = 1 , p = 0.576 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre ultrasonido_embarazo y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 1.17 , gl = 1 , p = 0.279 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre ultrasonido_embarazo y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.057 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre ultrasonido_embarazo y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre ultrasonido_embarazo y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 1.21 , gl = 1 , p = 0.271 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre ultrasonido_embarazo y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: ULTRASONIDO_EMBARAZO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.31   0.576  -     -
+motricidad_gruesa          Motricidad gruesa         1.17   0.279  -     -
+motricidad_fina              Motricidad fina            -   0.057  -     -
+resolucion_problemas Resolución de problemas         0.00   1.000  -     -
+socio_individual            Socio-individual         1.21   0.271  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+ultrasonido_embarazo afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: PRENATALES_PRIMEROS_3_MESES 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.43 , gl = 1 , p = 0.511 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_primeros_3_meses y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 2.21 , gl = 1 , p = 0.137 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_primeros_3_meses y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 0.07 , gl = 1 , p = 0.791 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_primeros_3_meses y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 2.33 , gl = 1 , p = 0.127 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_primeros_3_meses y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 1.84 , gl = 1 , p = 0.175 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_primeros_3_meses y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: PRENATALES_PRIMEROS_3_MESES 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.43   0.511  -     -
+motricidad_gruesa          Motricidad gruesa         2.21   0.137  -     -
+motricidad_fina              Motricidad fina         0.07   0.791  -     -
+resolucion_problemas Resolución de problemas         2.33   0.127  -     -
+socio_individual            Socio-individual         1.84   0.175  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+prenatales_primeros_3_meses afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: PRENATALES_RESTO_EMBARAZO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.02 , gl = 1 , p = 0.883 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_resto_embarazo y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 0.62 , gl = 1 , p = 0.430 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_resto_embarazo y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.83 , gl = 1 , p = 0.176 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_resto_embarazo y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.27 , gl = 1 , p = 0.604 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_resto_embarazo y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre prenatales_resto_embarazo y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: PRENATALES_RESTO_EMBARAZO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.02   0.883  -     -
+motricidad_gruesa          Motricidad gruesa         0.62   0.430  -     -
+motricidad_fina              Motricidad fina         1.83   0.176  -     -
+resolucion_problemas Resolución de problemas         0.27   0.604  -     -
+socio_individual            Socio-individual         0.00   1.000  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+prenatales_resto_embarazo afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: SERVICIO_ASISTENCIA_PARTO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.649 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre servicio_asistencia_parto y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.226 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre servicio_asistencia_parto y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.123 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre servicio_asistencia_parto y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.369 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre servicio_asistencia_parto y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.224 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre servicio_asistencia_parto y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: SERVICIO_ASISTENCIA_PARTO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.649  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.226  -     -
+motricidad_fina              Motricidad fina            -   0.123  -     -
+resolucion_problemas Resolución de problemas            -   0.369  -     -
+socio_individual            Socio-individual            -   0.224  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+servicio_asistencia_parto afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: TIPO_PARTO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 2.33 , gl = 2 , p = 0.312 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_parto y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 4.40 , gl = 2 , p = 0.111 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_parto y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.04 , gl = 2 , p = 0.595 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_parto y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 1.17 , gl = 2 , p = 0.557 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_parto y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 1.97 , gl = 2 , p = 0.374 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre tipo_parto y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: TIPO_PARTO 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         2.33   0.312  -     -
+motricidad_gruesa          Motricidad gruesa         4.40   0.111  -     -
+motricidad_fina              Motricidad fina         1.04   0.595  -     -
+resolucion_problemas Resolución de problemas         1.17   0.557  -     -
+socio_individual            Socio-individual         1.97   0.374  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+tipo_parto afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: RAZON_CESAREA_EMERGENCIA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.197 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_cesarea_emergencia y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.395 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_cesarea_emergencia y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.330 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_cesarea_emergencia y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.094 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_cesarea_emergencia y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.380 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_cesarea_emergencia y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: RAZON_CESAREA_EMERGENCIA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.197  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.395  -     -
+motricidad_fina              Motricidad fina            -   0.330  -     -
+resolucion_problemas Resolución de problemas            -   0.094  -     -
+socio_individual            Socio-individual            -   0.380  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+razon_cesarea_emergencia afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+##  Variables nutricionales 
+
+
+### VARIABLE: LACTANCIA_PRIMEROS_6_MESES 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 2.80 , gl = 2 , p = 0.247 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre lactancia_primeros_6_meses y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 1.00 , gl = 2 , p = 0.607 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre lactancia_primeros_6_meses y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 0.62 , gl = 2 , p = 0.733 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre lactancia_primeros_6_meses y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.58 , gl = 2 , p = 0.748 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre lactancia_primeros_6_meses y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 0.01 , gl = 2 , p = 0.995 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre lactancia_primeros_6_meses y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: LACTANCIA_PRIMEROS_6_MESES 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         2.80   0.247  -     -
+motricidad_gruesa          Motricidad gruesa         1.00   0.607  -     -
+motricidad_fina              Motricidad fina         0.62   0.733  -     -
+resolucion_problemas Resolución de problemas         0.58   0.748  -     -
+socio_individual            Socio-individual         0.01   0.995  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+lactancia_primeros_6_meses afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: LACTANCIA_6-12_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: LACTANCIA_12-24_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: VITAMINA_A_6-12_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: VITAMINA_A_12-18_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: VITAMINA_A_18-24_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: VITAMINAS_MINERALES_6-12_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: VITAMINAS_MINERALES_12-18_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+
+### VARIABLE: VITAMINAS_MINERALES_18-24_MESES 
+
+**NOTA:** Variable no encontrada en los datos.
+
+##  Variables de salud 
+
+
+### VARIABLE: RETARDO_CRECIMIENTO 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.81 , gl = 1 , p = 0.369 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre retardo_crecimiento y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 4.60 , gl = 1 , p = 0.032 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre retardo_crecimiento y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.60 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.032 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  No                 1288    245 1533
+  Sí                  149     43  192
+  Sum                1437    288 1725
+
+**Proporciones:**
+- No : 84.0% riesgo vs 16.0% desarrollo adecuado 
+- Sí : 77.6% riesgo vs 22.4% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 1.52 (IC 95%: 1.05 - 2.19 )
+**Interpretación:** Asociación moderada 
+- El riesgo de retraso en Motricidad gruesa es 1.52 veces mayor
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 3.69 , gl = 1 , p = 0.055 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre retardo_crecimiento y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.43 , gl = 1 , p = 0.510 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre retardo_crecimiento y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 8.01 , gl = 1 , p = 0.005 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre retardo_crecimiento y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 8.01 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.005 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  No                 1432    101 1533
+  Sí                  168     24  192
+  Sum                1600    125 1725
+
+**Proporciones:**
+- No : 93.4% riesgo vs 6.6% desarrollo adecuado 
+- Sí : 87.5% riesgo vs 12.5% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 2.03 (IC 95%: 1.26 - 3.25 )
+**Interpretación:** Asociación moderada 
+- El riesgo de retraso en Socio-individual es 2.03 veces mayor
+
+### RESUMEN: RETARDO_CRECIMIENTO 
+
+                                     Dominio Chi_cuadrado p_valor   OR
+comunicacion                    Comunicación         0.81   0.369    -
+motricidad_gruesa          Motricidad gruesa         4.60   0.032 1.52
+motricidad_fina              Motricidad fina         3.69   0.055    -
+resolucion_problemas Resolución de problemas         0.43   0.510    -
+socio_individual            Socio-individual         8.01   0.005 2.03
+                         IC_95 Significativo
+comunicacion                 -            No
+motricidad_gruesa    1.05-2.19            Sí
+motricidad_fina              -            No
+resolucion_problemas         -            No
+socio_individual     1.26-3.25            Sí
+
+**Conclusión clínica:**
+retardo_crecimiento afecta significativamente 2 de 5 dominios del neurodesarrollo, con mayor impacto en Socio-individual (OR = 2.03 ).
+
+
+### VARIABLE: DESNUTRICION_AGUDA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 1.50 , gl = 1 , p = 0.221 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre desnutricion_aguda y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 0.90 , gl = 1 , p = 0.342 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre desnutricion_aguda y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.00 , gl = 1 , p = 0.316 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre desnutricion_aguda y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 1.30 , gl = 1 , p = 0.254 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre desnutricion_aguda y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 4.05 , gl = 1 , p = 0.044 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre desnutricion_aguda y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.05 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.044 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  No                 1511    112 1623
+  Sí                   89     13  102
+  Sum                1600    125 1725
+
+**Proporciones:**
+- No : 93.1% riesgo vs 6.9% desarrollo adecuado 
+- Sí : 87.3% riesgo vs 12.7% desarrollo adecuado 
+
+**Odds Ratio:**
+OR = 1.97 (IC 95%: 1.07 - 3.64 )
+**Interpretación:** Asociación moderada 
+- El riesgo de retraso en Socio-individual es 1.97 veces mayor
+
+### RESUMEN: DESNUTRICION_AGUDA 
+
+                                     Dominio Chi_cuadrado p_valor   OR
+comunicacion                    Comunicación         1.50   0.221    -
+motricidad_gruesa          Motricidad gruesa         0.90   0.342    -
+motricidad_fina              Motricidad fina         1.00   0.316    -
+resolucion_problemas Resolución de problemas         1.30   0.254    -
+socio_individual            Socio-individual         4.05   0.044 1.97
+                         IC_95 Significativo
+comunicacion                 -            No
+motricidad_gruesa            -            No
+motricidad_fina              -            No
+resolucion_problemas         -            No
+socio_individual     1.07-3.64            Sí
+
+**Conclusión clínica:**
+desnutricion_aguda afecta significativamente 1 de 5 dominios del neurodesarrollo, con mayor impacto en Socio-individual (OR = 1.97 ).
+
+
+### VARIABLE: HOSPITALIZADO_NEONATAL 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_neonatal y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 1.39 , gl = 1 , p = 0.238 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_neonatal y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 3.18 , gl = 1 , p = 0.075 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_neonatal y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.79 , gl = 1 , p = 0.375 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_neonatal y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 2.47 , gl = 1 , p = 0.116 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_neonatal y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: HOSPITALIZADO_NEONATAL 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.00   1.000  -     -
+motricidad_gruesa          Motricidad gruesa         1.39   0.238  -     -
+motricidad_fina              Motricidad fina         3.18   0.075  -     -
+resolucion_problemas Resolución de problemas         0.79   0.375  -     -
+socio_individual            Socio-individual         2.47   0.116  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+hospitalizado_neonatal afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: RAZON_HOSPITALIZADO_NEONATAL 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.047 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre razon_hospitalizado_neonatal y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.047 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+                                         
+                                          Desarrollo adecuado Riesgo  Sum
+                                                         1433     85 1518
+  Anomalías congénitas                                      2      1    3
+  Asfixia perinatal                                         1      1    2
+  Bajo peso                                                 1      0    1
+  Candidiasis bucal                                         1      0    1
+  Estenosis hipertrófica del píloro                         0      1    1
+  Ictericia neonatal                                       68      2   70
+  Neumonía                                                  8      1    9
+  Prematuridad                                             59      2   61
+  Rotavirus                                                 1      0    1
+  Sepsis                                                    3      0    3
+  Síndrome de aspiración meconial                           5      0    5
+  Taquipnea transitoria del recién nacido                  46      4   50
+  Sum                                                    1628     97 1725
+
+**Proporciones:**
+-  : 94.4% riesgo vs 5.6% desarrollo adecuado 
+- Anomalías congénitas : 66.7% riesgo vs 33.3% desarrollo adecuado 
+- Asfixia perinatal : 50.0% riesgo vs 50.0% desarrollo adecuado 
+- Bajo peso : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Candidiasis bucal : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Estenosis hipertrófica del píloro : 0.0% riesgo vs 100.0% desarrollo adecuado 
+- Ictericia neonatal : 97.1% riesgo vs 2.9% desarrollo adecuado 
+- Neumonía : 88.9% riesgo vs 11.1% desarrollo adecuado 
+- Prematuridad : 96.7% riesgo vs 3.3% desarrollo adecuado 
+- Rotavirus : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Sepsis : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Síndrome de aspiración meconial : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Taquipnea transitoria del recién nacido : 92.0% riesgo vs 8.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.385 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_neonatal y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.011 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre razon_hospitalizado_neonatal y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.011 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+                                         
+                                          Desarrollo adecuado Riesgo  Sum
+                                                         1395    123 1518
+  Anomalías congénitas                                      1      2    3
+  Asfixia perinatal                                         2      0    2
+  Bajo peso                                                 1      0    1
+  Candidiasis bucal                                         0      1    1
+  Estenosis hipertrófica del píloro                         1      0    1
+  Ictericia neonatal                                       65      5   70
+  Neumonía                                                  8      1    9
+  Prematuridad                                             50     11   61
+  Rotavirus                                                 1      0    1
+  Sepsis                                                    2      1    3
+  Síndrome de aspiración meconial                           5      0    5
+  Taquipnea transitoria del recién nacido                  46      4   50
+  Sum                                                    1577    148 1725
+
+**Proporciones:**
+-  : 91.9% riesgo vs 8.1% desarrollo adecuado 
+- Anomalías congénitas : 33.3% riesgo vs 66.7% desarrollo adecuado 
+- Asfixia perinatal : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Bajo peso : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Candidiasis bucal : 0.0% riesgo vs 100.0% desarrollo adecuado 
+- Estenosis hipertrófica del píloro : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Ictericia neonatal : 92.9% riesgo vs 7.1% desarrollo adecuado 
+- Neumonía : 88.9% riesgo vs 11.1% desarrollo adecuado 
+- Prematuridad : 82.0% riesgo vs 18.0% desarrollo adecuado 
+- Rotavirus : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Sepsis : 66.7% riesgo vs 33.3% desarrollo adecuado 
+- Síndrome de aspiración meconial : 100.0% riesgo vs 0.0% desarrollo adecuado 
+- Taquipnea transitoria del recién nacido : 92.0% riesgo vs 8.0% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.355 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_neonatal y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.407 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_neonatal y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: RAZON_HOSPITALIZADO_NEONATAL 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.047  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.385  -     -
+motricidad_fina              Motricidad fina            -   0.011  -     -
+resolucion_problemas Resolución de problemas            -   0.355  -     -
+socio_individual            Socio-individual            -   0.407  -     -
+                     Significativo
+comunicacion                    Sí
+motricidad_gruesa               No
+motricidad_fina                 Sí
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+razon_hospitalizado_neonatal afecta significativamente 2 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: HOSPITALIZADO_INFANCIA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.44 , gl = 1 , p = 0.509 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_infancia y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 2.81 , gl = 1 , p = 0.094 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_infancia y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 1.46 , gl = 1 , p = 0.227 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_infancia y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 0.60 , gl = 1 , p = 0.437 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_infancia y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 1.36 , gl = 1 , p = 0.243 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre hospitalizado_infancia y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: HOSPITALIZADO_INFANCIA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.44   0.509  -     -
+motricidad_gruesa          Motricidad gruesa         2.81   0.094  -     -
+motricidad_fina              Motricidad fina         1.46   0.227  -     -
+resolucion_problemas Resolución de problemas         0.60   0.437  -     -
+socio_individual            Socio-individual         1.36   0.243  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+hospitalizado_infancia afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: RAZON_HOSPITALIZADO_INFANCIA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.070 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_infancia y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.526 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_infancia y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.362 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_infancia y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.058 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_infancia y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.274 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre razon_hospitalizado_infancia y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: RAZON_HOSPITALIZADO_INFANCIA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación            -   0.070  -     -
+motricidad_gruesa          Motricidad gruesa            -   0.526  -     -
+motricidad_fina              Motricidad fina            -   0.362  -     -
+resolucion_problemas Resolución de problemas            -   0.058  -     -
+socio_individual            Socio-individual            -   0.274  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+razon_hospitalizado_infancia afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+
+### VARIABLE: VACUNACION_COMPLETA 
+
+#### DOMINIO: Comunicación 
+**Chi-cuadrado:**
+χ² = 0.54 , gl = 1 , p = 0.461 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre vacunacion_completa y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+**Chi-cuadrado:**
+χ² = 0.06 , gl = 1 , p = 0.813 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre vacunacion_completa y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+**Chi-cuadrado:**
+χ² = 3.74 , gl = 1 , p = 0.053 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre vacunacion_completa y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+**Chi-cuadrado:**
+χ² = 2.75 , gl = 1 , p = 0.097 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre vacunacion_completa y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+**Chi-cuadrado:**
+χ² = 0.22 , gl = 1 , p = 0.635 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre vacunacion_completa y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+### RESUMEN: VACUNACION_COMPLETA 
+
+                                     Dominio Chi_cuadrado p_valor OR IC_95
+comunicacion                    Comunicación         0.54   0.461  -     -
+motricidad_gruesa          Motricidad gruesa         0.06   0.813  -     -
+motricidad_fina              Motricidad fina         3.74   0.053  -     -
+resolucion_problemas Resolución de problemas         2.75   0.097  -     -
+socio_individual            Socio-individual         0.22   0.635  -     -
+                     Significativo
+comunicacion                    No
+motricidad_gruesa               No
+motricidad_fina                 No
+resolucion_problemas            No
+socio_individual                No
+
+**Conclusión clínica:**
+vacunacion_completa afecta significativamente 0 de 5 dominios del neurodesarrollo
+
+## RESUMEN GENERAL DE TODAS LAS VARIABLES
+
+                                         Variable Dominios_afectados OR_maximo
+motricidad_gruesa                 area_residencia                4/5      0.56
+comunicacion                      edad_meses_nino                5/5      0.00
+comunicacion1               nivel_educativo_madre                5/5      0.00
+comunicacion2               nivel_educativo_padre                3/5      0.00
+comunicacion3             situacion_laboral_padre                3/5      0.00
+comunicacion7                    tipo_energia_luz                5/5      0.00
+socio_individual1              desnutricion_aguda                1/5      1.97
+comunicacion5                 fuente_agua_consumo                1/5      0.00
+comunicacion8                     edad_anos_madre                1/5      0.00
+comunicacion9                     edad_anos_padre                1/5      0.00
+comunicacion10               total_personas_hogar                1/5      0.00
+comunicacion12                     horas_pantalla                1/5      0.00
+socio_individual              retardo_crecimiento                2/5      2.03
+resolucion_problemas                 grupo_etnico                2/5      0.66
+comunicacion4                   tipo_empleo_padre                2/5      0.00
+comunicacion6                       manejo_basura                2/5      0.00
+comunicacion11              estado_civil_cuidador                2/5      0.00
+comunicacion13               horas_juego_cuidador                2/5      0.00
+comunicacion14       razon_hospitalizado_neonatal                2/5      0.00
+                       Dominio_mayor_impacto Prioridad
+motricidad_gruesa          Motricidad gruesa      Alta
+comunicacion                    Comunicación      Alta
+comunicacion1                   Comunicación      Alta
+comunicacion2                   Comunicación      Alta
+comunicacion3                   Comunicación      Alta
+comunicacion7                   Comunicación      Alta
+socio_individual1           Socio-individual      Baja
+comunicacion5                   Comunicación      Baja
+comunicacion8                   Comunicación      Baja
+comunicacion9                   Comunicación      Baja
+comunicacion10                  Comunicación      Baja
+comunicacion12                  Comunicación      Baja
+socio_individual            Socio-individual     Media
+resolucion_problemas Resolución de problemas     Media
+comunicacion4                   Comunicación     Media
+comunicacion6                   Comunicación     Media
+comunicacion11                  Comunicación     Media
+comunicacion13                  Comunicación     Media
+comunicacion14                  Comunicación     Media
+
+
+**Conclusiones principales:**
+- Se analizaron 40 variables en total
+- Variables con alta prioridad: 6 
+- Variables con prioridad media: 7 
+- Se requiere intervención prioritaria en las variables de alta prioridad
+Warning messages:
+1: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+2: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+3: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+4: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+5: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+6: In chisq.test(tabla) : Chi-squared approximation may be incorrect
+> 

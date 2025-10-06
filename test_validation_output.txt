@@ -1,0 +1,207 @@
+
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # Test script para validar la funcionalidad básica
+> # ===============================================
+> 
+> # Cargar datos
+> datos <- read.csv("datos_optimizados.csv", stringsAsFactors = FALSE)
+> 
+> # Mostrar estructura de los datos
+> cat("Estructura de los datos:\n")
+Estructura de los datos:
+> str(datos)
+'data.frame':	1725 obs. of  57 variables:
+ $ centro_atencion_salud                 : chr  "Puesto de salud de San José Chiquilajá" "Centro de salud de Quetzaltenango" "Puesto de salud de Pacajá" "Centro de salud de Quetzaltenango" ...
+ $ sexo_nino                             : chr  "Femenino" "Masculino" "Femenino" "Femenino" ...
+ $ nacimiento_prematuro                  : chr  "Sí" "No" "No" "No" ...
+ $ semanas_prematurez                    : chr  "4 semanas" "" "" "" ...
+ $ edad_meses_nino                       : chr  "48 meses" "24 meses" "27 meses" "12 meses" ...
+ $ edad_anos_madre                       : int  32 30 35 30 NA 26 22 NA 27 29 ...
+ $ edad_anos_padre                       : int  33 31 NA 31 NA 32 22 NA 34 31 ...
+ $ grupo_etnico                          : chr  "Indígena" "No indígena" "Indígena" "No indígena" ...
+ $ area_residencia                       : chr  "Rural" "Urbano" "Urbano" "Urbano" ...
+ $ nivel_educativo_madre                 : chr  "Diversificado" "Diversificado" "Diversificado" "Universitario" ...
+ $ nivel_educativo_padre                 : chr  "Básico" "Diversificado" "Ninguna" "Universitario" ...
+ $ fuente_agua_consumo                   : chr  "Red de tubería" "Red de tubería" "Red de tubería" "Red de tubería" ...
+ $ tipo_sanitario                        : chr  "Inodoro" "Inodoro" "Inodoro" "Inodoro" ...
+ $ manejo_basura                         : chr  "La quema" "Servicio municipal o privado" "Servicio municipal o privado" "Servicio municipal o privado" ...
+ $ tipo_energia_luz                      : chr  "Eléctrico" "Eléctrico" "Eléctrico" "Eléctrico" ...
+ $ tipo_energia_cocina                   : chr  "Gas propano" "Gas propano" "Gas propano" "Gas propano" ...
+ $ propiedad_vivienda                    : chr  "Alquilada" "Propia" "Propia" "Propia" ...
+ $ sexo_jefe_hogar                       : chr  "Mujer" "Hombre" "Mujer" "Mujer" ...
+ $ situacion_laboral_madre               : chr  "Trabaja" "No trabaja" "Trabaja" "Trabaja" ...
+ $ situacion_laboral_padre               : chr  "" "Trabaja" "" "Trabaja" ...
+ $ tipo_empleo_madre                     : chr  "Formal" "" "Formal" "Formal" ...
+ $ tipo_empleo_padre                     : chr  "" "Formal" "" "Formal" ...
+ $ seguro_social                         : chr  "No" "No" "Sí" "Sí" ...
+ $ total_personas_hogar                  : int  7 3 13 5 3 5 4 5 4 5 ...
+ $ total_hermanos                        : int  2 0 0 0 0 0 0 1 0 2 ...
+ $ posicion_nino_hermanos                : int  3 1 1 1 1 1 2 1 1 3 ...
+ $ estado_civil_cuidador                 : chr  "Soltero" "Casado" "Soltero" "Casado" ...
+ $ horas_pantalla                        : num  0 1 1 2 0 1 0 2 0 1 ...
+ $ horas_juego_cuidador                  : num  4 1 3 3 5 3 5 4 2 1 ...
+ $ numero_controles_prenatales           : int  5 7 5 6 9 6 5 9 7 9 ...
+ $ ultrasonido_embarazo                  : chr  "Sí" "Sí" "Sí" "Sí" ...
+ $ prenatales_primeros_3_meses           : chr  "Sí" "Sí" "Sí" "Sí" ...
+ $ prenatales_resto_embarazo             : chr  "Sí" "Sí" "Sí" "Sí" ...
+ $ servicio_asistencia_parto             : chr  "Hospital público" "Hospital público" "Seguro social" "Hospital privado" ...
+ $ tipo_parto                            : chr  "Parto eutócico" "Parto eutócico" "Cesárea electiva" "Cesárea de emergencia" ...
+ $ razon_cesarea_emergencia              : chr  "" "" "" "Sufrimiento fetal " ...
+ $ lactancia_primeros_6_meses            : chr  "Fórmula infantil" "Lactancia materna exclusiva" "Mixta" "Lactancia materna exclusiva" ...
+ $ lactancia_6.12_meses                  : chr  "Lactancia materna exclusiva" "Lactancia materna exclusiva" "Mixta" "Lactancia materna exclusiva" ...
+ $ lactancia_12.24_meses                 : chr  "Lactancia materna exclusiva" "Lactancia materna exclusiva" "Mixta" "Lactancia materna exclusiva" ...
+ $ vitamina_a_6.12_meses                 : chr  "VERDADERO" "VERDADERO" "VERDADERO" "VERDADERO" ...
+ $ vitamina_a_12.18_meses                : chr  "VERDADERO" "VERDADERO" "FALSO" "FALSO" ...
+ $ vitamina_a_18.24_meses                : chr  "VERDADERO" "VERDADERO" "FALSO" "" ...
+ $ vitaminas_minerales_6.12_meses        : chr  "VERDADERO" "VERDADERO" "VERDADERO" "VERDADERO" ...
+ $ vitaminas_minerales_12.18_meses       : chr  "VERDADERO" "VERDADERO" "FALSO" "FALSO" ...
+ $ vitaminas_minerales_18.24_meses       : chr  "VERDADERO" "VERDADERO" "FALSO" "" ...
+ $ retardo_crecimiento                   : chr  "No" "No" "No" "No" ...
+ $ desnutricion_aguda                    : chr  "Sí" "No" "No" "No" ...
+ $ hospitalizado_neonatal                : chr  "No" "No" "No" "Sí" ...
+ $ razon_hospitalizado_neonatal          : chr  "" "" "" "Taquipnea transitoria del recién nacido" ...
+ $ hospitalizado_infancia                : chr  "Sí" "No" "No" "No" ...
+ $ razon_hospitalizado_infancia          : chr  "Neumonía" "" "" "" ...
+ $ vacunacion_completa                   : chr  "Sí" "Sí" "Sí" "Sí" ...
+ $ zscore_desarrollo_comunicacion        : num  0.997 0.289 -0.411 0.854 -0.258 ...
+ $ zscore_desarrollo_motricidad_gruesa   : num  0.731 0.633 0.874 0.709 -1.187 ...
+ $ zscore_desarrollo_motricidad_fina     : num  0.653 0.399 -0.295 -0.251 -0.599 ...
+ $ zscore_desarrollo_resolucion_problemas: num  -1.1899 0.0612 0.0045 -0.3681 -0.4028 ...
+ $ zscore_desarrollo_socio_individual    : num  0.814 -0.116 0.747 0.772 -0.205 ...
+> 
+> # Verificar las variables de desarrollo
+> cat("\nVariables de desarrollo disponibles:\n")
+
+Variables de desarrollo disponibles:
+> desarrollo_vars <- names(datos)[grepl("zscore_desarrollo", names(datos))]
+> print(desarrollo_vars)
+[1] "zscore_desarrollo_comunicacion"        
+[2] "zscore_desarrollo_motricidad_gruesa"   
+[3] "zscore_desarrollo_motricidad_fina"     
+[4] "zscore_desarrollo_resolucion_problemas"
+[5] "zscore_desarrollo_socio_individual"    
+> 
+> # Crear variables dicotómicas de riesgo (z-score < -1)
+> dominios <- c(
++   "comunicacion" = "zscore_desarrollo_comunicacion",
++   "motricidad_gruesa" = "zscore_desarrollo_motricidad_gruesa", 
++   "motricidad_fina" = "zscore_desarrollo_motricidad_fina",
++   "resolucion_problemas" = "zscore_desarrollo_resolucion_problemas",
++   "socio_individual" = "zscore_desarrollo_socio_individual"
++ )
+> 
+> for(dominio in dominios) {
++   nueva_var <- paste0("riesgo_", names(dominios)[dominios == dominio])
++   datos[[nueva_var]] <- ifelse(datos[[dominio]] < -1, "Riesgo", "Desarrollo adecuado")
++ }
+> 
+> cat("\nVariables de riesgo creadas:\n")
+
+Variables de riesgo creadas:
+> riesgo_vars <- names(datos)[grepl("riesgo_", names(datos))]
+> print(riesgo_vars)
+[1] "riesgo_comunicacion"         "riesgo_motricidad_gruesa"   
+[3] "riesgo_motricidad_fina"      "riesgo_resolucion_problemas"
+[5] "riesgo_socio_individual"    
+> 
+> # Probar análisis con una variable
+> variable_test <- "area_residencia"
+> dominio_test <- "riesgo_comunicacion"
+> 
+> if(variable_test %in% names(datos) && dominio_test %in% names(datos)) {
++   cat("\nProbando análisis con", variable_test, "y", dominio_test, ":\n")
++   
++   # Tabla de contingencia
++   tabla <- table(datos[[variable_test]], datos[[dominio_test]])
++   print("Tabla de contingencia:")
++   print(tabla)
++   
++   # Chi-cuadrado
++   if(all(tabla >= 5)) {
++     chi_result <- chisq.test(tabla)
++     cat("\nChi-cuadrado:\n")
++     cat("X² =", chi_result$statistic, ", df =", chi_result$parameter, ", p =", chi_result$p.value, "\n")
++   } else {
++     cat("\nUsando test exacto de Fisher (celdas < 5):\n")
++     fisher_result <- fisher.test(tabla)
++     cat("p =", fisher_result$p.value, "\n")
++   }
++   
++   # Odds Ratio (si es tabla 2x2)
++   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
++     or <- (tabla[1,1] * tabla[2,2]) / (tabla[1,2] * tabla[2,1])
++     log_or <- log(or)
++     se_log_or <- sqrt(sum(1/tabla))
++     ic_inf <- exp(log_or - 1.96 * se_log_or)
++     ic_sup <- exp(log_or + 1.96 * se_log_or)
++     
++     cat("\nOdds Ratio:\n")
++     cat("OR =", or, "(IC 95%:", ic_inf, "-", ic_sup, ")\n")
++   }
++ }
+
+Probando análisis con area_residencia y riesgo_comunicacion :
+[1] "Tabla de contingencia:"
+        
+         Desarrollo adecuado Riesgo
+  Rural                  232     25
+  Urbano                1396     72
+
+Chi-cuadrado:
+X² = 8.69914 , df = 1 , p = 0.003183602 
+
+Odds Ratio:
+OR = 0.4786246 (IC 95%: 0.2974289 - 0.7702062 )
+> 
+> # Verificar algunas variables específicas
+> variables_test <- c("grupo_etnico", "nivel_educativo_madre", "seguro_social")
+> 
+> cat("\nVerificando variables específicas:\n")
+
+Verificando variables específicas:
+> for(var in variables_test) {
++   if(var %in% names(datos)) {
++     cat(var, "- Presente\n")
++     cat("  Valores únicos:", length(unique(datos[[var]])), "\n")
++     print(table(datos[[var]], useNA = "ifany"))
++   } else {
++     cat(var, "- NO ENCONTRADA\n")
++   }
++   cat("\n")
++ }
+grupo_etnico - Presente
+  Valores únicos: 2 
+
+   Indígena No indígena 
+        741         984 
+
+nivel_educativo_madre - Presente
+  Valores únicos: 6 
+
+                     Básico Diversificado       Ninguna      Primaria 
+           14           506           700            63           314 
+Universitario 
+          128 
+
+seguro_social - Presente
+  Valores únicos: 2 
+
+  No   Sí 
+1311  414 
+
+> 

@@ -1,0 +1,1054 @@
+
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # Análisis Reorganizado por Variable: Chi-cuadrado → Descripción → Odds Ratio
+> # ========================================================================
+> 
+> # Cargar datos
+> datos <- read.csv("datos_optimizados.csv", stringsAsFactors = FALSE)
+> 
+> # Definir los dominios del neurodesarrollo
+> dominios <- c(
++   "comunicacion" = "zscore_desarrollo_comunicacion",
++   "motricidad_gruesa" = "zscore_desarrollo_motricidad_gruesa", 
++   "motricidad_fina" = "zscore_desarrollo_motricidad_fina",
++   "resolucion_problemas" = "zscore_desarrollo_resolucion_problemas",
++   "socio_individual" = "zscore_desarrollo_socio_individual"
++ )
+> 
+> # Nombres legibles para los dominios
+> nombres_dominios <- c(
++   "comunicacion" = "Comunicación",
++   "motricidad_gruesa" = "Motricidad gruesa",
++   "motricidad_fina" = "Motricidad fina", 
++   "resolucion_problemas" = "Resolución de problemas",
++   "socio_individual" = "Socio-individual"
++ )
+> 
+> # Crear variables dicotómicas de riesgo (z-score < -1)
+> for(dominio in dominios) {
++   nueva_var <- paste0("riesgo_", names(dominios)[dominios == dominio])
++   datos[[nueva_var]] <- ifelse(datos[[dominio]] < -1, "Riesgo", "Desarrollo adecuado")
++ }
+> 
+> # Definir variables prioritarias para demostración
+> variables_analisis <- list(
++   "Variables sociodemográficas" = c(
++     "edad_meses_nino", "grupo_etnico", "area_residencia", "sexo_jefe_hogar"
++   ),
++   "Variables educativas" = c(
++     "nivel_educativo_madre", "nivel_educativo_padre"
++   ),
++   "Variables socioeconómicas" = c(
++     "situacion_laboral_madre", "seguro_social", "propiedad_vivienda"
++   ),
++   "Variables de vivienda" = c(
++     "fuente_agua_consumo", "tipo_sanitario", "manejo_basura"
++   ),
++   "Variables de salud" = c(
++     "retardo_crecimiento", "desnutricion_aguda", "vacunacion_completa"
++   )
++ )
+> 
+> # Función para realizar análisis Chi-cuadrado
+> realizar_chi_cuadrado <- function(variable, dominio_riesgo, datos) {
++   # Crear tabla de contingencia
++   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
++   
++   # Verificar si hay suficientes observaciones
++   if(any(tabla < 5) && min(dim(tabla)) > 1) {
++     # Usar test exacto de Fisher para tablas pequeñas
++     test_result <- tryCatch({
++       fisher.test(tabla)
++     }, error = function(e) {
++       # Si Fisher falla, usar simulación
++       fisher.test(tabla, simulate.p.value = TRUE)
++     })
++     return(list(
++       estadistico = NA,
++       grados_libertad = NA,
++       p_valor = test_result$p.value,
++       tipo_test = "Fisher",
++       tabla = tabla
++     ))
++   } else {
++     # Usar Chi-cuadrado
++     test_result <- chisq.test(tabla)
++     return(list(
++       estadistico = test_result$statistic,
++       grados_libertad = test_result$parameter,
++       p_valor = test_result$p.value,
++       tipo_test = "Chi-cuadrado",
++       tabla = tabla
++     ))
++   }
++ }
+> 
+> # Función para calcular Odds Ratio
+> calcular_odds_ratio <- function(variable, dominio_riesgo, datos) {
++   # Crear tabla 2x2 para OR
++   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
++   
++   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
++     # Calcular OR manualmente
++     or <- (tabla[1,1] * tabla[2,2]) / (tabla[1,2] * tabla[2,1])
++     
++     # Calcular intervalo de confianza
++     log_or <- log(or)
++     se_log_or <- sqrt(sum(1/tabla))
++     ic_inf <- exp(log_or - 1.96 * se_log_or)
++     ic_sup <- exp(log_or + 1.96 * se_log_or)
++     
++     return(list(
++       or = or,
++       ic_inf = ic_inf,
++       ic_sup = ic_sup
++     ))
++   } else {
++     return(list(or = NA, ic_inf = NA, ic_sup = NA))
++   }
++ }
+> 
+> # Función para formatear p-valor
+> formatear_p_valor <- function(p) {
++   if(p < 0.001) return("< 0.001")
++   if(p < 0.01) return(sprintf("%.3f", p))
++   return(sprintf("%.3f", p))
++ }
+> 
+> # Función para interpretar OR
+> interpretar_or <- function(or) {
++   if(is.na(or)) return("No aplicable")
++   if(or < 1.5) return("Asociación débil")
++   if(or < 2.5) return("Asociación moderada")
++   if(or < 5) return("Asociación fuerte")
++   return("Asociación muy fuerte")
++ }
+> 
+> # Función principal de análisis por variable
+> analizar_variable <- function(variable, datos) {
++   cat("\n", rep("=", 80), "\n")
++   cat("### VARIABLE:", toupper(variable), "\n")
++   cat(rep("=", 80), "\n\n")
++   
++   # Verificar si la variable existe en los datos
++   if(!variable %in% names(datos)) {
++     cat("**NOTA:** Variable no encontrada en los datos.\n\n")
++     return(NULL)
++   }
++   
++   # Eliminar valores faltantes
++   datos_var <- datos[!is.na(datos[[variable]]), ]
++   
++   if(nrow(datos_var) == 0) {
++     cat("**NOTA:** No hay datos válidos para esta variable.\n\n")
++     return(NULL)
++   }
++   
++   resultados_variable <- list()
++   
++   # Analizar cada dominio
++   for(dominio in names(dominios)) {
++     cat("#### DOMINIO:", nombres_dominios[dominio], "\n")
++     cat(rep("-", 50), "\n")
++     
++     dominio_riesgo <- paste0("riesgo_", dominio)
++     
++     # Chi-cuadrado
++     resultado_chi <- realizar_chi_cuadrado(variable, dominio_riesgo, datos_var)
++     
++     cat("**Chi-cuadrado:**\n")
++     if(resultado_chi$tipo_test == "Chi-cuadrado") {
++       cat("χ² =", sprintf("%.2f", resultado_chi$estadistico), 
++           ", gl =", resultado_chi$grados_libertad, 
++           ", p =", formatear_p_valor(resultado_chi$p_valor), "\n\n")
++     } else {
++       cat("Test exacto de Fisher: p =", formatear_p_valor(resultado_chi$p_valor), "\n\n")
++     }
++     
++     # Descripción de resultados
++     if(resultado_chi$p_valor < 0.05) {
++       cat("**Descripción de resultados:**\n")
++       cat("- La prueba indica una asociación estadísticamente significativa entre", 
++           variable, "y", nombres_dominios[dominio], "\n")
++       cat("- Las diferencias observadas en las proporciones no se deben al azar\n")
++       if(resultado_chi$tipo_test == "Chi-cuadrado") {
++         cat("- El estadístico chi-cuadrado de", sprintf("%.2f", resultado_chi$estadistico), 
++             "con", resultado_chi$grados_libertad, "grados de libertad supera el valor crítico\n")
++       }
++       cat("- La significancia es", 
++           ifelse(resultado_chi$p_valor < 0.001, "alta", "moderada"), 
++           "(p", formatear_p_valor(resultado_chi$p_valor), 
++           "), indicando evidencia sólida de asociación\n\n")
++       
++       # Mostrar tabla de contingencia
++       cat("**Tabla de contingencia:**\n")
++       tabla_con_totales <- addmargins(resultado_chi$tabla)
++       print(tabla_con_totales)
++       cat("\n")
++       
++       # Calcular y mostrar proporciones
++       props <- prop.table(resultado_chi$tabla, 1) * 100
++       cat("**Proporciones:**\n")
++       for(i in 1:nrow(props)) {
++         cat("-", rownames(props)[i], ":", 
++             sprintf("%.1f%% riesgo vs %.1f%% desarrollo adecuado", 
++                    props[i,"Riesgo"], props[i,"Desarrollo adecuado"]), "\n")
++       }
++       
++       # Calcular diferencia de riesgo
++       if(nrow(props) == 2) {
++         diferencia <- props[1,"Riesgo"] - props[2,"Riesgo"]
++         cat("- Diferencia de riesgo:", sprintf("%.1f%%", abs(diferencia)), 
++             ifelse(diferencia > 0, "mayor en", "menor en"), rownames(props)[1], "\n")
++       }
++       cat("\n")
++       
++       # Odds Ratio
++       cat("**Odds Ratio:**\n")
++       resultado_or <- calcular_odds_ratio(variable, dominio_riesgo, datos_var)
++       
++       if(!is.na(resultado_or$or)) {
++         cat("OR =", sprintf("%.2f", resultado_or$or), 
++             "(IC 95%:", sprintf("%.2f", resultado_or$ic_inf), 
++             "-", sprintf("%.2f", resultado_or$ic_sup), ")\n")
++         cat("**Interpretación:**", interpretar_or(resultado_or$or), "\n")
++         
++         # Interpretación clínica detallada
++         if(resultado_or$or > 1) {
++           cat("- El riesgo de retraso en", nombres_dominios[dominio], 
++               "es", sprintf("%.2f", resultado_or$or), "veces mayor en el grupo de referencia\n")
++           cat("- Magnitud del efecto:", 
++               ifelse(resultado_or$or < 1.5, "pequeña", 
++                      ifelse(resultado_or$or < 2.5, "moderada", "grande")), "\n")
++         } else {
++           cat("- El riesgo de retraso en", nombres_dominios[dominio], 
++               "es", sprintf("%.2f", 1/resultado_or$or), "veces menor en el grupo de referencia\n")
++           cat("- Factor protector con magnitud:", 
++               ifelse(resultado_or$or > 0.67, "pequeña", 
++                      ifelse(resultado_or$or > 0.4, "moderada", "grande")), "\n")
++         }
++       } else {
++         cat("No se pudo calcular OR (tabla no 2x2)\n")
++       }
++       
++     } else {
++       cat("**Resultado:**\n")
++       cat("No se encontró asociación estadísticamente significativa entre", 
++           variable, "y", nombres_dominios[dominio], ".\n\n")
++       
++       cat("**Odds Ratio:**\n")
++       cat("No aplicable (chi-cuadrado no significativo).\n")
++     }
++     
++     cat("\n")
++     
++     # Guardar resultados
++     resultados_variable[[dominio]] <- list(
++       chi_cuadrado = resultado_chi$estadistico,
++       p_valor = resultado_chi$p_valor,
++       significativo = resultado_chi$p_valor < 0.05,
++       or = ifelse(resultado_chi$p_valor < 0.05, 
++                  calcular_odds_ratio(variable, dominio_riesgo, datos_var)$or, 
++                  NA),
++       ic_inf = ifelse(resultado_chi$p_valor < 0.05, 
++                      calcular_odds_ratio(variable, dominio_riesgo, datos_var)$ic_inf, 
++                      NA),
++       ic_sup = ifelse(resultado_chi$p_valor < 0.05, 
++                      calcular_odds_ratio(variable, dominio_riesgo, datos_var)$ic_sup, 
++                      NA)
++     )
++   }
++   
++   # Resumen de variable
++   cat(rep("=", 80), "\n")
++   cat("### RESUMEN:", toupper(variable), "\n")
++   cat(rep("=", 80), "\n\n")
++   
++   # Crear tabla resumen
++   cat("| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |\n")
++   cat("|---------|--------------|---------|----|---------|--------------|\n")
++   
++   for(dominio in names(dominios)) {
++     resultado <- resultados_variable[[dominio]]
++     chi_str <- ifelse(is.na(resultado$chi_cuadrado), "-", sprintf("%.2f", resultado$chi_cuadrado))
++     or_str <- ifelse(is.na(resultado$or), "-", sprintf("%.2f", resultado$or))
++     ic_str <- ifelse(is.na(resultado$ic_inf), "-", 
++                     paste0(sprintf("%.2f", resultado$ic_inf), "-", sprintf("%.2f", resultado$ic_sup)))
++     sig_str <- ifelse(resultado$significativo, "Sí", "No")
++     
++     cat("| ", nombres_dominios[dominio], " | ", chi_str, " | ", 
++         formatear_p_valor(resultado$p_valor), " | ", or_str, " | ", 
++         ic_str, " | ", sig_str, " |\n")
++   }
++   
++   # Conclusión clínica
++   dominios_significativos <- sum(sapply(resultados_variable, function(x) x$significativo))
++   cat("\n**Conclusión clínica:**\n")
++   cat(variable, "afecta significativamente", dominios_significativos, "de 5 dominios del neurodesarrollo")
++   
++   if(dominios_significativos > 0) {
++     # Encontrar el OR más alto
++     ors <- sapply(resultados_variable, function(x) ifelse(is.na(x$or), 0, x$or))
++     max_or_idx <- which.max(ors)
++     max_or <- ors[max_or_idx]
++     
++     if(max_or > 0) {
++       cat(", con mayor impacto en", nombres_dominios[names(max_or_idx)], 
++           "(OR =", sprintf("%.2f", max_or), ").")
++     }
++     
++     # Prioridad de intervención
++     prioridad <- ifelse(dominios_significativos >= 3, "ALTA", 
++                        ifelse(dominios_significativos >= 2, "MEDIA", "BAJA"))
++     cat("\nPrioridad de intervención:", prioridad)
++   } else {
++     cat(".")
++     cat("\nPrioridad de intervención: BAJA")
++   }
++   cat("\n\n")
++   
++   return(resultados_variable)
++ }
+> 
+> # Función principal para ejecutar análisis de variables prioritarias
+> ejecutar_analisis_demo <- function() {
++   cat(rep("=", 100), "\n")
++   cat("# ANÁLISIS REORGANIZADO POR VARIABLE - DEMOSTRACIÓN\n")
++   cat("# Chi-cuadrado → Descripción → Odds Ratio\n")
++   cat(rep("=", 100), "\n\n")
++   
++   todos_resultados <- list()
++   
++   # Seleccionar variables prioritarias para demostración
++   variables_demo <- c("area_residencia", "grupo_etnico", "nivel_educativo_madre", 
++                      "seguro_social", "retardo_crecimiento")
++   
++   for(variable in variables_demo) {
++     resultado <- analizar_variable(variable, datos)
++     if(!is.null(resultado)) {
++       todos_resultados[[variable]] <- resultado
++     }
++   }
++   
++   # Crear resumen general
++   cat(rep("=", 100), "\n")
++   cat("## RESUMEN GENERAL DE VARIABLES ANALIZADAS\n")
++   cat(rep("=", 100), "\n\n")
++   
++   cat("| Variable | Dominios afectados | OR máximo | Dominio de mayor impacto | Prioridad |\n")
++   cat("|----------|-------------------|-----------|--------------------------|----------|\n")
++   
++   for(variable in names(todos_resultados)) {
++     resultado_var <- todos_resultados[[variable]]
++     dominios_afectados <- sum(sapply(resultado_var, function(x) x$significativo))
++     
++     if(dominios_afectados > 0) {
++       ors <- sapply(resultado_var, function(x) ifelse(is.na(x$or), 0, x$or))
++       max_or <- max(ors, na.rm = TRUE)
++       max_dominio <- names(which.max(ors))
++       
++       prioridad <- ifelse(dominios_afectados >= 3, "Alta", 
++                          ifelse(dominios_afectados >= 2, "Media", "Baja"))
++       
++       cat("| ", variable, " | ", paste0(dominios_afectados, "/5"), " | ", 
++           sprintf("%.2f", max_or), " | ", nombres_dominios[max_dominio], " | ", 
++           prioridad, " |\n")
++     } else {
++       cat("| ", variable, " | 0/5 | - | - | Baja |\n")
++     }
++   }
++   
++   cat("\n**Conclusiones principales:**\n")
++   total_variables <- length(todos_resultados)
++   variables_prioritarias <- sum(sapply(todos_resultados, function(x) 
++     sum(sapply(x, function(y) y$significativo)) >= 2))
++   
++   cat("- Se analizaron", total_variables, "variables de demostración\n")
++   cat("- Variables con prioridad media o alta:", variables_prioritarias, "\n")
++   cat("- Se requiere análisis completo de todas las variables del estudio\n")
++   cat("- Este análisis demuestra la metodología reorganizada por variable\n")
++   
++   return(todos_resultados)
++ }
+> 
+> # Ejecutar análisis de demostración
+> cat("Iniciando análisis de demostración...\n")
+Iniciando análisis de demostración...
+> resultados_demo <- ejecutar_analisis_demo()
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+# ANÁLISIS REORGANIZADO POR VARIABLE - DEMOSTRACIÓN
+# Chi-cuadrado → Descripción → Odds Ratio
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### VARIABLE: AREA_RESIDENCIA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+#### DOMINIO: Comunicación 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 8.70 , gl = 1 , p = 0.003 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 8.70 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.003 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  232     25  257
+  Urbano                1396     72 1468
+  Sum                   1628     97 1725
+
+**Proporciones:**
+- Rural : 9.7% riesgo vs 90.3% desarrollo adecuado 
+- Urbano : 4.9% riesgo vs 95.1% desarrollo adecuado 
+- Diferencia de riesgo: 4.8% mayor en Rural 
+
+**Odds Ratio:**
+OR = 0.48 (IC 95%: 0.30 - 0.77 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Comunicación es 2.09 veces menor en el grupo de referencia
+- Factor protector con magnitud: moderada 
+
+#### DOMINIO: Motricidad gruesa 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 12.62 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 12.62 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  194     63  257
+  Urbano                1243    225 1468
+  Sum                   1437    288 1725
+
+**Proporciones:**
+- Rural : 24.5% riesgo vs 75.5% desarrollo adecuado 
+- Urbano : 15.3% riesgo vs 84.7% desarrollo adecuado 
+- Diferencia de riesgo: 9.2% mayor en Rural 
+
+**Odds Ratio:**
+OR = 0.56 (IC 95%: 0.41 - 0.77 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Motricidad gruesa es 1.79 veces menor en el grupo de referencia
+- Factor protector con magnitud: moderada 
+
+#### DOMINIO: Motricidad fina 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 1.73 , gl = 1 , p = 0.188 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre area_residencia y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 25.13 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 25.13 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  218     39  257
+  Urbano                1379     89 1468
+  Sum                   1597    128 1725
+
+**Proporciones:**
+- Rural : 15.2% riesgo vs 84.8% desarrollo adecuado 
+- Urbano : 6.1% riesgo vs 93.9% desarrollo adecuado 
+- Diferencia de riesgo: 9.1% mayor en Rural 
+
+**Odds Ratio:**
+OR = 0.36 (IC 95%: 0.24 - 0.54 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Resolución de problemas es 2.77 veces menor en el grupo de referencia
+- Factor protector con magnitud: grande 
+
+#### DOMINIO: Socio-individual 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 15.06 , gl = 1 , p = < 0.001 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre area_residencia y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 15.06 con 1 grados de libertad supera el valor crítico
+- La significancia es alta (p < 0.001 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+        
+         Desarrollo adecuado Riesgo  Sum
+  Rural                  223     34  257
+  Urbano                1377     91 1468
+  Sum                   1600    125 1725
+
+**Proporciones:**
+- Rural : 13.2% riesgo vs 86.8% desarrollo adecuado 
+- Urbano : 6.2% riesgo vs 93.8% desarrollo adecuado 
+- Diferencia de riesgo: 7.0% mayor en Rural 
+
+**Odds Ratio:**
+OR = 0.43 (IC 95%: 0.29 - 0.66 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Socio-individual es 2.31 veces menor en el grupo de referencia
+- Factor protector con magnitud: moderada 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### RESUMEN: AREA_RESIDENCIA 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  8.70  |  0.003  |  0.48  |  0.30-0.77  |  Sí  |
+|  Motricidad gruesa  |  12.62  |  < 0.001  |  0.56  |  0.41-0.77  |  Sí  |
+|  Motricidad fina  |  1.73  |  0.188  |  -  |  -  |  No  |
+|  Resolución de problemas  |  25.13  |  < 0.001  |  0.36  |  0.24-0.54  |  Sí  |
+|  Socio-individual  |  15.06  |  < 0.001  |  0.43  |  0.29-0.66  |  Sí  |
+
+**Conclusión clínica:**
+area_residencia afecta significativamente 4 de 5 dominios del neurodesarrollo, con mayor impacto en Motricidad gruesa (OR = 0.56 ).
+Prioridad de intervención: ALTA
+
+
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### VARIABLE: GRUPO_ETNICO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+#### DOMINIO: Comunicación 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 2.73 , gl = 1 , p = 0.098 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre grupo_etnico y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.39 , gl = 1 , p = 0.533 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre grupo_etnico y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 1.89 , gl = 1 , p = 0.169 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre grupo_etnico y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 4.57 , gl = 1 , p = 0.033 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre grupo_etnico y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.57 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.033 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+             
+              Desarrollo adecuado Riesgo  Sum
+  Indígena                    674     67  741
+  No indígena                 923     61  984
+  Sum                        1597    128 1725
+
+**Proporciones:**
+- Indígena : 9.0% riesgo vs 91.0% desarrollo adecuado 
+- No indígena : 6.2% riesgo vs 93.8% desarrollo adecuado 
+- Diferencia de riesgo: 2.8% mayor en Indígena 
+
+**Odds Ratio:**
+OR = 0.66 (IC 95%: 0.46 - 0.95 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Resolución de problemas es 1.50 veces menor en el grupo de referencia
+- Factor protector con magnitud: moderada 
+
+#### DOMINIO: Socio-individual 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 4.90 , gl = 1 , p = 0.027 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre grupo_etnico y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.90 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.027 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+             
+              Desarrollo adecuado Riesgo  Sum
+  Indígena                    675     66  741
+  No indígena                 925     59  984
+  Sum                        1600    125 1725
+
+**Proporciones:**
+- Indígena : 8.9% riesgo vs 91.1% desarrollo adecuado 
+- No indígena : 6.0% riesgo vs 94.0% desarrollo adecuado 
+- Diferencia de riesgo: 2.9% mayor en Indígena 
+
+**Odds Ratio:**
+OR = 0.65 (IC 95%: 0.45 - 0.94 )
+**Interpretación:** Asociación débil 
+- El riesgo de retraso en Socio-individual es 1.53 veces menor en el grupo de referencia
+- Factor protector con magnitud: moderada 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### RESUMEN: GRUPO_ETNICO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  2.73  |  0.098  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.39  |  0.533  |  -  |  -  |  No  |
+|  Motricidad fina  |  1.89  |  0.169  |  -  |  -  |  No  |
+|  Resolución de problemas  |  4.57  |  0.033  |  0.66  |  0.46-0.95  |  Sí  |
+|  Socio-individual  |  4.90  |  0.027  |  0.65  |  0.45-0.94  |  Sí  |
+
+**Conclusión clínica:**
+grupo_etnico afecta significativamente 2 de 5 dominios del neurodesarrollo, con mayor impacto en Resolución de problemas (OR = 0.66 ).
+Prioridad de intervención: MEDIA
+
+
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### VARIABLE: NIVEL_EDUCATIVO_MADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+#### DOMINIO: Comunicación 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.014 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Comunicación 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.014 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 12      2   14
+  Básico                        485     21  506
+  Diversificado                 660     40  700
+  Ninguna                        54      9   63
+  Primaria                      293     21  314
+  Universitario                 124      4  128
+  Sum                          1628     97 1725
+
+**Proporciones:**
+-  : 14.3% riesgo vs 85.7% desarrollo adecuado 
+- Básico : 4.2% riesgo vs 95.8% desarrollo adecuado 
+- Diversificado : 5.7% riesgo vs 94.3% desarrollo adecuado 
+- Ninguna : 14.3% riesgo vs 85.7% desarrollo adecuado 
+- Primaria : 6.7% riesgo vs 93.3% desarrollo adecuado 
+- Universitario : 3.1% riesgo vs 96.9% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad gruesa 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.016 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.016 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 11      3   14
+  Básico                        417     89  506
+  Diversificado                 583    117  700
+  Ninguna                        46     17   63
+  Primaria                      262     52  314
+  Universitario                 118     10  128
+  Sum                          1437    288 1725
+
+**Proporciones:**
+-  : 21.4% riesgo vs 78.6% desarrollo adecuado 
+- Básico : 17.6% riesgo vs 82.4% desarrollo adecuado 
+- Diversificado : 16.7% riesgo vs 83.3% desarrollo adecuado 
+- Ninguna : 27.0% riesgo vs 73.0% desarrollo adecuado 
+- Primaria : 16.6% riesgo vs 83.4% desarrollo adecuado 
+- Universitario : 7.8% riesgo vs 92.2% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Motricidad fina 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.004 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Motricidad fina 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.004 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 12      2   14
+  Básico                        459     47  506
+  Diversificado                 655     45  700
+  Ninguna                        51     12   63
+  Primaria                      279     35  314
+  Universitario                 121      7  128
+  Sum                          1577    148 1725
+
+**Proporciones:**
+-  : 14.3% riesgo vs 85.7% desarrollo adecuado 
+- Básico : 9.3% riesgo vs 90.7% desarrollo adecuado 
+- Diversificado : 6.4% riesgo vs 93.6% desarrollo adecuado 
+- Ninguna : 19.0% riesgo vs 81.0% desarrollo adecuado 
+- Primaria : 11.1% riesgo vs 88.9% desarrollo adecuado 
+- Universitario : 5.5% riesgo vs 94.5% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Resolución de problemas 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.002 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Resolución de problemas 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.002 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 10      4   14
+  Básico                        478     28  506
+  Diversificado                 640     60  700
+  Ninguna                        55      8   63
+  Primaria                      290     24  314
+  Universitario                 124      4  128
+  Sum                          1597    128 1725
+
+**Proporciones:**
+-  : 28.6% riesgo vs 71.4% desarrollo adecuado 
+- Básico : 5.5% riesgo vs 94.5% desarrollo adecuado 
+- Diversificado : 8.6% riesgo vs 91.4% desarrollo adecuado 
+- Ninguna : 12.7% riesgo vs 87.3% desarrollo adecuado 
+- Primaria : 7.6% riesgo vs 92.4% desarrollo adecuado 
+- Universitario : 3.1% riesgo vs 96.9% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+#### DOMINIO: Socio-individual 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+Test exacto de Fisher: p = 0.003 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre nivel_educativo_madre y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- La significancia es moderada (p 0.003 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+               
+                Desarrollo adecuado Riesgo  Sum
+                                 12      2   14
+  Básico                        481     25  506
+  Diversificado                 649     51  700
+  Ninguna                        52     11   63
+  Primaria                      285     29  314
+  Universitario                 121      7  128
+  Sum                          1600    125 1725
+
+**Proporciones:**
+-  : 14.3% riesgo vs 85.7% desarrollo adecuado 
+- Básico : 4.9% riesgo vs 95.1% desarrollo adecuado 
+- Diversificado : 7.3% riesgo vs 92.7% desarrollo adecuado 
+- Ninguna : 17.5% riesgo vs 82.5% desarrollo adecuado 
+- Primaria : 9.2% riesgo vs 90.8% desarrollo adecuado 
+- Universitario : 5.5% riesgo vs 94.5% desarrollo adecuado 
+
+**Odds Ratio:**
+No se pudo calcular OR (tabla no 2x2)
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### RESUMEN: NIVEL_EDUCATIVO_MADRE 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  -  |  0.014  |  -  |  -  |  Sí  |
+|  Motricidad gruesa  |  -  |  0.016  |  -  |  -  |  Sí  |
+|  Motricidad fina  |  -  |  0.004  |  -  |  -  |  Sí  |
+|  Resolución de problemas  |  -  |  0.002  |  -  |  -  |  Sí  |
+|  Socio-individual  |  -  |  0.003  |  -  |  -  |  Sí  |
+
+**Conclusión clínica:**
+nivel_educativo_madre afecta significativamente 5 de 5 dominios del neurodesarrollo
+Prioridad de intervención: ALTA
+
+
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### VARIABLE: SEGURO_SOCIAL 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+#### DOMINIO: Comunicación 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.46 , gl = 1 , p = 0.496 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.06 , gl = 1 , p = 0.807 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Motricidad gruesa .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad fina 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 2.00 , gl = 1 , p = 0.158 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 0.962 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.00 , gl = 1 , p = 1.000 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre seguro_social y Socio-individual .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### RESUMEN: SEGURO_SOCIAL 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.46  |  0.496  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  0.06  |  0.807  |  -  |  -  |  No  |
+|  Motricidad fina  |  2.00  |  0.158  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.00  |  0.962  |  -  |  -  |  No  |
+|  Socio-individual  |  0.00  |  1.000  |  -  |  -  |  No  |
+
+**Conclusión clínica:**
+seguro_social afecta significativamente 0 de 5 dominios del neurodesarrollo.
+Prioridad de intervención: BAJA
+
+
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### VARIABLE: RETARDO_CRECIMIENTO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+#### DOMINIO: Comunicación 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.81 , gl = 1 , p = 0.369 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre retardo_crecimiento y Comunicación .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Motricidad gruesa 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 4.60 , gl = 1 , p = 0.032 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre retardo_crecimiento y Motricidad gruesa 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 4.60 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.032 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  No                 1288    245 1533
+  Sí                  149     43  192
+  Sum                1437    288 1725
+
+**Proporciones:**
+- No : 16.0% riesgo vs 84.0% desarrollo adecuado 
+- Sí : 22.4% riesgo vs 77.6% desarrollo adecuado 
+- Diferencia de riesgo: 6.4% menor en No 
+
+**Odds Ratio:**
+OR = 1.52 (IC 95%: 1.05 - 2.19 )
+**Interpretación:** Asociación moderada 
+- El riesgo de retraso en Motricidad gruesa es 1.52 veces mayor en el grupo de referencia
+- Magnitud del efecto: moderada 
+
+#### DOMINIO: Motricidad fina 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 3.69 , gl = 1 , p = 0.055 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre retardo_crecimiento y Motricidad fina .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Resolución de problemas 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 0.43 , gl = 1 , p = 0.510 
+
+**Resultado:**
+No se encontró asociación estadísticamente significativa entre retardo_crecimiento y Resolución de problemas .
+
+**Odds Ratio:**
+No aplicable (chi-cuadrado no significativo).
+
+#### DOMINIO: Socio-individual 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+**Chi-cuadrado:**
+χ² = 8.01 , gl = 1 , p = 0.005 
+
+**Descripción de resultados:**
+- La prueba indica una asociación estadísticamente significativa entre retardo_crecimiento y Socio-individual 
+- Las diferencias observadas en las proporciones no se deben al azar
+- El estadístico chi-cuadrado de 8.01 con 1 grados de libertad supera el valor crítico
+- La significancia es moderada (p 0.005 ), indicando evidencia sólida de asociación
+
+**Tabla de contingencia:**
+     
+      Desarrollo adecuado Riesgo  Sum
+  No                 1432    101 1533
+  Sí                  168     24  192
+  Sum                1600    125 1725
+
+**Proporciones:**
+- No : 6.6% riesgo vs 93.4% desarrollo adecuado 
+- Sí : 12.5% riesgo vs 87.5% desarrollo adecuado 
+- Diferencia de riesgo: 5.9% menor en No 
+
+**Odds Ratio:**
+OR = 2.03 (IC 95%: 1.26 - 3.25 )
+**Interpretación:** Asociación moderada 
+- El riesgo de retraso en Socio-individual es 2.03 veces mayor en el grupo de referencia
+- Magnitud del efecto: moderada 
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+### RESUMEN: RETARDO_CRECIMIENTO 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Dominio | Chi-cuadrado | p-valor | OR | IC 95% | Significativo |
+|---------|--------------|---------|----|---------|--------------|
+|  Comunicación  |  0.81  |  0.369  |  -  |  -  |  No  |
+|  Motricidad gruesa  |  4.60  |  0.032  |  1.52  |  1.05-2.19  |  Sí  |
+|  Motricidad fina  |  3.69  |  0.055  |  -  |  -  |  No  |
+|  Resolución de problemas  |  0.43  |  0.510  |  -  |  -  |  No  |
+|  Socio-individual  |  8.01  |  0.005  |  2.03  |  1.26-3.25  |  Sí  |
+
+**Conclusión clínica:**
+retardo_crecimiento afecta significativamente 2 de 5 dominios del neurodesarrollo, con mayor impacto en Socio-individual (OR = 2.03 ).
+Prioridad de intervención: MEDIA
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+## RESUMEN GENERAL DE VARIABLES ANALIZADAS
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+
+| Variable | Dominios afectados | OR máximo | Dominio de mayor impacto | Prioridad |
+|----------|-------------------|-----------|--------------------------|----------|
+|  area_residencia  |  4/5  |  0.56  |  Motricidad gruesa  |  Alta  |
+|  grupo_etnico  |  2/5  |  0.66  |  Resolución de problemas  |  Media  |
+|  nivel_educativo_madre  |  5/5  |  0.00  |  Comunicación  |  Alta  |
+|  seguro_social  | 0/5 | - | - | Baja |
+|  retardo_crecimiento  |  2/5  |  2.03  |  Socio-individual  |  Media  |
+
+**Conclusiones principales:**
+- Se analizaron 5 variables de demostración
+- Variables con prioridad media o alta: 4 
+- Se requiere análisis completo de todas las variables del estudio
+- Este análisis demuestra la metodología reorganizada por variable
+> 
+> cat("\n", rep("=", 100), "\n")
+
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+> cat("ANÁLISIS COMPLETADO\n")
+ANÁLISIS COMPLETADO
+> cat("Para análisis completo, ejecutar con todas las variables del estudio.\n")
+Para análisis completo, ejecutar con todas las variables del estudio.
+> cat(rep("=", 100), "\n")
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+> 

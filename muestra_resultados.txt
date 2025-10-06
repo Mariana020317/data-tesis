@@ -1,0 +1,150 @@
++     "edad_meses_nino", "grupo_etnico", "area_residencia", "sexo_jefe_hogar"
++   ),
++   "Variables educativas" = c(
++     "nivel_educativo_madre", "nivel_educativo_padre"
++   ),
++   "Variables socioeconómicas" = c(
++     "situacion_laboral_madre", "seguro_social", "propiedad_vivienda"
++   ),
++   "Variables de vivienda" = c(
++     "fuente_agua_consumo", "tipo_sanitario", "manejo_basura"
++   ),
++   "Variables de salud" = c(
++     "retardo_crecimiento", "desnutricion_aguda", "vacunacion_completa"
++   )
++ )
+> 
+> # Función para realizar análisis Chi-cuadrado
+> realizar_chi_cuadrado <- function(variable, dominio_riesgo, datos) {
++   # Crear tabla de contingencia
++   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
++   
++   # Verificar si hay suficientes observaciones
++   if(any(tabla < 5) && min(dim(tabla)) > 1) {
++     # Usar test exacto de Fisher para tablas pequeñas
++     test_result <- tryCatch({
++       fisher.test(tabla)
++     }, error = function(e) {
++       # Si Fisher falla, usar simulación
++       fisher.test(tabla, simulate.p.value = TRUE)
++     })
++     return(list(
++       estadistico = NA,
++       grados_libertad = NA,
++       p_valor = test_result$p.value,
++       tipo_test = "Fisher",
++       tabla = tabla
++     ))
++   } else {
++     # Usar Chi-cuadrado
++     test_result <- chisq.test(tabla)
++     return(list(
++       estadistico = test_result$statistic,
++       grados_libertad = test_result$parameter,
++       p_valor = test_result$p.value,
++       tipo_test = "Chi-cuadrado",
++       tabla = tabla
++     ))
++   }
++ }
+> 
+> # Función para calcular Odds Ratio
+> calcular_odds_ratio <- function(variable, dominio_riesgo, datos) {
++   # Crear tabla 2x2 para OR
++   tabla <- table(datos[[variable]], datos[[dominio_riesgo]])
++   
++   if(nrow(tabla) == 2 && ncol(tabla) == 2) {
++     # Calcular OR manualmente
++     or <- (tabla[1,1] * tabla[2,2]) / (tabla[1,2] * tabla[2,1])
++     
++     # Calcular intervalo de confianza
++     log_or <- log(or)
++     se_log_or <- sqrt(sum(1/tabla))
++     ic_inf <- exp(log_or - 1.96 * se_log_or)
++     ic_sup <- exp(log_or + 1.96 * se_log_or)
++     
++     return(list(
++       or = or,
++       ic_inf = ic_inf,
++       ic_sup = ic_sup
++     ))
++   } else {
++     return(list(or = NA, ic_inf = NA, ic_sup = NA))
++   }
++ }
+> 
+> # Función para formatear p-valor
+> formatear_p_valor <- function(p) {
++   if(p < 0.001) return("< 0.001")
++   if(p < 0.01) return(sprintf("%.3f", p))
++   return(sprintf("%.3f", p))
++ }
+> 
+> # Función para interpretar OR
+> interpretar_or <- function(or) {
++   if(is.na(or)) return("No aplicable")
++   if(or < 1.5) return("Asociación débil")
++   if(or < 2.5) return("Asociación moderada")
++   if(or < 5) return("Asociación fuerte")
++   return("Asociación muy fuerte")
++ }
+> 
+> # Función principal de análisis por variable
+> analizar_variable <- function(variable, datos) {
++   cat("\n", rep("=", 80), "\n")
++   cat("### VARIABLE:", toupper(variable), "\n")
++   cat(rep("=", 80), "\n\n")
++   
++   # Verificar si la variable existe en los datos
++   if(!variable %in% names(datos)) {
++     cat("**NOTA:** Variable no encontrada en los datos.\n\n")
++     return(NULL)
++   }
++   
++   # Eliminar valores faltantes
++   datos_var <- datos[!is.na(datos[[variable]]), ]
++   
++   if(nrow(datos_var) == 0) {
++     cat("**NOTA:** No hay datos válidos para esta variable.\n\n")
++     return(NULL)
++   }
++   
++   resultados_variable <- list()
++   
++   # Analizar cada dominio
++   for(dominio in names(dominios)) {
++     cat("#### DOMINIO:", nombres_dominios[dominio], "\n")
++     cat(rep("-", 50), "\n")
++     
++     dominio_riesgo <- paste0("riesgo_", dominio)
++     
++     # Chi-cuadrado
++     resultado_chi <- realizar_chi_cuadrado(variable, dominio_riesgo, datos_var)
++     
++     cat("**Chi-cuadrado:**\n")
++     if(resultado_chi$tipo_test == "Chi-cuadrado") {
++       cat("χ² =", sprintf("%.2f", resultado_chi$estadistico), 
++           ", gl =", resultado_chi$grados_libertad, 
++           ", p =", formatear_p_valor(resultado_chi$p_valor), "\n\n")
++     } else {
++       cat("Test exacto de Fisher: p =", formatear_p_valor(resultado_chi$p_valor), "\n\n")
++     }
++     
++     # Descripción de resultados
++     if(resultado_chi$p_valor < 0.05) {
++       cat("**Descripción de resultados:**\n")
++       cat("- La prueba indica una asociación estadísticamente significativa entre", 
++           variable, "y", nombres_dominios[dominio], "\n")
++       cat("- Las diferencias observadas en las proporciones no se deben al azar\n")
++       if(resultado_chi$tipo_test == "Chi-cuadrado") {
++         cat("- El estadístico chi-cuadrado de", sprintf("%.2f", resultado_chi$estadistico), 
++             "con", resultado_chi$grados_libertad, "grados de libertad supera el valor crítico\n")
++       }
++       cat("- La significancia es", 
++           ifelse(resultado_chi$p_valor < 0.001, "alta", "moderada"), 
++           "(p", formatear_p_valor(resultado_chi$p_valor), 
++           "), indicando evidencia sólida de asociación\n\n")
++       
++       # Mostrar tabla de contingencia
++       cat("**Tabla de contingencia:**\n")
++       tabla_con_totales <- addmargins(resultado_chi$tabla)
