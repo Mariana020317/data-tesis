@@ -1,0 +1,1249 @@
+# ANÁLISIS CHI-CUADRADO MEJORADO
+# Análisis de asociaciones entre variables sociodemográficas y riesgo de desarrollo infantil
+# Fecha: 2025-07-17 
+
+
+## VARIABLE: GRUPO_ETNICO 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: grupo_etnico vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena              6                  44        691
+  No indígena           8                  39        937
+
+**Proporciones por fila:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena            0.8                 5.9       93.3
+  No indígena         0.8                 4.0       95.2
+
+**Interpretación:**
+La asociación entre grupo_etnico y riesgo_comunicacion NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 3.599, p = 0.165)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: grupo_etnico vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena             33                  96        612
+  No indígena          21                 138        825
+
+**Proporciones por fila:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena            4.5                13.0       82.6
+  No indígena         2.1                14.0       83.8
+
+**Interpretación:**
+La asociación entre grupo_etnico y riesgo_motricidad_gruesa ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 7.699, p = 0.021)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Indígena muestra mayor proporción de Alto riesgo (4.5% vs 2.1%, diferencia de 2.3%)
+
+**Intervalos de confianza 95%:**
+Indígena - Alto riesgo: 4.5% (IC 95%: 3.2% - 6.2%)
+Indígena - Riesgo de trastorno: 13.0% (IC 95%: 10.7% - 15.6%)
+Indígena - Sin riesgo: 82.6% (IC 95%: 79.7% - 85.2%)
+No indígena - Alto riesgo: 2.1% (IC 95%: 1.4% - 3.2%)
+No indígena - Riesgo de trastorno: 14.0% (IC 95%: 12.0% - 16.3%)
+No indígena - Sin riesgo: 83.8% (IC 95%: 81.4% - 86.0%)
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: grupo_etnico vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena             14                  58        669
+  No indígena          10                  66        908
+
+**Proporciones por fila:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena            1.9                 7.8       90.3
+  No indígena         1.0                 6.7       92.3
+
+**Interpretación:**
+La asociación entre grupo_etnico y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 3.237, p = 0.198)).
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: grupo_etnico vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena              7                  60        674
+  No indígena           5                  56        923
+
+**Proporciones por fila:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena            0.9                 8.1       91.0
+  No indígena         0.5                 5.7       93.8
+
+**Interpretación:**
+La asociación entre grupo_etnico y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 5.166, p = 0.076)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: grupo_etnico vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena              7                  59        675
+  No indígena          10                  49        925
+
+**Proporciones por fila:**
+             
+              Alto riesgo Riesgo de trastorno Sin riesgo
+  Indígena            0.9                 8.0       91.1
+  No indígena         1.0                 5.0       94.0
+
+**Interpretación:**
+La asociación entre grupo_etnico y riesgo_socio_individual ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 6.414, p = 0.040)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Indígena muestra mayor proporción de Riesgo de trastorno (8.0% vs 5.0%, diferencia de 3.0%)
+
+**Intervalos de confianza 95%:**
+Indígena - Alto riesgo: 0.9% (IC 95%: 0.5% - 1.9%)
+Indígena - Riesgo de trastorno: 8.0% (IC 95%: 6.2% - 10.1%)
+Indígena - Sin riesgo: 91.1% (IC 95%: 88.8% - 92.9%)
+No indígena - Alto riesgo: 1.0% (IC 95%: 0.6% - 1.9%)
+No indígena - Riesgo de trastorno: 5.0% (IC 95%: 3.8% - 6.5%)
+No indígena - Sin riesgo: 94.0% (IC 95%: 92.3% - 95.3%)
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: AREA_RESIDENCIA 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: area_residencia vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural            2                  23        232
+  Urbano          12                  60       1396
+
+**Proporciones por fila:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural          0.8                 8.9       90.3
+  Urbano         0.8                 4.1       95.1
+
+**Interpretación:**
+La asociación entre area_residencia y riesgo_comunicacion ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.004)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Rural muestra mayor proporción de Riesgo de trastorno (8.9% vs 4.1%, diferencia de 4.9%)
+
+**Intervalos de confianza 95%:**
+Rural - Alto riesgo: 0.8% (IC 95%: 0.2% - 2.8%)
+Rural - Riesgo de trastorno: 8.9% (IC 95%: 6.0% - 13.1%)
+Rural - Sin riesgo: 90.3% (IC 95%: 86.0% - 93.3%)
+Urbano - Alto riesgo: 0.8% (IC 95%: 0.5% - 1.4%)
+Urbano - Riesgo de trastorno: 4.1% (IC 95%: 3.2% - 5.2%)
+Urbano - Sin riesgo: 95.1% (IC 95%: 93.9% - 96.1%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: area_residencia vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural           19                  44        194
+  Urbano          35                 190       1243
+
+**Proporciones por fila:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural          7.4                17.1       75.5
+  Urbano         2.4                12.9       84.7
+
+**Interpretación:**
+La asociación entre area_residencia y riesgo_motricidad_gruesa ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 22.558, p = 0.000)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Urbano muestra mayor proporción de Sin riesgo (84.7% vs 75.5%, diferencia de 9.2%)
+
+**Intervalos de confianza 95%:**
+Rural - Alto riesgo: 7.4% (IC 95%: 4.8% - 11.3%)
+Rural - Riesgo de trastorno: 17.1% (IC 95%: 13.0% - 22.2%)
+Rural - Sin riesgo: 75.5% (IC 95%: 69.9% - 80.3%)
+Urbano - Alto riesgo: 2.4% (IC 95%: 1.7% - 3.3%)
+Urbano - Riesgo de trastorno: 12.9% (IC 95%: 11.3% - 14.8%)
+Urbano - Sin riesgo: 84.7% (IC 95%: 82.7% - 86.4%)
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: area_residencia vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural            4                  24        229
+  Urbano          20                 100       1348
+
+**Proporciones por fila:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural          1.6                 9.3       89.1
+  Urbano         1.4                 6.8       91.8
+
+**Interpretación:**
+La asociación entre area_residencia y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.336)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: area_residencia vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural            3                  36        218
+  Urbano           9                  80       1379
+
+**Proporciones por fila:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural          1.2                14.0       84.8
+  Urbano         0.6                 5.4       93.9
+
+**Interpretación:**
+La asociación entre area_residencia y riesgo_resolucion_problemas ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.000)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Urbano muestra mayor proporción de Sin riesgo (93.9% vs 84.8%, diferencia de 9.1%)
+
+**Intervalos de confianza 95%:**
+Rural - Alto riesgo: 1.2% (IC 95%: 0.4% - 3.4%)
+Rural - Riesgo de trastorno: 14.0% (IC 95%: 10.3% - 18.8%)
+Rural - Sin riesgo: 84.8% (IC 95%: 79.9% - 88.7%)
+Urbano - Alto riesgo: 0.6% (IC 95%: 0.3% - 1.2%)
+Urbano - Riesgo de trastorno: 5.4% (IC 95%: 4.4% - 6.7%)
+Urbano - Sin riesgo: 93.9% (IC 95%: 92.6% - 95.0%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: area_residencia vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural            6                  28        223
+  Urbano          11                  80       1377
+
+**Proporciones por fila:**
+        
+         Alto riesgo Riesgo de trastorno Sin riesgo
+  Rural          2.3                10.9       86.8
+  Urbano         0.7                 5.4       93.8
+
+**Interpretación:**
+La asociación entre area_residencia y riesgo_socio_individual ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 17.101, p = 0.000)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Urbano muestra mayor proporción de Sin riesgo (93.8% vs 86.8%, diferencia de 7.0%)
+
+**Intervalos de confianza 95%:**
+Rural - Alto riesgo: 2.3% (IC 95%: 1.1% - 5.0%)
+Rural - Riesgo de trastorno: 10.9% (IC 95%: 7.6% - 15.3%)
+Rural - Sin riesgo: 86.8% (IC 95%: 82.1% - 90.4%)
+Urbano - Alto riesgo: 0.7% (IC 95%: 0.4% - 1.3%)
+Urbano - Riesgo de trastorno: 5.4% (IC 95%: 4.4% - 6.7%)
+Urbano - Sin riesgo: 93.8% (IC 95%: 92.4% - 94.9%)
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: NIVEL_EDUCATIVO_MADRE 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: nivel_educativo_madre vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  3                  18        485
+  Diversificado           6                  34        660
+  Ninguna                 2                   7         54
+  Primaria                1                  20        293
+  Universitario           2                   2        124
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.6                 3.6       95.8
+  Diversificado         0.9                 4.9       94.3
+  Ninguna               3.2                11.1       85.7
+  Primaria              0.3                 6.4       93.3
+  Universitario         1.6                 1.6       96.9
+
+**Interpretación:**
+La asociación entre nivel_educativo_madre y riesgo_comunicacion ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.017)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Universitario muestra mayor proporción de Sin riesgo (96.9% vs 85.7%, diferencia de 11.2%)
+
+**Intervalos de confianza 95%:**
+Básico - Alto riesgo: 0.6% (IC 95%: 0.2% - 1.7%)
+Básico - Riesgo de trastorno: 3.6% (IC 95%: 2.3% - 5.6%)
+Básico - Sin riesgo: 95.8% (IC 95%: 93.7% - 97.3%)
+Diversificado - Alto riesgo: 0.9% (IC 95%: 0.4% - 1.9%)
+Diversificado - Riesgo de trastorno: 4.9% (IC 95%: 3.5% - 6.7%)
+Diversificado - Sin riesgo: 94.3% (IC 95%: 92.3% - 95.8%)
+Ninguna - Alto riesgo: 3.2% (IC 95%: 0.9% - 10.9%)
+Ninguna - Riesgo de trastorno: 11.1% (IC 95%: 5.5% - 21.2%)
+Ninguna - Sin riesgo: 85.7% (IC 95%: 75.0% - 92.3%)
+Primaria - Alto riesgo: 0.3% (IC 95%: 0.1% - 1.8%)
+Primaria - Riesgo de trastorno: 6.4% (IC 95%: 4.2% - 9.6%)
+Primaria - Sin riesgo: 93.3% (IC 95%: 90.0% - 95.6%)
+Universitario - Alto riesgo: 1.6% (IC 95%: 0.4% - 5.5%)
+Universitario - Riesgo de trastorno: 1.6% (IC 95%: 0.4% - 5.5%)
+Universitario - Sin riesgo: 96.9% (IC 95%: 92.2% - 98.8%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: nivel_educativo_madre vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                 15                  74        417
+  Diversificado          19                  98        583
+  Ninguna                 5                  12         46
+  Primaria               12                  40        262
+  Universitario           3                   7        118
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                3.0                14.6       82.4
+  Diversificado         2.7                14.0       83.3
+  Ninguna               7.9                19.0       73.0
+  Primaria              3.8                12.7       83.4
+  Universitario         2.3                 5.5       92.2
+
+**Interpretación:**
+La asociación entre nivel_educativo_madre y riesgo_motricidad_gruesa ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.041)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Universitario muestra mayor proporción de Sin riesgo (92.2% vs 73.0%, diferencia de 19.2%)
+
+**Intervalos de confianza 95%:**
+Básico - Alto riesgo: 3.0% (IC 95%: 1.8% - 4.8%)
+Básico - Riesgo de trastorno: 14.6% (IC 95%: 11.8% - 18.0%)
+Básico - Sin riesgo: 82.4% (IC 95%: 78.9% - 85.5%)
+Diversificado - Alto riesgo: 2.7% (IC 95%: 1.7% - 4.2%)
+Diversificado - Riesgo de trastorno: 14.0% (IC 95%: 11.6% - 16.8%)
+Diversificado - Sin riesgo: 83.3% (IC 95%: 80.3% - 85.9%)
+Ninguna - Alto riesgo: 7.9% (IC 95%: 3.4% - 17.3%)
+Ninguna - Riesgo de trastorno: 19.0% (IC 95%: 11.2% - 30.4%)
+Ninguna - Sin riesgo: 73.0% (IC 95%: 61.0% - 82.4%)
+Primaria - Alto riesgo: 3.8% (IC 95%: 2.2% - 6.6%)
+Primaria - Riesgo de trastorno: 12.7% (IC 95%: 9.5% - 16.9%)
+Primaria - Sin riesgo: 83.4% (IC 95%: 78.9% - 87.1%)
+Universitario - Alto riesgo: 2.3% (IC 95%: 0.8% - 6.7%)
+Universitario - Riesgo de trastorno: 5.5% (IC 95%: 2.7% - 10.9%)
+Universitario - Sin riesgo: 92.2% (IC 95%: 86.2% - 95.7%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: nivel_educativo_madre vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  7                  40        459
+  Diversificado           6                  39        655
+  Ninguna                 4                   8         51
+  Primaria                5                  30        279
+  Universitario           1                   6        121
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                1.4                 7.9       90.7
+  Diversificado         0.9                 5.6       93.6
+  Ninguna               6.3                12.7       81.0
+  Primaria              1.6                 9.6       88.9
+  Universitario         0.8                 4.7       94.5
+
+**Interpretación:**
+La asociación entre nivel_educativo_madre y riesgo_motricidad_fina ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.002)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Universitario muestra mayor proporción de Sin riesgo (94.5% vs 81.0%, diferencia de 13.6%)
+
+**Intervalos de confianza 95%:**
+Básico - Alto riesgo: 1.4% (IC 95%: 0.7% - 2.8%)
+Básico - Riesgo de trastorno: 7.9% (IC 95%: 5.9% - 10.6%)
+Básico - Sin riesgo: 90.7% (IC 95%: 87.9% - 92.9%)
+Diversificado - Alto riesgo: 0.9% (IC 95%: 0.4% - 1.9%)
+Diversificado - Riesgo de trastorno: 5.6% (IC 95%: 4.1% - 7.5%)
+Diversificado - Sin riesgo: 93.6% (IC 95%: 91.5% - 95.2%)
+Ninguna - Alto riesgo: 6.3% (IC 95%: 2.5% - 15.2%)
+Ninguna - Riesgo de trastorno: 12.7% (IC 95%: 6.6% - 23.1%)
+Ninguna - Sin riesgo: 81.0% (IC 95%: 69.6% - 88.8%)
+Primaria - Alto riesgo: 1.6% (IC 95%: 0.7% - 3.7%)
+Primaria - Riesgo de trastorno: 9.6% (IC 95%: 6.8% - 13.3%)
+Primaria - Sin riesgo: 88.9% (IC 95%: 84.9% - 91.9%)
+Universitario - Alto riesgo: 0.8% (IC 95%: 0.1% - 4.3%)
+Universitario - Riesgo de trastorno: 4.7% (IC 95%: 2.2% - 9.8%)
+Universitario - Sin riesgo: 94.5% (IC 95%: 89.1% - 97.3%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: nivel_educativo_madre vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  3                  25        478
+  Diversificado           6                  54        640
+  Ninguna                 1                   7         55
+  Primaria                1                  23        290
+  Universitario           1                   3        124
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.6                 4.9       94.5
+  Diversificado         0.9                 7.7       91.4
+  Ninguna               1.6                11.1       87.3
+  Primaria              0.3                 7.3       92.4
+  Universitario         0.8                 2.3       96.9
+
+**Interpretación:**
+La asociación entre nivel_educativo_madre y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.168)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: nivel_educativo_madre vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  1                  24        481
+  Diversificado           8                  43        649
+  Ninguna                 2                   9         52
+  Primaria                4                  25        285
+  Universitario           2                   5        121
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.2                 4.7       95.1
+  Diversificado         1.1                 6.1       92.7
+  Ninguna               3.2                14.3       82.5
+  Primaria              1.3                 8.0       90.8
+  Universitario         1.6                 3.9       94.5
+
+**Interpretación:**
+La asociación entre nivel_educativo_madre y riesgo_socio_individual ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.013)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Básico muestra mayor proporción de Sin riesgo (95.1% vs 82.5%, diferencia de 12.5%)
+
+**Intervalos de confianza 95%:**
+Básico - Alto riesgo: 0.2% (IC 95%: 0.0% - 1.1%)
+Básico - Riesgo de trastorno: 4.7% (IC 95%: 3.2% - 7.0%)
+Básico - Sin riesgo: 95.1% (IC 95%: 92.8% - 96.6%)
+Diversificado - Alto riesgo: 1.1% (IC 95%: 0.6% - 2.2%)
+Diversificado - Riesgo de trastorno: 6.1% (IC 95%: 4.6% - 8.2%)
+Diversificado - Sin riesgo: 92.7% (IC 95%: 90.5% - 94.4%)
+Ninguna - Alto riesgo: 3.2% (IC 95%: 0.9% - 10.9%)
+Ninguna - Riesgo de trastorno: 14.3% (IC 95%: 7.7% - 25.0%)
+Ninguna - Sin riesgo: 82.5% (IC 95%: 71.4% - 90.0%)
+Primaria - Alto riesgo: 1.3% (IC 95%: 0.5% - 3.2%)
+Primaria - Riesgo de trastorno: 8.0% (IC 95%: 5.5% - 11.5%)
+Primaria - Sin riesgo: 90.8% (IC 95%: 87.1% - 93.5%)
+Universitario - Alto riesgo: 1.6% (IC 95%: 0.4% - 5.5%)
+Universitario - Riesgo de trastorno: 3.9% (IC 95%: 1.7% - 8.8%)
+Universitario - Sin riesgo: 94.5% (IC 95%: 89.1% - 97.3%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: NIVEL_EDUCATIVO_PADRE 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: nivel_educativo_padre vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  0                  14        366
+  Diversificado           6                  38        767
+  Ninguna                 2                   2         46
+  Primaria                2                  15        243
+  Universitario           3                   7        162
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.0                 3.7       96.3
+  Diversificado         0.7                 4.7       94.6
+  Ninguna               4.0                 4.0       92.0
+  Primaria              0.8                 5.8       93.5
+  Universitario         1.7                 4.1       94.2
+
+**Interpretación:**
+La asociación entre nivel_educativo_padre y riesgo_comunicacion NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.094)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: nivel_educativo_padre vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  6                  54        320
+  Diversificado          22                 114        675
+  Ninguna                 3                  13         34
+  Primaria               11                  26        223
+  Universitario          10                  18        144
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                1.6                14.2       84.2
+  Diversificado         2.7                14.1       83.2
+  Ninguna               6.0                26.0       68.0
+  Primaria              4.2                10.0       85.8
+  Universitario         5.8                10.5       83.7
+
+**Interpretación:**
+La asociación entre nivel_educativo_padre y riesgo_motricidad_gruesa ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.007)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Primaria muestra mayor proporción de Sin riesgo (85.8% vs 68.0%, diferencia de 17.8%)
+
+**Intervalos de confianza 95%:**
+Básico - Alto riesgo: 1.6% (IC 95%: 0.7% - 3.4%)
+Básico - Riesgo de trastorno: 14.2% (IC 95%: 11.1% - 18.1%)
+Básico - Sin riesgo: 84.2% (IC 95%: 80.2% - 87.5%)
+Diversificado - Alto riesgo: 2.7% (IC 95%: 1.8% - 4.1%)
+Diversificado - Riesgo de trastorno: 14.1% (IC 95%: 11.8% - 16.6%)
+Diversificado - Sin riesgo: 83.2% (IC 95%: 80.5% - 85.6%)
+Ninguna - Alto riesgo: 6.0% (IC 95%: 2.1% - 16.2%)
+Ninguna - Riesgo de trastorno: 26.0% (IC 95%: 15.9% - 39.6%)
+Ninguna - Sin riesgo: 68.0% (IC 95%: 54.2% - 79.2%)
+Primaria - Alto riesgo: 4.2% (IC 95%: 2.4% - 7.4%)
+Primaria - Riesgo de trastorno: 10.0% (IC 95%: 6.9% - 14.2%)
+Primaria - Sin riesgo: 85.8% (IC 95%: 81.0% - 89.5%)
+Universitario - Alto riesgo: 5.8% (IC 95%: 3.2% - 10.4%)
+Universitario - Riesgo de trastorno: 10.5% (IC 95%: 6.7% - 15.9%)
+Universitario - Sin riesgo: 83.7% (IC 95%: 77.5% - 88.5%)
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: nivel_educativo_padre vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  2                  28        350
+  Diversificado          11                  46        754
+  Ninguna                 1                   4         45
+  Primaria                4                  27        229
+  Universitario           2                  12        158
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.5                 7.4       92.1
+  Diversificado         1.4                 5.7       93.0
+  Ninguna               2.0                 8.0       90.0
+  Primaria              1.5                10.4       88.1
+  Universitario         1.2                 7.0       91.9
+
+**Interpretación:**
+La asociación entre nivel_educativo_padre y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.333)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: nivel_educativo_padre vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  2                  19        359
+  Diversificado           4                  53        754
+  Ninguna                 1                   5         44
+  Primaria                3                  15        242
+  Universitario           1                  10        161
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.5                 5.0       94.5
+  Diversificado         0.5                 6.5       93.0
+  Ninguna               2.0                10.0       88.0
+  Primaria              1.2                 5.8       93.1
+  Universitario         0.6                 5.8       93.6
+
+**Interpretación:**
+La asociación entre nivel_educativo_padre y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.721)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: nivel_educativo_padre vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                  2                  20        358
+  Diversificado           7                  47        757
+  Ninguna                 1                   5         44
+  Primaria                4                  21        235
+  Universitario           2                  12        158
+
+**Proporciones por fila:**
+               
+                Alto riesgo Riesgo de trastorno Sin riesgo
+  Básico                0.5                 5.3       94.2
+  Diversificado         0.9                 5.8       93.3
+  Ninguna               2.0                10.0       88.0
+  Primaria              1.5                 8.1       90.4
+  Universitario         1.2                 7.0       91.9
+
+**Interpretación:**
+La asociación entre nivel_educativo_padre y riesgo_socio_individual NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.615)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: SITUACION_LABORAL_MADRE 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: situacion_laboral_madre vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           9                  34        825
+  Trabaja              5                  48        797
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         1.0                 3.9       95.0
+  Trabaja            0.6                 5.6       93.8
+
+**Interpretación:**
+La asociación entre situacion_laboral_madre y riesgo_comunicacion NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 3.828, p = 0.147)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: situacion_laboral_madre vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja          30                 108        730
+  Trabaja             24                 126        700
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         3.5                12.4       84.1
+  Trabaja            2.8                14.8       82.4
+
+**Interpretación:**
+La asociación entre situacion_laboral_madre y riesgo_motricidad_gruesa NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 2.492, p = 0.288)).
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: situacion_laboral_madre vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja          10                  59        799
+  Trabaja             14                  64        772
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         1.2                 6.8       92.1
+  Trabaja            1.6                 7.5       90.8
+
+**Interpretación:**
+La asociación entre situacion_laboral_madre y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 1.145, p = 0.564)).
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: situacion_laboral_madre vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           7                  54        807
+  Trabaja              5                  60        785
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         0.8                 6.2       93.0
+  Trabaja            0.6                 7.1       92.4
+
+**Interpretación:**
+La asociación entre situacion_laboral_madre y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 0.765, p = 0.682)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: situacion_laboral_madre vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           9                  48        811
+  Trabaja              8                  59        783
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         1.0                 5.5       93.4
+  Trabaja            0.9                 6.9       92.1
+
+**Interpretación:**
+La asociación entre situacion_laboral_madre y riesgo_socio_individual NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 1.493, p = 0.474)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: SITUACION_LABORAL_PADRE 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: situacion_laboral_padre vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           0                  11        145
+  Trabaja             13                  67       1440
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         0.0                 7.1       92.9
+  Trabaja            0.9                 4.4       94.7
+
+**Interpretación:**
+La asociación entre situacion_laboral_padre y riesgo_comunicacion NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.173)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: situacion_laboral_padre vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           5                  34        117
+  Trabaja             48                 192       1280
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         3.2                21.8       75.0
+  Trabaja            3.2                12.6       84.2
+
+**Interpretación:**
+La asociación entre situacion_laboral_padre y riesgo_motricidad_gruesa ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 10.251, p = 0.006)).
+
+**Análisis detallado:**
+La significancia estadística se debe principalmente a que Trabaja muestra mayor proporción de Sin riesgo (84.2% vs 75.0%, diferencia de 9.2%)
+
+**Intervalos de confianza 95%:**
+No trabaja - Alto riesgo: 3.2% (IC 95%: 1.4% - 7.3%)
+No trabaja - Riesgo de trastorno: 21.8% (IC 95%: 16.0% - 28.9%)
+No trabaja - Sin riesgo: 75.0% (IC 95%: 67.7% - 81.1%)
+Trabaja - Alto riesgo: 3.2% (IC 95%: 2.4% - 4.2%)
+Trabaja - Riesgo de trastorno: 12.6% (IC 95%: 11.1% - 14.4%)
+Trabaja - Sin riesgo: 84.2% (IC 95%: 82.3% - 86.0%)
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: situacion_laboral_padre vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           0                  10        146
+  Trabaja             21                 107       1392
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         0.0                 6.4       93.6
+  Trabaja            1.4                 7.0       91.6
+
+**Interpretación:**
+La asociación entre situacion_laboral_padre y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.317)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: situacion_laboral_padre vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           0                  12        144
+  Trabaja             11                  91       1418
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         0.0                 7.7       92.3
+  Trabaja            0.7                 6.0       93.3
+
+**Interpretación:**
+La asociación entre situacion_laboral_padre y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.404)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: situacion_laboral_padre vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja           3                  13        140
+  Trabaja             14                  92       1414
+
+**Proporciones por fila:**
+            
+             Alto riesgo Riesgo de trastorno Sin riesgo
+  No trabaja         1.9                 8.3       89.7
+  Trabaja            0.9                 6.1       93.0
+
+**Interpretación:**
+La asociación entre situacion_laboral_padre y riesgo_socio_individual NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.254)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: SEGURO_SOCIAL 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: seguro_social vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No           8                  69       1234
+  Sí           6                  14        394
+
+**Proporciones por fila:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No         0.6                 5.3       94.1
+  Sí         1.4                 3.4       95.2
+
+**Interpretación:**
+La asociación entre seguro_social y riesgo_comunicacion NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 5.080, p = 0.079)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: seguro_social vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No          36                 185       1090
+  Sí          18                  49        347
+
+**Proporciones por fila:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No         2.7                14.1       83.1
+  Sí         4.3                11.8       83.8
+
+**Interpretación:**
+La asociación entre seguro_social y riesgo_motricidad_gruesa NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 3.797, p = 0.150)).
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: seguro_social vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No          17                 103       1191
+  Sí           7                  21        386
+
+**Proporciones por fila:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No         1.3                 7.9       90.8
+  Sí         1.7                 5.1       93.2
+
+**Interpretación:**
+La asociación entre seguro_social y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 3.941, p = 0.139)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: seguro_social vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No           8                  90       1213
+  Sí           4                  26        384
+
+**Proporciones por fila:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No         0.6                 6.9       92.5
+  Sí         1.0                 6.3       92.8
+
+**Interpretación:**
+La asociación entre seguro_social y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.693)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: seguro_social vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No          11                  84       1216
+  Sí           6                  24        384
+
+**Proporciones por fila:**
+    
+     Alto riesgo Riesgo de trastorno Sin riesgo
+  No         0.8                 6.4       92.8
+  Sí         1.4                 5.8       92.8
+
+**Interpretación:**
+La asociación entre seguro_social y riesgo_socio_individual NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 1.376, p = 0.503)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## VARIABLE: SEXO_NINO 
+
+### Dominio: COMUNICACION 
+
+**Análisis de asociación: sexo_nino vs riesgo_comunicacion**
+
+**Tabla de contingencia:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino            4                  34        765
+  Masculino          10                  49        863
+
+**Proporciones por fila:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino          0.5                 4.2       95.3
+  Masculino         1.1                 5.3       93.6
+
+**Interpretación:**
+La asociación entre sexo_nino y riesgo_comunicacion NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (p = 0.225)).
+
+**Limitaciones:**
+- Se utilizó el test exacto de Fisher debido a conteos pequeños
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: MOTRICIDAD_GRUESA 
+
+**Análisis de asociación: sexo_nino vs riesgo_motricidad_gruesa**
+
+**Tabla de contingencia:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino           29                 105        669
+  Masculino          25                 129        768
+
+**Proporciones por fila:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino          3.6                13.1       83.3
+  Masculino         2.7                14.0       83.3
+
+**Interpretación:**
+La asociación entre sexo_nino y riesgo_motricidad_gruesa NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 1.376, p = 0.503)).
+
+---
+
+### Dominio: MOTRICIDAD_FINA 
+
+**Análisis de asociación: sexo_nino vs riesgo_motricidad_fina**
+
+**Tabla de contingencia:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino           11                  51        741
+  Masculino          13                  73        836
+
+**Proporciones por fila:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino          1.4                 6.4       92.3
+  Masculino         1.4                 7.9       90.7
+
+**Interpretación:**
+La asociación entre sexo_nino y riesgo_motricidad_fina NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 1.591, p = 0.451)).
+
+---
+
+### Dominio: RESOLUCION_PROBLEMAS 
+
+**Análisis de asociación: sexo_nino vs riesgo_resolucion_problemas**
+
+**Tabla de contingencia:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino            5                  47        751
+  Masculino           7                  69        846
+
+**Proporciones por fila:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino          0.6                 5.9       93.5
+  Masculino         0.8                 7.5       91.8
+
+**Interpretación:**
+La asociación entre sexo_nino y riesgo_resolucion_problemas NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 1.957, p = 0.376)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+### Dominio: SOCIO_INDIVIDUAL 
+
+**Análisis de asociación: sexo_nino vs riesgo_socio_individual**
+
+**Tabla de contingencia:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino            9                  49        745
+  Masculino           8                  59        855
+
+**Proporciones por fila:**
+           
+            Alto riesgo Riesgo de trastorno Sin riesgo
+  Femenino          1.1                 6.1       92.8
+  Masculino         0.9                 6.4       92.7
+
+**Interpretación:**
+La asociación entre sexo_nino y riesgo_socio_individual NO ES ESTADÍSTICAMENTE SIGNIFICATIVA (Chi-cuadrado (χ² = 0.340, p = 0.844)).
+
+**Limitaciones:**
+- Algunos conteos son menores a 10, interpretar con precaución
+
+---
+
+
+## RESUMEN ESTADÍSTICO
+Total de observaciones: 1725 
+Distribución de niveles de riesgo por dominio:
+
+ COMUNICACION :
+
+        Alto riesgo Riesgo de trastorno          Sin riesgo 
+                 14                  83                1628 
+
+ MOTRICIDAD_GRUESA :
+
+        Alto riesgo Riesgo de trastorno          Sin riesgo 
+                 54                 234                1437 
+
+ MOTRICIDAD_FINA :
+
+        Alto riesgo Riesgo de trastorno          Sin riesgo 
+                 24                 124                1577 
+
+ RESOLUCION_PROBLEMAS :
+
+        Alto riesgo Riesgo de trastorno          Sin riesgo 
+                 12                 116                1597 
+
+ SOCIO_INDIVIDUAL :
+
+        Alto riesgo Riesgo de trastorno          Sin riesgo 
+                 17                 108                1600 
