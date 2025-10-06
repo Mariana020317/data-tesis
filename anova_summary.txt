@@ -1,0 +1,905 @@
+
+RESUMEN EJECUTIVO - ANÁLISIS ANOVA DE DESARROLLO INFANTIL (PRIORIZADO POR RIESGO)
+================================================================================
+
+ESTADÍSTICAS GENERALES:
+- Total de pruebas ANOVA realizadas: 235
+- Resultados significativos (p < 0.05): 71
+- Porcentaje de significancia: 30.2%
+
+ANÁLISIS PRIORIZADO POR RIESGO:
+Este análisis prioriza las combinaciones de variables con mayor riesgo de trastornos del desarrollo (Z ≤ -1).
+
+COMBINACIONES CON MAYOR RIESGO DE DESARROLLO:
+1. razon_hospitalizado_neonatal vs Motricidad fina: Riesgo máximo=66.7% (p=0.818)
+2. razon_cesarea_emergencia vs Motricidad gruesa: Riesgo máximo=50.0% (p=0.499)
+3. fuente_agua_consumo vs Motricidad gruesa: Riesgo máximo=33.3% (p=0.308)
+4. manejo_basura vs Motricidad gruesa: Riesgo máximo=33.3% (p=0.562)
+5. razon_cesarea_emergencia vs Comunicación: Riesgo máximo=33.3% (p=0.041)***
+6. razon_cesarea_emergencia vs Motricidad fina: Riesgo máximo=33.3% (p=0.863)
+7. razon_cesarea_emergencia vs Resolución de problemas: Riesgo máximo=33.3% (p=0.092)
+8. razon_cesarea_emergencia vs Socio-individual: Riesgo máximo=33.3% (p=0.788)
+9. razon_hospitalizado_neonatal vs Comunicación: Riesgo máximo=33.3% (p=0.367)
+10. razon_hospitalizado_neonatal vs Motricidad gruesa: Riesgo máximo=33.3% (p=0.575)
+11. razon_hospitalizado_neonatal vs Resolución de problemas: Riesgo máximo=33.3% (p=0.009)***
+12. fuente_agua_consumo vs Socio-individual: Riesgo máximo=33.3% (p=0.684)
+13. nivel_educativo_padre vs Motricidad gruesa: Riesgo máximo=32.0% (p=0.114)
+14. horas_pantalla vs Motricidad gruesa: Riesgo máximo=31.6% (p=0.049)***
+15. fuente_agua_consumo vs Motricidad fina: Riesgo máximo=27.8% (p=0.001)***
+
+
+VARIABLES CON MAYOR NÚMERO DE ASOCIACIONES SIGNIFICATIVAS:
+- horas_pantalla: 5 dominios significativos
+- nivel_educativo_madre: 5 dominios significativos
+- edad_meses_nino: 5 dominios significativos
+- situacion_laboral_madre: 5 dominios significativos
+- area_residencia: 4 dominios significativos
+- hospitalizado_neonatal: 4 dominios significativos
+- estado_civil_cuidador: 4 dominios significativos
+- vitaminas_minerales_6-12_meses: 4 dominios significativos
+- situacion_laboral_padre: 3 dominios significativos
+- ultrasonido_embarazo: 3 dominios significativos
+
+
+DOMINIOS DEL DESARROLLO MÁS AFECTADOS:
+- Comunicación: 15 variables significativas
+- Socio-individual: 15 variables significativas
+- Resolución de problemas: 14 variables significativas
+- Motricidad fina: 14 variables significativas
+- Motricidad gruesa: 13 variables significativas
+
+
+RESULTADOS SIGNIFICATIVOS PRIORIZADOS POR RIESGO:
+===============================================
+
+Variable: razon_cesarea_emergencia
+Dominio: Comunicación
+Prioridad de riesgo: 50.0
+Riesgo máximo por grupo: 33.3%
+Riesgo promedio: 7.3%
+Estadístico F/W: 1.816
+P-valor: 0.041
+Método: ANOVA
+Tamaño de muestra: 316
+Grupos afectados: 
+---
+
+Variable: razon_hospitalizado_neonatal
+Dominio: Resolución de problemas
+Prioridad de riesgo: 50.0
+Riesgo máximo por grupo: 33.3%
+Riesgo promedio: 11.5%
+Estadístico F/W: 4.829
+P-valor: 0.009
+Método: Welch's ANOVA
+Tamaño de muestra: 207
+Grupos afectados: Grupo más afectado: Anomalías congénitas
+---
+
+Variable: fuente_agua_consumo
+Dominio: Motricidad fina
+Prioridad de riesgo: 41.7
+Riesgo máximo por grupo: 27.8%
+Riesgo promedio: 11.8%
+Estadístico F/W: 15.995
+P-valor: 0.001
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Pozo público o privado
+---
+
+Variable: horas_pantalla
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 40.2
+Riesgo máximo por grupo: 31.6%
+Riesgo promedio: 21.8%
+Estadístico F/W: 2.621
+P-valor: 0.049
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: nivel_educativo_madre
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 36.6
+Riesgo máximo por grupo: 27.0%
+Riesgo promedio: 17.1%
+Estadístico F/W: 6.294
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1711
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: lactancia_12-24_meses
+Dominio: Motricidad fina
+Prioridad de riesgo: 34.9
+Riesgo máximo por grupo: 25.0%
+Riesgo promedio: 11.9%
+Estadístico F/W: 4.837
+P-valor: 0.002
+Método: ANOVA
+Tamaño de muestra: 1265
+Grupos afectados: Grupo más afectado: Otro tipo de lactancia
+---
+
+Variable: edad_meses_nino
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 31.8
+Riesgo máximo por grupo: 23.9%
+Riesgo promedio: 16.9%
+Estadístico F/W: 8.235
+P-valor: 0.000
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 13-18 meses
+---
+
+Variable: situacion_laboral_padre
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 29.6
+Riesgo máximo por grupo: 25.0%
+Riesgo promedio: 20.4%
+Estadístico F/W: 6.873
+P-valor: 0.009
+Método: ANOVA
+Tamaño de muestra: 1676
+Grupos afectados: Grupo más afectado: No trabaja
+---
+
+Variable: area_residencia
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 29.1
+Riesgo máximo por grupo: 24.5%
+Riesgo promedio: 19.9%
+Estadístico F/W: 4.468
+P-valor: 0.035
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Rural
+---
+
+Variable: horas_pantalla
+Dominio: Motricidad fina
+Prioridad de riesgo: 28.7
+Riesgo máximo por grupo: 21.1%
+Riesgo promedio: 10.9%
+Estadístico F/W: 2.990
+P-valor: 0.030
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 6+ horas
+---
+
+Variable: edad_meses_nino
+Dominio: Socio-individual
+Prioridad de riesgo: 27.1
+Riesgo máximo por grupo: 18.8%
+Riesgo promedio: 8.0%
+Estadístico F/W: 16.284
+P-valor: 0.000
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 49-60 meses
+---
+
+Variable: nivel_educativo_madre
+Dominio: Motricidad fina
+Prioridad de riesgo: 25.8
+Riesgo máximo por grupo: 19.0%
+Riesgo promedio: 10.3%
+Estadístico F/W: 8.682
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1711
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: posicion_nino_hermanos
+Dominio: Comunicación
+Prioridad de riesgo: 24.3
+Riesgo máximo por grupo: 16.2%
+Riesgo promedio: 6.6%
+Estadístico F/W: 3.273
+P-valor: 0.011
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: vitaminas_minerales_12-18_meses
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 24.0
+Riesgo máximo por grupo: 20.9%
+Riesgo promedio: 17.7%
+Estadístico F/W: 4.344
+P-valor: 0.037
+Método: ANOVA
+Tamaño de muestra: 1267
+Grupos afectados: Grupo más afectado: FALSO
+---
+
+Variable: nivel_educativo_madre
+Dominio: Socio-individual
+Prioridad de riesgo: 23.7
+Riesgo máximo por grupo: 17.5%
+Riesgo promedio: 8.9%
+Estadístico F/W: 6.442
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1711
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: ultrasonido_embarazo
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 23.7
+Riesgo máximo por grupo: 21.3%
+Riesgo promedio: 18.9%
+Estadístico F/W: 5.985
+P-valor: 0.015
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: No
+---
+
+Variable: edad_meses_nino
+Dominio: Motricidad fina
+Prioridad de riesgo: 22.7
+Riesgo máximo por grupo: 15.6%
+Riesgo promedio: 8.0%
+Estadístico F/W: 24.979
+P-valor: 0.000
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 7-12 meses
+---
+
+Variable: horas_juego_cuidador
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 22.0
+Riesgo máximo por grupo: 17.6%
+Riesgo promedio: 14.5%
+Estadístico F/W: 3.053
+P-valor: 0.028
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: hospitalizado_neonatal
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 21.6
+Riesgo máximo por grupo: 19.8%
+Riesgo promedio: 18.0%
+Estadístico F/W: 7.452
+P-valor: 0.006
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: estado_civil_cuidador
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 21.4
+Riesgo máximo por grupo: 18.8%
+Riesgo promedio: 16.6%
+Estadístico F/W: 5.032
+P-valor: 0.007
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Casado
+---
+
+Variable: vitaminas_minerales_18-24_meses
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 21.3
+Riesgo máximo por grupo: 19.4%
+Riesgo promedio: 17.5%
+Estadístico F/W: 7.324
+P-valor: 0.007
+Método: ANOVA
+Tamaño de muestra: 1027
+Grupos afectados: Grupo más afectado: FALSO
+---
+
+Variable: prenatales_resto_embarazo
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 21.3
+Riesgo máximo por grupo: 19.7%
+Riesgo promedio: 18.1%
+Estadístico F/W: 7.205
+P-valor: 0.008
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: No
+---
+
+Variable: nivel_educativo_madre
+Dominio: Comunicación
+Prioridad de riesgo: 19.9
+Riesgo máximo por grupo: 14.3%
+Riesgo promedio: 6.8%
+Estadístico F/W: 5.956
+P-valor: 0.000
+Método: Welch's ANOVA
+Tamaño de muestra: 1711
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: area_residencia
+Dominio: Resolución de problemas
+Prioridad de riesgo: 19.7
+Riesgo máximo por grupo: 15.2%
+Riesgo promedio: 10.6%
+Estadístico F/W: 12.169
+P-valor: 0.001
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Rural
+---
+
+Variable: situacion_laboral_madre
+Dominio: Motricidad gruesa
+Prioridad de riesgo: 18.5
+Riesgo máximo por grupo: 17.6%
+Riesgo promedio: 16.8%
+Estadístico F/W: 9.111
+P-valor: 0.003
+Método: ANOVA
+Tamaño de muestra: 1718
+Grupos afectados: Grupo más afectado: Trabaja
+---
+
+Variable: vacunacion_completa
+Dominio: Motricidad fina
+Prioridad de riesgo: 18.0
+Riesgo máximo por grupo: 14.8%
+Riesgo promedio: 11.5%
+Estadístico F/W: 5.156
+P-valor: 0.026
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: No
+---
+
+Variable: nivel_educativo_madre
+Dominio: Resolución de problemas
+Prioridad de riesgo: 17.5
+Riesgo máximo por grupo: 12.7%
+Riesgo promedio: 7.5%
+Estadístico F/W: 9.507
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1711
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: edad_meses_nino
+Dominio: Comunicación
+Prioridad de riesgo: 17.0
+Riesgo máximo por grupo: 11.6%
+Riesgo promedio: 6.2%
+Estadístico F/W: 36.585
+P-valor: 0.000
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 49-60 meses
+---
+
+Variable: area_residencia
+Dominio: Socio-individual
+Prioridad de riesgo: 16.7
+Riesgo máximo por grupo: 13.2%
+Riesgo promedio: 9.7%
+Estadístico F/W: 8.228
+P-valor: 0.004
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Rural
+---
+
+Variable: posicion_nino_hermanos
+Dominio: Motricidad fina
+Prioridad de riesgo: 16.6
+Riesgo máximo por grupo: 11.1%
+Riesgo promedio: 6.1%
+Estadístico F/W: 2.803
+P-valor: 0.025
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: lactancia_6-12_meses
+Dominio: Motricidad fina
+Prioridad de riesgo: 16.5
+Riesgo máximo por grupo: 13.6%
+Riesgo promedio: 9.9%
+Estadístico F/W: 3.506
+P-valor: 0.030
+Método: ANOVA
+Tamaño de muestra: 1560
+Grupos afectados: Grupo más afectado: Fórmula infantil
+---
+
+Variable: desnutricion_aguda
+Dominio: Socio-individual
+Prioridad de riesgo: 15.7
+Riesgo máximo por grupo: 12.7%
+Riesgo promedio: 9.8%
+Estadístico F/W: 6.967
+P-valor: 0.008
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: retardo_crecimiento
+Dominio: Socio-individual
+Prioridad de riesgo: 15.5
+Riesgo máximo por grupo: 12.5%
+Riesgo promedio: 9.5%
+Estadístico F/W: 7.857
+P-valor: 0.005
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: vacunacion_completa
+Dominio: Resolución de problemas
+Prioridad de riesgo: 15.2
+Riesgo máximo por grupo: 12.5%
+Riesgo promedio: 9.8%
+Estadístico F/W: 4.499
+P-valor: 0.034
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: No
+---
+
+Variable: nivel_educativo_padre
+Dominio: Socio-individual
+Prioridad de riesgo: 15.1
+Riesgo máximo por grupo: 12.0%
+Riesgo promedio: 8.4%
+Estadístico F/W: 2.568
+P-valor: 0.036
+Método: ANOVA
+Tamaño de muestra: 1673
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: estado_civil_cuidador
+Dominio: Resolución de problemas
+Prioridad de riesgo: 14.4
+Riesgo máximo por grupo: 11.2%
+Riesgo promedio: 7.8%
+Estadístico F/W: 6.123
+P-valor: 0.002
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Soltero
+---
+
+Variable: edad_meses_nino
+Dominio: Resolución de problemas
+Prioridad de riesgo: 14.2
+Riesgo máximo por grupo: 10.9%
+Riesgo promedio: 7.7%
+Estadístico F/W: 4.811
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 37-48 meses
+---
+
+Variable: hospitalizado_neonatal
+Dominio: Motricidad fina
+Prioridad de riesgo: 14.1
+Riesgo máximo por grupo: 12.1%
+Riesgo promedio: 10.1%
+Estadístico F/W: 4.205
+P-valor: 0.040
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: horas_juego_cuidador
+Dominio: Resolución de problemas
+Prioridad de riesgo: 13.8
+Riesgo máximo por grupo: 10.2%
+Riesgo promedio: 7.1%
+Estadístico F/W: 6.487
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 0-1 horas
+---
+
+Variable: lactancia_12-24_meses
+Dominio: Comunicación
+Prioridad de riesgo: 12.6
+Riesgo máximo por grupo: 8.4%
+Riesgo promedio: 5.0%
+Estadístico F/W: 5.475
+P-valor: 0.004
+Método: Welch's ANOVA
+Tamaño de muestra: 1265
+Grupos afectados: Grupo más afectado: Mixta
+---
+
+Variable: desnutricion_aguda
+Dominio: Resolución de problemas
+Prioridad de riesgo: 12.6
+Riesgo máximo por grupo: 10.8%
+Riesgo promedio: 9.0%
+Estadístico F/W: 3.851
+P-valor: 0.050
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: total_hermanos
+Dominio: Motricidad fina
+Prioridad de riesgo: 12.6
+Riesgo máximo por grupo: 10.6%
+Riesgo promedio: 8.3%
+Estadístico F/W: 3.697
+P-valor: 0.011
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: ultrasonido_embarazo
+Dominio: Socio-individual
+Prioridad de riesgo: 12.4
+Riesgo máximo por grupo: 10.6%
+Riesgo promedio: 8.8%
+Estadístico F/W: 5.759
+P-valor: 0.017
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: No
+---
+
+Variable: horas_pantalla
+Dominio: Socio-individual
+Prioridad de riesgo: 12.2
+Riesgo máximo por grupo: 10.5%
+Riesgo promedio: 8.4%
+Estadístico F/W: 4.330
+P-valor: 0.005
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 4-5 horas
+---
+
+Variable: area_residencia
+Dominio: Comunicación
+Prioridad de riesgo: 12.1
+Riesgo máximo por grupo: 9.7%
+Riesgo promedio: 7.3%
+Estadístico F/W: 10.500
+P-valor: 0.001
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Rural
+---
+
+Variable: situacion_laboral_padre
+Dominio: Socio-individual
+Prioridad de riesgo: 11.9
+Riesgo máximo por grupo: 10.3%
+Riesgo promedio: 8.6%
+Estadístico F/W: 8.925
+P-valor: 0.003
+Método: ANOVA
+Tamaño de muestra: 1676
+Grupos afectados: Grupo más afectado: No trabaja
+---
+
+Variable: hospitalizado_neonatal
+Dominio: Socio-individual
+Prioridad de riesgo: 11.8
+Riesgo máximo por grupo: 10.1%
+Riesgo promedio: 8.5%
+Estadístico F/W: 6.427
+P-valor: 0.011
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: sexo_jefe_hogar
+Dominio: Motricidad fina
+Prioridad de riesgo: 11.6
+Riesgo máximo por grupo: 10.4%
+Riesgo promedio: 9.2%
+Estadístico F/W: 7.994
+P-valor: 0.005
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Mujer
+---
+
+Variable: total_hermanos
+Dominio: Socio-individual
+Prioridad de riesgo: 11.0
+Riesgo máximo por grupo: 9.4%
+Riesgo promedio: 7.6%
+Estadístico F/W: 2.905
+P-valor: 0.034
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: estado_civil_cuidador
+Dominio: Comunicación
+Prioridad de riesgo: 11.0
+Riesgo máximo por grupo: 8.0%
+Riesgo promedio: 5.5%
+Estadístico F/W: 10.185
+P-valor: 0.000
+Método: Welch's ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Soltero
+---
+
+Variable: horas_pantalla
+Dominio: Resolución de problemas
+Prioridad de riesgo: 10.7
+Riesgo máximo por grupo: 8.9%
+Riesgo promedio: 6.8%
+Estadístico F/W: 3.751
+P-valor: 0.011
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: vitaminas_minerales_6-12_meses
+Dominio: Resolución de problemas
+Prioridad de riesgo: 10.6
+Riesgo máximo por grupo: 9.1%
+Riesgo promedio: 7.7%
+Estadístico F/W: 5.531
+P-valor: 0.019
+Método: Welch's ANOVA
+Tamaño de muestra: 1561
+Grupos afectados: Grupo más afectado: VERDADERO
+---
+
+Variable: vitaminas_minerales_6-12_meses
+Dominio: Motricidad fina
+Prioridad de riesgo: 10.4
+Riesgo máximo por grupo: 9.3%
+Riesgo promedio: 8.2%
+Estadístico F/W: 8.533
+P-valor: 0.004
+Método: ANOVA
+Tamaño de muestra: 1561
+Grupos afectados: Grupo más afectado: VERDADERO
+---
+
+Variable: hospitalizado_neonatal
+Dominio: Resolución de problemas
+Prioridad de riesgo: 10.2
+Riesgo máximo por grupo: 9.2%
+Riesgo promedio: 8.2%
+Estadístico F/W: 5.307
+P-valor: 0.021
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Sí
+---
+
+Variable: nivel_educativo_padre
+Dominio: Comunicación
+Prioridad de riesgo: 10.2
+Riesgo máximo por grupo: 8.0%
+Riesgo promedio: 5.9%
+Estadístico F/W: 6.816
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1673
+Grupos afectados: Grupo más afectado: Ninguna
+---
+
+Variable: vitaminas_minerales_18-24_meses
+Dominio: Motricidad fina
+Prioridad de riesgo: 10.1
+Riesgo máximo por grupo: 8.4%
+Riesgo promedio: 6.8%
+Estadístico F/W: 4.058
+P-valor: 0.044
+Método: Welch's ANOVA
+Tamaño de muestra: 1027
+Grupos afectados: Grupo más afectado: FALSO
+---
+
+Variable: estado_civil_cuidador
+Dominio: Socio-individual
+Prioridad de riesgo: 10.1
+Riesgo máximo por grupo: 8.6%
+Riesgo promedio: 7.3%
+Estadístico F/W: 3.884
+P-valor: 0.021
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Soltero
+---
+
+Variable: situacion_laboral_madre
+Dominio: Motricidad fina
+Prioridad de riesgo: 9.8
+Riesgo máximo por grupo: 9.2%
+Riesgo promedio: 8.6%
+Estadístico F/W: 5.554
+P-valor: 0.019
+Método: ANOVA
+Tamaño de muestra: 1718
+Grupos afectados: Grupo más afectado: Trabaja
+---
+
+Variable: total_hermanos
+Dominio: Comunicación
+Prioridad de riesgo: 9.7
+Riesgo máximo por grupo: 7.9%
+Riesgo promedio: 5.9%
+Estadístico F/W: 5.707
+P-valor: 0.001
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: 3+ hermanos
+---
+
+Variable: vitamina_a_12-18_meses
+Dominio: Socio-individual
+Prioridad de riesgo: 9.2
+Riesgo máximo por grupo: 8.1%
+Riesgo promedio: 6.9%
+Estadístico F/W: 22.025
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1267
+Grupos afectados: Grupo más afectado: VERDADERO
+---
+
+Variable: situacion_laboral_madre
+Dominio: Socio-individual
+Prioridad de riesgo: 8.5
+Riesgo máximo por grupo: 7.9%
+Riesgo promedio: 7.2%
+Estadístico F/W: 12.377
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1718
+Grupos afectados: Grupo más afectado: Trabaja
+---
+
+Variable: ultrasonido_embarazo
+Dominio: Comunicación
+Prioridad de riesgo: 8.4
+Riesgo máximo por grupo: 7.4%
+Riesgo promedio: 6.5%
+Estadístico F/W: 4.188
+P-valor: 0.041
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: No
+---
+
+Variable: situacion_laboral_padre
+Dominio: Resolución de problemas
+Prioridad de riesgo: 8.2
+Riesgo máximo por grupo: 7.7%
+Riesgo promedio: 7.2%
+Estadístico F/W: 5.657
+P-valor: 0.018
+Método: ANOVA
+Tamaño de muestra: 1676
+Grupos afectados: Grupo más afectado: No trabaja
+---
+
+Variable: sexo_jefe_hogar
+Dominio: Resolución de problemas
+Prioridad de riesgo: 8.2
+Riesgo máximo por grupo: 7.9%
+Riesgo promedio: 7.6%
+Estadístico F/W: 8.121
+P-valor: 0.004
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: Grupo más afectado: Mujer
+---
+
+Variable: vitaminas_minerales_12-18_meses
+Dominio: Comunicación
+Prioridad de riesgo: 8.0
+Riesgo máximo por grupo: 6.9%
+Riesgo promedio: 5.8%
+Estadístico F/W: 7.284
+P-valor: 0.007
+Método: ANOVA
+Tamaño de muestra: 1267
+Grupos afectados: Grupo más afectado: VERDADERO
+---
+
+Variable: situacion_laboral_madre
+Dominio: Resolución de problemas
+Prioridad de riesgo: 8.0
+Riesgo máximo por grupo: 7.6%
+Riesgo promedio: 7.3%
+Estadístico F/W: 9.285
+P-valor: 0.002
+Método: ANOVA
+Tamaño de muestra: 1718
+Grupos afectados: Grupo más afectado: Trabaja
+---
+
+Variable: vitamina_a_12-18_meses
+Dominio: Comunicación
+Prioridad de riesgo: 7.2
+Riesgo máximo por grupo: 6.6%
+Riesgo promedio: 5.9%
+Estadístico F/W: 17.709
+P-valor: 0.000
+Método: ANOVA
+Tamaño de muestra: 1267
+Grupos afectados: Grupo más afectado: VERDADERO
+---
+
+Variable: vitaminas_minerales_6-12_meses
+Dominio: Socio-individual
+Prioridad de riesgo: 7.1
+Riesgo máximo por grupo: 7.0%
+Riesgo promedio: 7.0%
+Estadístico F/W: 4.717
+P-valor: 0.030
+Método: ANOVA
+Tamaño de muestra: 1561
+Grupos afectados: Grupo más afectado: VERDADERO
+---
+
+Variable: situacion_laboral_madre
+Dominio: Comunicación
+Prioridad de riesgo: 6.9
+Riesgo máximo por grupo: 6.2%
+Riesgo promedio: 5.6%
+Estadístico F/W: 6.957
+P-valor: 0.008
+Método: ANOVA
+Tamaño de muestra: 1718
+Grupos afectados: Grupo más afectado: Trabaja
+---
+
+Variable: horas_pantalla
+Dominio: Comunicación
+Prioridad de riesgo: 6.5
+Riesgo máximo por grupo: 5.8%
+Riesgo promedio: 5.2%
+Estadístico F/W: 3.794
+P-valor: 0.010
+Método: ANOVA
+Tamaño de muestra: 1725
+Grupos afectados: 
+---
+
+Variable: vitaminas_minerales_6-12_meses
+Dominio: Comunicación
+Prioridad de riesgo: 5.8
+Riesgo máximo por grupo: 5.4%
+Riesgo promedio: 5.0%
+Estadístico F/W: 7.893
+P-valor: 0.005
+Método: ANOVA
+Tamaño de muestra: 1561
+Grupos afectados: Grupo más afectado: VERDADERO
+---
