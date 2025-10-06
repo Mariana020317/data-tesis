@@ -1,0 +1,45 @@
+predictor,domain,chi2_statistic,p_value,degrees_of_freedom,cramers_v,n_observations,contingency_table,p_value_bonferroni
+vitamina_a_6-12_meses,cat_zscore_desarrollo_motricidad_gruesa,81.15747065703636,9.902627430689832e-17,4,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_6-12_meses                                                                                                                         
+FALSO                                                     398                                         11                                    64
+VERDADERO                                                 924                                         19                                   145
+NaN                                                       115                                         24                                    25",2.8717619549000513e-15
+vitaminas_minerales_6-12_meses,cat_zscore_desarrollo_motricidad_gruesa,80.87341782801529,1.1374850746797875e-16,4,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_6-12_meses                                                                                                                
+FALSO                                                     407                                         10                                    66
+VERDADERO                                                 915                                         20                                   143
+NaN                                                       115                                         24                                    25",3.298706716571384e-15
+vitaminas_minerales_12-18_meses,cat_zscore_desarrollo_motricidad_gruesa,28.88142145644714,8.263162676766042e-06,4,0.08907566779690698,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_12-18_meses                                                                                                               
+FALSO                                                     394                                         18                                    86
+VERDADERO                                                 657                                         10                                   102
+NaN                                                       386                                         26                                    46",0.0002396317176262152
+area_residencia,cat_zscore_desarrollo_motricidad_gruesa,22.557895729269358,1.2636161873121792e-05,2,0.10919644952938752,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+area_residencia                                                                                                                               
+Rural                                                     194                                         19                                    44
+Urbano                                                   1243                                         35                                   190",0.00036644869432053196
+vitamina_a_12-18_meses,cat_zscore_desarrollo_motricidad_gruesa,20.961316528916687,0.000322310711509629,4,0.027715649770937285,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_12-18_meses                                                                                                                        
+FALSO                                                     445                                         16                                    75
+VERDADERO                                                 606                                         12                                   113
+NaN                                                       386                                         26                                    46",0.009347010633779242
+vitamina_a_18-24_meses,cat_zscore_desarrollo_motricidad_fina,20.70130181507224,0.0003629026953313682,4,0.08948078048426489,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_18-24_meses                                                                                                                      
+FALSO                                                   429                                          8                                    36
+VERDADERO                                               530                                          4                                    20
+NaN                                                     618                                         12                                    68",0.010524178164609677
+vitaminas_minerales_12-18_meses,cat_zscore_desarrollo_motricidad_fina,20.025553409544234,0.0004936318372267428,4,0.01882139703173618,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_12-18_meses                                                                                                             
+FALSO                                                   470                                          6                                    22
+VERDADERO                                               710                                          9                                    50
+NaN                                                     397                                          9                                    52",0.014315323279575541
+vitamina_a_12-18_meses,cat_zscore_desarrollo_motricidad_fina,19.0460684568635,0.0007697323984872755,4,0.0,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_12-18_meses                                                                                                                      
+FALSO                                                   495                                          8                                    33
+VERDADERO                                               685                                          7                                    39
+NaN                                                     397                                          9                                    52",0.02232223955613099
+vitaminas_minerales_18-24_meses,cat_zscore_desarrollo_motricidad_gruesa,18.287711705086426,0.00108411893313465,4,0.04009726624480163,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_18-24_meses                                                                                                               
+FALSO                                                     382                                         13                                    79
+VERDADERO                                                 467                                          8                                    78
+NaN                                                       588                                         33                                    77",0.03143944906090485

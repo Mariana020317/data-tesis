@@ -1,0 +1,130 @@
+predictor,domain,chi2_statistic,p_value,degrees_of_freedom,cramers_v,n_observations,contingency_table,p_value_bonferroni
+grupo_etnico,cat_zscore_desarrollo_comunicacion,3.5990248213378515,0.165379505848472,2,0.030443981363158183,1725,"cat_zscore_desarrollo_comunicacion  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+grupo_etnico                                                                                                                             
+Indígena                                             691                                          6                                    44
+No indígena                                          937                                          8                                    39",1.0
+grupo_etnico,cat_zscore_desarrollo_motricidad_gruesa,7.698622172476779,0.021294401392517374,2,0.05748733340058335,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+grupo_etnico                                                                                                                                  
+Indígena                                                  612                                         33                                    96
+No indígena                                               825                                         21                                   138",0.6175376403830038
+grupo_etnico,cat_zscore_desarrollo_motricidad_fina,3.237034092141122,0.19819239144935263,2,0.026774325574080386,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+grupo_etnico                                                                                                                                
+Indígena                                                669                                         14                                    58
+No indígena                                             908                                         10                                    66",1.0
+grupo_etnico,cat_zscore_desarrollo_resolucion_problemas,5.1658921042728485,0.0755510983634762,2,0.0428449768303044,1725,"cat_zscore_desarrollo_resolucion_problemas  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+grupo_etnico                                                                                                                                     
+Indígena                                                     674                                          7                                    60
+No indígena                                                  923                                          5                                    56",1.0
+grupo_etnico,cat_zscore_desarrollo_socio_individual,6.413810501830323,0.04048170032070186,2,0.05059192486713002,1725,"cat_zscore_desarrollo_socio_individual  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+grupo_etnico                                                                                                                                 
+Indígena                                                 675                                          7                                    59
+No indígena                                              925                                         10                                    49",1.0
+area_residencia,cat_zscore_desarrollo_motricidad_gruesa,22.557895729269358,1.2636161873121792e-05,2,0.10919644952938752,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+area_residencia                                                                                                                               
+Rural                                                     194                                         19                                    44
+Urbano                                                   1243                                         35                                   190",0.00036644869432053196
+propiedad_vivienda,cat_zscore_desarrollo_motricidad_gruesa,10.19112736628905,0.00612385374863667,2,0.06892432561766149,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+propiedad_vivienda                                                                                                                            
+Alquilada                                                 403                                         21                                    47
+Propia                                                   1034                                         33                                   187",0.17759175871046343
+propiedad_vivienda,cat_zscore_desarrollo_motricidad_fina,1.510713351238616,0.4698430032966805,2,0.0,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+propiedad_vivienda                                                                                                                          
+Alquilada                                               426                                          9                                    36
+Propia                                                 1151                                         15                                    88",1.0
+sexo_jefe_hogar,cat_zscore_desarrollo_motricidad_gruesa,1.6008523275327589,0.44913751719029926,2,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+sexo_jefe_hogar                                                                                                                               
+Hombre                                                   1116                                         42                                   173
+Mujer                                                     321                                         12                                    61",1.0
+sexo_jefe_hogar,cat_zscore_desarrollo_motricidad_fina,2.290303070026952,0.3181756993782295,2,0.012950536688634917,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+sexo_jefe_hogar                                                                                                                             
+Hombre                                                 1224                                         18                                    89
+Mujer                                                   353                                          6                                    35",1.0
+tipo_empleo_padre,cat_zscore_desarrollo_motricidad_gruesa,9.694417943405519,0.04590209486663673,4,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+tipo_empleo_padre                                                                                                                             
+Formal                                                    891                                         34                                   131
+Informal                                                  389                                         14                                    61
+NaN                                                       157                                          6                                    42",1.0
+seguro_social,cat_zscore_desarrollo_motricidad_gruesa,3.7972115552875887,0.1497772965728523,2,0.032276826706001606,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+seguro_social                                                                                                                                 
+No                                                       1090                                         36                                   185
+Sí                                                        347                                         18                                    49",1.0
+seguro_social,cat_zscore_desarrollo_motricidad_fina,3.9406675416406647,0.13941031735284018,2,0.03354108971367915,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+seguro_social                                                                                                                               
+No                                                     1191                                         17                                   103
+Sí                                                      386                                          7                                    21",1.0
+estado_civil_cuidador,cat_zscore_desarrollo_motricidad_gruesa,8.455842581746744,0.0762370624613854,4,0.035949622142342146,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+estado_civil_cuidador                                                                                                                         
+Casado                                                    806                                         37                                   132
+Soltero                                                   254                                          6                                    53
+Unido                                                     377                                         11                                    49",1.0
+prenatales_primeros_3_meses,cat_zscore_desarrollo_motricidad_gruesa,5.802596226417728,0.05495184002736058,2,0.04695753507294362,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+prenatales_primeros_3_meses                                                                                                                   
+No                                                        162                                          4                                    38
+Sí                                                       1275                                         50                                   196",1.0
+tipo_parto,cat_zscore_desarrollo_motricidad_gruesa,7.0985827659728935,0.13076938824739576,4,0.029975152532010916,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+tipo_parto                                                                                                                                    
+Cesárea de emergencia                                     251                                         16                                    49
+Cesárea electiva                                          327                                         13                                    52
+Parto eutócico                                            859                                         25                                   133",1.0
+vitamina_a_6-12_meses,cat_zscore_desarrollo_motricidad_gruesa,81.15747065703636,9.902627430689832e-17,4,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_6-12_meses                                                                                                                         
+FALSO                                                     398                                         11                                    64
+VERDADERO                                                 924                                         19                                   145
+NaN                                                       115                                         24                                    25",2.8717619549000513e-15
+vitamina_a_12-18_meses,cat_zscore_desarrollo_motricidad_gruesa,20.961316528916687,0.000322310711509629,4,0.027715649770937285,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_12-18_meses                                                                                                                        
+FALSO                                                     445                                         16                                    75
+VERDADERO                                                 606                                         12                                   113
+NaN                                                       386                                         26                                    46",0.009347010633779242
+vitamina_a_12-18_meses,cat_zscore_desarrollo_motricidad_fina,19.0460684568635,0.0007697323984872755,4,0.0,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_12-18_meses                                                                                                                      
+FALSO                                                   495                                          8                                    33
+VERDADERO                                               685                                          7                                    39
+NaN                                                     397                                          9                                    52",0.02232223955613099
+vitamina_a_18-24_meses,cat_zscore_desarrollo_motricidad_gruesa,15.928155325519256,0.003117099231864811,4,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_18-24_meses                                                                                                                        
+FALSO                                                     389                                         12                                    72
+VERDADERO                                                 460                                          9                                    85
+NaN                                                       588                                         33                                    77",0.09039587772407952
+vitamina_a_18-24_meses,cat_zscore_desarrollo_motricidad_fina,20.70130181507224,0.0003629026953313682,4,0.08948078048426489,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_18-24_meses                                                                                                                      
+FALSO                                                   429                                          8                                    36
+VERDADERO                                               530                                          4                                    20
+NaN                                                     618                                         12                                    68",0.010524178164609677
+vitaminas_minerales_6-12_meses,cat_zscore_desarrollo_motricidad_gruesa,80.87341782801529,1.1374850746797875e-16,4,0.0,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_6-12_meses                                                                                                                
+FALSO                                                     407                                         10                                    66
+VERDADERO                                                 915                                         20                                   143
+NaN                                                       115                                         24                                    25",3.298706716571384e-15
+vitaminas_minerales_12-18_meses,cat_zscore_desarrollo_motricidad_gruesa,28.88142145644714,8.263162676766042e-06,4,0.08907566779690698,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_12-18_meses                                                                                                               
+FALSO                                                     394                                         18                                    86
+VERDADERO                                                 657                                         10                                   102
+NaN                                                       386                                         26                                    46",0.0002396317176262152
+vitaminas_minerales_12-18_meses,cat_zscore_desarrollo_motricidad_fina,20.025553409544234,0.0004936318372267428,4,0.01882139703173618,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_12-18_meses                                                                                                             
+FALSO                                                   470                                          6                                    22
+VERDADERO                                               710                                          9                                    50
+NaN                                                     397                                          9                                    52",0.014315323279575541
+vitaminas_minerales_18-24_meses,cat_zscore_desarrollo_motricidad_gruesa,18.287711705086426,0.00108411893313465,4,0.04009726624480163,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_18-24_meses                                                                                                               
+FALSO                                                     382                                         13                                    79
+VERDADERO                                                 467                                          8                                    78
+NaN                                                       588                                         33                                    77",0.03143944906090485
+vitaminas_minerales_18-24_meses,cat_zscore_desarrollo_motricidad_fina,16.316117418607902,0.002623031722019855,4,0.051327926851372475,1725,"cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_18-24_meses                                                                                                             
+FALSO                                                   434                                          7                                    33
+VERDADERO                                               525                                          5                                    23
+NaN                                                     618                                         12                                    68",0.0760679199385758
+retardo_crecimiento,cat_zscore_desarrollo_motricidad_gruesa,5.307366628235902,0.07039146111757975,2,0.04379216660592408,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+retardo_crecimiento                                                                                                                           
+No                                                       1288                                         47                                   198
+Sí                                                        149                                          7                                    36",1.0
+hospitalizado_neonatal,cat_zscore_desarrollo_motricidad_gruesa,2.0088031700766567,0.36626374694357444,2,0.0021055500409460194,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+hospitalizado_neonatal                                                                                                                        
+No                                                       1271                                         45                                   202
+Sí                                                        166                                          9                                    32",1.0
+hospitalizado_infancia,cat_zscore_desarrollo_motricidad_gruesa,3.135074635340417,0.20855816294626514,2,0.025646116154436554,1725,"cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+hospitalizado_infancia                                                                                                                        
+No                                                       1249                                         45                                   194
+Sí                                                        188                                          9                                    40",1.0

@@ -1,0 +1,115 @@
+================================================================================
+COMPREHENSIVE CHI-SQUARE ANALYSIS REPORT
+Neurodevelopmental Risk Factors Analysis
+================================================================================
+
+1. DATASET OVERVIEW
+----------------------------------------
+Total observations: 1725
+Total variables: 72
+Predictor variables analyzed: 48
+Developmental domains: 5
+
+2. ANALYSIS SUMMARY
+----------------------------------------
+Total chi-square tests performed: 29
+Significant associations (p < 0.05): 15
+Significant after Bonferroni correction: 9
+Mean effect size (Cramér's V): 0.0333
+Maximum effect size (Cramér's V): 0.1092
+
+3. SIGNIFICANT ASSOCIATIONS (After Bonferroni correction)
+------------------------------------------------------------
+
+1. vitamina_a_6-12_meses → cat_zscore_desarrollo_motricidad_gruesa
+   χ² = 81.157, p = 2.872e-15
+   Effect size (Cramér's V) = 0.0000
+   Sample size = 1725
+
+2. vitaminas_minerales_6-12_meses → cat_zscore_desarrollo_motricidad_gruesa
+   χ² = 80.873, p = 3.299e-15
+   Effect size (Cramér's V) = 0.0000
+   Sample size = 1725
+
+3. vitaminas_minerales_12-18_meses → cat_zscore_desarrollo_motricidad_gruesa
+   χ² = 28.881, p = 2.396e-04
+   Effect size (Cramér's V) = 0.0891
+   Sample size = 1725
+
+4. area_residencia → cat_zscore_desarrollo_motricidad_gruesa
+   χ² = 22.558, p = 3.664e-04
+   Effect size (Cramér's V) = 0.1092
+   Sample size = 1725
+
+5. vitamina_a_12-18_meses → cat_zscore_desarrollo_motricidad_gruesa
+   χ² = 20.961, p = 9.347e-03
+   Effect size (Cramér's V) = 0.0277
+   Sample size = 1725
+
+6. vitamina_a_18-24_meses → cat_zscore_desarrollo_motricidad_fina
+   χ² = 20.701, p = 1.052e-02
+   Effect size (Cramér's V) = 0.0895
+   Sample size = 1725
+
+7. vitaminas_minerales_12-18_meses → cat_zscore_desarrollo_motricidad_fina
+   χ² = 20.026, p = 1.432e-02
+   Effect size (Cramér's V) = 0.0188
+   Sample size = 1725
+
+8. vitamina_a_12-18_meses → cat_zscore_desarrollo_motricidad_fina
+   χ² = 19.046, p = 2.232e-02
+   Effect size (Cramér's V) = 0.0000
+   Sample size = 1725
+
+9. vitaminas_minerales_18-24_meses → cat_zscore_desarrollo_motricidad_gruesa
+   χ² = 18.288, p = 3.144e-02
+   Effect size (Cramér's V) = 0.0401
+   Sample size = 1725
+
+4. SUMMARY BY DEVELOPMENTAL DOMAIN
+--------------------------------------------------
+
+cat_zscore_desarrollo_comunicacion:
+  Significant associations: 0
+
+cat_zscore_desarrollo_motricidad_gruesa:
+  Significant associations: 6
+  Mean effect size: 0.0443
+  Top predictors:
+    - vitamina_a_6-12_meses (V = 0.0000)
+    - vitaminas_minerales_6-12_meses (V = 0.0000)
+    - vitaminas_minerales_12-18_meses (V = 0.0891)
+
+cat_zscore_desarrollo_motricidad_fina:
+  Significant associations: 3
+  Mean effect size: 0.0361
+  Top predictors:
+    - vitamina_a_18-24_meses (V = 0.0895)
+    - vitaminas_minerales_12-18_meses (V = 0.0188)
+    - vitamina_a_12-18_meses (V = 0.0000)
+
+cat_zscore_desarrollo_resolucion_problemas:
+  Significant associations: 0
+
+cat_zscore_desarrollo_socio_individual:
+  Significant associations: 0
+
+5. KEY RISK FACTORS IDENTIFIED
+----------------------------------------
+Variables with strongest associations across domains:
+  - area_residencia: 1.0 domains affected, mean V = 0.1092
+  - vitamina_a_18-24_meses: 1.0 domains affected, mean V = 0.0895
+  - vitaminas_minerales_12-18_meses: 2.0 domains affected, mean V = 0.0539
+  - vitaminas_minerales_18-24_meses: 1.0 domains affected, mean V = 0.0401
+  - vitamina_a_12-18_meses: 2.0 domains affected, mean V = 0.0139
+  - vitamina_a_6-12_meses: 1.0 domains affected, mean V = 0.0000
+  - vitaminas_minerales_6-12_meses: 1.0 domains affected, mean V = 0.0000
+
+6. RECOMMENDATIONS
+------------------------------
+Based on the analysis, the following recommendations are made:
+1. Focus intervention programs on the identified high-risk factors
+2. Implement targeted screening for children with multiple risk factors
+3. Develop domain-specific interventions based on the strongest associations
+4. Consider the cumulative effect of multiple risk factors
+5. Prioritize preventive measures for modifiable risk factors

@@ -1,0 +1,110 @@
+CONTINGENCY TABLES FOR SIGNIFICANT ASSOCIATIONS
+============================================================
+
+1. vitamina_a_6-12_meses vs cat_zscore_desarrollo_motricidad_gruesa
+χ² = 81.157, p = 2.872e-15
+Cramér's V = 0.0000
+
+cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_6-12_meses                                                                                                                         
+FALSO                                                     398                                         11                                    64
+VERDADERO                                                 924                                         19                                   145
+NaN                                                       115                                         24                                    25
+
+------------------------------------------------------------
+
+2. vitaminas_minerales_6-12_meses vs cat_zscore_desarrollo_motricidad_gruesa
+χ² = 80.873, p = 3.299e-15
+Cramér's V = 0.0000
+
+cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_6-12_meses                                                                                                                
+FALSO                                                     407                                         10                                    66
+VERDADERO                                                 915                                         20                                   143
+NaN                                                       115                                         24                                    25
+
+------------------------------------------------------------
+
+3. vitaminas_minerales_12-18_meses vs cat_zscore_desarrollo_motricidad_gruesa
+χ² = 28.881, p = 2.396e-04
+Cramér's V = 0.0891
+
+cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_12-18_meses                                                                                                               
+FALSO                                                     394                                         18                                    86
+VERDADERO                                                 657                                         10                                   102
+NaN                                                       386                                         26                                    46
+
+------------------------------------------------------------
+
+4. area_residencia vs cat_zscore_desarrollo_motricidad_gruesa
+χ² = 22.558, p = 3.664e-04
+Cramér's V = 0.1092
+
+cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+area_residencia                                                                                                                               
+Rural                                                     194                                         19                                    44
+Urbano                                                   1243                                         35                                   190
+
+------------------------------------------------------------
+
+5. vitamina_a_12-18_meses vs cat_zscore_desarrollo_motricidad_gruesa
+χ² = 20.961, p = 9.347e-03
+Cramér's V = 0.0277
+
+cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_12-18_meses                                                                                                                        
+FALSO                                                     445                                         16                                    75
+VERDADERO                                                 606                                         12                                   113
+NaN                                                       386                                         26                                    46
+
+------------------------------------------------------------
+
+6. vitamina_a_18-24_meses vs cat_zscore_desarrollo_motricidad_fina
+χ² = 20.701, p = 1.052e-02
+Cramér's V = 0.0895
+
+cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_18-24_meses                                                                                                                      
+FALSO                                                   429                                          8                                    36
+VERDADERO                                               530                                          4                                    20
+NaN                                                     618                                         12                                    68
+
+------------------------------------------------------------
+
+7. vitaminas_minerales_12-18_meses vs cat_zscore_desarrollo_motricidad_fina
+χ² = 20.026, p = 1.432e-02
+Cramér's V = 0.0188
+
+cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_12-18_meses                                                                                                             
+FALSO                                                   470                                          6                                    22
+VERDADERO                                               710                                          9                                    50
+NaN                                                     397                                          9                                    52
+
+------------------------------------------------------------
+
+8. vitamina_a_12-18_meses vs cat_zscore_desarrollo_motricidad_fina
+χ² = 19.046, p = 2.232e-02
+Cramér's V = 0.0000
+
+cat_zscore_desarrollo_motricidad_fina  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitamina_a_12-18_meses                                                                                                                      
+FALSO                                                   495                                          8                                    33
+VERDADERO                                               685                                          7                                    39
+NaN                                                     397                                          9                                    52
+
+------------------------------------------------------------
+
+9. vitaminas_minerales_18-24_meses vs cat_zscore_desarrollo_motricidad_gruesa
+χ² = 18.288, p = 3.144e-02
+Cramér's V = 0.0401
+
+cat_zscore_desarrollo_motricidad_gruesa  Adequate development  High risk of neurodevelopmental disorders  Risk of neurodevelopmental disorders
+vitaminas_minerales_18-24_meses                                                                                                               
+FALSO                                                     382                                         13                                    79
+VERDADERO                                                 467                                          8                                    78
+NaN                                                       588                                         33                                    77
+
+------------------------------------------------------------
+
