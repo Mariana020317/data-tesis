@@ -1,10 +1,10 @@
 default: build
 
 build:
-	pdflatex mydocument.tex
+	pdflatex -interaction=nonstopmode mydocument.tex
 	biber mydocument
-	pdflatex mydocument.tex
-	pdflatex mydocument.tex
+	pdflatex -interaction=nonstopmode mydocument.tex
+	pdflatex -interaction=nonstopmode mydocument.tex
 
 clean:
 	-rm *.aux 
