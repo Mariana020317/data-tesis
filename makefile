@@ -1,21 +1,10 @@
 default: build
 
 build:
-	pdflatex mydocument.tex
+	pdflatex -interaction=nonstopmode mydocument.tex
 	biber mydocument
-	pdflatex mydocument.tex
-	pdflatex mydocument.tex
+	pdflatex -interaction=nonstopmode mydocument.tex
+	pdflatex -interaction=nonstopmode mydocument.tex
 
 clean:
-	-rm *.aux 
-	-rm *.log 
-	-rm *.lof 
-	-rm *.bbl 
-	-rm *.blg 
-	-rm *.lot 
-	-rm *.out 
-	-rm *.toc 
-	-rm *.bcf 
-	-rm *.run.xml 
-	-rm *.blx.bib
-	-rm *.ccf
+	-rm *.aux *.log *.lof *.bbl *.blg *.lot *.out *.toc *.bcf *.run.xml *.blx.bib *.ccf *.fls *.fdb_latexmk *.synctex.gz
